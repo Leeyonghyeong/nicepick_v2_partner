@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from '../../window'
+import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
 
 const store = useWindowStore()
