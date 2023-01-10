@@ -38,17 +38,13 @@
 <style lang="scss" scoped>
 @import '@/scss/main';
 
-section {
-  font-family: $pre;
-}
-
 #main-first {
   margin: 30px 0 80px 0;
 
   .title {
     font-size: 34px;
     font-weight: $semi;
-    color: $fontMainColor;
+    color: $fontMain;
     position: absolute;
     top: 140px;
     left: 50%;
@@ -58,7 +54,7 @@ section {
       display: flex;
       justify-content: center;
       span {
-        color: $subColor;
+        color: $mainColor;
       }
     }
 
@@ -80,6 +76,7 @@ section {
     justify-content: center;
     gap: 30px;
     text-align: center;
+    align-items: center;
 
     .box {
       width: 276px;
@@ -93,14 +90,79 @@ section {
 
       .value-title {
         font-size: 16px;
-        color: $fontSubColor;
+        color: $fontSub;
         padding-bottom: 4px;
       }
 
       .value-number {
         font-size: 36px;
-        color: $subColor;
+        color: $mainColor;
         font-weight: $bold;
+      }
+    }
+  }
+}
+
+@include tablet {
+  #main-first {
+    margin: 80px 0;
+
+    .title {
+      position: static;
+      transform: none;
+    }
+
+    .value {
+      @include tablet-container();
+      gap: 24px;
+
+      .box {
+        width: 100%;
+
+        .value-title {
+          padding-bottom: 12px;
+        }
+
+        .value-number {
+          font-size: 30px;
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  #main-first {
+    margin: 60px 0;
+
+    .title {
+      font-size: 24px;
+      position: static;
+      transform: none;
+    }
+
+    .hand {
+      padding-bottom: 60px;
+    }
+
+    .value {
+      width: 100%;
+      padding: 0 16px;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      .box {
+        width: 45%;
+
+        .value-title {
+          font-size: 14px;
+          padding-bottom: 14px;
+        }
+
+        .value-number {
+          font-size: 28px;
+        }
       }
     }
   }

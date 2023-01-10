@@ -3,7 +3,7 @@
     <section>
       <article class="qna">
         <div class="qna-info">
-          <div>고객센터 031-889-0142</div>
+          <div>고객센터 070-8287-2281</div>
           <div>(운영시간 10:00~20:00 주말, 공휴일 휴무)</div>
         </div>
         <div class="footer-images">
@@ -56,7 +56,7 @@ footer {
 
   section {
     @include pc-container();
-    padding: 0px 0 21px 0;
+    padding: 28px 0 18px 0;
 
     .qna {
       background-color: #f3f3f3;
@@ -74,11 +74,11 @@ footer {
 
         div {
           font-size: 14px;
-          color: $fontMainColor;
+          color: $fontMain;
 
           &:last-child {
             font-size: 12px;
-            color: $fontSubColor;
+            color: $fontSub;
             margin-left: 10px;
           }
         }
@@ -100,7 +100,7 @@ footer {
     .company-info {
       margin-top: 20px;
       font-size: 12px;
-      color: $fontSubColor;
+      color: $fontSub;
 
       .footer-link {
         margin-bottom: 20px;
