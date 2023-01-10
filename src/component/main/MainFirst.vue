@@ -30,7 +30,6 @@
         <div class="value-number">30%+</div>
       </div>
     </div>
-    <div></div>
   </section>
 </template>
 
