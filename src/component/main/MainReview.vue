@@ -6,66 +6,58 @@
         <div class="title-bold">후기로 인증하는 창업PICK</div>
       </div>
 
-      <div class="review-flex">
-        <div v-for="index in 5" :key="index" class="review-box">
-          <div class="user-info">
-            <img
-              class="user-image"
-              src="../../assets/main/user_blue.png"
-              alt="유저-파랑"
-            />
-            <div class="user">
-              <div class="user-title">이런 창업은 처음이야</div>
-              <div class="user-name">**커피 사장님</div>
-            </div>
-          </div>
-
-          <div class="review">
-            창업은 처음이라 하나도 모르고 시작했는데 창업픽 통해서 브랜드 연결
-            받았어요! 하나부터 열까지 꼼꼼하게 알려주셔서 창업할 수 있었어요.
-            감사합니다!
-          </div>
-        </div>
+      <div class="review-auto">
+        <Swiper
+          :modules="[Navigation]"
+          :slides-per-view="1"
+          :loop="true"
+          :loop-additional-slides="1"
+          :autoplay="{
+            delay: 2500,
+            disableOnInteraction: false,
+          }"
+        >
+          <SwiperSlide>
+            <img src="../../assets/main/review.png" alt="리뷰" />
+          </SwiperSlide>
+        </Swiper>
       </div>
 
-      <div class="review-flex-2">
-        <div v-for="index in 6" :key="index" class="review-box">
-          <div class="user-info">
-            <img
-              class="user-image"
-              src="../../assets/main/user_blue.png"
-              alt="유저-파랑"
-            />
-            <div class="user">
-              <div class="user-title">이런 창업은 처음이야</div>
-              <div class="user-name">**커피 사장님</div>
-            </div>
-          </div>
-
-          <div class="review">
-            창업은 처음이라 하나도 모르고 시작했는데 창업픽 통해서 브랜드 연결
-            받았어요! 하나부터 열까지 꼼꼼하게 알려주셔서 창업할 수 있었어요.
-            감사합니다!
-          </div>
-        </div>
+      <div class="review-auto-2">
+        <Swiper
+          :modules="[Navigation]"
+          :slides-per-view="1"
+          :loop="true"
+          :loop-additional-slides="1"
+          :autoplay="{
+            delay: 2500,
+            disableOnInteraction: false,
+          }"
+        >
+          <SwiperSlide>
+            <img src="../../assets/main/review.png" alt="리뷰" />
+          </SwiperSlide>
+        </Swiper>
       </div>
     </div>
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation } from 'swiper'
+import 'swiper/scss'
+import 'swiper/scss/navigation'
+import 'swiper/css/autoplay'
+</script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';
 
-section {
-  font-family: $pre;
-}
-
 #main-review {
-  background-color: $subBack;
+  background-color: $backColor;
   height: 800px;
-  margin-bottom: 80px;
+  margin-bottom: 150px;
 
   .padding-box {
     padding: 100px 0 148px 0;
@@ -74,12 +66,12 @@ section {
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: $fontMainColor;
+      color: $fontMain;
       padding-bottom: 80px;
 
       .title-padding {
         font-size: 20px;
-        padding-bottom: 10px;
+        padding-bottom: 15px;
       }
 
       .title-bold {
@@ -88,56 +80,47 @@ section {
       }
     }
 
-    .review-flex,
-    .review-flex-2 {
-      display: flex;
-      gap: 30px;
-      width: 150%;
-      position: absolute;
-
-      .review-box {
-        background-color: white;
-        border-radius: 10px;
-        width: 318px;
-        height: 120px;
-        padding: 30px;
-        color: $fontMainColor;
-
-        .user-info {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-
-          .user-image {
-            width: 40px;
-            height: 40px;
-          }
-
-          .user {
-            .user-title {
-              font-size: 12px;
-              color: $fontSubColor;
-              padding-bottom: 4px;
-            }
-          }
-        }
-
-        .review {
-          padding-top: 20px;
-          line-height: 20px;
-          font-size: 14px;
-        }
+    .review-auto,
+    .review-auto-2 {
+      img {
+        width: 2010px;
       }
     }
 
-    .review-flex {
-      position: relative;
-      left: -45px;
+    .review-auto-2 {
+      padding-top: 40px;
     }
+  }
+}
 
-    .review-flex-2 {
-      margin-top: 40px;
-      left: -248px;
+@include tablet {
+  #main-review {
+    .padding-box {
+      .title {
+        .title-padding {
+          padding-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  #main-review {
+    height: 600px;
+    .padding-box {
+      padding: 60px 0 100px 0;
+      .title {
+        padding-bottom: 50px;
+        .title-padding {
+          font-size: 15px;
+          padding-bottom: 10px;
+        }
+
+        .title-bold {
+          font-size: 20px;
+        }
+      }
     }
   }
 }

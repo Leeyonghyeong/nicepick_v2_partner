@@ -1,6 +1,5 @@
 <template>
   <Header />
-  <RouterLink to="/about">about</RouterLink>
   <RouterView />
   <Footer />
 </template>

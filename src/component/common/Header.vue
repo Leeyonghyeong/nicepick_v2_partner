@@ -51,7 +51,6 @@ const { getDevice } = storeToRefs(store)
 @import '@/scss/main';
 
 article {
-  font-family: $pre;
   height: 60px;
   display: flex;
   border-bottom: 1px solid $sectionLine;
@@ -89,14 +88,14 @@ article {
       font-size: 13px;
 
       div {
-        color: $fontMainColor;
+        color: $fontMain;
         cursor: pointer;
       }
 
       button {
         font-family: $pre;
         font-size: 13px;
-        color: $fontSubColor;
+        color: $fontSub;
         background-color: white;
         border: 1px solid $sectionLine;
         border-radius: 50px;
