@@ -17,7 +17,9 @@
       </RouterLink>
 
       <div v-if="getDevice !== 'mobile'" class="login-homebtn">
-        <div>파트너 가입/로그인</div>
+        <router-link to="/login" class="login">
+          <div>파트너 가입/로그인</div>
+        </router-link>
         <button>창업픽 홈</button>
       </div>
 
@@ -90,6 +92,10 @@ article {
       div {
         color: $fontMain;
         cursor: pointer;
+      }
+
+      .login {
+        text-decoration: none;
       }
 
       button {

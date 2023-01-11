@@ -7,49 +7,37 @@
       </div>
 
       <div class="review-auto">
-        <Swiper
-          :modules="[Navigation]"
-          :slides-per-view="1"
-          :loop="true"
-          :loop-additional-slides="1"
-          :autoplay="{
-            delay: 2500,
-            disableOnInteraction: false,
-          }"
-        >
-          <SwiperSlide>
-            <img src="../../assets/main/review.png" alt="리뷰" />
-          </SwiperSlide>
-        </Swiper>
-      </div>
+        <div class="auto">
+          <img src="../../assets/main/review_1.png" alt="리뷰" />
+          <img src="../../assets/main/review_2.png" alt="리뷰" />
+          <img src="../../assets/main/review_3.png" alt="리뷰" />
+          <img src="../../assets/main/review_4.png" alt="리뷰" />
+          <img src="../../assets/main/review_5.png" alt="리뷰" />
+          <img src="../../assets/main/review_1.png" alt="리뷰" />
+          <img src="../../assets/main/review_2.png" alt="리뷰" />
+          <img src="../../assets/main/review_3.png" alt="리뷰" />
+          <img src="../../assets/main/review_4.png" alt="리뷰" />
+          <img src="../../assets/main/review_5.png" alt="리뷰" />
+        </div>
 
-      <div class="review-auto-2">
-        <Swiper
-          :modules="[Navigation]"
-          :slides-per-view="1"
-          :loop="true"
-          :loop-additional-slides="1"
-          :autoplay="{
-            delay: 2500,
-            disableOnInteraction: false,
-          }"
-        >
-          <SwiperSlide>
-            <img src="../../assets/main/review.png" alt="리뷰" />
-          </SwiperSlide>
-        </Swiper>
+        <div class="auto-2">
+          <img src="../../assets/main/review_1.png" alt="리뷰" />
+          <img src="../../assets/main/review_2.png" alt="리뷰" />
+          <img src="../../assets/main/review_3.png" alt="리뷰" />
+          <img src="../../assets/main/review_4.png" alt="리뷰" />
+          <img src="../../assets/main/review_5.png" alt="리뷰" />
+          <img src="../../assets/main/review_1.png" alt="리뷰" />
+          <img src="../../assets/main/review_2.png" alt="리뷰" />
+          <img src="../../assets/main/review_3.png" alt="리뷰" />
+          <img src="../../assets/main/review_4.png" alt="리뷰" />
+          <img src="../../assets/main/review_5.png" alt="리뷰" />
+        </div>
       </div>
     </div>
   </section>
 </template>
 
-<script lang="ts" setup>
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Navigation } from 'swiper'
-import 'swiper/scss'
-import 'swiper/scss/navigation'
-import 'swiper/css/autoplay'
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';
@@ -80,15 +68,29 @@ import 'swiper/css/autoplay'
       }
     }
 
-    .review-auto,
-    .review-auto-2 {
-      img {
-        width: 2010px;
+    .review-auto {
+      width: 100%;
+      position: relative;
+      overflow-x: hidden;
+      .auto {
+        display: flex;
+        gap: 30px;
+        animation: translate_left 30s linear infinite;
+        img {
+          width: 378px;
+        }
       }
-    }
 
-    .review-auto-2 {
-      padding-top: 40px;
+      .auto-2 {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 30px;
+        animation: translate_right 30s linear infinite;
+        padding-top: 40px;
+        img {
+          width: 378px;
+        }
+      }
     }
   }
 }
@@ -99,6 +101,14 @@ import 'swiper/css/autoplay'
       .title {
         .title-padding {
           padding-bottom: 10px;
+        }
+      }
+
+      .review-auto {
+        div {
+          img {
+            width: 378px;
+          }
         }
       }
     }
@@ -122,6 +132,18 @@ import 'swiper/css/autoplay'
         }
       }
     }
+  }
+}
+
+@keyframes translate_left {
+  100% {
+    transform: translateX(-2000px);
+  }
+}
+
+@keyframes translate_right {
+  100% {
+    transform: translateX(2000px);
   }
 }
 </style>

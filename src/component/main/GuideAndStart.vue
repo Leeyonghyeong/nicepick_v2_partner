@@ -38,7 +38,9 @@
 
   <section id="start">
     <div class="title">창업픽, 지금 시작하세요!</div>
-    <button>파트너 가입하기</button>
+    <router-link to="join">
+      <button>파트너 가입하기</button>
+    </router-link>
   </section>
 </template>
 
@@ -48,8 +50,9 @@
 @import '@/scss/main';
 
 #guide {
-  background-color: $backColor;
-  height: 494px;
+  margin-top: 298px;
+  background-color: $mainColor;
+  height: 619px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,7 +61,7 @@
 
   .title {
     font-size: 32px;
-    color: $fontMain;
+    color: white;
     font-weight: $semi;
   }
 
@@ -103,7 +106,7 @@
 }
 
 #start {
-  padding: 130px 0;
+  margin: 150px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -184,7 +187,6 @@
 }
 
 #start {
-  padding: 100px 0;
   gap: 40px;
   .title {
     font-size: 26px;
