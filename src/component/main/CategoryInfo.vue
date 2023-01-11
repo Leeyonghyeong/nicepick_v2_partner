@@ -18,10 +18,10 @@
             nextEl: '.custom-button-next',
           }"
         >
-          <div v-if="getDevice !== 'mobile'" class="custom-button-prev">
+          <div v-if="getDevice === 'pc'" class="custom-button-prev">
             <img src="../../assets/main/btn_prev.png" alt="이전" />
           </div>
-          <div v-if="getDevice !== 'mobile'" class="custom-button-next">
+          <div v-if="getDevice === 'pc'" class="custom-button-next">
             <img src="../../assets/main/btn_next.png" alt="다음" />
           </div>
 
@@ -102,6 +102,8 @@ const { getDevice } = storeToRefs(store)
 @import '@/scss/main';
 
 #category-info {
+  background-color: $backColor;
+  padding: 150px 0 298px 0;
   .title {
     display: flex;
     justify-content: center;
@@ -136,6 +138,8 @@ const { getDevice } = storeToRefs(store)
         img {
           width: 50px;
           height: 50px;
+          border-radius: 100%;
+          box-shadow: 1px 1px 10px (rgba(0, 0, 0, 0.05));
         }
 
         &.custom-button-prev {
@@ -237,7 +241,7 @@ const { getDevice } = storeToRefs(store)
             font-size: 15px;
             line-height: 24px;
             .bold {
-              font-size: 30px;
+              font-size: 26px;
             }
           }
         }

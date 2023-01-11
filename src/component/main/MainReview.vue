@@ -2,7 +2,9 @@
   <section id="main-review">
     <div class="padding-box">
       <div class="title">
-        <div class="title-padding">여기가 그렇게 창업 맛집이라며?</div>
+        <div class="title-padding">
+          여기가 그렇게 창업 맛집이라며? 창업픽으로 가보자고~
+        </div>
         <div class="title-bold">후기로 인증하는 창업PICK</div>
       </div>
 
@@ -45,7 +47,6 @@
 #main-review {
   background-color: $backColor;
   height: 800px;
-  margin-bottom: 150px;
 
   .padding-box {
     padding: 100px 0 148px 0;

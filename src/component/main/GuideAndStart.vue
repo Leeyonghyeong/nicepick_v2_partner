@@ -50,7 +50,6 @@
 @import '@/scss/main';
 
 #guide {
-  margin-top: 298px;
   background-color: $mainColor;
   height: 619px;
   display: flex;
@@ -106,12 +105,13 @@
 }
 
 #start {
-  margin: 150px 0;
+  padding: 150px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 50px;
+  background-color: #fafafa;
 
   .title {
     font-size: 32px;

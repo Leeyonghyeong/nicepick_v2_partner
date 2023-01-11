@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from './store/window'
+import { useWindowStore } from '../store/window'
 import { onMounted } from 'vue'
 
 const store = useWindowStore()
