@@ -40,6 +40,8 @@
         <i class="fa-regular fa-building"></i>
         <div>협력파트너</div>
       </div>
+
+      <div></div>
     </section>
   </article>
 </template>
