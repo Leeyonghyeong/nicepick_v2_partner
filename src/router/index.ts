@@ -28,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'join',
         component: () => import('../views/JoinMain.vue'),
       },
+      {
+        path: '/franchisejoin',
+        name: 'franchisejoin',
+        component: () => import('../views/JoinFranchise.vue'),
+      },
     ],
   },
 ]

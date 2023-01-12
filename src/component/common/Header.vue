@@ -24,11 +24,13 @@
       </div>
 
       <div v-if="getDevice === 'mobile'" class="login-homebtn-mobile">
-        <img
-          class="login"
-          src="../../assets/header/login_mobile.png"
-          alt="모바일 로그인"
-        />
+        <router-link to="/login" class="login">
+          <img
+            class="login"
+            src="../../assets/header/login_mobile.png"
+            alt="모바일 로그인"
+          />
+        </router-link>
         <div class="home">
           <img
             src="../../assets/header/home_mobile.png"
@@ -69,8 +71,8 @@ article {
 
     .logo {
       display: flex;
-      align-items: baseline;
-      gap: 7px;
+      align-items: flex-start;
+      gap: 4px;
       cursor: pointer;
 
       .nicepick {
@@ -78,8 +80,8 @@ article {
         height: 20px;
       }
       .partner {
-        width: 61px;
-        height: 8px;
+        width: 46px;
+        height: 13.53px;
       }
     }
 

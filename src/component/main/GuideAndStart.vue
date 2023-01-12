@@ -111,7 +111,6 @@
   justify-content: center;
   align-items: center;
   gap: 50px;
-  background-color: #fafafa;
 
   .title {
     font-size: 32px;
