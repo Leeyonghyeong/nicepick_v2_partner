@@ -14,15 +14,17 @@
           :loop="true"
           :loop-additional-slides="1"
           :navigation="{
-            prevEl: '.custom-button-prev',
-            nextEl: '.custom-button-next',
+            prevEl: '.prev',
+            nextEl: '.next',
           }"
         >
-          <div v-if="getDevice !== 'mobile'" class="custom-button-prev">
-            <img src="../../assets/main/btn_prev.png" alt="이전" />
-          </div>
-          <div v-if="getDevice !== 'mobile'" class="custom-button-next">
-            <img src="../../assets/main/btn_next.png" alt="다음" />
+          <div class="btn">
+            <div v-if="getDevice === 'pc'" class="prev">
+              <img src="../../assets/main/btn_prev.png" alt="이전" />
+            </div>
+            <div v-if="getDevice === 'pc'" class="next">
+              <img src="../../assets/main/btn_next.png" alt="다음" />
+            </div>
           </div>
 
           <SwiperSlide>
@@ -102,6 +104,8 @@ const { getDevice } = storeToRefs(store)
 @import '@/scss/main';
 
 #category-info {
+  background-color: $backColor;
+  padding: 150px 0 298px 0;
   .title {
     display: flex;
     justify-content: center;
@@ -125,27 +129,24 @@ const { getDevice } = storeToRefs(store)
     padding-top: 138px;
 
     .info-slide {
-      .custom-button-prev,
-      .custom-button-next {
+      .btn {
+        @include pc-container();
+        display: flex;
+        justify-content: space-between;
         position: absolute;
-        width: 50px;
-        height: 50px;
-        z-index: 3;
-        cursor: pointer;
+        top: 113px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        z-index: 2;
 
-        img {
-          width: 50px;
-          height: 50px;
-        }
-
-        &.custom-button-prev {
-          top: 75px;
-          left: 220px;
-        }
-
-        &.custom-button-next {
-          top: 75px;
-          right: 220px;
+        div {
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            box-shadow: 1px 1px 10px (rgba(0, 0, 0, 0.05));
+            cursor: pointer;
+          }
         }
       }
 
@@ -183,33 +184,20 @@ const { getDevice } = storeToRefs(store)
     .info {
       padding-top: 168px;
 
-      .info-slide {
-        .custom-button-prev,
-        .custom-button-next {
-          &.custom-button-prev {
-            left: 44px;
-          }
+      .box {
+        gap: 24px;
 
-          &.custom-button-next {
-            right: 44px;
-          }
+        img {
+          width: 240px;
+          height: 217px;
         }
 
-        .box {
-          gap: 24px;
+        .box-title {
+          font-size: 15px;
+          line-height: 24px;
 
-          img {
-            width: 240px;
-            height: 217px;
-          }
-
-          .box-title {
-            font-size: 15px;
-            line-height: 24px;
-
-            .bold {
-              font-size: 30px;
-            }
+          .bold {
+            font-size: 30px;
           }
         }
       }
@@ -237,7 +225,7 @@ const { getDevice } = storeToRefs(store)
             font-size: 15px;
             line-height: 24px;
             .bold {
-              font-size: 30px;
+              font-size: 26px;
             }
           }
         }

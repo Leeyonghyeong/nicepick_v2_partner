@@ -4,7 +4,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'defaultLayout',
-    component: () => import('../DefaultLayout.vue'),
+    component: () => import('../layout/DefaultLayout.vue'),
     children: [
       {
         path: '/',
@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'emptyLayout',
-    component: () => import('../EmptyLayout.vue'),
+    component: () => import('../layout/EmptyLayout.vue'),
     children: [
       {
         path: '/login',
@@ -27,6 +27,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/join',
         name: 'join',
         component: () => import('../views/JoinMain.vue'),
+      },
+      {
+        path: '/franchisejoin',
+        name: 'franchisejoin',
+        component: () => import('../views/JoinFranchise.vue'),
       },
     ],
   },

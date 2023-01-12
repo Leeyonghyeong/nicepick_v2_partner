@@ -87,7 +87,7 @@ const { getDevice } = storeToRefs(store)
 @import '@/scss/main';
 
 article {
-  padding: 100px 0 322px 0;
+  padding-top: 100px;
   text-align: center;
 
   #logo {
@@ -96,8 +96,8 @@ article {
     padding-bottom: 80px;
     .title {
       display: flex;
-      align-items: baseline;
-      gap: 13.54px;
+      align-items: flex-start;
+      gap: 7.57px;
 
       .logo {
         width: 160.5px;
@@ -105,8 +105,8 @@ article {
       }
 
       .partner {
-        width: 117.96px;
-        height: 15.2px;
+        width: 87.16px;
+        height: 25.7px;
       }
     }
   }
@@ -223,7 +223,7 @@ article {
 
         span {
           padding-left: 10px;
-          color: #ff4b2e;
+          color: $subColor;
           text-decoration: underline;
           cursor: pointer;
         }
@@ -240,7 +240,7 @@ article {
 
 @include mobile {
   article {
-    padding: 15px 0 126px 0;
+    padding-top: 15px;
     width: 100%;
     box-sizing: border-box;
 

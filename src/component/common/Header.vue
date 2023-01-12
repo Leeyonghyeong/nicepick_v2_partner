@@ -18,17 +18,19 @@
 
       <div v-if="getDevice !== 'mobile'" class="login-homebtn">
         <router-link to="/login" class="login">
-          <div>파트너 가입/로그인</div>
+          <button class="login">파트너 가입 / 로그인</button>
         </router-link>
         <button>창업픽 홈</button>
       </div>
 
       <div v-if="getDevice === 'mobile'" class="login-homebtn-mobile">
-        <img
-          class="login"
-          src="../../assets/header/login_mobile.png"
-          alt="모바일 로그인"
-        />
+        <router-link to="/login" class="login">
+          <img
+            class="login"
+            src="../../assets/header/login_mobile.png"
+            alt="모바일 로그인"
+          />
+        </router-link>
         <div class="home">
           <img
             src="../../assets/header/home_mobile.png"
@@ -69,8 +71,8 @@ article {
 
     .logo {
       display: flex;
-      align-items: baseline;
-      gap: 7px;
+      align-items: flex-start;
+      gap: 4px;
       cursor: pointer;
 
       .nicepick {
@@ -78,8 +80,8 @@ article {
         height: 20px;
       }
       .partner {
-        width: 61px;
-        height: 8px;
+        width: 46px;
+        height: 13.53px;
       }
     }
 
@@ -88,15 +90,6 @@ article {
       align-items: center;
       gap: 24px;
       font-size: 13px;
-
-      div {
-        color: $fontMain;
-        cursor: pointer;
-      }
-
-      .login {
-        text-decoration: none;
-      }
 
       button {
         font-family: $pre;
@@ -107,6 +100,14 @@ article {
         border-radius: 50px;
         padding: 10px 20px;
         cursor: pointer;
+      }
+
+      .login {
+        button {
+          background-color: $mainColor;
+          border: none;
+          color: white;
+        }
       }
     }
   }
