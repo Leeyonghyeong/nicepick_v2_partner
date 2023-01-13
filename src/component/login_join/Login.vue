@@ -3,16 +3,11 @@
     <section id="logo">
       <RouterLink to="/" class="none">
         <div v-if="getDevice !== 'mobile'" class="title">
-          <img class="logo" src="../assets/header/logo.png" alt="로고" />
-          <img
-            class="partner"
-            src="../assets/header/partner.png"
-            alt="파트너"
-          />
+          <img class="logo" src="../../assets/header/logo_2.png" alt="로고" />
         </div>
 
         <div v-if="getDevice === 'mobile'" class="title">
-          <img src="../assets/login/arrow_lt.png" alt="이전" />
+          <img src="../../assets/login/arrow_lt.png" alt="이전" />
           <div>로그인</div>
         </div>
       </RouterLink>
@@ -65,7 +60,7 @@
           </div>
         </div>
 
-        <img src="../assets/login/banner.png" alt="배너" />
+        <img src="../../assets/login/banner.png" alt="배너" />
 
         <div class="copy">
           Copyright &copy; nicepick.co.kr. All rights reserved
@@ -76,7 +71,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from '../store/window'
+import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
 
 const store = useWindowStore()
@@ -100,13 +95,8 @@ article {
       gap: 7.57px;
 
       .logo {
-        width: 160.5px;
+        width: 252px;
         height: 38px;
-      }
-
-      .partner {
-        width: 87.16px;
-        height: 25.7px;
       }
     }
   }
@@ -146,7 +136,7 @@ article {
 
               input {
                 width: 378px;
-                height: 44px;
+                height: 50px;
                 border: 1px solid $inputLine;
                 border-radius: 10px;
                 box-sizing: border-box;
@@ -165,20 +155,20 @@ article {
 
               .id {
                 input {
-                  background-image: url(../assets/login/id.png);
+                  background-image: url(../../assets/login/id.png);
                 }
                 input:focus {
                   border: 1px solid $mainColor;
-                  background-image: url(../assets/login/id_2.png);
+                  background-image: url(../../assets/login/id_2.png);
                 }
               }
               .pw {
                 input {
-                  background-image: url(../assets/login/pw.png);
+                  background-image: url(../../assets/login/pw.png);
                 }
                 input:focus {
                   border: 1px solid $mainColor;
-                  background-image: url(../assets/login/pw_2.png);
+                  background-image: url(../../assets/login/pw_2.png);
                 }
               }
             }
