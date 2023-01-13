@@ -21,17 +21,22 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/login',
         name: 'login',
-        component: () => import('../views/Login.vue'),
+        component: () => import('../component/login_join/Login.vue'),
       },
       {
         path: '/join',
         name: 'join',
-        component: () => import('../views/JoinMain.vue'),
+        component: () => import('../component/login_join/JoinMain.vue'),
       },
       {
         path: '/franchisejoin',
         name: 'franchisejoin',
-        component: () => import('../views/JoinFranchise.vue'),
+        component: () => import('../component/login_join/JoinFranchise.vue'),
+      },
+      {
+        path: '/realtorjoin',
+        name: 'realtor',
+        component: () => import('../component/login_join/JoinRealtor.vue'),
       },
     ],
   },

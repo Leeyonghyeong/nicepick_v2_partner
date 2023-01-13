@@ -3,16 +3,15 @@
     <article class="nicepick-partner">
       <RouterLink to="/" class="none">
         <div v-if="getDevice !== 'mobile'" class="logo">
-          <img class="nicepick" src="../assets/header/logo.png" alt="로고" />
           <img
-            class="partner"
-            src="../assets/header/partner.png"
-            alt="파트너"
+            class="nicepick"
+            src="../../assets/header/logo_2.png"
+            alt="로고"
           />
         </div>
 
         <div v-if="getDevice === 'mobile'" class="title">
-          <img src="../assets/login/arrow_lt.png" alt="이전" />
+          <img src="../../assets/login/arrow_lt.png" alt="이전" />
           <div>파트너 회원가입</div>
         </div>
       </RouterLink>
@@ -29,18 +28,20 @@
 
     <article class="category">
       <router-link to="franchisejoin" class="none">
-        <div class="box fc">
+        <div class="box franchise">
           <i class="fa-regular fa-building"></i>
           <div>프랜차이즈 브랜드</div>
         </div>
       </router-link>
 
-      <div class="box rt">
-        <i class="fa-solid fa-people-roof"></i>
-        <div>공인중개사</div>
-      </div>
+      <router-link to="Realtorjoin" class="none">
+        <div class="box realtor">
+          <i class="fa-solid fa-people-roof"></i>
+          <div>공인중개사</div>
+        </div>
+      </router-link>
 
-      <div class="box cp">
+      <div class="box cooperation" @click="showPrepareModal">
         <i class="fa-regular fa-building"></i>
         <div>협력파트너</div>
       </div>
@@ -56,15 +57,24 @@
         </div>
       </div>
     </article>
+
+    <PrepareCooperation v-if="showModal" @showPrepareModal="showPrepareModal" />
   </section>
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from '../store/window'
+import { ref } from 'vue'
+import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
+import PrepareCooperation from '../common/modal/PrepareCooperation.vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
+
+const showModal = ref<boolean>(false)
+const showPrepareModal = () => {
+  showModal.value = !showModal.value
+}
 </script>
 
 <style lang="scss" scoped>
@@ -87,13 +97,8 @@ section {
       gap: 7.57px;
 
       .nicepick {
-        width: 160.5px;
+        width: 252px;
         height: 38px;
-      }
-
-      .partner {
-        width: 87.16px;
-        height: 25.7px;
       }
     }
   }
@@ -148,13 +153,13 @@ section {
       }
     }
 
-    .fc {
+    .franchise {
       background-color: #2643a9;
     }
-    .rt {
+    .realtor {
       background-color: #eb82a2;
     }
-    .cp {
+    .cooperation {
       background-color: #4bbe88;
     }
   }
@@ -199,23 +204,26 @@ section {
     width: 100%;
     box-sizing: border-box;
 
+    .none {
+      text-decoration: none;
+      width: 100%;
+    }
+
     .nicepick-partner {
       display: flex;
       justify-content: flex-start;
       border-bottom: 1px solid $sectionLine;
-      .none {
-        text-decoration: none;
-        .title {
-          @include mobile-container();
-          display: flex;
-          align-items: center;
-          color: $fontMain;
-          padding-bottom: 15px;
 
-          img {
-            width: 30px;
-            height: 30px;
-          }
+      .title {
+        @include mobile-container();
+        display: flex;
+        align-items: center;
+        color: $fontMain;
+        padding-bottom: 15px;
+
+        img {
+          width: 30px;
+          height: 30px;
         }
       }
     }

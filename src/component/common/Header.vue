@@ -8,11 +8,6 @@
             src="../../assets/header/logo.png"
             alt="창업픽 로고"
           />
-          <img
-            class="partner"
-            src="../../assets/header/partner.png"
-            alt="파트너 로고"
-          />
         </div>
       </RouterLink>
 
@@ -76,12 +71,7 @@ article {
       cursor: pointer;
 
       .nicepick {
-        width: 83px;
-        height: 20px;
-      }
-      .partner {
-        width: 46px;
-        height: 13.53px;
+        width: 133px;
       }
     }
 
