@@ -45,7 +45,7 @@ defineEmits<{
 }>()
 
 onMounted(() => {
-  document.body.setAttribute('style', 'overflow-x: hidden;')
+  document.body.setAttribute('style', 'overflow: hidden;')
 })
 
 onUnmounted(() => {
@@ -57,18 +57,22 @@ onUnmounted(() => {
 @import '@/scss/main';
 
 section {
-  padding: 0 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(25, 25, 25, 0.5);
 
   .modal {
+    width: 100%;
+    height: 100%;
     .modal-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 1256px;
-      background-color: rgba(25, 25, 25, 0.5);
+      width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
+      align-items: center;
       z-index: 2;
 
       .modal-box {
