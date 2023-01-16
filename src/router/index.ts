@@ -38,6 +38,38 @@ const routes: Array<RouteRecordRaw> = [
         name: 'realtor',
         component: () => import('../component/login_join/JoinRealtor.vue'),
       },
+      {
+        path: '/joincomplete',
+        name: 'joincomplete',
+        component: () => import('../component/login_join/JoinComplete.vue'),
+      },
+      {
+        path: '/findpw',
+        name: 'findpw',
+        component: () => import('../component/find_pw/FindPw.vue'),
+      },
+      {
+        path: '/resetpw',
+        name: 'resetpw',
+        component: () => import('../component/find_pw/ResetPw.vue'),
+      },
+      {
+        path: '/resetcomplete',
+        name: 'resetcomplete',
+        component: () => import('../component/find_pw/ResetComplete.vue'),
+      },
+    ],
+  },
+  {
+    path: '/',
+    name: 'DashboardLayout',
+    component: () => import('../layout/DashboardLayout.vue'),
+    children: [
+      {
+        path: '/franchise/brand',
+        name: 'franchise/brand',
+        component: () => import('../component/dashboard/franchise/Brand.vue'),
+      },
     ],
   },
 ]

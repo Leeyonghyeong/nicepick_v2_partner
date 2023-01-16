@@ -27,19 +27,19 @@
     </article>
 
     <article class="category">
-      <router-link to="franchisejoin" class="none">
+      <RouterLink to="franchisejoin" class="none">
         <div class="box franchise">
           <i class="fa-regular fa-building"></i>
           <div>프랜차이즈 브랜드</div>
         </div>
-      </router-link>
+      </RouterLink>
 
-      <router-link to="Realtorjoin" class="none">
+      <RouterLink to="Realtorjoin" class="none">
         <div class="box realtor">
           <i class="fa-solid fa-people-roof"></i>
           <div>공인중개사</div>
         </div>
-      </router-link>
+      </RouterLink>
 
       <div class="box cooperation" @click="showPrepareModal">
         <i class="fa-regular fa-building"></i>
@@ -218,6 +218,7 @@ section {
         @include mobile-container();
         display: flex;
         align-items: center;
+        gap: 8px;
         color: $fontMain;
         padding-bottom: 15px;
 

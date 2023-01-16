@@ -130,8 +130,9 @@ footer {
   }
   @include tablet {
     section {
-      @include tablet-container();
-      padding-bottom: 21px;
+      width: 100%;
+      padding: 24px 44px 21px 44px;
+      box-sizing: border-box;
 
       .qna {
         .footer-images {
@@ -145,9 +146,9 @@ footer {
 
   @include mobile {
     section {
-      @include mobile-container();
-
-      padding-bottom: 27px;
+      width: 100%;
+      padding: 20px 24px 27px 24px;
+      box-sizing: border-box;
 
       .qna {
         flex-direction: column;

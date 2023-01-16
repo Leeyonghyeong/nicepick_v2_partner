@@ -1,6 +1,6 @@
 <template>
   <article>
-    <div class="box">
+    <div class="header">
       <RouterLink to="/">
         <div class="logo">
           <img
@@ -12,20 +12,13 @@
       </RouterLink>
 
       <div v-if="getDevice !== 'mobile'" class="login-homebtn">
-        <router-link to="/login" class="login">
+        <RouterLink to="/login" class="login">
           <button class="login">파트너 가입 / 로그인</button>
-        </router-link>
+        </RouterLink>
         <button>창업픽 홈</button>
       </div>
 
       <div v-if="getDevice === 'mobile'" class="login-homebtn-mobile">
-        <router-link to="/login" class="login">
-          <img
-            class="login"
-            src="../../assets/header/login_mobile.png"
-            alt="모바일 로그인"
-          />
-        </router-link>
         <div class="home">
           <img
             src="../../assets/header/home_mobile.png"
@@ -58,7 +51,7 @@ article {
   background-color: white;
   z-index: 2;
 
-  .box {
+  .header {
     @include pc-container();
     display: flex;
     justify-content: space-between;
@@ -114,16 +107,6 @@ article {
     @include mobile-container();
 
     .login-homebtn-mobile {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-
-      .login {
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-      }
-
       .home {
         display: flex;
         flex-direction: column;

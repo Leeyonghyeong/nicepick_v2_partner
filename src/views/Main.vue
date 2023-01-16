@@ -4,6 +4,12 @@
   <MainBrandList />
   <CategoryInfo />
   <GuideAndStart />
+
+  <div class="login-join-btn">
+    <RouterLink to="/login" class="login none">
+      <div>파트너 로그인 / 회원가입</div>
+    </RouterLink>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -16,4 +22,30 @@ import GuideAndStart from '../component/main/GuideAndStart.vue'
 
 <style lang="scss" scoped>
 @import '@/scss/main';
+
+@include mobile {
+  .login-join-btn {
+    position: absolute;
+    position: fixed;
+    z-index: 2;
+
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+
+    background-color: $mainColor;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .none {
+      text-decoration: none;
+    }
+
+    div {
+      color: white;
+    }
+  }
+}
 </style>

@@ -44,7 +44,9 @@
             </div>
           </div>
 
-          <div class="find-pw">비밀번호 찾기</div>
+          <RouterLink to="findpw" class="none">
+            <div class="find-pw">비밀번호 찾기</div>
+          </RouterLink>
         </div>
       </div>
     </section>
@@ -54,9 +56,9 @@
         <div class="join">
           <div>
             아직 창업픽 파트너가 아니신가요?
-            <router-link to="join">
+            <RouterLink to="join">
               <span>회원가입</span>
-            </router-link>
+            </RouterLink>
           </div>
         </div>
 
@@ -84,6 +86,10 @@ const { getDevice } = storeToRefs(store)
 article {
   padding-top: 100px;
   text-align: center;
+
+  .none {
+    text-decoration: none;
+  }
 
   #logo {
     display: flex;
