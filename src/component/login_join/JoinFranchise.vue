@@ -9,7 +9,9 @@
             alt="로고"
           />
         </div>
+      </RouterLink>
 
+      <RouterLink to="join" class="none">
         <div v-if="getDevice === 'mobile'" class="title">
           <img src="../../assets/login/arrow_lt.png" alt="이전" />
           <div>파트너 회원가입</div>
@@ -101,7 +103,9 @@
           </div>
         </div>
 
-        <button>가입하기</button>
+        <router-link to="joincomplete">
+          <button>가입하기</button>
+        </router-link>
       </div>
     </article>
 
@@ -324,7 +328,6 @@ section {
     .nicepick-partner {
       border-bottom: 1px solid $sectionLine;
       justify-content: flex-start;
-      padding-bottom: 15px;
 
       width: 100%;
       padding: 15px 24px;

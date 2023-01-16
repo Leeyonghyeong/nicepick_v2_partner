@@ -1,15 +1,20 @@
 <template>
-  <Header />
+  <DashHeader />
 
-  <RouterView />
+  <div class="flex">
+    <DashboardCategory />
+    <RouterView />
+  </div>
+
   <Footer />
 </template>
 
 <script lang="ts" setup>
-import Header from '../component/common/Header.vue'
+import DashHeader from '../component/common/DashboardHeader.vue'
 import Footer from '../component/common/Footer.vue'
 import { useWindowStore } from '../store/window'
 import { onMounted } from 'vue'
+import DashboardCategory from '../component/common/dashboardcategory/DashboardCategory.vue'
 
 const store = useWindowStore()
 
@@ -22,4 +27,9 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.flex {
+  display: flex;
+  background-color: #f2f4f7;
+}
+</style>

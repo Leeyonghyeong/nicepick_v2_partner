@@ -38,9 +38,9 @@
 
   <section id="start">
     <div class="title">창업픽, 지금 시작하세요!</div>
-    <router-link to="join">
+    <RouterLink to="join">
       <button>파트너 가입하기</button>
-    </router-link>
+    </RouterLink>
   </section>
 </template>
 

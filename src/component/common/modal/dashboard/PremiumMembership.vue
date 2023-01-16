@@ -4,22 +4,18 @@
       <div class="modal-overlay">
         <div class="modal-box vibration">
           <div class="padding-box">
-            <img
-              class="hour"
-              src="../../../assets/login/hourglass.png"
-              alt="모래시계"
-            />
             <div class="title">
-              협력파트너 회원가입은 <span>준비중</span>입니다.
+              <span>프리미엄 멤버십 회원 전용</span>
+              서비스입니다.
             </div>
-            <div class="sub">
-              보다 나은 서비스를 위하여 준비중에 있습니다.<br />
-              빠른 시일내에 준비하여 찾아뵙겠습니다.
+
+            <div class="show">
+              <button>프리미엄 멤버십 보기</button>
             </div>
           </div>
 
-          <div class="close" @click="$emit('showPrepareModal')">
-            <img src="../../../assets/login/close.png" alt="닫기" />
+          <div class="close" @click="$emit('showPremiumModal')">
+            <img src="../../../../assets/login/close.png" alt="닫기" />
           </div>
         </div>
       </div>
@@ -31,7 +27,7 @@
 import { onMounted, onUnmounted } from 'vue'
 
 defineEmits<{
-  (e: 'showPrepareModal'): void
+  (e: 'showCompanyNumberModal'): void
 }>()
 
 onMounted(() => {
@@ -47,53 +43,65 @@ onUnmounted(() => {
 @import '@/scss/main';
 
 section {
-  padding: 0 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(25, 25, 25, 0.5);
 
   .modal {
+    width: 100%;
+    height: 100%;
     .modal-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(25, 25, 25, 0.5);
+      width: 100%;
+      height: 100%;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       z-index: 2;
 
       .modal-box {
-        position: relative;
-        background-color: white;
-        width: 438px;
-        height: 342px;
-        border-radius: 10px;
-
         display: flex;
         justify-content: center;
         align-items: center;
+
+        width: 378px;
+        height: 200px;
+        background-color: #f3f3f3;
+        border-radius: 10px;
+
+        position: absolute;
 
         .padding-box {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 20px;
-          .hour {
-            width: 60px;
-            height: 60px;
-          }
+          gap: 30px;
 
           .title {
-            font-size: 24px;
+            font-weight: $reg;
 
             span {
-              font-weight: $bold;
+              color: $subColor;
+              font-weight: $medi;
             }
           }
 
-          .sub {
-            line-height: 24px;
-            color: $fontSub;
+          .show {
+            button {
+              width: 290px;
+              height: 50px;
+
+              border-radius: 10px;
+              border: none;
+              background-color: $mainColor;
+              color: white;
+              font-family: Pretendard;
+              font-size: 16px;
+              font-weight: $reg;
+              cursor: pointer;
+            }
           }
         }
 
@@ -117,17 +125,11 @@ section {
   section {
     .modal {
       .modal-overlay {
+        width: 100%;
+        margin: 0 24px;
+        box-sizing: border-box;
         .modal-box {
           width: 100%;
-          margin: 0 24px;
-          .padding-box {
-            .title {
-              font-size: 18px;
-            }
-            .sub {
-              font-size: 13px;
-            }
-          }
         }
       }
     }
