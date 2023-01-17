@@ -35,6 +35,7 @@ const { getDevice } = storeToRefs(store)
 article {
   padding: 12px 30px;
   border-bottom: 1px solid $sectionLine;
+  background-color: white;
 
   .header {
     display: flex;

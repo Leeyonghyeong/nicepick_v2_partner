@@ -3,7 +3,7 @@
 
   <div class="flex">
     <DashboardCategory />
-    <RouterView />
+    <RouterView class="width" />
   </div>
 
   <Footer />
@@ -31,5 +31,9 @@ onMounted(() => {
 .flex {
   display: flex;
   background-color: #f2f4f7;
+
+  .width {
+    width: 100%;
+  }
 }
 </style>

@@ -28,6 +28,26 @@
           <div class="border">
             <div class="search-title">사업자 등록번호</div>
             <button @click="showCompanyNumberModal">검색</button>
+
+            <div class="apply-section">123-45-678910</div>
+
+            <div class="apply-section">
+              <div class="name-close">
+                <div class="brand-name">A브랜드</div>
+                <img src="../../assets/login/close.png" alt="닫기" />
+                <!-- @click="removeContent" -->
+              </div>
+              <div class="select-box">
+                <div class="select">
+                  <div class="category-select">업종 선택</div>
+                  <img src="../../assets/login/arrow_down.png" alt="down" />
+                </div>
+                <div class="select">
+                  <div class="category-select">세부 업종 선택</div>
+                  <img src="../../assets/login/arrow_down.png" alt="down" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -176,7 +196,7 @@ section {
           padding: 30px 0;
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 20px;
 
           border-top: 1px solid $sectionLine;
           border-bottom: 1px solid $sectionLine;
@@ -192,6 +212,64 @@ section {
             height: 50px;
             border-radius: 10px;
             cursor: pointer;
+          }
+
+          .apply-section {
+            background-color: #fafafa;
+            border-radius: 10px;
+            padding: 20px 16px;
+            color: $fontMain;
+            font-weight: $reg;
+
+            display: flex;
+            flex-direction: column;
+            gap: 21px;
+
+            .name-close {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              .brand-name {
+                display: flex;
+              }
+
+              img {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+              }
+            }
+
+            .select-box {
+              display: flex;
+              gap: 8px;
+
+              .select {
+                background-color: white;
+                width: 169px;
+                border: 1px solid $inputLine;
+                border-radius: 10px;
+                padding: 15px 16px;
+
+                display: flex;
+                align-items: center;
+
+                cursor: pointer;
+
+                .category-select {
+                  width: 100%;
+                  display: flex;
+                  color: $fontSub;
+                  font-weight: $reg;
+                }
+
+                img {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+            }
           }
         }
       }

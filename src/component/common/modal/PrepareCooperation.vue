@@ -2,7 +2,7 @@
   <section>
     <article class="modal">
       <div class="modal-overlay">
-        <div class="modal-box vibration">
+        <div class="modal-box">
           <div class="padding-box">
             <img
               class="hour"
@@ -131,19 +131,6 @@ section {
         }
       }
     }
-  }
-}
-
-.vibration {
-  animation: vibration 0.1s;
-}
-
-@keyframes vibration {
-  from {
-    transform: rotate(3deg);
-  }
-  to {
-    transform: rotate(-3deg);
   }
 }
 </style>
