@@ -5,7 +5,7 @@
   <CategoryInfo />
   <GuideAndStart />
 
-  <div class="login-join-btn">
+  <div v-if="getDevice === 'mobile'" class="login-join-btn">
     <RouterLink to="/login" class="login none">
       <div>파트너 로그인 / 회원가입</div>
     </RouterLink>
@@ -18,6 +18,12 @@ import MainReview from '../component/main/MainReview.vue'
 import MainBrandList from '../component/main/MainBrandList.vue'
 import CategoryInfo from '../component/main/CategoryInfo.vue'
 import GuideAndStart from '../component/main/GuideAndStart.vue'
+
+import { useWindowStore } from '../store/window'
+import { storeToRefs } from 'pinia'
+
+const store = useWindowStore()
+const { getDevice } = storeToRefs(store)
 </script>
 
 <style lang="scss" scoped>

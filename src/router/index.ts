@@ -66,9 +66,15 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../layout/DashboardLayout.vue'),
     children: [
       {
-        path: '/franchise/brand',
-        name: 'franchise/brand',
+        path: '/franchise/brand/management',
+        name: 'management',
         component: () => import('../component/dashboard/franchise/Brand.vue'),
+      },
+      {
+        path: '/franchise/brand/set',
+        name: 'set',
+        component: () =>
+          import('../component/dashboard/franchise/BrandSet.vue'),
       },
     ],
   },

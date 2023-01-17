@@ -57,10 +57,21 @@
           </div>
         </div>
 
-        <div class="input-box">
+        <div class="file-upload">
           <div class="box">
-            <div class="input-title">사업자 등록자</div>
-            <button>파일첨부</button>
+            <div class="input-title">사업자 등록증</div>
+          </div>
+
+          <div class="file-gap">
+            <div>
+              <label for="file">
+                <div class="btn-upload">파일첨부</div>
+              </label>
+              <input type="file" name="file" id="file" />
+            </div>
+            <div class="apply-box">
+              <div class="box">등록증.jpg</div>
+            </div>
           </div>
         </div>
 
@@ -71,10 +82,21 @@
           </div>
         </div>
 
-        <div class="input-box">
+        <div class="file-upload">
           <div class="box">
             <div class="input-title">중개 등록증</div>
-            <button>파일첨부</button>
+          </div>
+
+          <div class="file-gap">
+            <div>
+              <label for="file">
+                <div class="btn-upload">파일첨부</div>
+              </label>
+              <input type="file" name="file" id="file" />
+            </div>
+            <div class="apply-box">
+              <div class="box">등록증.jpg</div>
+            </div>
           </div>
         </div>
 
@@ -270,6 +292,7 @@ section {
           align-items: baseline;
           gap: 5px;
           font-size: 14px;
+          font-weight: $reg;
           padding-bottom: 8px;
 
           div {
@@ -324,6 +347,52 @@ section {
       }
     }
 
+    .apply-box {
+      .box {
+        border: 1px solid $inputLine;
+        border-radius: 10px;
+        background-color: #fafafa;
+
+        height: 50px;
+        padding-left: 16px;
+        box-sizing: border-box;
+
+        display: flex;
+        align-items: center;
+
+        font-size: 14px;
+        font-weight: $reg;
+        color: $fontSub;
+      }
+    }
+
+    #file {
+      display: none;
+    }
+
+    .file-upload {
+      .file-gap {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        .btn-upload {
+          background-color: $fontMain;
+          border-radius: 10px;
+          color: white;
+
+          width: 378px;
+          height: 50px;
+          font-weight: $reg;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          cursor: pointer;
+        }
+      }
+    }
+
     .border {
       border-bottom: 1px solid $sectionLine;
 
@@ -341,6 +410,7 @@ section {
       width: 378px;
       .title {
         font-size: 14px;
+        font-weight: $reg;
         padding-bottom: 8px;
         display: flex;
       }

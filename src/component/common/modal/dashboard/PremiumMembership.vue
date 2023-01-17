@@ -2,7 +2,7 @@
   <section>
     <article class="modal">
       <div class="modal-overlay">
-        <div class="modal-box vibration">
+        <div class="modal-box">
           <div class="padding-box">
             <div class="title">
               <span>프리미엄 멤버십 회원 전용</span>
@@ -133,19 +133,6 @@ section {
         }
       }
     }
-  }
-}
-
-.vibration {
-  animation: vibration 0.1s;
-}
-
-@keyframes vibration {
-  from {
-    transform: rotate(3deg);
-  }
-  to {
-    transform: rotate(-3deg);
   }
 }
 </style>

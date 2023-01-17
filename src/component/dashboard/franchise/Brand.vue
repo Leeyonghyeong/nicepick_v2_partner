@@ -5,7 +5,10 @@
 
       <div class="sub-category">
         <div class="sub select">브랜드 관리</div>
-        <div class="sub">브랜드 정보 수정</div>
+
+        <RouterLink to="set" class="none">
+          <div class="sub">브랜드 정보 수정</div>
+        </RouterLink>
       </div>
 
       <div class="content-gap">
@@ -228,7 +231,13 @@ const showPremiumModal = () => {
 <style lang="scss" scoped>
 @import '@/scss/main';
 article {
-  padding: 50px 0 76px 160px;
+  padding: 50px 0px 76px 160px;
+  box-sizing: border-box;
+  width: 100%;
+
+  .none {
+    text-decoration: none;
+  }
 
   span {
     color: $subColor;
@@ -247,6 +256,7 @@ article {
 
     .sub {
       color: $fontSub;
+      font-weight: $reg;
       cursor: pointer;
     }
 
@@ -553,11 +563,40 @@ article {
         flex-direction: column;
         height: 100%;
 
-        .box {
-          .content {
-            width: 100%;
-          }
+        .content {
+          width: 100%;
         }
+      }
+
+      .content {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@include mobile {
+  article {
+    padding: 0;
+
+    .title {
+      display: none;
+    }
+
+    .sub-category {
+      padding: 16px 0 17px 0;
+      justify-content: center;
+    }
+
+    .content-gap {
+      @include mobile-container();
+      .image-apply {
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .content {
+        width: 100%;
       }
     }
   }

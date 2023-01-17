@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="getDevice !== 'mobile'">
     <div class="side-bar">
       <article class="info">
         <div class="info-box">
@@ -45,7 +45,13 @@
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useWindowStore } from '../../../store/window'
+import { storeToRefs } from 'pinia'
+
+const store = useWindowStore()
+const { getDevice } = storeToRefs(store)
+</script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';

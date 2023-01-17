@@ -23,9 +23,76 @@
                   />
                 </button>
               </div>
+
+              <div class="select-title">다중 선택 가능</div>
             </div>
 
-            <div class="list"></div>
+            <div class="list">
+              <div class="list-box">
+                <div
+                  class="box"
+                  :class="{ active: selectActive }"
+                  @click="setActive"
+                >
+                  <div class="brand-name">A브랜드</div>
+                  <div class="brand-category">한식</div>
+                </div>
+              </div>
+              <div class="list-box">
+                <div class="box">
+                  <div class="brand-name">B브랜드</div>
+                  <div class="brand-category">중식</div>
+                </div>
+              </div>
+              <div class="list-box">
+                <div class="box">
+                  <div class="brand-name">C브랜드</div>
+                  <div class="brand-category">서양식</div>
+                </div>
+              </div>
+              <div class="list-box">
+                <div class="box">
+                  <div class="brand-name">D브랜드</div>
+                  <div class="brand-category">커피</div>
+                </div>
+              </div>
+              <div class="list-box">
+                <div class="box">
+                  <div class="brand-name">E브랜드</div>
+                  <div class="brand-category">스포츠 관련</div>
+                </div>
+              </div>
+              <div class="list-box">
+                <div class="box">
+                  <div class="brand-name">F브랜드</div>
+                  <div class="brand-category">한식</div>
+                </div>
+              </div>
+              <div class="list-box">
+                <div class="box">
+                  <div class="brand-name">G브랜드</div>
+                  <div class="brand-category">기타도소매</div>
+                </div>
+              </div>
+              <div class="list-box">
+                <div class="box">
+                  <div class="brand-name">H브랜드</div>
+                  <div class="brand-category">일식</div>
+                </div>
+              </div>
+              <div class="list-box">
+                <div class="box">
+                  <div class="brand-name">I브랜드</div>
+                  <div class="brand-category">제과제빵</div>
+                </div>
+              </div>
+              <div class="list-box">
+                <div class="box">
+                  <div class="brand-name">J브랜드</div>
+                  <div class="brand-category">편의점</div>
+                </div>
+              </div>
+            </div>
 
             <div class="submit">
               <button>확인</button>
@@ -38,7 +105,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 defineEmits<{
   (e: 'showCompanyNumberModal'): void
@@ -51,6 +118,11 @@ onMounted(() => {
 onUnmounted(() => {
   document.body.removeAttribute('style')
 })
+
+const selectActive = ref<boolean>(true)
+const setActive = () => {
+  selectActive.value = !selectActive.value
+}
 </script>
 
 <style lang="scss" scoped>
@@ -87,8 +159,6 @@ section {
           padding: 30px;
 
           .border-bottom {
-            border-bottom: 1px solid $sectionLine;
-            padding-bottom: 30px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -143,9 +213,57 @@ section {
                 }
               }
             }
+
+            .select-title {
+              font-size: 11px;
+              color: $fontSub;
+              font-weight: $reg;
+              display: flex;
+
+              padding-bottom: 0;
+              border-bottom: 1px solid $sectionLine;
+              padding-bottom: 10px;
+            }
           }
+
           .list {
             height: 430px;
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            .list-box {
+              .box {
+                height: 50px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: 0 16px;
+                font-weight: $reg;
+
+                cursor: pointer;
+
+                .brand-name {
+                  color: $fontMain;
+                }
+                .brand-category {
+                  color: $fontSub;
+                  font-size: 12px;
+                }
+              }
+
+              .active {
+                background-color: #f5f7ff;
+                .brand-name,
+                .brand-category {
+                  color: $mainColor;
+                }
+              }
+            }
+          }
+          .list::-webkit-scrollbar {
+            display: none;
           }
 
           .submit {
@@ -157,11 +275,13 @@ section {
               background-color: $inputLine;
               width: 100%;
               height: 50px;
+
               border-radius: 10px;
               border: none;
               color: white;
               font-size: 16px;
               font-family: Pretendard;
+
               // cursor: pointer;
             }
           }
