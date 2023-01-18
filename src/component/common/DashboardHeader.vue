@@ -6,8 +6,6 @@
           <img src="../../assets/header/logo.png" alt="로고" />
         </div>
 
-        <div v-if="getDevice === 'mobile'" class="title">브랜드</div>
-
         <div v-if="getDevice !== 'mobile'" class="logout-homebtn">
           <div class="logout">로그아웃</div>
           <button>창업픽 홈</button>
@@ -33,6 +31,8 @@ const { getDevice } = storeToRefs(store)
 @import '@/scss/main';
 
 article {
+  height: 60px;
+  box-sizing: border-box;
   padding: 12px 30px;
   border-bottom: 1px solid $sectionLine;
   background-color: white;
@@ -79,6 +79,8 @@ article {
     padding: 15px 23px 15px 24px;
 
     .header {
+      display: flex;
+      justify-content: flex-end;
       .title {
         color: $fontMain;
       }

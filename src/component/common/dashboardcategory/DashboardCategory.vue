@@ -17,28 +17,34 @@
             <div>대시보드</div>
           </div>
 
-          <div class="box select">
-            <img
-              src="../../../assets/dashboard/brand_select.png"
-              alt="브랜드"
-            />
-            <div>브랜드</div>
-          </div>
+          <RouterLink to="/franchise/brand/management" class="none">
+            <div class="box select">
+              <img
+                src="../../../assets/dashboard/brand_select.png"
+                alt="브랜드"
+              />
+              <div>브랜드</div>
+            </div>
+          </RouterLink>
 
           <div class="box">
             <img src="../../../assets/dashboard/ad.png" alt="광고상품" />
             <div>광고 상품</div>
           </div>
 
-          <div class="box">
-            <img src="../../../assets/dashboard/qna.png" alt="고객문의" />
-            <div>고객문의</div>
-          </div>
+          <RouterLink to="/franchise/qna" class="none">
+            <div class="box">
+              <img src="../../../assets/dashboard/qna.png" alt="고객문의" />
+              <div>고객문의</div>
+            </div>
+          </RouterLink>
 
-          <div class="box">
-            <img src="../../../assets/dashboard/my.png" alt="마이메뉴" />
-            <div>마이메뉴</div>
-          </div>
+          <RouterLink to="/franchise/mymenu/myinfo" class="none">
+            <div class="box">
+              <img src="../../../assets/dashboard/my.png" alt="마이메뉴" />
+              <div>마이메뉴</div>
+            </div>
+          </RouterLink>
         </div>
       </article>
     </div>
@@ -46,8 +52,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from '../../../store/window'
 import { storeToRefs } from 'pinia'
+import { useWindowStore } from '../../../store/window'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
@@ -57,6 +63,9 @@ const { getDevice } = storeToRefs(store)
 @import '@/scss/main';
 
 section {
+  .none {
+    text-decoration: none;
+  }
   .side-bar {
     width: 330px;
     height: 1020px;

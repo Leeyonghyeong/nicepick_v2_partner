@@ -11,8 +11,8 @@
         </div>
 
         <div v-if="getDevice === 'mobile'" class="title">
-          <img src="../../assets/login/arrow_lt.png" alt="이전" />
           <div>파트너 회원가입</div>
+          <img src="../../assets/login/close.png" alt="닫기" />
         </div>
       </RouterLink>
     </article>
@@ -216,13 +216,17 @@ section {
 
       .title {
         @include mobile-container();
+        height: 45px;
         display: flex;
+        justify-content: center;
         align-items: center;
         gap: 8px;
         color: $fontMain;
         padding-bottom: 15px;
 
         img {
+          position: absolute;
+          right: 24px;
           width: 30px;
           height: 30px;
         }

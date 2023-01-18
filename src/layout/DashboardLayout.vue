@@ -6,17 +6,22 @@
     <RouterView class="width" />
   </div>
 
-  <Footer />
+  <div v-if="getDevice !== 'mobile'">
+    <Footer />
+  </div>
 </template>
 
 <script lang="ts" setup>
 import DashHeader from '../component/common/DashboardHeader.vue'
 import Footer from '../component/common/Footer.vue'
-import { useWindowStore } from '../store/window'
-import { onMounted } from 'vue'
 import DashboardCategory from '../component/common/dashboardcategory/DashboardCategory.vue'
 
+import { onMounted } from 'vue'
+import { useWindowStore } from '../store/window'
+import { storeToRefs } from 'pinia'
+
 const store = useWindowStore()
+const { getDevice } = storeToRefs(store)
 
 onMounted(() => {
   store.windowWidth = window.innerWidth
