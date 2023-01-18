@@ -68,13 +68,26 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/franchise/brand/management',
         name: 'management',
-        component: () => import('../component/dashboard/franchise/Brand.vue'),
+        component: () =>
+          import('../component/dashboard/franchise/brand/Brand.vue'),
       },
       {
         path: '/franchise/brand/set',
         name: 'set',
         component: () =>
-          import('../component/dashboard/franchise/BrandSet.vue'),
+          import('../component/dashboard/franchise/brand/BrandSet.vue'),
+      },
+      {
+        path: '/franchise/qna',
+        name: 'qna',
+        component: () => import('../component/dashboard/franchise/qna/QnA.vue'),
+      },
+
+      {
+        path: '/franchise/mymenu/myinfo',
+        name: 'myinfo',
+        component: () =>
+          import('../component/dashboard/franchise/mymenu/MyInfo.vue'),
       },
     ],
   },

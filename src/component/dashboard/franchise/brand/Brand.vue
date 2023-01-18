@@ -1,13 +1,12 @@
 <template>
   <section>
     <article>
-      <div class="title">브랜드</div>
+      <div class="top-title">브랜드</div>
 
-      <div class="sub-category">
-        <div class="sub select">브랜드 관리</div>
-
+      <div class="category">
+        <div class="category-name select">브랜드 관리</div>
         <RouterLink to="set" class="none">
-          <div class="sub">브랜드 정보 수정</div>
+          <div class="category-name">브랜드 정보 수정</div>
         </RouterLink>
       </div>
 
@@ -70,10 +69,12 @@
         </div>
 
         <div class="content youtube">
-          <div class="content-title">유튜브</div>
-          <input type="text" placeholder="URL 입력" />
+          <div class="left">
+            <div class="content-title">유튜브 영상</div>
+            <input type="text" placeholder="URL 입력" />
+          </div>
           <button class="ad">
-            <img src="../../../assets/dashboard/add.png" alt="추가" />
+            <img src="../../../../assets/dashboard/add.png" alt="추가" />
             추가
           </button>
         </div>
@@ -87,7 +88,7 @@
           <div class="promotion-category">
             <div class="promotion-box">
               <img
-                src="../../../assets/dashboard/brand/store_discount.png"
+                src="../../../../assets/dashboard/brand/store_discount.png"
                 alt="가맹비할인"
               />
               <div class="promotion-name">가맹비 할인</div>
@@ -95,7 +96,7 @@
 
             <div class="promotion-box">
               <img
-                src="../../../assets/dashboard/brand/store_free.png"
+                src="../../../../assets/dashboard/brand/store_free.png"
                 alt="가맹비면제"
               />
               <div class="promotion-name">가맹비 면제</div>
@@ -103,7 +104,7 @@
 
             <div class="promotion-box">
               <img
-                src="../../../assets/dashboard/brand/edu_discount.png"
+                src="../../../../assets/dashboard/brand/edu_discount.png"
                 alt="교육비할인"
               />
               <div class="promotion-name">교육비 할인</div>
@@ -111,7 +112,7 @@
 
             <div class="promotion-box">
               <img
-                src="../../../assets/dashboard/brand/edu_free.png"
+                src="../../../../assets/dashboard/brand/edu_free.png"
                 alt="교육비면제"
               />
               <div class="promotion-name">교육비 면제</div>
@@ -119,7 +120,7 @@
 
             <div class="promotion-box">
               <img
-                src="../../../assets/dashboard/brand/article.png"
+                src="../../../../assets/dashboard/brand/article.png"
                 alt="물품지원"
               />
               <div class="promotion-name">물품지원</div>
@@ -127,7 +128,7 @@
 
             <div class="promotion-box">
               <img
-                src="../../../assets/dashboard/brand/equipment.png"
+                src="../../../../assets/dashboard/brand/equipment.png"
                 alt="장비지원"
               />
               <div class="promotion-name">장비지원</div>
@@ -135,7 +136,7 @@
 
             <div class="promotion-box interior">
               <img
-                src="../../../assets/dashboard/brand/interrior.png"
+                src="../../../../assets/dashboard/brand/interrior.png"
                 alt="인테리어지원"
               />
               <div class="promotion-name">인테리어<br />비용 지원</div>
@@ -154,7 +155,7 @@
               <div>1572x884(9:16 비율)</div>
             </div>
             <button class="ad">
-              <img src="../../../assets/dashboard/add.png" alt="추가" />
+              <img src="../../../../assets/dashboard/add.png" alt="추가" />
               추가
             </button>
           </div>
@@ -169,12 +170,14 @@
                 <i class="fa-regular fa-image"></i>
                 <div>540x540<br />(1:1 비율)</div>
               </div>
-              <input type="text" placeholder="메뉴명" />
-              <input type="text" placeholder="0 원" />
+              <div class="column">
+                <input type="text" placeholder="메뉴명" />
+                <input type="text" placeholder="0 원" />
+              </div>
             </div>
 
             <button class="ad">
-              <img src="../../../assets/dashboard/add.png" alt="추가" />
+              <img src="../../../../assets/dashboard/add.png" alt="추가" />
               추가
             </button>
           </div>
@@ -189,7 +192,7 @@
               <div>1572x884(9:16 비율)</div>
             </div>
             <button class="ad">
-              <img src="../../../assets/dashboard/add.png" alt="추가" />
+              <img src="../../../../assets/dashboard/add.png" alt="추가" />
               추가
             </button>
           </div>
@@ -204,7 +207,7 @@
               <div>1572x884(9:16 비율)</div>
             </div>
             <button class="ad">
-              <img src="../../../assets/dashboard/add.png" alt="추가" />
+              <img src="../../../../assets/dashboard/add.png" alt="추가" />
               추가
             </button>
           </div>
@@ -220,7 +223,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import PremiumMembership from '../../common/modal/dashboard/PremiumMembership.vue'
+import PremiumMembership from '../../../common/modal/dashboard/PremiumMembership.vue'
 
 const showModal = ref<boolean>(false)
 const showPremiumModal = () => {
@@ -237,38 +240,38 @@ article {
 
   .none {
     text-decoration: none;
+    color: inherit;
   }
 
   span {
     color: $subColor;
   }
 
-  .title {
+  .top-title {
     font-size: 20px;
     font-weight: $medi;
     color: $fontMain;
+    padding-bottom: 65px;
   }
 
-  .sub-category {
-    padding: 65px 0 30px 0;
+  .category {
     display: flex;
     gap: 30px;
-
-    .sub {
-      color: $fontSub;
-      font-weight: $reg;
+    color: $fontSub;
+    font-weight: $reg;
+    .category-name {
       cursor: pointer;
     }
-
     .select {
       color: $mainColor;
       font-weight: $semi;
       border-bottom: 2px solid $mainColor;
-      padding-bottom: 15px;
+      padding-bottom: 14px;
     }
   }
 
   .content-gap {
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -350,6 +353,7 @@ article {
     }
 
     .content {
+      width: 1270px;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -434,8 +438,15 @@ article {
 
     .youtube {
       height: 211px;
-
-      button {
+      display: flex;
+      align-items: center;
+      .left {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .ad {
         width: 89px;
         height: 40px;
         border-radius: 50px;
@@ -528,17 +539,23 @@ article {
             text-align: center;
           }
 
-          input {
-            width: 122px;
-            height: 41px;
-            text-align: center;
-            padding: 0;
+          .column {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+            input {
+              width: 122px;
+              height: 41px;
+              text-align: center;
+              padding: 0;
+            }
           }
         }
       }
     }
 
     .save {
+      width: 1270px;
       height: 50px;
       border-radius: 10px;
       border: none;
@@ -570,6 +587,47 @@ article {
 
       .content {
         width: 100%;
+        .image-box {
+          flex-direction: column;
+        }
+      }
+      .height {
+        height: 408px;
+        .image-box {
+          align-items: center;
+          .ad {
+            flex-direction: row;
+            width: 89px;
+            height: 40px;
+            border-radius: 50px;
+          }
+        }
+      }
+      .representative-menu {
+        height: 253px;
+        .image-box {
+          .box {
+            flex-direction: row;
+            .image-section {
+              width: 93px;
+              height: 93px;
+            }
+          }
+        }
+      }
+
+      .promotion {
+        height: 351px;
+        .promotion-category {
+          flex-wrap: wrap;
+          .promotion-box {
+            width: 20%;
+          }
+        }
+      }
+
+      .save {
+        width: 100%;
       }
     }
   }
@@ -579,24 +637,46 @@ article {
   article {
     padding: 0;
 
-    .title {
-      display: none;
+    .top-title {
+      padding: 0;
+      font-size: 16px;
+      position: absolute;
+      top: 23px;
+      left: 24px;
     }
 
-    .sub-category {
-      padding: 16px 0 17px 0;
-      justify-content: center;
+    .category {
+      background-color: white;
+      justify-content: space-around;
+      padding: 16px 24px 0 24px;
+      border-bottom: 1px solid $iconLine;
+      font-size: 14px;
     }
 
     .content-gap {
-      @include mobile-container();
+      padding: 0;
       .image-apply {
         flex-direction: column;
         height: 100%;
+        .box {
+          .description {
+            background-color: white;
+            padding: 20px 0 20px 25px;
+          }
+          .content {
+            box-shadow: none;
+          }
+        }
+        .content {
+          width: 100%;
+          box-shadow: none;
+          border-radius: 0;
+        }
       }
-
       .content {
         width: 100%;
+        box-shadow: none;
+        border-radius: 0;
       }
     }
   }

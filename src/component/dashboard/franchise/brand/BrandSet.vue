@@ -10,7 +10,7 @@
         <div class="category-name select">브랜드 정보 수정</div>
       </div>
 
-      <div class="content-section">
+      <div class="content-section no-padding">
         <div class="content">
           <div class="title">
             가맹점 증감현황
@@ -121,7 +121,7 @@
         <div class="content">
           <div class="title">창업비용</div>
 
-          <div class="info-section">
+          <div class="info-section mobile-gap">
             <div class="input-section calculator">
               <div class="input-title">가맹비</div>
               <div class="border-section">
@@ -166,22 +166,26 @@
       </div>
 
       <div class="select-set">
-        <div class="select">
-          <input type="radio" checked />
-          <div class="title">현재 작성한 내용으로 브랜드 정보 저장</div>
-          <div class="sub-title">
-            (정보공개서의 정보가 업데이트와 상관없이 작성한 정보를 유지하고 싶은
-            경우)
+        <label for="maintain" class="select maintain">
+          <input type="radio" name="select" id="maintain" checked />
+          <div class="select-title">
+            <div class="title">현재 작성한 내용으로 브랜드 정보 저장</div>
+            <div class="sub-title">
+              (정보공개서의 정보가 업데이트와 상관없이 작성한 정보를 유지하고
+              싶은 경우)
+            </div>
           </div>
-        </div>
+        </label>
 
-        <div class="select">
-          <input type="radio" />
-          <div class="title">정보공개서 정보 업데이트 희망</div>
-          <div class="sub-title">
-            (정보공개서의 정보가 업데이트 될 때마다 적용을 원하는 경우)
+        <label for="update" class="select">
+          <input type="radio" name="select" id="update" />
+          <div class="select-title">
+            <div class="title">정보공개서 정보 업데이트 희망</div>
+            <div class="sub-title">
+              (정보공개서의 정보가 업데이트 될 때마다 적용을 원하는 경우)
+            </div>
           </div>
-        </div>
+        </label>
       </div>
 
       <button class="save">저장</button>
@@ -195,7 +199,7 @@
 @import '@/scss/main';
 
 article {
-  padding: 50px 160px 80px 160px;
+  padding: 50px 0px 80px 160px;
 
   .none {
     text-decoration: none;
@@ -334,6 +338,7 @@ article {
         .total {
           padding-top: 30px;
           .total-section {
+            font-weight: $reg;
             span {
               font-size: 20px;
               color: $mainColor;
@@ -371,18 +376,232 @@ article {
     display: flex;
     justify-content: space-between;
     gap: 30px;
+    width: 1270px;
 
     .select {
-      width: 100%;
+      width: 620px;
       height: 134px;
 
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 10px;
 
       background-color: white;
       border-radius: 10px;
+      font-size: 14px;
+
+      cursor: pointer;
+
+      .select-title {
+        text-align: center;
+        .title {
+          font-weight: $medi;
+          color: $fontMain;
+        }
+        .sub-title {
+          padding-top: 10px;
+          font-weight: $reg;
+          color: $fontSub;
+        }
+      }
+    }
+  }
+
+  .save {
+    width: 1270px;
+    height: 50px;
+    margin-top: 30px;
+
+    background-color: $mainColor;
+    border-radius: 10px;
+    border: none;
+
+    color: white;
+    font-size: 16px;
+    font-family: Pretendard;
+    font-weight: $reg;
+
+    cursor: pointer;
+  }
+}
+
+@include tablet {
+  article {
+    padding: 50px 24px 60px 24px;
+
+    .content-section {
+      .content {
+        width: 100%;
+
+        .info-section {
+          .input-section {
+            .input-gap {
+              gap: 8px;
+              .border-section {
+                width: 114px;
+              }
+            }
+          }
+
+          .calculator {
+            .border-section {
+              width: 358px;
+            }
+          }
+        }
+
+        .comment {
+          .title {
+            padding-bottom: 20px;
+          }
+        }
+      }
+    }
+
+    .select-set {
+      width: 100%;
+      .select {
+        padding: 0px 7px 0px 6px;
+        width: 100%;
+        height: 157px;
+
+        .sub-title {
+          text-align: center;
+          line-height: 24px;
+        }
+      }
+    }
+    .save {
+      width: 100%;
+    }
+  }
+}
+
+@include mobile {
+  article {
+    padding: 0;
+
+    .top-title {
+      padding: 0;
+      font-size: 16px;
+      position: absolute;
+      top: 23px;
+      left: 24px;
+    }
+
+    .category {
+      background-color: white;
+      justify-content: space-around;
+      padding: 16px 24px 0 24px;
+      border-bottom: 1px solid $iconLine;
+      font-size: 14px;
+    }
+
+    .content-section {
+      padding-top: 10px;
+      .content {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        .title {
+          font-size: 16px;
+        }
+
+        .info-section {
+          .input-section {
+            display: block;
+            .input-title {
+              font-size: 14px;
+              padding-bottom: 10px;
+            }
+            .input-gap {
+              gap: 8px;
+              .border-section {
+                width: 100%;
+                font-size: 14px;
+
+                input::placeholder {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+
+        .mobile-gap {
+          gap: 20px;
+          .calculator {
+            .border-section {
+              width: 100%;
+            }
+          }
+          .total {
+            display: flex;
+            padding-top: 15px;
+            .input-title {
+              padding: 0;
+            }
+            .total-section {
+              font-size: 14px;
+              span {
+                font-size: 18px;
+              }
+            }
+          }
+        }
+
+        .comment {
+          .title {
+            font-size: 14px;
+            padding-bottom: 10px;
+          }
+        }
+      }
+    }
+
+    .no-padding {
+      padding-top: 0;
+    }
+
+    .select-set {
+      padding-top: 10px;
+      flex-direction: column;
+      gap: 0;
+
+      .select {
+        width: 100%;
+        height: 113px;
+        padding: 20px 23px 20px 24px;
+        box-sizing: border-box;
+
+        justify-content: flex-start;
+        gap: 16px;
+        flex-direction: row;
+
+        border-radius: 0;
+        .select-title {
+          display: flex;
+          flex-direction: column;
+          text-align: justify;
+
+          .sub-title {
+            line-height: 24px;
+            font-size: 12px;
+          }
+        }
+      }
+      .maintain {
+        border-bottom: 1px solid $iconLine;
+      }
+    }
+
+    .save {
+      width: 100%;
+      height: 60px;
+      margin: 0;
+      border-radius: 0;
     }
   }
 }
