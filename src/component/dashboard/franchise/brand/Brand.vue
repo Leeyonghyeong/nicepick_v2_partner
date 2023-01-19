@@ -3,227 +3,241 @@
     <article>
       <div class="top-title">브랜드</div>
 
-      <div class="category">
+      <div class="top-category">
         <div class="category-name select">브랜드 관리</div>
         <RouterLink to="set" class="none">
           <div class="category-name">브랜드 정보 수정</div>
         </RouterLink>
       </div>
 
-      <div class="content-gap">
-        <div class="image-apply">
-          <div class="box">
-            <div class="description">
-              <div class="description-list">
-                · 브랜드 이미지는 <span>필수*</span>로 등록해 주세요.
-              </div>
-              <div class="description-list">· 이미지의 단위는 px입니다.</div>
-              <div class="description-list">
-                · 등록 이미지는 jpg, png 파일만 등록이 가능합니다.
-              </div>
-              <div class="description-list">
-                · 이미지는 사이즈에 맞춰 등록해 주세요.
-              </div>
-            </div>
-
-            <div class="content logo">
-              <div class="title-box">
-                <div class="content-title">브랜드 로고<span>*</span><br /></div>
-                <div class="content-sub">(브랜드 대표 로고 이미지)</div>
-              </div>
-              <div class="image-section">
-                <i class="fa-regular fa-image"></i>
-                <div>500x200</div>
-              </div>
-            </div>
+      <div class="brand-image">
+        <div class="description-logo">
+          <div class="description">
+            · 브랜드 이미지는 <span>필수*</span>로 등록해 주세요.<br />
+            · 이미지의 단위는 px입니다.<br />
+            · 등록 이미지는 jpg, png 파일만 등록이 가능합니다.<br />
+            · 이미지는 사이즈에 맞춰 등록해 주세요.
           </div>
-
-          <div class="content list">
-            <div class="title-box">
-              <div class="content-title">브랜드 목록 이미지<span>*</span></div>
-              <div class="content-sub">(업종 및 검색 리스트 노출 이미지)</div>
-            </div>
+          <div class="content logo">
+            <div class="title">브랜드 로고<span>*</span></div>
+            <div class="sub">(브랜드 대표 로고 이미지)</div>
             <div class="image-section">
-              <i class="fa-regular fa-image"></i>
-              <div>348x348(1:1비율)</div>
-            </div>
-          </div>
-
-          <div class="content representative">
-            <div class="title-box">
-              <div class="content-title">브랜드 대표 이미지<span>*</span></div>
-              <div class="content-sub">
-                (브랜드 상세페이지 상단 노출 이미지)
-              </div>
-            </div>
-            <div class="image-section">
-              <i class="fa-regular fa-image"></i>
-              <div>1572x884(9:16비율)</div>
+              <label for="file">
+                <div class="btn-upload">
+                  <i class="fa-regular fa-image" />
+                  <div class="value">500x200</div>
+                </div>
+              </label>
+              <input type="file" name="file" id="file" />
             </div>
           </div>
         </div>
+        <div class="content list">
+          <div class="title">브랜드 목록 이미지<span>*</span></div>
+          <div class="sub">(업종 및 검색 리스트 노출 이미지)</div>
+          <div class="image-section">
+            <label for="file">
+              <div class="btn-upload">
+                <i class="fa-regular fa-image" />
+                <div class="value">348x348(1:1비율)</div>
+              </div>
+            </label>
+            <input type="file" name="file" id="file" />
+          </div>
+        </div>
+        <div class="content representative-image">
+          <div class="title">브랜드 대표 이미지<span>*</span></div>
+          <div class="sub">(브랜드 상세페이지 상단 노출 이미지)</div>
+          <div class="image-section">
+            <label for="file">
+              <div class="btn-upload">
+                <i class="fa-regular fa-image" />
+                <div class="value">1572x884(9:16비율)</div>
+              </div>
+            </label>
+            <input type="file" name="file" id="file" />
+          </div>
+        </div>
+      </div>
 
+      <div class="content-section">
         <div class="content web">
-          <div class="content-title">홈페이지</div>
-          <input type="text" placeholder="URL 입력" />
-        </div>
-
-        <div class="content youtube">
-          <div class="left">
-            <div class="content-title">유튜브 영상</div>
+          <div class="box">
+            <div class="title">홈페이지</div>
             <input type="text" placeholder="URL 입력" />
           </div>
-          <button class="ad">
-            <img src="../../../../assets/dashboard/add.png" alt="추가" />
-            추가
-          </button>
         </div>
-
+        <div class="content youtube">
+          <div class="box">
+            <div class="title">유튜브 영상</div>
+            <div class="center">
+              <input type="text" placeholder="URL 입력" />
+              <button>
+                <img src="../../../../assets/dashboard/add.png" alt="" />
+                추가
+              </button>
+            </div>
+          </div>
+        </div>
         <div class="content promotion" @click="showPremiumModal">
-          <div class="content-title">
-            프로모션
-            <span class="promotion-sub">*프리미엄 멤버십 회원 전용</span>
-          </div>
-
-          <div class="promotion-category">
-            <div class="promotion-box">
-              <img
-                src="../../../../assets/dashboard/brand/store_discount.png"
-                alt="가맹비할인"
-              />
-              <div class="promotion-name">가맹비 할인</div>
+          <div class="box">
+            <div class="title">
+              프로모션 <span>* 프리미엄 멤버십 회원 전용</span>
             </div>
-
-            <div class="promotion-box">
-              <img
-                src="../../../../assets/dashboard/brand/store_free.png"
-                alt="가맹비면제"
-              />
-              <div class="promotion-name">가맹비 면제</div>
+            <div class="promotion-category">
+              <div class="category">
+                <img
+                  src="../../../../assets/dashboard/brand/store_discount.png"
+                  alt=""
+                />
+                가맹비 할인
+              </div>
+              <div class="category">
+                <img
+                  src="../../../../assets/dashboard/brand/store_free.png"
+                  alt=""
+                />
+                가맹비 면제
+              </div>
+              <div class="category">
+                <img
+                  src="../../../../assets/dashboard/brand/edu_discount.png"
+                  alt=""
+                />
+                교육비 할인
+              </div>
+              <div class="category">
+                <img
+                  src="../../../../assets/dashboard/brand/edu_free.png"
+                  alt=""
+                />
+                교육비 면제
+              </div>
+              <div class="category">
+                <img
+                  src="../../../../assets/dashboard/brand/article.png"
+                  alt=""
+                />
+                물품지원
+              </div>
+              <div class="category">
+                <img
+                  src="../../../../assets/dashboard/brand/equipment.png"
+                  alt=""
+                />
+                장비지원
+              </div>
+              <div class="category interior-gap">
+                <img
+                  src="../../../../assets/dashboard/brand/interrior.png"
+                  alt=""
+                />
+                인테리어<br />비용 지원
+              </div>
             </div>
-
-            <div class="promotion-box">
-              <img
-                src="../../../../assets/dashboard/brand/edu_discount.png"
-                alt="교육비할인"
-              />
-              <div class="promotion-name">교육비 할인</div>
-            </div>
-
-            <div class="promotion-box">
-              <img
-                src="../../../../assets/dashboard/brand/edu_free.png"
-                alt="교육비면제"
-              />
-              <div class="promotion-name">교육비 면제</div>
-            </div>
-
-            <div class="promotion-box">
-              <img
-                src="../../../../assets/dashboard/brand/article.png"
-                alt="물품지원"
-              />
-              <div class="promotion-name">물품지원</div>
-            </div>
-
-            <div class="promotion-box">
-              <img
-                src="../../../../assets/dashboard/brand/equipment.png"
-                alt="장비지원"
-              />
-              <div class="promotion-name">장비지원</div>
-            </div>
-
-            <div class="promotion-box interior">
-              <img
-                src="../../../../assets/dashboard/brand/interrior.png"
-                alt="인테리어지원"
-              />
-              <div class="promotion-name">인테리어<br />비용 지원</div>
-            </div>
-          </div>
-
-          <input type="text" placeholder="진행중인 프로모션을 입력하세요." />
-        </div>
-
-        <div class="content height">
-          <div class="content-title">브랜드 소개</div>
-
-          <div class="image-box">
-            <div class="image-section">
-              <i class="fa-regular fa-image"></i>
-              <div>1572x884(9:16 비율)</div>
-            </div>
-            <button class="ad">
-              <img src="../../../../assets/dashboard/add.png" alt="추가" />
-              추가
-            </button>
+            <input type="text" placeholder="진행중인 프로모션을 입력하세요." />
           </div>
         </div>
-
-        <div class="content height representative-menu">
-          <div class="content-title">대표메뉴</div>
-
-          <div class="image-box">
-            <div class="box">
+        <div class="content brand-introduce height">
+          <div class="box">
+            <div class="title">브랜드 소개</div>
+            <div class="center">
               <div class="image-section">
-                <i class="fa-regular fa-image"></i>
-                <div>540x540<br />(1:1 비율)</div>
+                <label for="file">
+                  <div class="btn-upload">
+                    <i class="fa-regular fa-image" />
+                    <div class="value">1572x884(9:16비율)</div>
+                  </div>
+                </label>
+                <input type="file" name="file" id="file" />
               </div>
-              <div class="column">
-                <input type="text" placeholder="메뉴명" />
-                <input type="text" placeholder="0 원" />
+              <button>
+                <img src="../../../../assets/dashboard/add.png" alt="" />
+                추가
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="content representative-menu height">
+          <div class="box">
+            <div class="title">대표메뉴</div>
+            <div class="center">
+              <div class="menu-flex">
+                <div class="image-section">
+                  <label for="file">
+                    <div class="btn-upload">
+                      <i class="fa-regular fa-image" />
+                      <div class="value">540x540<br />(1:1비율)</div>
+                    </div>
+                  </label>
+                  <input type="file" name="file" id="file" />
+                </div>
+                <div class="name-cost">
+                  <div class="name">
+                    <input type="text" placeholder="메뉴명" />
+                  </div>
+                  <div class="cost">
+                    <input type="text" placeholder="0" /> 원
+                  </div>
+                </div>
               </div>
+              <button>
+                <img src="../../../../assets/dashboard/add.png" alt="" />
+                추가
+              </button>
             </div>
-
-            <button class="ad">
-              <img src="../../../../assets/dashboard/add.png" alt="추가" />
-              추가
-            </button>
           </div>
         </div>
-
-        <div class="content height">
-          <div class="content-title">시설 및 인테리어</div>
-
-          <div class="image-box">
-            <div class="image-section">
-              <i class="fa-regular fa-image"></i>
-              <div>1572x884(9:16 비율)</div>
+        <div class="content interior height">
+          <div class="box">
+            <div class="title">시설 및 인테리어</div>
+            <div class="center">
+              <div class="image-section">
+                <label for="file">
+                  <div class="btn-upload">
+                    <i class="fa-regular fa-image" />
+                    <div class="value">1572x884(9:16비율)</div>
+                  </div>
+                </label>
+                <input type="file" name="file" id="file" />
+              </div>
+              <button>
+                <img src="../../../../assets/dashboard/add.png" alt="" />
+                추가
+              </button>
             </div>
-            <button class="ad">
-              <img src="../../../../assets/dashboard/add.png" alt="추가" />
-              추가
-            </button>
           </div>
         </div>
-
-        <div class="content height">
-          <div class="content-title">창업비용 및 절차</div>
-
-          <div class="image-box">
-            <div class="image-section">
-              <i class="fa-regular fa-image"></i>
-              <div>1572x884(9:16 비율)</div>
+        <div class="content cost-process height">
+          <div class="box">
+            <div class="title">창업비용 및 절차</div>
+            <div class="center">
+              <div class="image-section">
+                <label for="file">
+                  <div class="btn-upload">
+                    <i class="fa-regular fa-image" />
+                    <div class="value">1572x884(9:16비율)</div>
+                  </div>
+                </label>
+                <input type="file" name="file" id="file" />
+              </div>
+              <button>
+                <img src="../../../../assets/dashboard/add.png" alt="" />
+                추가
+              </button>
             </div>
-            <button class="ad">
-              <img src="../../../../assets/dashboard/add.png" alt="추가" />
-              추가
-            </button>
           </div>
         </div>
-
         <button class="save">저장</button>
       </div>
     </article>
-
-    <PremiumMembership v-if="showModal" @showPremiumModal="showPremiumModal" />
+    <Premium v-if="showModal" @showPremiumModal="showPremiumModal" />
   </section>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import PremiumMembership from '../../../common/modal/dashboard/PremiumMembership.vue'
+import Premium from '../../../common/modal/dashboard/PremiumMembership.vue'
 
 const showModal = ref<boolean>(false)
 const showPremiumModal = () => {
@@ -233,16 +247,14 @@ const showPremiumModal = () => {
 
 <style lang="scss" scoped>
 @import '@/scss/main';
+
 article {
-  padding: 50px 0px 76px 160px;
-  box-sizing: border-box;
-  width: 100%;
+  padding: 50px 0px 80px 160px;
 
   .none {
     text-decoration: none;
     color: inherit;
   }
-
   span {
     color: $subColor;
   }
@@ -254,11 +266,10 @@ article {
     padding-bottom: 65px;
   }
 
-  .category {
+  .top-category {
     display: flex;
     gap: 30px;
     color: $fontSub;
-    font-weight: $reg;
     .category-name {
       cursor: pointer;
     }
@@ -270,290 +281,290 @@ article {
     }
   }
 
-  .content-gap {
-    padding-top: 30px;
+  .brand-image {
+    width: 1270px;
+    padding: 30px 0;
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-
-    .image-apply {
-      height: 344px;
-      display: flex;
-      gap: 28px;
-
-      .box {
-        .description {
-          display: flex;
-          flex-direction: column;
-          gap: 14px;
-          padding-bottom: 37px;
-
-          .description-list {
-            color: $fontSub;
-            font-size: 14px;
-            font-weight: $reg;
-          }
-        }
-      }
-
-      .content {
-        width: 360px;
-        height: 100%;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-
-        text-align: center;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
-
-        .title-box {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          .content-title {
-            font-size: 18px;
-            font-weight: $medi;
-            color: $fontMain;
-          }
-
-          .content-sub {
-            font-size: 12px;
-            color: $fontSub;
-            font-weight: $reg;
-          }
-        }
-      }
-
-      .logo {
-        height: 209px;
-
-        .image-section {
-          height: 90px;
-        }
-      }
-
-      .list {
-        .image-section {
-          width: 227px;
-        }
-      }
-
-      .representative {
-        width: 490px;
-
-        .image-section {
-          width: 405px;
-        }
+    justify-content: space-between;
+    .description-logo {
+      .description {
+        line-height: 24.5px;
+        font-size: 14px;
+        color: $fontSub;
+        padding-bottom: 37px;
       }
     }
-
     .content {
-      width: 1270px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-
-      padding: 30px;
-      box-sizing: border-box;
-
+      justify-content: center;
+      align-items: center;
       background-color: white;
-      border-radius: 10px;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
-
-      .content-title {
+      border-radius: 10px;
+      .title {
         font-size: 18px;
         font-weight: $medi;
         color: $fontMain;
+        padding-bottom: 3px;
       }
-
-      .image-box {
-        display: flex;
-        gap: 20px;
-
-        button {
-          width: 64px;
-          background-color: #fafafa;
-          border: none;
-          border-radius: 10px;
-
+      .sub {
+        font-size: 12px;
+        color: $fontSub;
+      }
+      .image-section {
+        background-color: #f2f4f7;
+        margin-top: 20px;
+        border-radius: 10px;
+        .btn-upload {
+          width: 100%;
+          height: 100%;
           display: flex;
           flex-direction: column;
-          align-items: center;
           justify-content: center;
-          gap: 4px;
-
-          font-family: Pretendard;
-          font-weight: $reg;
-          color: $mainColor;
-          font-size: 14px;
-
+          align-items: center;
+          gap: 6px;
+          color: $fontSub;
           cursor: pointer;
+          i {
+            font-size: 16px;
+          }
+          .value {
+            font-size: 14px;
+          }
+        }
+        #file {
+          display: none;
+        }
+      }
+    }
+    .logo {
+      width: 360px;
+      height: 209px;
+      .image-section {
+        width: 225px;
+        height: 90px;
+      }
+    }
+    .list {
+      width: 362px;
+      .image-section {
+        width: 227px;
+        height: 227px;
+      }
+    }
+    .representative-image {
+      width: 490px;
+      .image-section {
+        width: 405px;
+        height: 225px;
+      }
+    }
+  }
 
+  .content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .content {
+      background-color: white;
+      width: 1270px;
+      border-radius: 10px;
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+      .box {
+        padding: 30px;
+        .title {
+          font-size: 18px;
+          font-weight: $medi;
+          color: $fontMain;
+          padding-bottom: 20px;
+        }
+        input {
+          width: 100%;
+          height: 50px;
+          border-radius: 10px;
+          border: 1px solid $iconLine;
+          padding-left: 16px;
+          box-sizing: border-box;
+        }
+        input::placeholder {
+          font-family: Pretendard;
+          font-size: 16px;
+          color: $inputLine;
+        }
+        button {
+          background-color: #fafafa;
+          border: none;
+          color: $mainColor;
+          font-family: Pretendard;
+          font-size: 14px;
+          cursor: pointer;
+        }
+      }
+    }
+    .youtube {
+      .center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        button {
+          padding: 10px 20px;
+          border-radius: 50px;
+          display: flex;
+          align-items: center;
+          gap: 4px;
           img {
             width: 20px;
             height: 20px;
           }
         }
       }
-
-      .image-section {
-        background-color: #f2f4f7;
-        width: 225px;
-        border-radius: 10px;
-        height: 225px;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 6px;
-        color: $fontSub;
-        cursor: pointer;
-      }
     }
-
-    input {
-      width: 100%;
-      height: 50px;
-      padding-left: 16px;
-      border-radius: 10px;
-      border: 1px solid $iconLine;
-      box-sizing: border-box;
-    }
-
-    input::placeholder {
-      font-size: 16px;
-      font-family: Pretendard;
-      color: $inputLine;
-    }
-
-    .web {
-      height: 151px;
-    }
-
-    .youtube {
-      height: 211px;
-      display: flex;
-      align-items: center;
-      .left {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .ad {
-        width: 89px;
-        height: 40px;
-        border-radius: 50px;
-        border: none;
-        background-color: #fafafa;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 4px;
-
-        font-size: 14px;
-        font-family: Pretendard;
-        font-weight: $reg;
-        color: $mainColor;
-
-        cursor: pointer;
-
-        img {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-
     .promotion {
-      height: 251px;
-
-      .promotion-sub {
+      span {
         font-size: 12px;
-        font-weight: $reg;
       }
-
       .promotion-category {
         display: flex;
         gap: 20px;
+        padding-bottom: 20px;
+        .category {
+          width: 80px;
+          height: 80px;
+          padding-top: 4px;
+          box-sizing: border-box;
 
-        .promotion-box {
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 8px;
 
-          width: 80px;
-          height: 80px;
-          padding-top: 4px;
-
-          box-sizing: border-box;
           border: 1px solid $iconLine;
           border-radius: 10px;
+          font-size: 13px;
+          color: $fontSub;
 
           cursor: pointer;
-
           img {
             width: 40px;
             height: 40px;
           }
-
-          .promotion-name {
-            font-size: 13px;
-            color: $fontSub;
-            font-weight: $reg;
-          }
         }
-
-        .interior {
+        .interior-gap {
           gap: 0;
         }
       }
     }
-
     .height {
       height: 326px;
+      .center {
+        display: flex;
+        gap: 20px;
+        .image-section {
+          border-radius: 10px;
+          .btn-upload {
+            width: 405px;
+            height: 225px;
 
-      .image-section {
-        width: 405px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+
+            background-color: #f2f4f7;
+            border-radius: 10px;
+            color: $fontSub;
+
+            cursor: pointer;
+            i {
+              font-size: 16px;
+            }
+            .value {
+              font-size: 14px;
+            }
+          }
+          #file {
+            display: none;
+          }
+        }
+        button {
+          width: 64px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          border-radius: 10px;
+          cursor: pointer;
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
       }
     }
-
     .representative-menu {
-      .image-box {
+      .menu-flex {
         display: flex;
-        .box {
+        flex-direction: column;
+        gap: 11px;
+
+        .image-section {
+          .btn-upload {
+            width: 122px;
+            height: 122px;
+            .value {
+              text-align: center;
+            }
+          }
+        }
+        .name-cost {
           display: flex;
           flex-direction: column;
           gap: 11px;
-          .image-section {
+          input {
+            padding: 0 14px;
             width: 122px;
-            height: 122px;
+            height: 41px;
+            box-sizing: border-box;
             text-align: center;
           }
+          .cost {
+            width: 122px;
+            height: 41px;
+            padding: 0 14px;
+            box-sizing: border-box;
 
-          .column {
             display: flex;
-            flex-direction: column;
-            gap: 11px;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+
+            border: 1px solid $iconLine;
+            border-radius: 10px;
+            color: $fontMain;
+
             input {
-              width: 122px;
-              height: 41px;
-              text-align: center;
+              width: 100%;
+              height: 39px;
+              border: none;
               padding: 0;
+            }
+            input::placeholder {
+              text-align: right;
+              font-size: 16px;
+              font-family: Pretendard;
+              font-weight: $reg;
+            }
+            input:focus {
+              text-align: right;
             }
           }
         }
       }
     }
-
     .save {
       width: 1270px;
       height: 50px;
@@ -561,11 +572,8 @@ article {
       border: none;
       background-color: $mainColor;
       color: white;
-
-      font-family: Pretendard;
       font-size: 16px;
-      font-weight: $reg;
-
+      font-family: Pretendard;
       cursor: pointer;
     }
   }
@@ -575,27 +583,47 @@ article {
   article {
     padding: 50px 24px 60px 24px;
 
-    .content-gap {
-      .image-apply {
-        flex-direction: column;
-        height: 100%;
-
-        .content {
-          width: 100%;
+    .brand-image {
+      width: 100%;
+      flex-direction: column;
+      gap: 30px;
+      .description-logo {
+        .description {
+          padding-bottom: 30px;
         }
       }
+      .logo {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .list {
+        width: 100%;
+        height: 344px;
+      }
+      .representative-image {
+        width: 100%;
+        height: 366px;
+      }
+    }
 
+    .content-section {
       .content {
         width: 100%;
-        .image-box {
-          flex-direction: column;
+      }
+      .promotion {
+        .promotion-category {
+          flex-wrap: wrap;
+          .category {
+            width: 20%;
+          }
         }
       }
       .height {
-        height: 408px;
-        .image-box {
+        height: 385px;
+        .center {
+          flex-direction: column;
           align-items: center;
-          .ad {
+          button {
             flex-direction: row;
             width: 89px;
             height: 40px;
@@ -605,27 +633,29 @@ article {
       }
       .representative-menu {
         height: 253px;
-        .image-box {
-          .box {
-            flex-direction: row;
-            .image-section {
+        .menu-flex {
+          width: 100%;
+          flex-direction: row;
+          .image-section {
+            .btn-upload {
               width: 93px;
               height: 93px;
+              .value {
+                text-align: center;
+              }
+            }
+          }
+          .name-cost {
+            width: 100%;
+            input {
+              width: 100%;
+            }
+            .cost {
+              width: auto;
             }
           }
         }
       }
-
-      .promotion {
-        height: 351px;
-        .promotion-category {
-          flex-wrap: wrap;
-          .promotion-box {
-            width: 20%;
-          }
-        }
-      }
-
       .save {
         width: 100%;
       }
@@ -645,7 +675,7 @@ article {
       left: 24px;
     }
 
-    .category {
+    .top-category {
       background-color: white;
       justify-content: space-around;
       padding: 16px 24px 0 24px;
@@ -653,29 +683,116 @@ article {
       font-size: 14px;
     }
 
-    .content-gap {
-      padding: 0;
-      .image-apply {
-        flex-direction: column;
-        height: 100%;
-        .box {
-          .description {
-            background-color: white;
-            padding: 20px 0 20px 25px;
-          }
-          .content {
-            box-shadow: none;
-          }
-        }
-        .content {
-          width: 100%;
-          box-shadow: none;
-          border-radius: 0;
+    .brand-image {
+      padding-top: 0;
+      width: 100%;
+      flex-direction: column;
+      gap: 10px;
+      .description-logo {
+        .description {
+          background-color: white;
+          padding: 30px 24px;
+          font-size: 12px;
         }
       }
       .content {
-        width: 100%;
         box-shadow: none;
+        border-radius: 0;
+        .title {
+          font-size: 16px;
+        }
+        .sub {
+          font-size: 11px;
+        }
+      }
+      .logo {
+        width: 100%;
+        margin-top: 10px;
+      }
+      .list {
+        width: 100%;
+        height: 341px;
+      }
+      .representative-image {
+        width: 100%;
+        height: 299px;
+        .image-section {
+          width: 328px;
+          height: 183px;
+        }
+      }
+    }
+
+    .content-section {
+      .content {
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        .box {
+          padding: 30px 24px;
+          .title {
+            font-size: 16px;
+          }
+        }
+      }
+      .promotion {
+        .promotion-category {
+          flex-wrap: wrap;
+          .category {
+            width: 20%;
+            height: 70px;
+            gap: 6px;
+            font-size: 11px;
+          }
+          .interior-gap {
+            gap: 0;
+          }
+        }
+      }
+      .height {
+        height: 342px;
+        .center {
+          flex-direction: column;
+          align-items: center;
+          .image-section {
+            .btn-upload {
+              width: 328px;
+              height: 183px;
+            }
+          }
+          button {
+            width: 89px;
+            height: 40px;
+            border-radius: 50px;
+            flex-direction: row;
+          }
+        }
+      }
+      .representative-menu {
+        height: 248px;
+        .menu-flex {
+          width: 100%;
+          flex-direction: row;
+          .image-section {
+            .btn-upload {
+              width: 89px;
+              height: 89px;
+            }
+          }
+          .name-cost {
+            width: 100%;
+            input {
+              width: 100%;
+            }
+            .cost {
+              width: 100%;
+            }
+          }
+        }
+      }
+      .save {
+        width: 100%;
+        height: 60px;
         border-radius: 0;
       }
     }

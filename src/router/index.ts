@@ -58,6 +58,12 @@ const routes: Array<RouteRecordRaw> = [
         name: 'resetcomplete',
         component: () => import('../component/find_pw/ResetComplete.vue'),
       },
+      {
+        path: '/withdrawal',
+        name: 'withdrawal',
+        component: () =>
+          import('../component/dashboard/franchise/mymenu/Withdrawal.vue'),
+      },
     ],
   },
   {

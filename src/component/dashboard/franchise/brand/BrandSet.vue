@@ -217,7 +217,6 @@ article {
     display: flex;
     gap: 30px;
     color: $fontSub;
-    font-weight: $reg;
     .category-name {
       cursor: pointer;
     }
