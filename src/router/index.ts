@@ -64,6 +64,14 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import('../component/dashboard/franchise/mymenu/Withdrawal.vue'),
       },
+      {
+        path: '/withdrawalcomplete',
+        name: 'withdrawalcomplete',
+        component: () =>
+          import(
+            '../component/dashboard/franchise/mymenu/CompleteWithdrawal.vue'
+          ),
+      },
     ],
   },
   {
@@ -94,6 +102,18 @@ const routes: Array<RouteRecordRaw> = [
         name: 'myinfo',
         component: () =>
           import('../component/dashboard/franchise/mymenu/MyInfo.vue'),
+      },
+      {
+        path: '/franchise/mymenu/usagehistory',
+        name: 'usagehistory',
+        component: () =>
+          import('../component/dashboard/franchise/mymenu/UsageHistory.vue'),
+      },
+      {
+        path: '/franchise/mymenu/addkeyword',
+        name: 'addkeyword',
+        component: () =>
+          import('../component/dashboard/franchise/mymenu/Keyword.vue'),
       },
     ],
   },

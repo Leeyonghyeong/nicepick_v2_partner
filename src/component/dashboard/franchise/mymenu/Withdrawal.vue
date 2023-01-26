@@ -83,7 +83,9 @@
           </div>
         </div>
 
-        <button class="withdrawal">회원 탈퇴</button>
+        <RouterLink to="/withdrawalcomplete" class="none">
+          <button class="withdrawal">회원 탈퇴</button>
+        </RouterLink>
 
         <div class="cancel">취소</div>
       </div>
@@ -104,10 +106,15 @@ const { getDevice } = storeToRefs(store)
 
 article {
   text-align: center;
-  padding-top: 100px;
+  padding: 100px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .none {
+    text-decoration: none;
+    color: inherit;
+  }
 
   .nicepick-partner {
     img {
@@ -127,9 +134,9 @@ article {
   .width {
     width: 378px;
     .ment {
-      padding: 30px 0;
+      padding: 21px 0 30px 0;
       .title {
-        padding-top: 21px;
+        padding-top: 30px;
         border-top: 1px solid $sectionLine;
         font-weight: $medi;
         color: $fontMain;
@@ -163,7 +170,7 @@ article {
         padding-bottom: 20px;
       }
       .select-list {
-        padding: 20px 0;
+        padding: 20px 0 30px 0;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -176,6 +183,10 @@ article {
             .title {
               font-size: 15px;
               color: $fontMain;
+            }
+            input,
+            .title {
+              cursor: pointer;
             }
           }
         }
@@ -201,7 +212,7 @@ article {
     }
 
     .withdrawal {
-      margin-top: 20px;
+      margin-top: 30px;
       width: 100%;
       height: 50px;
       border-radius: 10px;
@@ -219,6 +230,68 @@ article {
       font-size: 14px;
       color: $fontSub;
       cursor: pointer;
+    }
+  }
+}
+
+@include mobile {
+  article {
+    padding-top: 0;
+    .top-title {
+      width: 100%;
+      height: 60px;
+      padding-top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid $sectionLine;
+      .title {
+        color: $fontMain;
+      }
+      img {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: 23px;
+        cursor: pointer;
+      }
+    }
+
+    .width {
+      @include mobile-container();
+      .ment {
+        padding-top: 0;
+        .title {
+          padding-top: 28px;
+          border: none;
+        }
+        .ment-box {
+          font-size: 12px;
+        }
+      }
+
+      .reason-list {
+        .reason-title {
+          font-size: 14px;
+        }
+        .select-list {
+          .select {
+            label {
+              .title {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+
+      .withdrawal {
+        font-size: 14px;
+      }
+
+      .cancel {
+        font-size: 13px;
+      }
     }
   }
 }

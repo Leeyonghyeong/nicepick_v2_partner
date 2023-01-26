@@ -5,8 +5,12 @@
 
       <div class="category">
         <div class="category-name select">내 정보관리</div>
-        <div class="category-name">이용내역</div>
-        <div class="category-name">대표키워드</div>
+        <RouterLink to="usagehistory" class="none">
+          <div class="category-name">이용내역</div>
+        </RouterLink>
+        <RouterLink to="addkeyword" class="none">
+          <div class="category-name">대표키워드</div>
+        </RouterLink>
       </div>
 
       <div class="info-section">
