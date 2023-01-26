@@ -5,8 +5,16 @@
         <div class="info-box">
           <img src="../../../assets/dashboard/icecream.png" alt="아이스크림" />
 
-          <div class="brand">**아이스크림</div>
+          <div class="brand">
+            **아이스크림
+            <img src="../../../assets/dashboard/premium.png" alt="프리미엄" />
+          </div>
           <div class="email">icecream@gmail.com</div>
+
+          <button class="transform">
+            <img src="../../../assets/dashboard/transform.png" alt="전환" />
+            브랜드 전환
+          </button>
         </div>
       </article>
 
@@ -92,10 +100,38 @@ section {
 
         .brand {
           padding-top: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 6px;
+          img {
+            width: 20px;
+            height: 20px;
+          }
         }
         .email {
           padding-top: 6px;
           font-size: 12px;
+        }
+      }
+
+      .transform {
+        width: 100%;
+        height: 50px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        background-color: $mainColor;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        font-family: Pretendard;
+        cursor: pointer;
+        img {
+          width: 14px;
+          height: 14px;
         }
       }
     }
