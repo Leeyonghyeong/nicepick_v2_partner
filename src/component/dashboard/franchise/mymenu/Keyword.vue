@@ -194,4 +194,67 @@ article {
     }
   }
 }
+
+@include mobile {
+  article {
+    padding: 0;
+    .top-title {
+      position: absolute;
+      top: 23px;
+      left: 24px;
+      font-size: 16px;
+      padding: 0;
+    }
+
+    .category {
+      background-color: white;
+      justify-content: space-around;
+      padding: 16px 24px 0 24px;
+      border-bottom: 1px solid $iconLine;
+      font-size: 14px;
+    }
+
+    .add {
+      width: 100%;
+      margin-top: 0;
+      box-shadow: none;
+      border-radius: 0;
+      .box {
+        padding-bottom: 0;
+        .title {
+          font-size: 16px;
+        }
+        .input-section {
+          flex-direction: column;
+          button {
+            width: 100%;
+            height: 50px;
+            font-size: 14px;
+          }
+        }
+        .ment {
+          // display: block;
+          padding: 100px 0 110px 0;
+        }
+        .hashtag-list {
+          gap: 14px;
+          padding-bottom: 30px;
+          // display: none;
+          .hashtag {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+
+    .info {
+      padding: 0 24px 0 24px;
+      margin-top: 0;
+      padding-top: 20px;
+      border-top: 1px solid $sectionLine;
+      background-color: white;
+      font-size: 12px;
+    }
+  }
+}
 </style>

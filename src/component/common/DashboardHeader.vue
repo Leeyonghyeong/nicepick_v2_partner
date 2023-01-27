@@ -7,11 +7,24 @@
         </div>
 
         <div v-if="getDevice !== 'mobile'" class="logout-homebtn">
+          <RouterLink to="/cart" class="none">
+            <div class="cart">
+              <i class="fa-solid fa-cart-plus"></i>
+              <div class="count">3</div>
+            </div>
+          </RouterLink>
+          <div class="border"></div>
           <div class="logout">로그아웃</div>
           <button>창업픽 홈</button>
         </div>
 
         <div v-if="getDevice === 'mobile'" class="hammenu">
+          <RouterLink to="/cart" class="none">
+            <div class="cart">
+              <i class="fa-solid fa-cart-plus"></i>
+              <div class="count">3</div>
+            </div>
+          </RouterLink>
           <img src="../../assets/dashboard/ham.png" alt="햄버거메뉴" />
         </div>
       </div>
@@ -37,6 +50,11 @@ article {
   border-bottom: 1px solid $sectionLine;
   background-color: white;
 
+  .none {
+    text-decoration: none;
+    color: $fontMain;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -53,6 +71,33 @@ article {
       display: flex;
       align-items: center;
       gap: 24px;
+
+      .cart {
+        display: flex;
+        position: relative;
+        i {
+          cursor: pointer;
+        }
+        .count {
+          background-color: $subColor;
+          width: 15px;
+          height: 15px;
+          border-radius: 50px;
+          color: white;
+          font-size: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          right: -11px;
+          top: -8px;
+        }
+      }
+
+      .border {
+        height: 16px;
+        border: 1px solid $iconLine;
+      }
 
       .logout {
         font-size: 13px;
@@ -86,6 +131,32 @@ article {
       }
 
       .hammenu {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .cart {
+          display: flex;
+          position: relative;
+          i {
+            cursor: pointer;
+          }
+          .count {
+            background-color: $subColor;
+            width: 15px;
+            height: 15px;
+            border-radius: 50px;
+            color: white;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: -11px;
+            top: -8px;
+          }
+        }
+
         img {
           width: 30px;
           height: 30px;

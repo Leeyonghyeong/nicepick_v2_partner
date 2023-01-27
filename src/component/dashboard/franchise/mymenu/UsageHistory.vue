@@ -22,9 +22,9 @@
         <button>조회</button>
       </div>
 
-      <div class="history">
+      <!-- <div class="history">
         <div class="ment">이용 내역이 없습니다.</div>
-      </div>
+      </div> -->
 
       <div class="item">
         <div class="ing-item">
@@ -357,6 +357,7 @@ article {
       top: 23px;
       left: 24px;
       font-size: 16px;
+      padding: 0;
     }
 
     .category {
