@@ -286,9 +286,6 @@ section {
             width: 100%;
             top: 285px;
             right: 0;
-
-            .padding {
-            }
           }
 
           .cost-section {
