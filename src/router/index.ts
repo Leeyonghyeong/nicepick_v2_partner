@@ -115,6 +115,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import('../component/dashboard/franchise/mymenu/Keyword.vue'),
       },
+      {
+        path: '/cart',
+        name: 'cart',
+        component: () => import('../component/dashboard/Cart.vue'),
+      },
     ],
   },
 ]
