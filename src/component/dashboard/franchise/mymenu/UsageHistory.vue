@@ -13,13 +13,30 @@
         </RouterLink>
       </div>
 
-      <div class="date">
-        <div class="date-gap">
-          <input type="date" value="" />
-          <span>-</span>
-          <input type="date" value="" />
+      <div class="date-state">
+        <div class="date">
+          <div class="date-gap">
+            <input type="date" value="" />
+            <span>-</span>
+            <input type="date" value="" />
+          </div>
+          <button>조회</button>
         </div>
-        <button>조회</button>
+
+        <div class="state">
+          <label class="all">
+            <input type="radio" name="select" id="all" checked />
+            <div>전체</div>
+          </label>
+          <label class="ing">
+            <input type="radio" name="select" id="ing" />
+            <div>이용중</div>
+          </label>
+          <label class="complete">
+            <input type="radio" name="select" id="complete" />
+            <div>이용완료</div>
+          </label>
+        </div>
       </div>
 
       <!-- <div class="history">
@@ -80,15 +97,15 @@
           </div>
         </div>
 
-        <div class="complete-item">
+        <div class="ing-item">
           <div class="title">
-            <div>구매완료 · 이용완료</div>
-            <div class="pay">2023.01.26 결제(삼성카드)</div>
+            <div>구매완료 <span class="ing">· 이용중</span></div>
+            <div class="pay">2023.00.00 결제(삼성카드)</div>
           </div>
           <div class="info-item">
             <div class="info">
-              <div class="item-title">추천 브랜드 (30일)</div>
-              <div class="period">이용기간 : 2023.01.26 ~ 02.26</div>
+              <div class="item-title">추천 브랜드 (00일)</div>
+              <div class="period">이용기간 : 2023.00.00 ~ 00.00</div>
             </div>
             <div class="cost">
               <div class="text-right">
@@ -107,6 +124,40 @@
                 </div>
               </div>
               <button>기간연장</button>
+            </div>
+          </div>
+          <div class="more">
+            <img src="../../../../assets/login/arrow_down.png" alt="더보기" />
+          </div>
+        </div>
+
+        <div class="complete-item">
+          <div class="title">
+            <div>구매완료 · 이용완료</div>
+            <div class="pay">2023.00.00 결제(삼성카드)</div>
+          </div>
+          <div class="info-item">
+            <div class="info">
+              <div class="item-title">메인 TOP (00일)</div>
+              <div class="period">이용기간 : 2023.00.00 ~ 00.00</div>
+            </div>
+            <div class="cost">
+              <div class="text-right">
+                <div class="cost-title">
+                  <span class="sub">1,100,000원</span>
+                  <span class="bold">990,000</span> 원
+                </div>
+                <div class="vat">
+                  <span class="discount"
+                    ><img
+                      src="../../../../assets/dashboard/arrow_down.png"
+                      alt="down"
+                    />10% 할인</span
+                  >
+                  · VAT 포함
+                </div>
+              </div>
+              <button class="disabled">기간연장</button>
             </div>
           </div>
         </div>
@@ -152,36 +203,59 @@ article {
     }
   }
 
-  .date {
-    padding-top: 30px;
+  .date-state {
+    width: 1270px;
     display: flex;
-    .date-gap {
+    justify-content: space-between;
+    align-items: flex-end;
+    .date {
+      padding-top: 30px;
       display: flex;
-      align-items: center;
-      gap: 5px;
-      input {
+      .date-gap {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        input {
+          width: 152px;
+          height: 40px;
+          padding: 0 16px;
+          box-sizing: border-box;
+          border: none;
+          border-radius: 50px;
+          font-family: Pretendard;
+        }
+      }
+      button {
         width: 152px;
         height: 40px;
-        padding: 0 16px;
-        box-sizing: border-box;
+        margin-left: 24px;
         border: none;
         border-radius: 50px;
+        background-color: $mainColor;
+        color: white;
         font-family: Pretendard;
+        font-size: 14px;
+        font-weight: $reg;
+        cursor: pointer;
       }
     }
-
-    button {
-      width: 152px;
-      height: 40px;
-      margin-left: 24px;
-      border: none;
-      border-radius: 50px;
-      background-color: $mainColor;
-      color: white;
-      font-family: Pretendard;
-      font-size: 14px;
-      font-weight: $reg;
-      cursor: pointer;
+    .state {
+      display: flex;
+      gap: 20px;
+      label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        input {
+          margin: 0;
+          cursor: pointer;
+        }
+        div {
+          font-size: 14px;
+          color: $fontMain;
+        }
+      }
     }
   }
 
@@ -207,7 +281,6 @@ article {
     margin-top: 30px;
     .ing-item,
     .complete-item {
-      height: 164px;
       padding: 30px;
       box-sizing: border-box;
       background-color: white;
@@ -305,6 +378,23 @@ article {
             color: $mainColor;
             cursor: pointer;
           }
+          .disabled {
+            background-color: $iconLine;
+            border: none;
+            color: $inputLine;
+            cursor: default;
+          }
+        }
+      }
+      .more {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid $sectionLine;
+        padding-top: 10px;
+        img {
+          width: 20px;
+          height: 20px;
         }
       }
     }
@@ -314,6 +404,22 @@ article {
 @include tablet {
   article {
     padding: 50px 24px 60px 24px;
+
+    .date-state {
+      width: 100%;
+      flex-direction: column;
+      .date {
+        width: 100%;
+        .date-gap {
+          input {
+            width: 100%;
+          }
+        }
+      }
+      .state {
+        padding-top: 30px;
+      }
+    }
 
     .history {
       width: 100%;
@@ -351,7 +457,7 @@ article {
 
 @include mobile {
   article {
-    padding: 0;
+    padding: 0 0 30px 0;
     .top-title {
       position: absolute;
       top: 23px;
@@ -368,21 +474,30 @@ article {
       font-size: 14px;
     }
 
-    .date {
-      padding: 30px 24px;
-      background-color: white;
+    .date-state {
+      width: 100%;
       flex-direction: column;
-      .date-gap {
+      .date {
         width: 100%;
-        justify-content: center;
-        input {
+        padding: 30px 24px;
+        box-sizing: border-box;
+        background-color: white;
+        flex-direction: column;
+        .date-gap {
           width: 100%;
-          background-color: #fafafa;
+          justify-content: center;
+          input {
+            width: 100%;
+            background-color: #fafafa;
+          }
+        }
+        button {
+          width: 100%;
+          margin: 20px 0 0 0;
         }
       }
-      button {
-        width: 100%;
-        margin: 20px 0 0 0;
+      .state {
+        padding: 30px 24px 20px 24px;
       }
     }
 
