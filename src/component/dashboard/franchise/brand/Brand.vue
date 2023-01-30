@@ -13,8 +13,8 @@
       <div class="brand-image">
         <div class="description-logo">
           <div class="description">
-            · 브랜드 이미지는 <span>필수*</span>로 등록해 주세요.<br />
-            · 이미지의 단위는 px입니다.<br />
+            · 이미지는 <span>필수*</span>로 등록해 주세요.<br />
+            · 이미지의 단위는 픽셀(px)입니다.<br />
             · 등록 이미지는 jpg, png 파일만 등록이 가능합니다.<br />
             · 이미지는 사이즈에 맞춰 등록해 주세요.
           </div>

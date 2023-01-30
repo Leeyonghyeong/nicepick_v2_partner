@@ -7,58 +7,16 @@
           src="../../assets/login/arrow_lt.png"
           alt="이전"
         />
-        장바구니
+        신청/결제
       </div>
-
-      <!-- <div class="empty">
-        <div class="box">
-          <div class="ment">장바구니에 추가한 상품이 없습니다.</div>
-          <button>광고상품 보러가기</button>
-        </div>
-      </div> -->
 
       <div class="flex">
         <div class="item-section">
           <div class="box">
-            <div class="select-delete">
-              <div class="select">
-                <input type="checkbox" id="check1" />
-                <label for="check1"></label>
-                <div class="name">전체 선택</div>
-              </div>
-              <button class="delete">선택 삭제</button>
-            </div>
-
+            <div class="title">상품 정보</div>
             <div class="item">
               <div class="name-delete">
                 <div class="item-name">
-                  <input type="checkbox" id="check2" />
-                  <label for="check2"></label>
-                  <div class="name">
-                    <div class="bold">브랜드 핫클립 (30일)</div>
-                    <div class="sub">홈 영상컨텐츠 노출</div>
-                  </div>
-                </div>
-                <img
-                  class="x"
-                  src="../../assets/dashboard/cart_delete.png"
-                  alt="삭제"
-                />
-              </div>
-              <div class="option-cost">
-                <button class="option" @click="showCartOption">
-                  옵션 변경
-                </button>
-                <div class="cost">
-                  <div class="bold">550,000원</div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="name-delete">
-                <div class="item-name">
-                  <input type="checkbox" id="check3" />
-                  <label for="check3"></label>
                   <div class="name">
                     <div class="bold">
                       프리미엄 멤버십
@@ -78,7 +36,7 @@
                   alt="삭제"
                 />
               </div>
-              <div class="option-cost no-option">
+              <div class="option-cost">
                 <div class="cost">
                   <div class="bold">88,000원</div>
                 </div>
@@ -87,8 +45,6 @@
             <div class="item">
               <div class="name-delete">
                 <div class="item-name">
-                  <input type="checkbox" id="check4" />
-                  <label for="check4"></label>
                   <div class="name">
                     <div class="bold">추천브랜드 2 (60일)</div>
                     <div class="sub">
@@ -103,13 +59,26 @@
                 />
               </div>
               <div class="option-cost">
-                <button class="option" @click="showCartOption">
-                  옵션 변경
-                </button>
                 <div class="cost">
                   <div class="bold">990,000원</div>
                   <div class="sub">1,100,000원</div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pay">
+            <div class="box">
+              <div class="name">결제수단</div>
+              <div class="pay-button">
+                <button class="color">
+                  <i class="fa-regular fa-credit-card"></i>
+                  <div class="pay-name">신용카드</div>
+                </button>
+                <button>
+                  <i class="fa-regular fa-money-bill-1"></i>
+                  <div class="pay-name">계좌이체</div>
+                </button>
               </div>
             </div>
           </div>
@@ -118,10 +87,9 @@
         <div class="select-item">
           <div class="box">
             <div class="title">선택 상품 내역</div>
-
             <div class="padding">
               <div class="select-cost">
-                <div class="name">선택 상품 금액</div>
+                <div class="name">상품 신청 금액</div>
                 <div class="cost">1,188,000원</div>
               </div>
               <div class="discount-cost">
@@ -129,42 +97,55 @@
                 <div class="cost">-110,000원</div>
               </div>
             </div>
-
             <div class="total">
               <div class="name">총 합계</div>
               <div class="total-cost"><span>1,078,000</span>원</div>
             </div>
           </div>
 
-          <RouterLink to="/payment" class="none">
-            <button class="application"><span>2개</span> 상품 신청하기</button>
-          </RouterLink>
+          <div class="check-box">
+            <div class="box">
+              <div class="check-list border">
+                <div class="name">전체 동의</div>
+                <div class="check">
+                  <input type="checkbox" id="check1" />
+                  <label for="check1"></label>
+                </div>
+              </div>
+              <div class="gap">
+                <div class="check-list">
+                  <div class="name sub">
+                    주문 상품, 이용기간, 금액 등 확인 및 결제 동의
+                  </div>
+                  <div class="check">
+                    <input type="checkbox" id="check2" />
+                    <label for="check2"></label>
+                  </div>
+                </div>
+                <div class="check-list">
+                  <div class="name sub link">환불 정책 동의</div>
+                  <div class="check">
+                    <input type="checkbox" id="check3" />
+                    <label for="check3"></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="application"><span>1,078,000원</span> 결제하기</button>
         </div>
       </div>
-
-      <div class="ment">
-        · 장바구니 상품은 <span>최대 30일간 저장</span>됩니다.<br />
-        · 가격, 옵션 등 정보가 변경된 경우 주문이 불가할 수 있습니다.
-      </div>
     </article>
-
-    <CartOption v-if="showModal" @showCartOption="showCartOption" />
   </section>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
-import CartOption from '../common/modal/dashboard/CartOption.vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
-
-const showModal = ref<boolean>(false)
-const showCartOption = () => {
-  showModal.value = !showModal.value
-}
 </script>
 
 <style lang="scss" scoped>
@@ -172,51 +153,16 @@ const showCartOption = () => {
 
 article {
   padding: 50px 24px 60px 24px;
-
   .none {
     text-decoration: none;
     color: inherit;
   }
-
   .top-title {
     font-size: 20px;
     font-weight: $medi;
     color: $fontMain;
     padding-bottom: 50px;
   }
-
-  .empty {
-    width: 100%;
-    height: 616px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
-    .box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .ment {
-        margin: 0;
-      }
-      button {
-        margin-top: 30px;
-        width: 300px;
-        height: 50px;
-        background-color: $mainColor;
-        border: none;
-        border-radius: 10px;
-        color: white;
-        font-family: Pretendard;
-        font-size: 16px;
-        font-weight: $reg;
-        cursor: pointer;
-      }
-    }
-  }
-
   .flex {
     .item-section {
       .box {
@@ -228,64 +174,16 @@ article {
         box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
         border-radius: 10px;
 
-        input[type='checkbox'] {
-          display: none;
-        }
-        input[type='checkbox'] + label {
-          display: inline-block;
-          width: 20px;
-          height: 20px;
-          border: 1px solid $inputLine;
-          border-radius: 3px;
-          position: relative;
-          cursor: pointer;
-        }
-        input[id='check1']:checked + label::after,
-        input[id='check2']:checked + label::after,
-        input[id='check3']:checked + label::after,
-        input[id='check4']:checked + label::after {
-          content: '';
-          background-image: url(../../assets/dashboard/check.png);
-          background-repeat: no-repeat;
-          background-position: 5px;
-          width: 20px;
-          height: 20px;
-          position: absolute;
-          border: 1px solid $mainColor;
-          border-radius: 3px;
-          top: -1px;
-          left: -1px;
-          cursor: pointer;
-        }
-
-        .select-delete {
-          display: flex;
-          justify-content: space-between;
+        .title {
+          font-size: 18px;
+          font-weight: $medi;
+          color: $fontMain;
           border-bottom: 1px solid $sectionLine;
           padding-bottom: 20px;
-          .select {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            .name {
-              font-size: 14px;
-              color: $fontSub;
-            }
-          }
-          .delete {
-            width: 72px;
-            height: 33px;
-            border: none;
-            border-radius: 5px;
-            color: $fontSub;
-            font-family: Pretendard;
-            font-size: 14px;
-            cursor: pointer;
-          }
         }
 
         .item {
-          padding: 30px 0;
+          padding: 30px 0 44px 0;
           border-bottom: 1px solid $sectionLine;
           .name-delete {
             display: flex;
@@ -317,9 +215,9 @@ article {
             }
           }
           .option-cost {
-            padding: 42px 0 0 30px;
+            padding: 52px 0 0 30px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             .option {
               width: 130px;
@@ -349,8 +247,45 @@ article {
               }
             }
           }
-          .no-option {
-            justify-content: flex-end;
+        }
+      }
+
+      .pay {
+        padding-top: 20px;
+        .box {
+          .name {
+            font-size: 18px;
+            font-weight: $medi;
+            color: $fontMain;
+          }
+          .pay-button {
+            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            button {
+              height: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 6px;
+              background-color: white;
+              border-radius: 10px;
+              border: none;
+              border: 1px solid $inputLine;
+              color: $fontSub;
+              font-family: Pretendard;
+              font-size: 16px;
+              font-weight: $reg;
+              cursor: pointer;
+              i {
+                font-size: 19px;
+              }
+            }
+            .color {
+              border: 1px solid $mainColor;
+              color: $mainColor;
+            }
           }
         }
       }
@@ -406,6 +341,64 @@ article {
           }
         }
       }
+      .check-box {
+        padding-top: 20px;
+        .box {
+          .check-list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: $fontSub;
+            input[type='checkbox'] {
+              display: none;
+            }
+            input[type='checkbox'] + label {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              box-sizing: border-box;
+              border: 1px solid $inputLine;
+              border-radius: 3px;
+              position: relative;
+              cursor: pointer;
+            }
+            input[id='check1']:checked + label::after,
+            input[id='check2']:checked + label::after,
+            input[id='check3']:checked + label::after {
+              content: '';
+              background-image: url(../../assets/dashboard/check.png);
+              background-repeat: no-repeat;
+              background-position: 5px;
+              width: 20px;
+              height: 20px;
+              box-sizing: border-box;
+              position: absolute;
+              border: 1px solid $mainColor;
+              border-radius: 3px;
+              top: -1px;
+              left: -1px;
+              cursor: pointer;
+            }
+          }
+          .border {
+            border-bottom: 1px solid $sectionLine;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+          }
+          .gap {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .sub {
+              font-size: 12px;
+            }
+            .link {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+        }
+      }
     }
 
     .application {
@@ -449,6 +442,7 @@ article {
       position: absolute;
       top: 15px;
       left: 24px;
+      padding: 0;
       img {
         width: 30px;
         height: 30px;
@@ -456,51 +450,31 @@ article {
       }
     }
 
-    .empty {
-      height: 100%;
-      border-radius: 0;
-      box-shadow: none;
-      .box {
-        padding: 0 24px;
-        width: 100%;
-        padding-top: 100px;
-        .ment {
-          padding: 0;
-        }
-        button {
-          width: 100%;
-          font-size: 14px;
-        }
-      }
-    }
-
     .flex {
       .item-section {
         .box {
-          padding: 0;
+          padding: 0 24px;
           border-radius: 0;
           box-shadow: none;
-          background-color: transparent;
-          .select-delete {
+
+          .title {
             background-color: white;
-            padding: 20px 24px;
-            margin-bottom: 10px;
-            border-bottom: none;
-            .select {
-              gap: 10px;
-              .name {
-                font-size: 12px;
-              }
-            }
-            .delete {
-              width: 65px;
-              height: 30px;
-              font-size: 12px;
-            }
+            padding: 30px 0 20px 0;
+            font-size: 16px;
           }
           .item {
             background-color: white;
-            padding: 30px 24px 35px 24px;
+            padding: 30px 0 35px 0;
+          }
+        }
+
+        .pay {
+          padding-top: 10px;
+          .box {
+            padding: 30px 24px;
+            .name {
+              font-size: 16px;
+            }
           }
         }
       }
@@ -512,6 +486,12 @@ article {
           box-shadow: none;
         }
       }
+
+      .check-box {
+        padding-top: 10px;
+        margin-bottom: 60px;
+      }
+
       .application {
         margin: 0;
         border-radius: 0;
@@ -536,17 +516,13 @@ article {
     box-sizing: border-box;
     width: 100%;
 
-    .empty {
-      width: 1270px;
-    }
-
     .flex {
       display: flex;
       gap: 30px;
       .item-section {
         .box {
           width: 880px;
-          height: 100%;
+          height: auto;
           .item {
             padding: 34px 0;
             display: flex;
@@ -571,13 +547,34 @@ article {
             }
           }
         }
+
+        .pay {
+          .box {
+            padding: 30px 30px 43px;
+            .pay-button {
+              flex-direction: row;
+              justify-content: space-between;
+              gap: 20px;
+              button {
+                width: 100%;
+              }
+            }
+          }
+        }
       }
 
       .select-item {
         margin: 0;
         .box {
           width: 360px;
-          height: 256px;
+        }
+
+        .check-box {
+          .box {
+            .check {
+              height: 22px;
+            }
+          }
         }
       }
     }

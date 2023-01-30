@@ -26,15 +26,15 @@
         <div class="state">
           <label class="all">
             <input type="radio" name="select" id="all" checked />
-            <div>전체</div>
+            <div class="name">전체</div>
           </label>
           <label class="ing">
             <input type="radio" name="select" id="ing" />
-            <div>이용중</div>
+            <div class="name">이용중</div>
           </label>
           <label class="complete">
             <input type="radio" name="select" id="complete" />
-            <div>이용완료</div>
+            <div class="name">이용완료</div>
           </label>
         </div>
       </div>
@@ -45,120 +45,274 @@
 
       <div class="item">
         <div class="ing-item">
-          <div class="title">
-            <div>구매완료 <span class="ing">· 이용중</span></div>
-            <div class="pay">2023.01.01 결제(삼성카드)</div>
-          </div>
-          <div class="info-item">
-            <div class="info">
-              <div class="item-title">브랜드 핫클립 (30일)</div>
-              <div class="period">
-                이용기간 : 2023.01.01 ~ 02.01
-                <span class="alarm">광고기간이 7일 남았습니다.</span>
-              </div>
+          <div class="padding">
+            <div class="title">
+              <div>구매완료 <span class="ing">· 이용중</span></div>
+              <div class="pay">2023.01.01 결제(삼성카드)</div>
             </div>
-            <div class="cost">
-              <div class="text-right">
-                <div class="cost-title">
-                  <span class="bold">550,000</span> 원
+            <div class="info-item">
+              <div class="info">
+                <div class="item-title">브랜드 핫클립 (30일)</div>
+                <div class="period">
+                  이용기간 : 2023.01.01 ~ 02.01
+                  <span class="alarm">광고기간이 7일 남았습니다.</span>
                 </div>
-                <div class="vat">VAT 포함</div>
               </div>
-              <button>기간연장</button>
+              <div class="cost">
+                <div class="text-right">
+                  <div class="cost-title">
+                    <span class="bold">550,000</span> 원
+                  </div>
+                  <div class="vat">VAT 포함</div>
+                </div>
+                <button>기간연장</button>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="ing-item">
-          <div class="title">
-            <div>구매완료 <span class="ing">· 이용중</span></div>
-            <div class="pay">2023.01.22 결제(계좌이체)</div>
-          </div>
-          <div class="info-item">
-            <div class="info">
-              <div class="item-title">
-                프리미엄 멤버십
-                <img
-                  src="../../../../assets/dashboard/premium.png"
-                  alt="프리미엄"
-                />
-              </div>
-              <div class="period">이용기간 : 2023.01.22 ~ 02.22</div>
+          <div class="padding">
+            <div class="title">
+              <div>구매완료 <span class="ing">· 이용중</span></div>
+              <div class="pay">2023.01.22 결제(계좌이체)</div>
             </div>
-            <div class="cost">
-              <div class="text-right">
-                <div class="cost-title">
-                  월 <span class="bold">88,000</span> 원
+            <div class="info-item">
+              <div class="info">
+                <div class="item-title">
+                  프리미엄 멤버십
+                  <img
+                    src="../../../../assets/dashboard/premium.png"
+                    alt="프리미엄"
+                  />
                 </div>
-                <div class="vat">VAT 포함</div>
+                <div class="period">이용기간 : 2023.01.22 ~ 02.22</div>
               </div>
-              <button>해지</button>
+              <div class="cost">
+                <div class="text-right">
+                  <div class="cost-title">
+                    월 <span class="bold">88,000</span> 원
+                  </div>
+                  <div class="vat">VAT 포함</div>
+                </div>
+                <button>해지</button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="ing-item">
-          <div class="title">
-            <div>구매완료 <span class="ing">· 이용중</span></div>
-            <div class="pay">2023.00.00 결제(삼성카드)</div>
-          </div>
-          <div class="info-item">
-            <div class="info">
-              <div class="item-title">추천 브랜드 (00일)</div>
-              <div class="period">이용기간 : 2023.00.00 ~ 00.00</div>
+        <div class="ing-item add-banner">
+          <div class="padding">
+            <div class="title">
+              <div>구매완료 <span class="ing">· 이용중</span></div>
+              <div class="pay">2023.00.00 결제(삼성카드)</div>
             </div>
-            <div class="cost">
-              <div class="text-right">
-                <div class="cost-title">
-                  <span class="sub">1,100,000원</span>
-                  <span class="bold">990,000</span> 원
-                </div>
-                <div class="vat">
-                  <span class="discount"
-                    ><img
-                      src="../../../../assets/dashboard/arrow_down.png"
-                      alt="down"
-                    />10% 할인</span
-                  >
-                  · VAT 포함
-                </div>
+            <div class="info-item">
+              <div class="info">
+                <div class="item-title">추천 브랜드 (00일)</div>
+                <div class="period">이용기간 : 2023.00.00 ~ 00.00</div>
               </div>
-              <button>기간연장</button>
+              <div class="cost">
+                <div class="text-right">
+                  <div class="cost-title">
+                    <span class="sub">1,100,000원</span>
+                    <span class="bold">990,000</span> 원
+                  </div>
+                  <div class="vat">
+                    <span class="discount"
+                      ><img
+                        src="../../../../assets/dashboard/arrow_down.png"
+                        alt="down"
+                      />10% 할인</span
+                    >
+                    · VAT 포함
+                  </div>
+                </div>
+                <button>기간연장</button>
+              </div>
             </div>
           </div>
           <div class="more">
-            <img src="../../../../assets/login/arrow_down.png" alt="더보기" />
+            <img
+              src="../../../../assets/dashboard/arrow_more.png"
+              alt="더보기"
+            />
+          </div>
+        </div>
+        <div class="banner-section">
+          <div class="padding">
+            <div class="title-save">
+              <div class="title">이미지 등록</div>
+              <button class="save">저장</button>
+            </div>
+            <div class="select-highlight">
+              <div class="flex">
+                <label class="title">
+                  <input type="radio" name="select" id="title" checked />
+                  <div class="name">제목 강조</div>
+                </label>
+                <label class="main">
+                  <input type="radio" name="select" id="main" checked />
+                  <div class="name">본문 강조</div>
+                </label>
+                <label class="all">
+                  <input type="radio" name="select" id="all" checked />
+                  <div class="name">전체 강조</div>
+                </label>
+              </div>
+              <div class="border"></div>
+              <div class="ment">광고 문구 : 제목 12자 + 본문 14자</div>
+            </div>
+            <div class="setting-banner" :style="{ backgroundColor: main }">
+              <div class="input-section">
+                <input
+                  class="title"
+                  type="text"
+                  placeholder="제목을 입력하세요"
+                  maxlength="12"
+                  :style="{ color: title }"
+                />
+                <input
+                  class="main"
+                  type="text"
+                  placeholder="본문을 입력하세요"
+                  maxlength="14"
+                  :style="{ color: title }"
+                />
+              </div>
+              <div class="image-section">
+                <label for="file">
+                  <div class="btn-upload">
+                    <i class="fa-regular fa-image" />
+                    <div class="value">280x200</div>
+                  </div>
+                </label>
+                <input type="file" name="file" id="file" />
+              </div>
+            </div>
+            <div class="select-color">
+              <div class="box">
+                <div class="name">문구색상</div>
+                <ColorPicker
+                  :color="title"
+                  :visible-formats="['hex']"
+                  alpha-channel="hide"
+                  @color-change="titleColorChange"
+                />
+              </div>
+              <div class="box">
+                <div class="name">배경색상</div>
+                <ColorPicker
+                  :color="main"
+                  :visible-formats="['hex']"
+                  alpha-channel="hide"
+                  @color-change="mainColorChange"
+                />
+              </div>
+            </div>
+            <div class="ment">
+              · 배너의 문구 양식대로 등록해 주세요.<br />
+              · 이미지는 사이즈에 맞춰 등록해 주세요.<br />
+              · 이미지의 단위는 픽셀(px)입니다.<br />
+              · 이미지는 배경없는 .png 파일만 등록이 가능합니다.
+            </div>
+          </div>
+          <div class="close">
+            <img src="../../../../assets/login/arrow_up.png" alt="닫기" />
           </div>
         </div>
 
-        <div class="complete-item">
-          <div class="title">
-            <div>구매완료 · 이용완료</div>
-            <div class="pay">2023.00.00 결제(삼성카드)</div>
-          </div>
-          <div class="info-item">
-            <div class="info">
-              <div class="item-title">메인 TOP (00일)</div>
-              <div class="period">이용기간 : 2023.00.00 ~ 00.00</div>
+        <div class="complete-item add-banner">
+          <div class="padding">
+            <div class="title">
+              <div>구매완료 · 이용완료</div>
+              <div class="pay">2023.00.00 결제(삼성카드)</div>
             </div>
-            <div class="cost">
-              <div class="text-right">
-                <div class="cost-title">
-                  <span class="sub">1,100,000원</span>
-                  <span class="bold">990,000</span> 원
+            <div class="info-item">
+              <div class="info">
+                <div class="item-title">메인 TOP (00일)</div>
+                <div class="period">이용기간 : 2023.00.00 ~ 00.00</div>
+              </div>
+              <div class="cost">
+                <div class="text-right">
+                  <div class="cost-title">
+                    <span class="sub">1,100,000원</span>
+                    <span class="bold">990,000</span> 원
+                  </div>
+                  <div class="vat">
+                    <span class="discount"
+                      ><img
+                        src="../../../../assets/dashboard/arrow_down.png"
+                        alt="down"
+                      />10% 할인</span
+                    >
+                    · VAT 포함
+                  </div>
                 </div>
-                <div class="vat">
-                  <span class="discount"
-                    ><img
-                      src="../../../../assets/dashboard/arrow_down.png"
-                      alt="down"
-                    />10% 할인</span
-                  >
-                  · VAT 포함
+                <button class="disabled">기간연장</button>
+              </div>
+            </div>
+          </div>
+          <div class="more">
+            <img
+              src="../../../../assets/dashboard/arrow_more.png"
+              alt="더보기"
+            />
+          </div>
+        </div>
+        <div class="banner-section">
+          <div class="padding">
+            <div class="title-save">
+              <div class="title">이미지 등록</div>
+              <button class="save">저장</button>
+            </div>
+            <div class="apply-image">
+              <div class="box">
+                <div class="name">PC</div>
+                <div class="image-section pc">
+                  <label for="file">
+                    <div class="btn-upload">
+                      <i class="fa-regular fa-image" />
+                      <div class="value">2388x400</div>
+                    </div>
+                  </label>
+                  <input type="file" name="file" id="file" />
                 </div>
               </div>
-              <button class="disabled">기간연장</button>
+              <div class="flex">
+                <div class="box">
+                  <div class="name">TAB</div>
+                  <div class="image-section tab">
+                    <label for="file">
+                      <div class="btn-upload">
+                        <i class="fa-regular fa-image" />
+                        <div class="value">1360x300</div>
+                      </div>
+                    </label>
+                    <input type="file" name="file" id="file" />
+                  </div>
+                </div>
+                <div class="box">
+                  <div class="name">MOBILE</div>
+                  <div class="image-section mob">
+                    <label for="file">
+                      <div class="btn-upload">
+                        <i class="fa-regular fa-image" />
+                        <div class="value">656x200</div>
+                      </div>
+                    </label>
+                    <input type="file" name="file" id="file" />
+                  </div>
+                </div>
+              </div>
             </div>
+            <div class="ment">
+              · 이미지의 단위는 픽셀(px)입니다.<br />
+              · 이미지는 사이즈에 맞춰 등록해 주세요.
+            </div>
+          </div>
+          <div class="close">
+            <img src="../../../../assets/login/arrow_up.png" alt="닫기" />
           </div>
         </div>
       </div>
@@ -166,7 +320,21 @@
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { ColorChangeEvent, ColorPicker } from 'vue-accessible-color-picker'
+
+const title = ref<string>('#777777')
+const main = ref<string>('#EBEBEB')
+
+const titleColorChange = (event: ColorChangeEvent) => {
+  title.value = event.cssColor
+}
+
+const mainColorChange = (event: ColorChangeEvent) => {
+  main.value = event.cssColor
+}
+</script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';
@@ -245,13 +413,26 @@ article {
       label {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 4px;
         cursor: pointer;
         input {
           margin: 0;
           cursor: pointer;
         }
-        div {
+        input[type='radio'] {
+          appearance: none;
+          border: 1px solid $inputLine;
+          border-radius: 50%;
+          width: 16px;
+          height: 16px;
+        }
+        input[type='radio']:checked {
+          background-image: url(../../../../assets/dashboard/checked.png);
+          background-repeat: no-repeat;
+          background-size: 8px;
+          background-position: center;
+        }
+        .name {
           font-size: 14px;
           color: $fontMain;
         }
@@ -286,6 +467,7 @@ article {
       background-color: white;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
       border-radius: 10px;
+
       .title {
         padding-bottom: 10px;
         display: flex;
@@ -386,15 +568,218 @@ article {
           }
         }
       }
+    }
+    .add-banner {
+      padding: 0;
+      .padding {
+        padding: 30px 30px 0 30px;
+      }
       .more {
         width: 100%;
         display: flex;
         justify-content: center;
         border-top: 1px solid $sectionLine;
-        padding-top: 10px;
+        padding: 10px 0;
+        margin-top: 32px;
         img {
           width: 20px;
           height: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .banner-section {
+      margin-top: -60px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+      .padding {
+        padding: 50px 30px 30px;
+        .image-section {
+          background-color: #f2f4f7;
+          .btn-upload {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            color: $fontSub;
+            cursor: pointer;
+            i {
+              font-size: 16px;
+            }
+            .value {
+              font-size: 14px;
+            }
+          }
+          #file {
+            display: none;
+          }
+        }
+        .ment {
+          font-size: 14px;
+          color: $fontSub;
+          line-height: 24px;
+        }
+        .title-save {
+          padding-bottom: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid $sectionLine;
+          .title {
+            color: $fontMain;
+          }
+          .save {
+            width: 80px;
+            height: 40px;
+            border-radius: 10px;
+            border: none;
+            background-color: $mainColor;
+            color: white;
+            font-size: 16px;
+            font-family: Pretendard;
+            font-weight: $reg;
+            cursor: pointer;
+          }
+        }
+        .select-highlight {
+          padding-top: 30px;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          .flex {
+            display: flex;
+            gap: 20px;
+            label {
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              cursor: pointer;
+              input {
+                margin: 0;
+                cursor: pointer;
+              }
+              input[type='radio'] {
+                appearance: none;
+                border: 1px solid $inputLine;
+                border-radius: 50%;
+                width: 16px;
+                height: 16px;
+              }
+              input[type='radio']:checked {
+                background-image: url(../../../../assets/dashboard/checked.png);
+                background-repeat: no-repeat;
+                background-size: 8px;
+                background-position: center;
+              }
+              .name {
+                font-size: 14px;
+                color: $fontMain;
+              }
+            }
+          }
+          .border {
+            height: 17px;
+            border: 1px solid $iconLine;
+          }
+        }
+        .setting-banner {
+          height: 100px;
+          padding: 0 102px;
+          margin-top: 20px;
+          display: flex;
+          justify-content: space-between;
+          background-color: #ebebeb;
+          border-radius: 10px;
+          .input-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            .title,
+            .main {
+              font-family: Pretendard;
+              background-color: transparent;
+              border: none;
+            }
+            .title {
+              font-weight: $semi;
+              font-size: 20px;
+            }
+            .main {
+              font-size: 16px;
+            }
+          }
+          .image-section {
+            width: 140px;
+          }
+        }
+        .select-color {
+          padding: 20px 0 30px 0;
+          display: flex;
+          gap: 20px;
+          border-bottom: 1px solid $sectionLine;
+          margin-bottom: 30px;
+          .box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .name {
+              font-size: 14px;
+              color: $fontMain;
+            }
+            .vacp-color-picker {
+            }
+          }
+        }
+
+        .apply-image {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          border-bottom: 1px solid $sectionLine;
+          padding: 30px 0;
+          margin-bottom: 30px;
+          .box {
+            .name {
+              font-size: 14px;
+              color: $fontMain;
+              padding-bottom: 10px;
+            }
+            .image-section {
+              border-radius: 10px;
+              height: 100px;
+            }
+            .pc {
+              width: 1210px;
+            }
+          }
+          .flex {
+            display: flex;
+            gap: 142px;
+            .tab {
+              width: 455px;
+            }
+            .mob {
+              width: 328px;
+            }
+          }
+        }
+      }
+      .close {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid $sectionLine;
+        padding: 10px 0;
+        img {
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
         }
       }
     }
@@ -429,7 +814,6 @@ article {
       width: 100%;
       .ing-item,
       .complete-item {
-        height: 308px;
         .info-item {
           flex-direction: column;
           gap: 30px;
@@ -447,6 +831,44 @@ article {
             button {
               width: 100%;
               height: 50px;
+            }
+          }
+        }
+      }
+      .banner-section {
+        .padding {
+          .select-highlight {
+            flex-direction: column;
+            align-items: flex-start;
+            .border {
+              display: none;
+            }
+          }
+          .setting-banner {
+            padding: 0 30px;
+            justify-content: center;
+            .input-section {
+              input {
+                width: 244px;
+              }
+            }
+          }
+          .apply-image {
+            .box {
+              .pc {
+                width: 444px;
+              }
+            }
+            .flex {
+              flex-direction: column;
+              gap: 32px;
+              .tab {
+                width: 444px;
+                height: 98px;
+              }
+              .mob {
+                width: 328px;
+              }
             }
           }
         }
@@ -523,7 +945,6 @@ article {
       gap: 10px;
       .ing-item,
       .complete-item {
-        height: 330px;
         border-radius: 0;
         box-shadow: none;
         .title {
@@ -569,6 +990,64 @@ article {
               width: 100%;
               height: 50px;
               font-size: 14px;
+            }
+          }
+        }
+      }
+      .banner-section {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        .padding {
+          .ment {
+            font-size: 12px;
+          }
+          .select-highlight {
+            flex-direction: column;
+            align-items: flex-start;
+            .border {
+              display: none;
+            }
+          }
+          .setting-banner {
+            padding: 0 20px;
+            .input-section {
+              input {
+                width: 148px;
+              }
+              .title {
+                font-size: 15px;
+              }
+              .main {
+                font-size: 13px;
+              }
+            }
+          }
+          .select-color {
+            .box {
+              .name {
+                font-size: 13px;
+              }
+              .vacp-color-picker {
+              }
+            }
+          }
+          .apply-image {
+            .box {
+              .pc {
+                width: 100%;
+              }
+            }
+            .flex {
+              flex-direction: column;
+              gap: 30px;
+              .tab {
+                width: 100%;
+                height: 72px;
+              }
+              .mob {
+                width: 100%;
+                height: 100px;
+              }
             }
           }
         }

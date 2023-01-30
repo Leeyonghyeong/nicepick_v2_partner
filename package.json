@@ -12,6 +12,7 @@
     "pinia": "^2.0.28",
     "swiper": "^8.4.5",
     "vue": "^3.2.25",
+    "vue-accessible-color-picker": "^4.1.2",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
