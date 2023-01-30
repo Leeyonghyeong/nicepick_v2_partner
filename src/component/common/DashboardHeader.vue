@@ -17,16 +17,6 @@
           <div class="logout">로그아웃</div>
           <button>창업픽 홈</button>
         </div>
-
-        <div v-if="getDevice === 'mobile'" class="hammenu">
-          <RouterLink to="/cart" class="none">
-            <div class="cart">
-              <i class="fa-solid fa-cart-plus"></i>
-              <div class="count">3</div>
-            </div>
-          </RouterLink>
-          <img src="../../assets/dashboard/ham.png" alt="햄버거메뉴" />
-        </div>
       </div>
     </article>
   </section>

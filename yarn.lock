@@ -2117,6 +2117,11 @@ vscode-vue-languageservice@0.29.8:
     vscode-pug-languageservice "0.29.8"
     vscode-typescript-languageservice "0.29.8"
 
+vue-accessible-color-picker@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/vue-accessible-color-picker/-/vue-accessible-color-picker-4.1.2.tgz#61479046be23d7a4aba73bb2d2b059acd8081308"
+  integrity sha512-Guga9m4tu5ACWX8QqsUO4x3C/NHcrYPgJlQPPJh8TUxblXlSlKKvFgiwBS9A37vobL/aHUqWoqevK5HjD+gH5Q==
+
 vue-demi@*:
   version "0.13.11"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
