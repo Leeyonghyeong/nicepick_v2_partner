@@ -152,11 +152,11 @@
                   <div class="name">제목 강조</div>
                 </label>
                 <label class="main">
-                  <input type="radio" name="select" id="main" checked />
+                  <input type="radio" name="select" id="main" />
                   <div class="name">본문 강조</div>
                 </label>
                 <label class="all">
-                  <input type="radio" name="select" id="all" checked />
+                  <input type="radio" name="select" id="all" />
                   <div class="name">전체 강조</div>
                 </label>
               </div>

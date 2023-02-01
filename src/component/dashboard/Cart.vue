@@ -235,6 +235,7 @@ article {
           display: inline-block;
           width: 20px;
           height: 20px;
+          box-sizing: border-box;
           border: 1px solid $inputLine;
           border-radius: 3px;
           position: relative;
@@ -247,9 +248,10 @@ article {
           content: '';
           background-image: url(../../assets/dashboard/check.png);
           background-repeat: no-repeat;
-          background-position: 5px;
+          background-position: 4px;
           width: 20px;
           height: 20px;
+          box-sizing: border-box;
           position: absolute;
           border: 1px solid $mainColor;
           border-radius: 3px;

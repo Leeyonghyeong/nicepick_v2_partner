@@ -11,7 +11,7 @@
           </div>
           <div class="email">icecream@gmail.com</div>
 
-          <button class="transform">
+          <button class="transform" @click="showBrandChange">
             <img src="../../../assets/dashboard/transform.png" alt="전환" />
             브랜드 전환
           </button>
@@ -35,10 +35,12 @@
             </div>
           </RouterLink>
 
-          <div class="box">
-            <img src="../../../assets/dashboard/ad.png" alt="광고상품" />
-            <div>광고 상품</div>
-          </div>
+          <RouterLink to="/franchise/ad" class="none">
+            <div class="box">
+              <img src="../../../assets/dashboard/ad.png" alt="광고상품" />
+              <div>광고 상품</div>
+            </div>
+          </RouterLink>
 
           <RouterLink to="/franchise/qna" class="none">
             <div class="box">
@@ -55,16 +57,25 @@
           </RouterLink>
         </div>
       </article>
+
+      <BrandChange v-if="showModal" @showBrandChange="showBrandChange" />
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 import { useWindowStore } from '../../../store/window'
+import BrandChange from '../modal/dashboard/BrandChange.vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
+
+const showModal = ref<boolean>(false)
+const showBrandChange = () => {
+  showModal.value = !showModal.value
+}
 </script>
 
 <style lang="scss" scoped>

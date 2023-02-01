@@ -188,7 +188,9 @@
         </label>
       </div>
 
-      <button class="save">저장</button>
+      <div class="save">
+        <button>저장</button>
+      </div>
     </article>
   </section>
 </template>
@@ -409,20 +411,22 @@ article {
   }
 
   .save {
-    width: 1270px;
-    height: 50px;
     margin-top: 30px;
+    button {
+      width: 1270px;
+      height: 50px;
 
-    background-color: $mainColor;
-    border-radius: 10px;
-    border: none;
+      background-color: $mainColor;
+      border-radius: 10px;
+      border: none;
 
-    color: white;
-    font-size: 16px;
-    font-family: Pretendard;
-    font-weight: $reg;
+      color: white;
+      font-size: 16px;
+      font-family: Pretendard;
+      font-weight: $reg;
 
-    cursor: pointer;
+      cursor: pointer;
+    }
   }
 }
 
@@ -473,7 +477,9 @@ article {
       }
     }
     .save {
-      width: 100%;
+      button {
+        width: 100%;
+      }
     }
   }
 }
@@ -565,6 +571,7 @@ article {
     }
 
     .select-set {
+      width: 100%;
       padding-top: 10px;
       flex-direction: column;
       gap: 0;
@@ -597,10 +604,16 @@ article {
     }
 
     .save {
-      width: 100%;
-      height: 60px;
-      margin: 0;
-      border-radius: 0;
+      height: 100px;
+      margin: 10px 0 60px 0;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      background-color: white;
+      button {
+        width: 100%;
+        height: 60px;
+      }
     }
   }
 }

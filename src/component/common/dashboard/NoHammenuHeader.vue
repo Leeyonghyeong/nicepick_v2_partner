@@ -3,10 +3,13 @@
     <article>
       <div class="header">
         <div v-if="getDevice !== 'mobile'" class="logo">
-          <img src="../../assets/header/logo.png" alt="로고" />
+          <img src="../../../assets/header/logo.png" alt="로고" />
         </div>
 
         <div v-if="getDevice !== 'mobile'" class="logout-homebtn">
+          <div class="notice">
+            <i class="fa-solid fa-bullhorn"></i>
+          </div>
           <RouterLink to="/cart" class="none">
             <div class="cart">
               <i class="fa-solid fa-cart-plus"></i>
@@ -23,7 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from '../../store/window'
+import { useWindowStore } from '../../../store/window'
 import { storeToRefs } from 'pinia'
 
 const store = useWindowStore()
@@ -61,6 +64,12 @@ article {
       display: flex;
       align-items: center;
       gap: 24px;
+
+      .notice {
+        i {
+          cursor: pointer;
+        }
+      }
 
       .cart {
         display: flex;
@@ -104,54 +113,6 @@ article {
         font-family: Pretendard;
         color: $fontSub;
         cursor: pointer;
-      }
-    }
-  }
-}
-
-@include mobile {
-  article {
-    padding: 15px 23px 15px 24px;
-
-    .header {
-      display: flex;
-      justify-content: flex-end;
-      .title {
-        color: $fontMain;
-      }
-
-      .hammenu {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-
-        .cart {
-          display: flex;
-          position: relative;
-          i {
-            cursor: pointer;
-          }
-          .count {
-            background-color: $subColor;
-            width: 15px;
-            height: 15px;
-            border-radius: 50px;
-            color: white;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            right: -11px;
-            top: -8px;
-          }
-        }
-
-        img {
-          width: 30px;
-          height: 30px;
-          cursor: pointer;
-        }
       }
     }
   }
