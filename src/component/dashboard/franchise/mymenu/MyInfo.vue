@@ -13,57 +13,66 @@
         </RouterLink>
       </div>
 
-      <div class="info-section">
-        <div class="input-section">
-          <div class="main-title">기본정보</div>
-          <div class="info-flex">
-            <div class="email-reset-pw">
-              <div class="content email">
-                <div class="title">이메일</div>
-                <div class="email-box">abc1234@gmail.com</div>
-              </div>
-              <div class="content reset-pw">
-                <div class="title">비밀번호 변경</div>
-                <button>비밀번호 변경</button>
-              </div>
-            </div>
-            <div class="content name-phone">
-              <div class="name">
-                <div class="title">담당자명</div>
-                <input type="text" />
-              </div>
-              <div class="content phone">
-                <div class="title">연락처</div>
-                <input type="text" />
-              </div>
-            </div>
+      <div class="gap">
+        <div class="content email-reset-pw">
+          <div class="width email">
+            <div class="title">이메일</div>
+            <div class="email-box">abc1234@gmail.com</div>
+          </div>
+          <div class="width reset-pw">
+            <div class="title">비밀번호 변경</div>
+            <button>비밀번호 변경</button>
           </div>
         </div>
-        <div class="check-box">
+
+        <div class="content name-phone">
+          <div class="title">[기본] 담당자명 / 연락처</div>
+          <div class="input">
+            <input class="width mob" type="text" value="홍길동" />
+            <input class="width" type="text" value="01012345678" />
+          </div>
+          <div class="check-section">
+            <input type="checkbox" id="check1" checked />
+            <label for="check1"></label>
+            <div class="name">알림톡 수신</div>
+          </div>
+          <div class="add">
+            <button>
+              <img src="../../../../assets/dashboard/add.png" alt="추가" />
+              담당자 추가
+            </button>
+          </div>
+        </div>
+
+        <div class="content check-box">
           <div class="title-section">
             <div class="title">마케팅 정보 수신 동의(선택)</div>
-            <div class="sub-title">
+            <div class="sub">
               수신 동의 시 이벤트 및 각종 행사 등의 정보를 알려드립니다.
             </div>
           </div>
-          <div class="check-section">
-            <label class="email">
-              <input type="checkbox" style="zoom: 1.5" id="email" checked />
-              <div>이메일 수신</div>
-            </label>
-            <label class="sms">
-              <input type="checkbox" style="zoom: 1.5" id="sms" checked />
-              <div>SMS 수신</div>
-            </label>
+          <div class="flex">
+            <div class="check-section">
+              <input type="checkbox" id="check2" checked />
+              <label for="check2"></label>
+              <div class="name">이메일 수신</div>
+            </div>
+            <div class="check-section">
+              <input type="checkbox" id="check3" />
+              <label for="check3"></label>
+              <div class="name">SMS 수신</div>
+            </div>
           </div>
         </div>
+
+        <div class="mob-background">
+          <button class="save">저장</button>
+
+          <RouterLink to="/withdrawal" class="none">
+            <div class="withdrawal">회원 탈퇴</div>
+          </RouterLink>
+        </div>
       </div>
-
-      <button class="save">저장</button>
-
-      <RouterLink to="/withdrawal" class="none">
-        <div class="withdrawal">회원 탈퇴</div>
-      </RouterLink>
     </article>
   </section>
 </template>
@@ -74,7 +83,7 @@
 @import '@/scss/main';
 
 article {
-  padding: 50px 0px 76px 160px;
+  padding: 50px 0 76px 160px;
   box-sizing: border-box;
   width: 100%;
 
@@ -105,110 +114,152 @@ article {
     }
   }
 
-  .info-section {
-    width: 1270px;
-    height: 476px;
-    margin-top: 30px;
-    padding: 30px;
-    box-sizing: border-box;
-
-    background-color: white;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-    .input-section {
-      .main-title {
-        font-size: 18px;
-        font-weight: $medi;
-        color: $fontMain;
-        padding-bottom: 30px;
+  .gap {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .content {
+      width: 1270px;
+      padding: 30px;
+      box-sizing: border-box;
+      background-color: white;
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+      color: $fontMain;
+      .title {
+        padding-bottom: 10px;
       }
-      .info-flex {
+      .width {
         width: 100%;
+      }
+      .check-section {
+        padding-top: 16px;
         display: flex;
-        gap: 30px;
-        border-bottom: 1px solid $iconLine;
-        padding-bottom: 30px;
-        .content {
-          .title {
-            padding-bottom: 10px;
-            color: $fontMain;
-          }
-          input,
-          .email-box {
-            width: 100%;
-            height: 50px;
-            padding-left: 16px;
-            box-sizing: border-box;
-            border-radius: 10px;
-            border: none;
-            border: 1px solid $iconLine;
-          }
+        align-items: center;
+        gap: 6px;
+        .name {
+          font-size: 14px;
         }
-        .email-reset-pw,
-        .name-phone {
-          width: 100%;
+      }
+      input[type='checkbox'] {
+        display: none;
+      }
+      input[type='checkbox'] + label {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid $inputLine;
+        border-radius: 3px;
+        position: relative;
+        cursor: pointer;
+      }
+      input[id='check1']:checked + label::after,
+      input[id='check2']:checked + label::after,
+      input[id='check3']:checked + label::after,
+      input[id='check4']:checked + label::after {
+        content: '';
+        background-image: url(../../../../assets/dashboard/check.png);
+        background-repeat: no-repeat;
+        background-position: 5px;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        border: 1px solid $mainColor;
+        border-radius: 3px;
+        top: -1px;
+        left: -1px;
+        cursor: pointer;
+      }
+    }
+
+    .email-reset-pw {
+      display: flex;
+      gap: 30px;
+      .email-box {
+        height: 50px;
+        padding-left: 16px;
+        display: flex;
+        align-items: center;
+        background-color: $sectionLine;
+        border: 1px solid $iconLine;
+        border-radius: 10px;
+        color: $inputLine;
+      }
+      button {
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        border: none;
+        background-color: $fontMain;
+        color: white;
+        font-family: Pretendard;
+        font-size: 16px;
+        font-weight: $reg;
+        cursor: pointer;
+      }
+    }
+
+    .name-phone {
+      .input {
+        display: flex;
+        gap: 10px;
+        input {
+          height: 50px;
+          padding-left: 16px;
+          border-radius: 10px;
+          border: 1px solid $iconLine;
+          font-family: Pretendard;
+          font-size: 16px;
+          color: $fontMain;
+        }
+        .mob {
+          width: 20%;
+        }
+      }
+      .add {
+        width: 100%;
+        padding-top: 20px;
+        display: flex;
+        justify-content: center;
+        button {
+          width: 109px;
+          height: 40px;
           display: flex;
-          flex-direction: column;
-          gap: 30px;
-        }
-        .email-reset-pw {
-          .email-box {
-            background-color: $sectionLine;
-            border: 1px solid $iconLine;
-            display: flex;
-            align-items: center;
-            color: $inputLine;
-          }
-          .reset-pw {
-            button {
-              width: 100%;
-              height: 50px;
-              border-radius: 10px;
-              border: none;
-              background-color: $fontMain;
-              color: white;
-              font-family: Pretendard;
-              font-size: 16px;
-              font-weight: $reg;
-              cursor: pointer;
-            }
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          background-color: #fafafa;
+          border-radius: 50px;
+          border: none;
+          color: $mainColor;
+          font-size: 14px;
+          font-family: Pretendard;
+          cursor: pointer;
+          img {
+            width: 20px;
+            height: 20px;
           }
         }
       }
     }
+
     .check-box {
-      padding-top: 30px;
       .title-section {
-        padding-bottom: 30px;
-        .title {
-          color: $fontMain;
-          padding-bottom: 10px;
-        }
-        .sub-title {
+        .sub {
           font-size: 14px;
           color: $fontSub;
         }
       }
-      .check-section {
+      .flex {
+        padding-top: 30px;
         display: flex;
         gap: 60px;
-        label {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 14px;
-          color: $fontMain;
-          cursor: pointer;
-          input {
-            cursor: pointer;
-          }
-        }
       }
     }
   }
 
   .save {
-    margin: 30px 0;
     width: 1270px;
     height: 50px;
     border: none;
@@ -223,6 +274,7 @@ article {
 
   .withdrawal {
     width: 1270px;
+    padding-top: 30px;
     font-size: 14px;
     color: $fontSub;
     display: flex;
@@ -235,13 +287,26 @@ article {
   article {
     padding: 50px 24px 60px 24px;
 
-    .info-section {
-      width: 100%;
-      height: 694px;
-      .input-section {
-        .info-flex {
-          flex-direction: column;
+    .gap {
+      .content {
+        width: 100%;
+      }
+
+      .email-reset-pw {
+        flex-direction: column;
+      }
+
+      .name-phone {
+        .input {
+          gap: 10px;
+          .mob {
+            width: 50%;
+          }
         }
+      }
+
+      .check-box {
+        padding: 30px 30px 50px;
       }
     }
 
@@ -257,14 +322,14 @@ article {
 
 @include mobile {
   article {
-    padding: 0;
+    padding: 0 0 58px 0;
 
     .top-title {
-      padding: 0;
-      font-size: 16px;
       position: absolute;
       top: 23px;
       left: 24px;
+      font-size: 16px;
+      padding: 0;
     }
 
     .category {
@@ -275,56 +340,55 @@ article {
       font-size: 14px;
     }
 
-    .info-section {
-      width: 100%;
-      height: 670px;
-      box-shadow: none;
-      border-radius: 0;
-      margin-top: 0;
-      .input-section {
-        .main-title {
-          font-size: 16px;
+    .gap {
+      padding: 0;
+      gap: 10px;
+      .content {
+        width: 100%;
+        padding: 30px 24px;
+        border-radius: 0;
+        box-shadow: none;
+        .title {
+          padding-bottom: 8px;
+          font-size: 14px;
         }
-        .info-flex {
-          flex-direction: column;
-          .content {
-            .title {
-              font-size: 14px;
-            }
-          }
-          .email-reset-pw {
-            .reset-pw {
-              button {
-                font-size: 14px;
-              }
-            }
+      }
+
+      .email-reset-pw {
+        flex-direction: column;
+        button {
+          font-size: 14px;
+        }
+      }
+
+      .name-phone {
+        .input {
+          gap: 10px;
+          .mob {
+            width: 55%;
           }
         }
       }
+
       .check-box {
         .title-section {
-          .title {
-            font-size: 14px;
-          }
-          .sub-title {
+          .sub {
             font-size: 12px;
           }
         }
       }
     }
 
-    .save {
-      margin: 0;
-      width: 100%;
-      height: 60px;
-      border-radius: 0;
-    }
-
-    .withdrawal {
-      width: 100%;
-      height: 76px;
+    .mob-background {
+      padding: 30px 24px;
       background-color: white;
-      align-items: center;
+      .save {
+        width: 100%;
+      }
+
+      .withdrawal {
+        width: 100%;
+      }
     }
   }
 }

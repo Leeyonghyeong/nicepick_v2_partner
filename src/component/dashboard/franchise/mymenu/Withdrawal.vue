@@ -11,11 +11,13 @@
 
       <div class="top-title">
         <div class="title">회원 탈퇴</div>
-        <img
-          v-if="getDevice === 'mobile'"
-          src="../../../../assets/login/close.png"
-          alt="닫기"
-        />
+        <RouterLink to="/franchise/mymenu/myinfo" class="none">
+          <img
+            v-if="getDevice === 'mobile'"
+            src="../../../../assets/login/close.png"
+            alt="닫기"
+          />
+        </RouterLink>
       </div>
 
       <div class="width">
@@ -87,7 +89,9 @@
           <button class="withdrawal">회원 탈퇴</button>
         </RouterLink>
 
-        <div class="cancel">취소</div>
+        <RouterLink to="/franchise/mymenu/myinfo" class="none">
+          <div class="cancel">취소</div>
+        </RouterLink>
       </div>
     </article>
   </section>
@@ -252,6 +256,7 @@ article {
         width: 30px;
         height: 30px;
         position: absolute;
+        top: 15px;
         right: 23px;
         cursor: pointer;
       }

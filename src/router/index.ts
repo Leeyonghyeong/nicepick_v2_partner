@@ -77,7 +77,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'DashboardLayout',
-    component: () => import('../layout/DashboardLayout.vue'),
+    component: () => import('../layout/dashboard/DashboardLayout.vue'),
     children: [
       {
         path: '/franchise/brand/management',
@@ -115,6 +115,21 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import('../component/dashboard/franchise/mymenu/Keyword.vue'),
       },
+
+      {
+        path: '/franchise/ad',
+        name: 'ad',
+        component: () =>
+          import('../component/dashboard/franchise/ad/AdItem.vue'),
+      },
+    ],
+  },
+
+  {
+    path: '/',
+    name: 'NewpageDashboardLayout',
+    component: () => import('../layout/dashboard/NewpageDashboardLayout.vue'),
+    children: [
       {
         path: '/cart',
         name: 'cart',

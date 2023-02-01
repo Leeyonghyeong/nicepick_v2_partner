@@ -1,5 +1,5 @@
 <template>
-  <DashHeader />
+  <NoHammenuHeader />
 
   <div class="flex">
     <DashboardCategory />
@@ -12,12 +12,12 @@
 </template>
 
 <script lang="ts" setup>
-import DashHeader from '../component/common/DashboardHeader.vue'
-import Footer from '../component/common/Footer.vue'
-import DashboardCategory from '../component/common/dashboard/DashboardCategory.vue'
+import NoHammenuHeader from '../../component/common/dashboard/NoHammenuHeader.vue'
+import Footer from '../../component/common/Footer.vue'
+import DashboardCategory from '../../component/common/dashboard/DashboardCategory.vue'
 
 import { onMounted } from 'vue'
-import { useWindowStore } from '../store/window'
+import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
 
 const store = useWindowStore()
