@@ -3,51 +3,91 @@
     <article>
       <div class="franchise" v-if="getDevice === 'mobile'">
         <div class="box">
-          <div class="button">
+          <div class="button" @click="selectMenu = 'dashboard'">
             <img
+              v-if="selectMenu === 'dashboard'"
+              src="../../../assets/dashboard/menubar/dash_select.png"
+              alt="대시보드선택"
+            />
+            <img
+              v-if="selectMenu !== 'dashboard'"
               src="../../../assets/dashboard/menubar/dash.png"
               alt="대시보드"
             />
-            <div class="name">대시보드</div>
+            <div class="name" :class="{ select: selectMenu === 'dashboard' }">
+              대시보드
+            </div>
           </div>
 
           <RouterLink to="/franchise/brand/management" class="none">
-            <div class="button select">
+            <div class="button" @click="selectMenu = 'brand'">
               <img
+                v-if="selectMenu === 'brand'"
                 src="../../../assets/dashboard/menubar/brand_select.png"
+                alt="브랜드선택"
+              />
+              <img
+                v-if="selectMenu !== 'brand'"
+                src="../../../assets/dashboard/menubar/brand.png"
                 alt="브랜드"
               />
-              <div class="name">브랜드</div>
+              <div class="name" :class="{ select: selectMenu === 'brand' }">
+                브랜드
+              </div>
             </div>
           </RouterLink>
 
           <RouterLink to="/franchise/ad" class="none">
-            <div class="button">
+            <div class="button" @click="selectMenu = 'ad'">
               <img
+                v-if="selectMenu === 'ad'"
+                src="../../../assets/dashboard/menubar/ad_select.png"
+                alt="광고상품선택"
+              />
+              <img
+                v-if="selectMenu !== 'ad'"
                 src="../../../assets/dashboard/menubar/ad.png"
                 alt="광고상품"
               />
-              <div class="name">광고상품</div>
+              <div class="name" :class="{ select: selectMenu === 'ad' }">
+                광고상품
+              </div>
             </div>
           </RouterLink>
 
           <RouterLink to="/franchise/qna" class="none">
-            <div class="button">
+            <div class="button" @click="selectMenu = 'qna'">
               <img
+                v-if="selectMenu === 'qna'"
+                src="../../../assets/dashboard/menubar/qna_select.png"
+                alt="고객문의선택"
+              />
+              <img
+                v-if="selectMenu !== 'qna'"
                 src="../../../assets/dashboard/menubar/qna.png"
                 alt="고객문의"
               />
-              <div class="name">고객문의</div>
+              <div class="name" :class="{ select: selectMenu === 'qna' }">
+                광고상품
+              </div>
             </div>
           </RouterLink>
 
           <RouterLink to="/franchise/mymenu/myinfo" class="none">
-            <div class="button">
+            <div class="button" @click="selectMenu = 'mymenu'">
               <img
+                v-if="selectMenu === 'mymenu'"
+                src="../../../assets/dashboard/menubar/my_select.png"
+                alt="마이메뉴선택"
+              />
+              <img
+                v-if="selectMenu !== 'mymenu'"
                 src="../../../assets/dashboard/menubar/my.png"
                 alt="마이메뉴"
               />
-              <div class="name">마이메뉴</div>
+              <div class="name" :class="{ select: selectMenu === 'mymenu' }">
+                마이메뉴
+              </div>
             </div>
           </RouterLink>
         </div>
@@ -59,9 +99,12 @@
 <script lang="ts" setup>
 import { useWindowStore } from '../../../store/window'
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
+
+const selectMenu = ref<string>('brand')
 </script>
 
 <style lang="scss" scoped>
@@ -72,6 +115,10 @@ const { getDevice } = storeToRefs(store)
   position: absolute;
   position: fixed;
   bottom: 0;
+
+  .select {
+    color: $mainColor;
+  }
 
   .none {
     text-decoration: none;

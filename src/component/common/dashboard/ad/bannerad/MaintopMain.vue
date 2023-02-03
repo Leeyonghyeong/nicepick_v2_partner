@@ -1,48 +1,48 @@
 <template>
   <section>
     <article>
-      <div class="list">
+      <div class="maintop-main">
         <div class="detail-contents">
           <div v-if="getDevice === 'tablet'" class="detail">
             <img
               class="first"
-              src="../../../../../assets/dashboard/ad/premium/list/tab.png"
+              src="../../../../../assets/dashboard/ad/main-top/tab.png"
               alt=""
             />
             <img
               class="second"
-              src="../../../../../assets/dashboard/ad/premium/list/tab_2.png"
+              src="../../../../../assets/dashboard/ad/main-top/tab_2.png"
               alt=""
             />
           </div>
           <div v-if="getDevice === 'pc'" class="detail">
             <img
               class="first"
-              src="../../../../../assets/dashboard/ad/premium/list/pc.png"
+              src="../../../../../assets/dashboard/ad/main-top/pc.png"
               alt=""
             />
             <img
               class="second"
-              src="../../../../../assets/dashboard/ad/premium/list/pc_2.png"
+              src="../../../../../assets/dashboard/ad/main-top/pc_2.png"
               alt=""
             />
           </div>
           <div v-if="getDevice === 'mobile'" class="detail">
             <img
               class="first"
-              src="../../../../../assets/dashboard/ad/premium/list/mob.png"
+              src="../../../../../assets/dashboard/ad/main-top/mob.png"
               alt=""
             />
             <img
               class="second"
-              src="../../../../../assets/dashboard/ad/premium/list/mob_2.png"
+              src="../../../../../assets/dashboard/ad/main-top/mob_2.png"
               alt=""
             />
           </div>
         </div>
         <div class="ment">
-          · 검색 및 업종 브랜드 리스트 상위 영역에 노출됩니다.<br />
-          · 사용자 또는 업종/검색 내역에 따라 랜덤으로 노출될 수 있습니다.
+          · 브랜드 상세페이지 하단 영역에 추천 브랜드로 노출됩니다.<br />
+          · 사용자 또는 브랜드 업종에 따라 랜덤으로 노출됩니다.
         </div>
       </div>
     </article>
