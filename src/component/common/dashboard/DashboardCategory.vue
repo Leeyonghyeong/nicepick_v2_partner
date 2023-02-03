@@ -20,15 +20,38 @@
 
       <article class="category">
         <div class="category-box">
-          <div class="box">
-            <img src="../../../assets/dashboard/dash.png" alt="대시보드" />
+          <div
+            class="box"
+            :class="{ select: selectMenu === 'dashboard' }"
+            @click="selectMenu = 'dashboard'"
+          >
+            <img
+              v-if="selectMenu === 'dashboard'"
+              src="../../../assets/dashboard/dash_select.png"
+              alt="대시보드선택"
+            />
+            <img
+              v-if="selectMenu !== 'dashboard'"
+              src="../../../assets/dashboard/dash.png"
+              alt="대시보드"
+            />
             <div>대시보드</div>
           </div>
 
           <RouterLink to="/franchise/brand/management" class="none">
-            <div class="box select">
+            <div
+              class="box"
+              :class="{ select: selectMenu === 'brand' }"
+              @click="selectMenu = 'brand'"
+            >
               <img
+                v-if="selectMenu === 'brand'"
                 src="../../../assets/dashboard/brand_select.png"
+                alt="브랜드선택"
+              />
+              <img
+                v-if="selectMenu !== 'brand'"
+                src="../../../assets/dashboard/brand.png"
                 alt="브랜드"
               />
               <div>브랜드</div>
@@ -36,22 +59,61 @@
           </RouterLink>
 
           <RouterLink to="/franchise/ad" class="none">
-            <div class="box">
-              <img src="../../../assets/dashboard/ad.png" alt="광고상품" />
+            <div
+              class="box"
+              :class="{ select: selectMenu === 'ad' }"
+              @click="selectMenu = 'ad'"
+            >
+              <img
+                v-if="selectMenu === 'ad'"
+                src="../../../assets/dashboard/ad_select.png"
+                alt="광고상품선택"
+              />
+              <img
+                v-if="selectMenu !== 'ad'"
+                src="../../../assets/dashboard/ad.png"
+                alt="광고상품"
+              />
               <div>광고 상품</div>
             </div>
           </RouterLink>
 
           <RouterLink to="/franchise/qna" class="none">
-            <div class="box">
-              <img src="../../../assets/dashboard/qna.png" alt="고객문의" />
+            <div
+              class="box"
+              :class="{ select: selectMenu === 'qna' }"
+              @click="selectMenu = 'qna'"
+            >
+              <img
+                v-if="selectMenu === 'qna'"
+                src="../../../assets/dashboard/qna_select.png"
+                alt="고객문의선택"
+              />
+              <img
+                v-if="selectMenu !== 'qna'"
+                src="../../../assets/dashboard/qna.png"
+                alt="고객문의"
+              />
               <div>고객문의</div>
             </div>
           </RouterLink>
 
           <RouterLink to="/franchise/mymenu/myinfo" class="none">
-            <div class="box">
-              <img src="../../../assets/dashboard/my.png" alt="마이메뉴" />
+            <div
+              class="box"
+              :class="{ select: selectMenu === 'mymenu' }"
+              @click="selectMenu = 'mymenu'"
+            >
+              <img
+                v-if="selectMenu === 'mymenu'"
+                src="../../../assets/dashboard/my_select.png"
+                alt="마이메뉴선택"
+              />
+              <img
+                v-if="selectMenu !== 'mymenu'"
+                src="../../../assets/dashboard/my.png"
+                alt="마이메뉴"
+              />
               <div>마이메뉴</div>
             </div>
           </RouterLink>
@@ -76,6 +138,8 @@ const showModal = ref<boolean>(false)
 const showBrandChange = () => {
   showModal.value = !showModal.value
 }
+
+const selectMenu = ref<string>('brand')
 </script>
 
 <style lang="scss" scoped>

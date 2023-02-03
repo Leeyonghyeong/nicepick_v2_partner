@@ -48,6 +48,39 @@
           </div>
 
           <div class="premium-more more-box" v-if="showPremium">
+            <div class="menu-detail">
+              <div class="menu">
+                <div
+                  :class="{ select: detailPremium === 'hashtag' }"
+                  @click="detailPremium = 'hashtag'"
+                >
+                  해시태그
+                </div>
+                <div
+                  :class="{ select: detailPremium === 'list' }"
+                  @click="detailPremium = 'list'"
+                >
+                  리스트
+                </div>
+                <div
+                  :class="{ select: detailPremium === 'promotion' }"
+                  @click="detailPremium = 'promotion'"
+                >
+                  프로모션
+                </div>
+                <div
+                  :class="{ select: detailPremium === 'matching' }"
+                  @click="detailPremium = 'matching'"
+                >
+                  고객 매칭
+                </div>
+              </div>
+
+              <Hashtag v-if="detailPremium === 'hashtag'" />
+              <List v-if="detailPremium === 'list'" />
+              <Matching v-if="detailPremium === 'matching'" />
+              <Promotion v-if="detailPremium === 'promotion'" />
+            </div>
             <div class="guide">
               <div class="guide-title">
                 프리미엄 멤버십 유의사항
@@ -106,6 +139,17 @@
                     </button>
                     <button class="apply">신청하기</button>
                   </div>
+                </div>
+              </div>
+              <div class="period-list">
+                <div class="name">30일</div>
+                <div class="name">
+                  <div>60일</div>
+                  <div>(10% 할인)</div>
+                </div>
+                <div class="name">
+                  <div>90일</div>
+                  <div>(10% 할인)</div>
                 </div>
               </div>
               <div class="more-box" v-if="showHopeful">
@@ -270,46 +314,27 @@
               </div>
               <div class="more-box" v-if="showFirstRecommend">
                 <div class="menu-detail">
-                  <div v-if="getDevice === 'tablet'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/recommend/tab.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/recommend/tab_2.png"
-                      alt=""
-                    />
+                  <div class="menu">
+                    <div
+                      :class="{
+                        select: detailFirstRecommend === 'brandcategorylist',
+                      }"
+                      @click="detailFirstRecommend = 'brandcategorylist'"
+                    >
+                      업종 리스트
+                    </div>
+                    <div
+                      :class="{ select: detailFirstRecommend === 'search' }"
+                      @click="detailFirstRecommend = 'search'"
+                    >
+                      검색
+                    </div>
                   </div>
-                  <div v-if="getDevice === 'pc'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/recommend/pc.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/recommend/pc_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'mobile'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/recommend/mob.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/recommend/mob_2.png"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="ment">
-                  · 업종 리스트 상단 추천브랜드 영역에 노출됩니다.<br />
-                  · 사용자에 따라 랜덤으로 노출됩니다.
+
+                  <BrandCategoryList
+                    v-if="detailFirstRecommend === 'brandcategorylist'"
+                  />
+                  <Search v-if="detailFirstRecommend === 'search'" />
                 </div>
               </div>
             </div>
@@ -461,49 +486,24 @@
               <div class="more-box" v-if="showMaintop">
                 <div class="menu-detail">
                   <div class="menu">
-                    <div class="select">메인</div>
-                    <div>배너</div>
+                    <div
+                      :class="{
+                        select: detailMaintop === 'maintopMain',
+                      }"
+                      @click="detailMaintop = 'maintopMain'"
+                    >
+                      메인
+                    </div>
+                    <div
+                      :class="{ select: detailMaintop === 'bannerImg' }"
+                      @click="detailMaintop = 'bannerImg'"
+                    >
+                      배너 이미지
+                    </div>
                   </div>
-                  <div v-if="getDevice === 'tablet'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-top/tab.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-top/tab_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'pc'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-top/pc.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-top/pc_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'mobile'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-top/mob.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-top/mob_2.png"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="ment">
-                  · 브랜드 상세페이지 하단 영역에 추천 브랜드로 노출됩니다.<br />
-                  · 사용자 또는 브랜드 업종에 따라 랜덤으로 노출됩니다.
+
+                  <Main v-if="detailMaintop === 'maintopMain'" />
+                  <BannerImage v-if="detailMaintop === 'bannerImg'" />
                 </div>
               </div>
             </div>
@@ -560,51 +560,37 @@
               <div class="more-box" v-if="showFirstSpecial">
                 <div class="menu-detail">
                   <div class="menu">
-                    <div class="select">메인</div>
-                    <div>커뮤니티</div>
-                    <div>문구/이미지</div>
+                    <div
+                      :class="{
+                        select: detailFirstSpecial === 'firstSpecialMain',
+                      }"
+                      @click="detailFirstSpecial = 'firstSpecialMain'"
+                    >
+                      메인
+                    </div>
+                    <div
+                      :class="{
+                        select: detailFirstSpecial === 'firstSpecialCommunity',
+                      }"
+                      @click="detailFirstSpecial = 'firstSpecialCommunity'"
+                    >
+                      커뮤니티
+                    </div>
+                    <div
+                      :class="{ select: detailFirstSpecial === 'mentImg' }"
+                      @click="detailFirstSpecial = 'mentImg'"
+                    >
+                      문구/이미지
+                    </div>
                   </div>
-                  <div v-if="getDevice === 'tablet'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-special/tab.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-special/tab_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'pc'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-special/pc.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-special/pc_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'mobile'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-special/mob.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-special/mob_2.png"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="ment">
-                  · 홈 메인페이지 업종 하단, 유망브랜드 상단에 위치한 배너
-                  영역에 노출됩니다.<br />
-                  · 사용자에 따라 랜덤으로 노출됩니다.
+
+                  <FirstSpecialMain
+                    v-if="detailFirstSpecial === 'firstSpecialMain'"
+                  />
+                  <FirstSpecialCommunity
+                    v-if="detailFirstSpecial === 'firstSpecialCommunity'"
+                  />
+                  <MentAndImg v-if="detailFirstSpecial === 'mentImg'" />
                 </div>
               </div>
             </div>
@@ -661,55 +647,41 @@
               <div class="more-box" v-if="showSecondSpecial">
                 <div class="menu-detail">
                   <div class="menu">
-                    <div class="select">메인</div>
-                    <div>커뮤니티</div>
-                    <div>문구/이미지</div>
+                    <div
+                      :class="{
+                        select: detailSecondSpecial === 'secondSpecialMain',
+                      }"
+                      @click="detailSecondSpecial = 'secondSpecialMain'"
+                    >
+                      메인
+                    </div>
+                    <div
+                      :class="{
+                        select:
+                          detailSecondSpecial === 'secondSpecialCommunity',
+                      }"
+                      @click="detailSecondSpecial = 'secondSpecialCommunity'"
+                    >
+                      커뮤니티
+                    </div>
+                    <div
+                      :class="{ select: detailSecondSpecial === 'mentImg' }"
+                      @click="detailSecondSpecial = 'mentImg'"
+                    >
+                      문구/이미지
+                    </div>
                   </div>
-                  <div v-if="getDevice === 'tablet'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-special-2/tab.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-special-2/tab_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'pc'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-special-2/pc.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-special-2/pc_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'mobile'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-special-2/mob.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-special-2/mob_2.png"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="ment">
-                  · 홈 메인페이지 브랜드 핫클립 하단, 주간검색순위 상단에 위치한
-                  배너 영역에 노출됩니다.<br />
-                  · 사용자에 따라 랜덤으로 노출됩니다.
+
+                  <SecondSpecialMain
+                    v-if="detailSecondSpecial === 'secondSpecialMain'"
+                  />
+                  <SecondSpecialCommunity
+                    v-if="detailSecondSpecial === 'secondSpecialCommunity'"
+                  />
+                  <MentAndImg v-if="detailSecondSpecial === 'mentImg'" />
                 </div>
               </div>
             </div>
-
             <div>
               <div class="box">
                 <div class="name-sub">
@@ -762,55 +734,40 @@
               <div class="more-box" v-if="showThirdSpecial">
                 <div class="menu-detail">
                   <div class="menu">
-                    <div class="select">메인</div>
-                    <div>커뮤니티</div>
-                    <div>문구/이미지</div>
+                    <div
+                      :class="{
+                        select: detailThirdSpecial === 'thirdSpecialMain',
+                      }"
+                      @click="detailThirdSpecial = 'thirdSpecialMain'"
+                    >
+                      메인
+                    </div>
+                    <div
+                      :class="{
+                        select: detailThirdSpecial === 'thirdSpecialCommunity',
+                      }"
+                      @click="detailThirdSpecial = 'thirdSpecialCommunity'"
+                    >
+                      커뮤니티
+                    </div>
+                    <div
+                      :class="{ select: detailThirdSpecial === 'mentImg' }"
+                      @click="detailThirdSpecial = 'mentImg'"
+                    >
+                      문구/이미지
+                    </div>
                   </div>
-                  <div v-if="getDevice === 'tablet'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-special-3/tab.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-special-3/tab_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'pc'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-special-3/pc.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-special-3/pc_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'mobile'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/main-special-3/mob.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/main-special-3/mob_2.png"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="ment">
-                  · 홈 메인페이지 찜 많이 받은 브랜드 하단, 테마 브랜드 상단에
-                  위치한 배너 영역에 노출됩니다.<br />
-                  · 사용자에 따라 랜덤으로 노출됩니다.
+
+                  <ThirdSpecialMain
+                    v-if="detailThirdSpecial === 'thirdSpecialMain'"
+                  />
+                  <ThirdSpecialCommunity
+                    v-if="detailThirdSpecial === 'thirdSpecialCommunity'"
+                  />
+                  <MentAndImg v-if="detailThirdSpecial === 'mentImg'" />
                 </div>
               </div>
             </div>
-
             <div>
               <div class="box">
                 <div class="name-sub">
@@ -861,49 +818,24 @@
               <div class="more-box" v-if="showLastBanner">
                 <div class="menu-detail">
                   <div class="menu">
-                    <div class="select">브랜드 리스트</div>
-                    <div>배너 이미지</div>
+                    <div
+                      :class="{
+                        select: detailLast === 'brandlist',
+                      }"
+                      @click="detailLast = 'brandlist'"
+                    >
+                      브랜드 리스트
+                    </div>
+                    <div
+                      :class="{ select: detailLast === 'mentImg' }"
+                      @click="detailLast = 'mentImg'"
+                    >
+                      문구/이미지
+                    </div>
                   </div>
-                  <div v-if="getDevice === 'tablet'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/last/tab.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/last/tab_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'pc'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/last/pc.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/last/pc_2.png"
-                      alt=""
-                    />
-                  </div>
-                  <div v-if="getDevice === 'mobile'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/dashboard/ad/last/mob.png"
-                      alt=""
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/dashboard/ad/last/mob_2.png"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <div class="ment">
-                  · 브랜드 검색 및 업종별 리스트 사이 영역에 노출됩니다.<br />
-                  · 사용자 또는 업종에 따라 랜덤으로 노출됩니다.
+
+                  <LastList v-if="detailLast === 'brandlist'" />
+                  <MentAndImg v-if="detailLast === 'mentImg'" />
                 </div>
               </div>
             </div>
@@ -939,6 +871,22 @@ import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import AddCart from '../../../common/modal/dashboard/AddCart.vue'
+import Hashtag from '../../../common/dashboard/ad/premium/Hashtag.vue'
+import List from '../../../common/dashboard/ad/premium/List.vue'
+import Matching from '../../../common/dashboard/ad/premium/Matching.vue'
+import Promotion from '../../../common/dashboard/ad/premium/Promotion.vue'
+import BrandCategoryList from '../../../common/dashboard/ad/brandad/BrandCategoryList.vue'
+import Search from '../../../common/dashboard/ad/brandad/Search.vue'
+import Main from '../../../common/dashboard/ad/bannerad/MaintopMain.vue'
+import BannerImage from '../../../common/dashboard/ad/bannerad/BannerImage.vue'
+import FirstSpecialMain from '../../../common/dashboard/ad/bannerad/FirstSpecialMain.vue'
+import FirstSpecialCommunity from '../../../common/dashboard/ad/bannerad/FirstSpecialCommunity.vue'
+import MentAndImg from '../../../common/dashboard/ad/bannerad/MentAndImg.vue'
+import SecondSpecialMain from '../../../common/dashboard/ad/bannerad/SecondSpecialMain.vue'
+import SecondSpecialCommunity from '../../../common/dashboard/ad/bannerad/SecondSpecialCommunity.vue'
+import ThirdSpecialMain from '../../../common/dashboard/ad/bannerad/ThirdSpecialMain.vue'
+import ThirdSpecialCommunity from '../../../common/dashboard/ad/bannerad/ThirdSpecialCommunity.vue'
+import LastList from '../../../common/dashboard/ad/bannerad/LastList.vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
@@ -949,15 +897,29 @@ const showAddCart = () => {
 }
 
 const showPremium = ref<boolean>(false)
+const detailPremium = ref<string>('hashtag')
+
+const showFirstRecommend = ref<boolean>(false)
+const detailFirstRecommend = ref<string>('brandcategorylist')
+
+const showMaintop = ref<boolean>(false)
+const detailMaintop = ref<string>('maintopMain')
+
+const showFirstSpecial = ref<boolean>(false)
+const detailFirstSpecial = ref<string>('firstSpecialMain')
+
+const showSecondSpecial = ref<boolean>(false)
+const detailSecondSpecial = ref<string>('secondSpecialMain')
+
+const showThirdSpecial = ref<boolean>(false)
+const detailThirdSpecial = ref<string>('thirdSpecialMain')
+
+const showLastBanner = ref<boolean>(false)
+const detailLast = ref<string>('brandlist')
+
 const showHopeful = ref<boolean>(false)
 const showHotclip = ref<boolean>(false)
-const showFirstRecommend = ref<boolean>(false)
 const showSecondRecommend = ref<boolean>(false)
-const showMaintop = ref<boolean>(false)
-const showFirstSpecial = ref<boolean>(false)
-const showSecondSpecial = ref<boolean>(false)
-const showThirdSpecial = ref<boolean>(false)
-const showLastBanner = ref<boolean>(false)
 </script>
 
 <style lang="scss" scoped>
@@ -1115,6 +1077,10 @@ article {
               color: $fontSub;
               cursor: pointer;
             }
+            .addcart {
+              border: 1px solid $subColor;
+              color: $subColor;
+            }
             .detail {
               width: 100%;
               display: flex;
@@ -1143,6 +1109,17 @@ article {
           }
         }
       }
+      .period-list {
+        background-color: white;
+        width: 170px;
+        height: 100%;
+        border-radius: 10px;
+        border: 1px solid $inputLine;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
+        .name {
+          padding: 17px 0px 16px 15px;
+        }
+      }
       .more-box {
         margin-top: -20px;
         padding: 0 30px 50px 30px;
@@ -1150,7 +1127,7 @@ article {
         border: 1px solid $iconLine;
         border-radius: 10px;
         .menu-detail {
-          padding: 50px 0 30px 0;
+          padding: 50px 0 0;
           .menu {
             display: flex;
             justify-content: space-around;
@@ -1181,7 +1158,7 @@ article {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 90px;
+            gap: 50px;
             .first {
               width: 140px;
               height: 350px;
@@ -1210,6 +1187,7 @@ article {
 
       .premium-more {
         .menu-detail {
+          padding-bottom: 30px;
           .detail {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
@@ -1326,10 +1304,15 @@ article {
               }
             }
             .detail {
+              padding: 25px 40px 0;
               gap: 45px;
+              .first {
+                width: 55%;
+                height: 100%;
+              }
               .second {
-                width: 247px;
-                height: 330px;
+                width: 100%;
+                height: 100%;
               }
             }
           }

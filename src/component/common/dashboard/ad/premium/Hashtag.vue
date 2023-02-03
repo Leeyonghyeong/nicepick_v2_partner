@@ -2,46 +2,40 @@
   <section>
     <article>
       <div class="hashtag">
-        <div class="menu-detail">
-          <div class="menu">
-            <div class="select">해시태그</div>
-            <div>리스트</div>
-            <div>프로모션</div>
-            <div>고객 매칭</div>
-          </div>
+        <div class="detail-contents">
           <div v-if="getDevice === 'tablet'" class="detail">
             <img
               class="first"
-              src="../../../../assets/dashboard/ad/premium/tab.png"
+              src="../../../../../assets/dashboard/ad/premium/tab.png"
               alt=""
             />
             <img
               class="second"
-              src="../../../../assets/dashboard/ad/premium/tab_2.png"
+              src="../../../../../assets/dashboard/ad/premium/tab_2.png"
               alt=""
             />
           </div>
           <div v-if="getDevice === 'pc'" class="detail">
             <img
               class="first"
-              src="../../../../assets/dashboard/ad/premium/pc.png"
+              src="../../../../../assets/dashboard/ad/premium/pc.png"
               alt=""
             />
             <img
               class="second"
-              src="../../../../assets/dashboard/ad/premium/pc_2.png"
+              src="../../../../../assets/dashboard/ad/premium/pc_2.png"
               alt=""
             />
           </div>
           <div v-if="getDevice === 'mobile'" class="detail">
             <img
               class="first"
-              src="../../../../assets/dashboard/ad/premium/mob.png"
+              src="../../../../../assets/dashboard/ad/premium/mob.png"
               alt=""
             />
             <img
               class="second"
-              src="../../../../assets/dashboard/ad/premium/mob_2.png"
+              src="../../../../../assets/dashboard/ad/premium/mob_2.png"
               alt=""
             />
           </div>
@@ -65,4 +59,76 @@ const { getDevice } = storeToRefs(store)
 
 <style lang="scss" scoped>
 @import '@/scss/main';
+
+article {
+  .detail-contents {
+    .detail {
+      padding: 25px 0 0;
+      background-color: white;
+      border-radius: 10px;
+      border: 1px solid $iconLine;
+      border-top: none;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      .first {
+        width: 140px;
+        height: 350px;
+      }
+      .second {
+        width: 408px;
+        height: 325px;
+      }
+    }
+  }
+  .ment {
+    padding-top: 30px;
+    font-size: 14px;
+    color: $fontSub;
+    line-height: 24px;
+  }
+}
+
+@include mobile {
+  article {
+    .detail-contents {
+      .detail {
+        padding: 25px 40px 0;
+        gap: 45px;
+        .first {
+          width: 55%;
+          height: 100%;
+        }
+        .second {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+    .ment {
+      padding-top: 20px;
+      font-size: 13px;
+    }
+  }
+}
+
+@include pc {
+  article {
+    .detail-contents {
+      .detail {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 200px;
+        .second {
+          width: 546px;
+          height: 372px;
+        }
+      }
+    }
+  }
+}
 </style>

@@ -1,48 +1,49 @@
 <template>
   <section>
     <article>
-      <div class="list">
+      <div class="thirdspecial-main">
         <div class="detail-contents">
           <div v-if="getDevice === 'tablet'" class="detail">
             <img
               class="first"
-              src="../../../../../assets/dashboard/ad/premium/list/tab.png"
+              src="../../../../../assets/dashboard/ad/main-special-3/tab.png"
               alt=""
             />
             <img
               class="second"
-              src="../../../../../assets/dashboard/ad/premium/list/tab_2.png"
+              src="../../../../../assets/dashboard/ad/main-special-3/tab_2.png"
               alt=""
             />
           </div>
           <div v-if="getDevice === 'pc'" class="detail">
             <img
               class="first"
-              src="../../../../../assets/dashboard/ad/premium/list/pc.png"
+              src="../../../../../assets/dashboard/ad/main-special-3/pc.png"
               alt=""
             />
             <img
               class="second"
-              src="../../../../../assets/dashboard/ad/premium/list/pc_2.png"
+              src="../../../../../assets/dashboard/ad/main-special-3/pc_2.png"
               alt=""
             />
           </div>
           <div v-if="getDevice === 'mobile'" class="detail">
             <img
               class="first"
-              src="../../../../../assets/dashboard/ad/premium/list/mob.png"
+              src="../../../../../assets/dashboard/ad/main-special-3/mob.png"
               alt=""
             />
             <img
               class="second"
-              src="../../../../../assets/dashboard/ad/premium/list/mob_2.png"
+              src="../../../../../assets/dashboard/ad/main-special-3/mob_2.png"
               alt=""
             />
           </div>
-        </div>
-        <div class="ment">
-          · 검색 및 업종 브랜드 리스트 상위 영역에 노출됩니다.<br />
-          · 사용자 또는 업종/검색 내역에 따라 랜덤으로 노출될 수 있습니다.
+          <div class="ment">
+            · 홈 메인페이지 찜 많이 받은 브랜드 하단, 테마 브랜드 상단에 위치한
+            배너 영역에 노출됩니다.<br />
+            · 사용자에 따라 랜덤으로 노출됩니다.
+          </div>
         </div>
       </div>
     </article>
