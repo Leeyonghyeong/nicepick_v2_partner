@@ -113,8 +113,9 @@
               <div class="box">
                 <div class="name-sub">
                   <div class="name">
-                    유망브랜드 (30일)
+                    유망브랜드 ({{ periodSelect }})
                     <img
+                      @click="showPeriodList"
                       src="../../../../assets/dashboard/arrow_down_black.png"
                       alt="down_black"
                     />
@@ -141,17 +142,10 @@
                   </div>
                 </div>
               </div>
-              <div class="period-list">
-                <div class="name">30일</div>
-                <div class="name">
-                  <div>60일</div>
-                  <div>(10% 할인)</div>
-                </div>
-                <div class="name">
-                  <div>90일</div>
-                  <div>(10% 할인)</div>
-                </div>
-              </div>
+              <PeriodList
+                v-if="selectPeriod"
+                @showPeriodList="showPeriodList"
+              />
               <div class="more-box" v-if="showHopeful">
                 <div class="menu-detail">
                   <div v-if="getDevice === 'tablet'" class="detail">
@@ -887,6 +881,7 @@ import SecondSpecialCommunity from '../../../common/dashboard/ad/bannerad/Second
 import ThirdSpecialMain from '../../../common/dashboard/ad/bannerad/ThirdSpecialMain.vue'
 import ThirdSpecialCommunity from '../../../common/dashboard/ad/bannerad/ThirdSpecialCommunity.vue'
 import LastList from '../../../common/dashboard/ad/bannerad/LastList.vue'
+import PeriodList from '../../../common/dashboard/PeriodList.vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
@@ -920,6 +915,12 @@ const detailLast = ref<string>('brandlist')
 const showHopeful = ref<boolean>(false)
 const showHotclip = ref<boolean>(false)
 const showSecondRecommend = ref<boolean>(false)
+
+const periodSelect = ref<string>('30일')
+const selectPeriod = ref<boolean>(false)
+const showPeriodList = () => {
+  selectPeriod.value = !selectPeriod.value
+}
 </script>
 
 <style lang="scss" scoped>
@@ -970,6 +971,7 @@ article {
             img {
               width: 20px;
               height: 20px;
+              cursor: pointer;
             }
           }
           .sub {
@@ -1109,17 +1111,7 @@ article {
           }
         }
       }
-      .period-list {
-        background-color: white;
-        width: 170px;
-        height: 100%;
-        border-radius: 10px;
-        border: 1px solid $inputLine;
-        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
-        .name {
-          padding: 17px 0px 16px 15px;
-        }
-      }
+
       .more-box {
         margin-top: -20px;
         padding: 0 30px 50px 30px;
@@ -1178,6 +1170,13 @@ article {
     }
     .premium-service {
       .box {
+        .name-sub {
+          .name {
+            img {
+              cursor: default;
+            }
+          }
+        }
         .flex {
           .cost-vat {
             gap: 0;

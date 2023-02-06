@@ -72,6 +72,17 @@ const routes: Array<RouteRecordRaw> = [
             '../component/dashboard/franchise/mymenu/CompleteWithdrawal.vue'
           ),
       },
+
+      {
+        path: '/nicepickguide',
+        name: 'nicepickguide',
+        component: () => import('../component/guide/NicepickGuideMain.vue'),
+      },
+      {
+        path: '/nicepickguide/brandguide',
+        name: 'brandguide',
+        component: () => import('../component/guide/BrandGuide.vue'),
+      },
     ],
   },
   {

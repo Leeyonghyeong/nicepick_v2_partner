@@ -57,6 +57,8 @@ article {
   padding: 12px 30px;
   border-bottom: 1px solid $sectionLine;
   background-color: white;
+  position: sticky;
+  top: 0;
 
   .none {
     text-decoration: none;
