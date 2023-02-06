@@ -24,12 +24,56 @@
             </div>
           </div>
           <div class="list">
-            <div class="ment">새로운 문의 내역이 없습니다.</div>
+            <!-- <div class="ment">새로운 문의 내역이 없습니다.</div> -->
+
+            <div class="no-read">
+              <div class="talk">
+                <div class="padding">
+                  <div class="profile">
+                    <img
+                      src="../../../../assets/dashboard/qna/profille.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name-main">
+                    <div class="name">홍길동</div>
+                    <div class="main">
+                      안녕하세요. 창업문의 드리려고 합니다. 강남역이나 논현역
+                      근처에 오픈 가능할까요?
+                    </div>
+                  </div>
+                  <div class="time-count">
+                    <div class="time">오전 11:59</div>
+                    <div class="count">1</div>
+                  </div>
+                </div>
+              </div>
+              <div class="talk">
+                <div class="padding">
+                  <div class="profile">
+                    <img
+                      src="../../../../assets/dashboard/qna/profille.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="name-main">
+                    <div class="name">김철수</div>
+                    <div class="main">
+                      강남역이나 논현역 근처에 오픈 가능할까요?
+                    </div>
+                  </div>
+                  <div class="time-count">
+                    <div class="time">2월 1일</div>
+                    <div class="count">100</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
         <div v-if="getDevice === 'pc'" class="qna">
-          <div class="padding-box">
+          <!-- <div class="no-history">
             <img
               src="../../../../assets/dashboard/qna/qna.png"
               alt="대화내역"
@@ -37,6 +81,61 @@
             <div class="bold">대화 내역이 없습니다.</div>
             <div class="sub">
               브랜드를 찾아보고 지금 바로 창업 문의를 시작해보세요!
+            </div>
+          </div> -->
+
+          <div class="chat-history">
+            <div class="user-btn">
+              <div class="user">
+                <img
+                  src="../../../../assets/dashboard/qna/profille.png"
+                  alt=""
+                />
+                김철수
+              </div>
+              <img
+                src="../../../../assets/dashboard/qna/btn.png"
+                alt="더보기"
+              />
+            </div>
+            <div class="main">
+              <div class="date">2023.02.06 월요일</div>
+              <div class="left-right">
+                <div class="left">
+                  <div class="chat">
+                    <div>안녕하세요. 창업문의 드리려고 합니다.</div>
+                    <div>강남역이나 논현역 근처에 오픈 가능할까요?</div>
+                  </div>
+                  <div class="time">오전 11:41</div>
+                </div>
+                <div class="right">
+                  <div class="chat">
+                    <div>
+                      어서오세요. '브랜드2'입니다.<br />궁금한 내용이 있으시면
+                      메세지를 남겨주세요.
+                    </div>
+                  </div>
+                  <div class="time">오전 11:40</div>
+                </div>
+              </div>
+            </div>
+            <div class="input">
+              <div>
+                <div class="add">
+                  <label for="file">
+                    <img
+                      src="../../../../assets/dashboard/qna/add.png"
+                      alt="사진첨부"
+                    />
+                  </label>
+                  <input type="file" name="file" id="file" />
+                </div>
+                <input type="text" placeholder="메세지를 입력하세요" />
+              </div>
+              <img
+                src="../../../../assets/dashboard/qna/send.png"
+                alt="보내기"
+              />
             </div>
           </div>
         </div>
@@ -131,10 +230,8 @@ article {
       }
       .list {
         height: 488px;
-
         display: flex;
         justify-content: center;
-
         box-sizing: border-box;
         background-color: white;
         border-bottom-left-radius: 10px;
@@ -144,6 +241,63 @@ article {
           font-size: 14px;
           font-weight: $reg;
           color: $fontSub;
+        }
+
+        .no-read {
+          width: 100%;
+          .talk {
+            width: 100%;
+            .padding {
+              height: 80px;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              padding: 0 16px;
+              cursor: pointer;
+              .profile {
+                img {
+                  width: 40px;
+                  height: 40px;
+                }
+              }
+              .name-main {
+                .name {
+                  padding-bottom: 5px;
+                  font-size: 14px;
+                  font-weight: $medi;
+                  color: $fontMain;
+                }
+                .main {
+                  width: 223px;
+                  font-size: 12px;
+                  color: $fontSub;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
+              }
+              .time-count {
+                width: 100%;
+                font-size: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                .time {
+                  padding-bottom: 5px;
+                  color: $fontSub;
+                }
+                .count {
+                  background-color: $subColor;
+                  color: white;
+                  padding: 1px 4px 2px 4px;
+                  border-radius: 50px;
+                }
+              }
+            }
+            .padding:hover {
+              background-color: #fbfcff;
+            }
+          }
         }
       }
     }
@@ -158,7 +312,7 @@ article {
       border-radius: 10px;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
       font-weight: $reg;
-      .padding-box {
+      .no-history {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -173,6 +327,58 @@ article {
         .sub {
           font-size: 14px;
           color: $fontSub;
+        }
+      }
+      .chat-history {
+        width: 100%;
+        padding: 22px 16px 0;
+        .user-btn {
+          height: 82px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid #e7eefc;
+          .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: $medi;
+            color: $fontMain;
+            img {
+              width: 40px;
+              height: 40px;
+              cursor: default;
+            }
+          }
+          img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+          }
+        }
+        .main {
+          padding-top: 30px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .date {
+            width: 120px;
+            height: 20px;
+            background-color: #e7eefc;
+            color: #50648d;
+            border-radius: 50px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .left-right {
+            display: flex;
+            .left {
+              width: 100%;
+            }
+          }
         }
       }
     }

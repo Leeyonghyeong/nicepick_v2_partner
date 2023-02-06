@@ -151,10 +151,12 @@ section {
   }
   .side-bar {
     width: 330px;
-    height: 1020px;
+    height: calc(100vh - 60px);
     background-color: #2b333e;
     padding: 0 30px;
     box-sizing: border-box;
+    position: sticky;
+    top: 60px;
 
     .info {
       color: white;

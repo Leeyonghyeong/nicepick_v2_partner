@@ -3,11 +3,12 @@
 
   <div class="flex">
     <DashboardCategory />
-    <RouterView class="width" />
-  </div>
-
-  <div v-if="getDevice !== 'mobile'">
-    <Footer />
+    <div>
+      <RouterView class="width" />
+      <div v-if="getDevice !== 'mobile'">
+        <Footer />
+      </div>
+    </div>
   </div>
 
   <FranchiseMenubar />
