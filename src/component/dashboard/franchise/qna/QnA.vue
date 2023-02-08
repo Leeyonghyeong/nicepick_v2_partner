@@ -7,16 +7,29 @@
         <div class="qna-list">
           <div class="top">
             <div class="category-box">
-              <div class="category select">
+              <div
+                class="all"
+                :class="{ select: selectMenu === '전체' }"
+                @click="selectMenu = '전체'"
+              >
                 <img
+                  v-if="selectMenu !== '전체'"
                   src="../../../../assets/dashboard/qna/all.png"
                   alt="전체"
                 />
-                <div>전체</div>
+                <img
+                  v-if="selectMenu === '전체'"
+                  src="../../../../assets/dashboard/qna/all_select.png"
+                  alt="전체"
+                />
+                <div class="name">전체</div>
               </div>
-              <div class="category">
+              <div
+                :class="{ select: selectMenu === '안읽음' }"
+                @click="selectMenu = '안읽음'"
+              >
                 <div class="default">13</div>
-                <div>안읽음</div>
+                <div class="name">안읽음</div>
               </div>
             </div>
             <div class="search">
@@ -27,8 +40,11 @@
             <!-- <div class="ment">새로운 문의 내역이 없습니다.</div> -->
 
             <div class="no-read">
-              <div class="talk">
-                <div class="padding">
+              <div class="talk" @click="selectUser = '1'">
+                <div
+                  class="padding"
+                  :class="{ chatselect: selectUser === '1' }"
+                >
                   <div class="profile">
                     <img
                       src="../../../../assets/dashboard/qna/profille.png"
@@ -38,18 +54,20 @@
                   <div class="name-main">
                     <div class="name">홍길동</div>
                     <div class="main">
-                      안녕하세요. 창업문의 드리려고 합니다. 강남역이나 논현역
-                      근처에 오픈 가능할까요?
+                      강남역이나 논현역 근처에 오픈하고 싶은데 괜찮을까요?
                     </div>
                   </div>
                   <div class="time-count">
-                    <div class="time">오전 11:59</div>
+                    <div class="time">오전 11:41</div>
                     <div class="count">1</div>
                   </div>
                 </div>
               </div>
-              <div class="talk">
-                <div class="padding">
+              <div class="talk" @click="selectUser = '2'">
+                <div
+                  class="padding"
+                  :class="{ chatselect: selectUser === '2' }"
+                >
                   <div class="profile">
                     <img
                       src="../../../../assets/dashboard/qna/profille.png"
@@ -63,7 +81,7 @@
                     </div>
                   </div>
                   <div class="time-count">
-                    <div class="time">2월 1일</div>
+                    <div class="time">2월 6일</div>
                     <div class="count">100</div>
                   </div>
                 </div>
@@ -72,7 +90,7 @@
           </div>
         </div>
 
-        <div v-if="getDevice === 'pc'" class="qna">
+        <div class="qna" v-if="getDevice === 'pc'">
           <!-- <div class="no-history">
             <img
               src="../../../../assets/dashboard/qna/qna.png"
@@ -84,7 +102,67 @@
             </div>
           </div> -->
 
-          <div class="chat-history">
+          <div class="chat-history" v-if="selectUser === '1'">
+            <div class="user-btn">
+              <div class="user">
+                <img
+                  src="../../../../assets/dashboard/qna/profille.png"
+                  alt=""
+                />
+                홍길동
+              </div>
+              <img
+                src="../../../../assets/dashboard/qna/btn.png"
+                alt="더보기"
+              />
+            </div>
+            <div class="main">
+              <div class="date">오늘</div>
+              <div class="left-right">
+                <div class="right">
+                  <div class="box">
+                    <div class="chat">
+                      <div>
+                        어서오세요. '브랜드1'입니다. 궁금한 내용이 있으시면
+                        메세지를 남겨주세요.
+                      </div>
+                    </div>
+                    <div class="time">오전 11:40</div>
+                  </div>
+                </div>
+                <div class="left">
+                  <div class="box">
+                    <div class="chat">
+                      <div>
+                        강남역이나 논현역 근처에 오픈하고 싶은데 괜찮을까요?
+                      </div>
+                    </div>
+                    <div class="time">오전 11:41</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="input">
+              <div class="flex">
+                <div class="add">
+                  <label for="file">
+                    <img
+                      src="../../../../assets/dashboard/qna/add.png"
+                      alt="사진첨부"
+                    />
+                  </label>
+                  <input type="file" name="file" id="file" />
+                </div>
+                <input type="text" placeholder="메세지를 입력하세요" />
+              </div>
+              <img
+                class="send"
+                src="../../../../assets/dashboard/qna/send.png"
+                alt="보내기"
+              />
+            </div>
+          </div>
+          <div class="chat-history" v-if="selectUser === '2'">
             <div class="user-btn">
               <div class="user">
                 <img
@@ -101,26 +179,30 @@
             <div class="main">
               <div class="date">2023.02.06 월요일</div>
               <div class="left-right">
-                <div class="left">
-                  <div class="chat">
-                    <div>안녕하세요. 창업문의 드리려고 합니다.</div>
-                    <div>강남역이나 논현역 근처에 오픈 가능할까요?</div>
-                  </div>
-                  <div class="time">오전 11:41</div>
-                </div>
                 <div class="right">
-                  <div class="chat">
-                    <div>
-                      어서오세요. '브랜드2'입니다.<br />궁금한 내용이 있으시면
-                      메세지를 남겨주세요.
+                  <div class="box">
+                    <div class="chat">
+                      <div>
+                        어서오세요. '브랜드2'입니다. 궁금한 내용이 있으시면
+                        메세지를 남겨주세요.
+                      </div>
                     </div>
+                    <div class="time">오전 11:40</div>
                   </div>
-                  <div class="time">오전 11:40</div>
+                </div>
+                <div class="left">
+                  <div class="box">
+                    <div class="chat">
+                      <div>안녕하세요. 창업문의 드리려고 합니다.</div>
+                      <div>강남역이나 논현역 근처에 오픈 가능할까요?</div>
+                    </div>
+                    <div class="time">오전 11:41</div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="input">
-              <div>
+              <div class="flex">
                 <div class="add">
                   <label for="file">
                     <img
@@ -133,6 +215,7 @@
                 <input type="text" placeholder="메세지를 입력하세요" />
               </div>
               <img
+                class="send"
                 src="../../../../assets/dashboard/qna/send.png"
                 alt="보내기"
               />
@@ -147,9 +230,13 @@
 <script lang="ts" setup>
 import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
+
+const selectMenu = ref<string>('전체')
+const selectUser = ref<string>()
 </script>
 
 <style lang="scss" scoped>
@@ -182,7 +269,7 @@ article {
           display: flex;
           justify-content: space-around;
           align-items: center;
-          .category {
+          div {
             width: 100%;
             box-sizing: border-box;
             display: flex;
@@ -197,10 +284,17 @@ article {
               height: 18px;
             }
           }
-          .select {
-            color: $fontMain;
-            font-weight: $medi;
+          .all {
             border-right: 1px solid $sectionLine;
+          }
+          .select {
+            font-weight: $medi;
+            .name {
+              color: $fontMain;
+            }
+            .default {
+              color: $mainColor;
+            }
           }
         }
         .search {
@@ -297,12 +391,16 @@ article {
             .padding:hover {
               background-color: #fbfcff;
             }
+            .chatselect {
+              background-color: #f6f9ff;
+            }
           }
         }
       }
     }
 
     .qna {
+      position: relative;
       width: 880px;
       display: flex;
       justify-content: center;
@@ -331,9 +429,12 @@ article {
       }
       .chat-history {
         width: 100%;
-        padding: 22px 16px 0;
         .user-btn {
-          height: 82px;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          box-sizing: border-box;
+          padding: 22px 16px 20px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -358,10 +459,13 @@ article {
           }
         }
         .main {
-          padding-top: 30px;
+          height: 516px;
+          box-sizing: border-box;
+          padding-top: 50px;
           display: flex;
           flex-direction: column;
           align-items: center;
+          gap: 30px;
           .date {
             width: 120px;
             height: 20px;
@@ -374,10 +478,102 @@ article {
             justify-content: center;
           }
           .left-right {
+            width: 882px;
             display: flex;
-            .left {
-              width: 100%;
+            flex-direction: column;
+            gap: 30px;
+            font-size: 14px;
+            .box {
+              padding: 0 16px;
+              display: flex;
+              align-items: flex-end;
+              gap: 10px;
+              .chat {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                div {
+                  padding: 10px;
+                  line-height: 22px;
+                }
+              }
+              .time {
+                font-size: 11px;
+                color: $fontSub;
+              }
             }
+            .left {
+              .box {
+                .chat {
+                  div {
+                    color: $fontMain;
+                    background-color: white;
+                    border: 1px solid $sectionLine;
+                    border-radius: 10px;
+                    border-top-left-radius: 0;
+                  }
+                }
+              }
+            }
+            .right {
+              .box {
+                flex-direction: row-reverse;
+                .chat {
+                  div {
+                    color: white;
+                    background-color: #50648d;
+                    border-radius: 10px;
+                    border-top-right-radius: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .input {
+          width: 100%;
+          height: 49px;
+          padding: 0 16px;
+          box-sizing: border-box;
+          background-color: white;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 50px;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+          position: absolute;
+          bottom: 0;
+          .flex {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            .add {
+              img {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+              }
+            }
+            input {
+              width: 100%;
+              font-family: Pretendard;
+              font-size: 16px;
+              font-weight: $reg;
+              border: none;
+            }
+            input::placeholder {
+              color: $inputLine;
+            }
+          }
+          .send {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+          }
+          #file {
+            display: none;
           }
         }
       }

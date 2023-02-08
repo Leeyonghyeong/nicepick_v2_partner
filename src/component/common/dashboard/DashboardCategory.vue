@@ -20,23 +20,25 @@
 
       <article class="category">
         <div class="category-box">
-          <div
-            class="box"
-            :class="{ select: selectMenu === 'dashboard' }"
-            @click="selectMenu = 'dashboard'"
-          >
-            <img
-              v-if="selectMenu === 'dashboard'"
-              src="../../../assets/dashboard/dash_select.png"
-              alt="대시보드선택"
-            />
-            <img
-              v-if="selectMenu !== 'dashboard'"
-              src="../../../assets/dashboard/dash.png"
-              alt="대시보드"
-            />
-            <div>대시보드</div>
-          </div>
+          <RouterLink to="/franchise/dashboard" class="none">
+            <div
+              class="box"
+              :class="{ select: selectMenu === 'dashboard' }"
+              @click="selectMenu = 'dashboard'"
+            >
+              <img
+                v-if="selectMenu === 'dashboard'"
+                src="../../../assets/dashboard/dash_select.png"
+                alt="대시보드선택"
+              />
+              <img
+                v-if="selectMenu !== 'dashboard'"
+                src="../../../assets/dashboard/dash.png"
+                alt="대시보드"
+              />
+              <div>대시보드</div>
+            </div>
+          </RouterLink>
 
           <RouterLink to="/franchise/brand/management" class="none">
             <div

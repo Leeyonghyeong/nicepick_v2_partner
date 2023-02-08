@@ -83,6 +83,26 @@ const routes: Array<RouteRecordRaw> = [
         name: 'brandguide',
         component: () => import('../component/guide/BrandGuide.vue'),
       },
+      {
+        path: '/nicepickguide/commercialguide',
+        name: 'commercialguide',
+        component: () => import('../component/guide/CommercialGuide.vue'),
+      },
+      {
+        path: '/nicepickguide/inquiriesguide',
+        name: 'inquiriesguide',
+        component: () => import('../component/guide/InquiriesGuide.vue'),
+      },
+      {
+        path: '/nicepickguide/communityguide',
+        name: 'communityguide',
+        component: () => import('../component/guide/CommunityGuide.vue'),
+      },
+      {
+        path: '/nicepickguide/matchguide',
+        name: 'matchguide',
+        component: () => import('../component/guide/MatchGuide.vue'),
+      },
     ],
   },
   {
@@ -132,6 +152,13 @@ const routes: Array<RouteRecordRaw> = [
         name: 'ad',
         component: () =>
           import('../component/dashboard/franchise/ad/AdItem.vue'),
+      },
+
+      {
+        path: '/franchise/dashboard',
+        name: 'dashboard',
+        component: () =>
+          import('../component/dashboard/franchise/dashboard/Dashboard.vue'),
       },
     ],
   },

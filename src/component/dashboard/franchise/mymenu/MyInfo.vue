@@ -103,6 +103,7 @@ article {
     display: flex;
     gap: 30px;
     color: $fontSub;
+    border-bottom: 1px solid $iconLine;
     .category-name {
       cursor: pointer;
     }
