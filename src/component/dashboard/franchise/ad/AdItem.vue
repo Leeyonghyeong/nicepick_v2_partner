@@ -1240,10 +1240,6 @@ article {
       left: 24px;
       font-size: 16px;
       padding: 0;
-      img {
-        width: 30px;
-        height: 30px;
-      }
     }
 
     .content-gap {

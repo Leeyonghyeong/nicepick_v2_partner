@@ -10,43 +10,45 @@
       </div>
 
       <div class="guide-category">
-        <RouterLink to="/nicepickguide/brandguide" class="none">
-          <div class="category-btn">
-            <div class="title">
-              <span class="sub">BRAND GUIDE</span>
-              브랜드 가이드
-            </div>
-            <img src="../../assets/guide/brand.png" alt="브랜드 가이드" />
+        <RouterLink to="/nicepickguide/brandguide" class="category-btn">
+          <div class="title">
+            <span class="sub">BRAND GUIDE</span>
+            브랜드 가이드
           </div>
+          <img src="../../assets/guide/brand.png" alt="브랜드 가이드" />
         </RouterLink>
-        <div class="category-btn">
+
+        <RouterLink to="/nicepickguide/commercialguide" class="category-btn">
           <div class="title">
             <span class="sub">COMMERCIAL AREA INFORMATION GUIDE</span>
             상권정보 가이드
           </div>
           <img src="../../assets/guide/area.png" alt="상권정보 가이드" />
-        </div>
-        <div class="category-btn">
+        </RouterLink>
+
+        <RouterLink to="/nicepickguide/inquiriesguide" class="category-btn">
           <div class="title">
             <span class="sub">INQUIRIES GUIDE</span>
             실시간 문의 가이드
           </div>
           <img src="../../assets/guide/qna.png" alt="실시간 문의 가이드" />
-        </div>
-        <div class="category-btn">
+        </RouterLink>
+
+        <RouterLink to="/nicepickguide/communityguide" class="category-btn">
           <div class="title">
             <span class="sub">COMMUNITY GUIDE</span>
             창업톡 가이드
           </div>
           <img src="../../assets/guide/talk.png" alt="창업톡 가이드" />
-        </div>
-        <div class="category-btn">
+        </RouterLink>
+
+        <RouterLink to="/nicepickguide/matchguide" class="category-btn">
           <div class="title">
             <span class="sub">BRAND MATCH GUIDE</span>
             브랜드 MATCH 가이드
           </div>
           <img src="../../assets/guide/match.png" alt="브랜드 MATCH 가이드" />
-        </div>
+        </RouterLink>
       </div>
     </article>
   </section>
@@ -64,11 +66,6 @@ const { getDevice } = storeToRefs(store)
 @import '@/scss/main';
 article {
   padding: 80px 0;
-
-  .none {
-    text-decoration: none;
-    color: inherit;
-  }
 
   .title {
     display: flex;
@@ -103,6 +100,8 @@ article {
       align-items: center;
       background-color: #fafafa;
       border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
       cursor: pointer;
       img {
         width: 50px;
