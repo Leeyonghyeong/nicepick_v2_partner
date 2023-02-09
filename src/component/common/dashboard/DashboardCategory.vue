@@ -141,7 +141,7 @@ const showBrandChange = () => {
   showModal.value = !showModal.value
 }
 
-const selectMenu = ref<string>('brand')
+const selectMenu = ref<string>('dashboard')
 </script>
 
 <style lang="scss" scoped>
