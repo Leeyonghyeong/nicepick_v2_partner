@@ -27,7 +27,7 @@
                   <div class="number">1,000,000</div>
                 </div>
               </div>
-              <div class="box">
+              <div class="box view">
                 <img
                   src="../../../../assets/dashboard/dash/조회.png"
                   alt="조회"
@@ -36,8 +36,22 @@
                   <div class="name">내 브랜드 조회수</div>
                   <div class="number">100</div>
                 </div>
+                <RouterLink
+                  to="/franchise/ad"
+                  class="none"
+                  v-if="getDevice !== 'mobile'"
+                >
+                  <div class="balloon">내 브랜드 조회수 높이는 방법!</div>
+                </RouterLink>
               </div>
             </div>
+            <RouterLink
+              to="/franchise/ad"
+              class="none"
+              v-if="getDevice === 'mobile'"
+            >
+              <div class="balloon">내 브랜드 조회수 높이는 방법!</div>
+            </RouterLink>
             <div class="content analysis">
               <div class="box">
                 <div class="name-period">
@@ -56,40 +70,44 @@
           </div>
         </div>
 
-        <div class="content notice">
-          <div class="box">
-            <div class="name-link">
-              <div class="name">
-                공지사항 <i class="fa-solid fa-bullhorn"></i>
+        <div class="bottom-flex">
+          <div class="content notice">
+            <div class="box">
+              <div class="name-link">
+                <div class="name">
+                  공지사항 <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <RouterLink to="/notice" class="none">
+                  <div class="link">전체보기</div>
+                </RouterLink>
               </div>
-              <div class="link">전체보기</div>
-            </div>
-            <div class="list">
-              <div>프리미엄 서비스 이용시 주의사항</div>
-              <div>파트너 홈페이지 리뉴얼 공지</div>
-              <div>파트너 회원 선착순 이벤트 진행</div>
-              <div>[긴급] 창업픽 파트너 2023년 공지사항</div>
-              <div>프리미엄 서비스 이용시 주의사항</div>
+              <div class="list">
+                <div>프리미엄 서비스 이용시 주의사항</div>
+                <div>파트너 홈페이지 리뉴얼 공지</div>
+                <div>파트너 회원 선착순 이벤트 진행</div>
+                <div>[긴급] 창업픽 파트너 2023년 공지사항</div>
+                <div>프리미엄 서비스 이용시 주의사항</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="banner">
-          <img
-            v-if="getDevice === 'pc'"
-            src="../../../../assets/dashboard/dash/pc배너.png"
-            alt="배너"
-          />
-          <img
-            v-if="getDevice === 'tablet'"
-            src="../../../../assets/dashboard/dash/tab배너.png"
-            alt="배너"
-          />
-          <img
-            v-if="getDevice === 'mobile'"
-            src="../../../../assets/dashboard/dash/mob배너.png"
-            alt="배너"
-          />
+          <div class="banner">
+            <img
+              v-if="getDevice === 'pc'"
+              src="../../../../assets/dashboard/dash/pc배너.png"
+              alt="배너"
+            />
+            <img
+              v-if="getDevice === 'tablet'"
+              src="../../../../assets/dashboard/dash/tab배너.png"
+              alt="배너"
+            />
+            <img
+              v-if="getDevice === 'mobile'"
+              src="../../../../assets/dashboard/dash/mob배너.png"
+              alt="배너"
+            />
+          </div>
         </div>
       </div>
     </article>
@@ -109,6 +127,12 @@ const { getDevice } = storeToRefs(store)
 
 article {
   padding: 50px 24px 0 24px;
+
+  .none {
+    text-decoration: none;
+    color: inherit;
+  }
+
   .top-title {
     font-size: 20px;
     font-weight: $medi;
@@ -116,8 +140,7 @@ article {
   }
 
   .gap,
-  .flex,
-  .count-analysis {
+  .flex {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -167,7 +190,46 @@ article {
       }
     }
   }
+  .view {
+    position: relative;
+    .balloon {
+      position: absolute;
+      top: -30px;
+      right: -15px;
+      background-color: white;
+      border: 1px solid $mainColor;
+      border-radius: 10px;
+      color: $mainColor;
+      font-size: 13px;
+      padding: 12px;
+      animation: motion 0.8s linear 0s infinite alternate;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 65%;
+      border: 7px solid transparent;
+      border-top-color: white;
+      border-bottom: 0;
+      margin-bottom: -6px;
+    }
+
+    .balloon::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 65%;
+      border: 7px solid transparent;
+      border-top-color: $mainColor;
+      border-bottom: 0;
+      margin-bottom: -7px;
+      z-index: 0;
+    }
+  }
   .analysis {
+    padding-top: 30px;
     .box {
       height: 285px;
       padding: 30px;
@@ -224,13 +286,13 @@ article {
         font-size: 14px;
         color: $fontMain;
         div {
-          width: 50%;
           cursor: pointer;
         }
       }
     }
   }
   .banner {
+    padding-top: 30px;
     img {
       width: 100%;
     }
@@ -250,12 +312,148 @@ article {
       font-size: 16px;
       padding: 0;
     }
+
+    .gap,
+    .flex {
+      gap: 20px;
+    }
+    .gap {
+      padding: 20px 0 30px;
+    }
+
+    .content {
+      padding: 0 24px;
+      .box {
+        padding: 30px 20px;
+      }
+    }
+    .count {
+      gap: 8px;
+      .box {
+        flex-direction: column;
+        padding: 12px 6px;
+        .number {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .balloon {
+      position: relative;
+      top: 0;
+      right: 0;
+      background-color: white;
+      border: 1px solid $mainColor;
+      border-radius: 10px;
+      color: $mainColor;
+      text-align: center;
+      font-size: 13px;
+      margin: 0 24px;
+      padding: 12px;
+    }
+    .balloon::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border: 7px solid transparent;
+      border-bottom-color: white;
+      border-top: 0;
+      margin-left: 32%;
+      margin-top: -6px;
+    }
+    .balloon::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border: 7px solid transparent;
+      border-bottom-color: $mainColor;
+      border-top: 0;
+      margin-left: 32%;
+      margin-top: -7px;
+    }
+
+    .count-analysis {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .banner {
+      padding: 20px 24px 0 24px;
+    }
   }
 }
 
 @include pc {
   article {
     padding: 50px 0 0 160px;
+
+    .flex {
+      flex-direction: row;
+      .count-analysis {
+        width: 100%;
+      }
+      .search {
+        width: 30%;
+      }
+    }
+    .count {
+      gap: 30px;
+      .box {
+        gap: 47px;
+        img {
+          width: 50px;
+          height: 50px;
+        }
+        .name-number {
+          .name {
+            font-size: 14px;
+          }
+          .number {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+    .view {
+      .balloon {
+        top: -40px;
+        right: 50px;
+      }
+      .balloon::after {
+        left: 50%;
+      }
+      .balloon::before {
+        left: 50%;
+      }
+    }
+
+    .bottom-flex {
+      display: flex;
+      gap: 30px;
+      height: 285px;
+      .notice {
+        width: 490px;
+      }
+      .banner {
+        width: 750px;
+      }
+    }
+  }
+}
+
+@keyframes motion {
+  0% {
+    margin-top: 0px;
+  }
+  100% {
+    margin-top: 8px;
   }
 }
 </style>

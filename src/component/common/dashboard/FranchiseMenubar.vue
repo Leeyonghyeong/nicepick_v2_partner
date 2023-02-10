@@ -3,21 +3,23 @@
     <article>
       <div class="franchise" v-if="getDevice === 'mobile'">
         <div class="box">
-          <div class="button" @click="selectMenu = 'dashboard'">
-            <img
-              v-if="selectMenu === 'dashboard'"
-              src="../../../assets/dashboard/menubar/dash_select.png"
-              alt="대시보드선택"
-            />
-            <img
-              v-if="selectMenu !== 'dashboard'"
-              src="../../../assets/dashboard/menubar/dash.png"
-              alt="대시보드"
-            />
-            <div class="name" :class="{ select: selectMenu === 'dashboard' }">
-              대시보드
+          <RouterLink to="/franchise/dashboard" class="none">
+            <div class="button" @click="selectMenu = 'dashboard'">
+              <img
+                v-if="selectMenu === 'dashboard'"
+                src="../../../assets/dashboard/menubar/dash_select.png"
+                alt="대시보드선택"
+              />
+              <img
+                v-if="selectMenu !== 'dashboard'"
+                src="../../../assets/dashboard/menubar/dash.png"
+                alt="대시보드"
+              />
+              <div class="name" :class="{ select: selectMenu === 'dashboard' }">
+                대시보드
+              </div>
             </div>
-          </div>
+          </RouterLink>
 
           <RouterLink to="/franchise/brand/management" class="none">
             <div class="button" @click="selectMenu = 'brand'">
@@ -68,7 +70,7 @@
                 alt="고객문의"
               />
               <div class="name" :class="{ select: selectMenu === 'qna' }">
-                광고상품
+                고객문의
               </div>
             </div>
           </RouterLink>

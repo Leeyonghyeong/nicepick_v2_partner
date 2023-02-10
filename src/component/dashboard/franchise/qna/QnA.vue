@@ -90,7 +90,7 @@
           </div>
         </div>
 
-        <div class="qna" v-if="getDevice === 'pc'">
+        <div class="qna">
           <!-- <div class="no-history">
             <img
               src="../../../../assets/dashboard/qna/qna.png"
@@ -112,9 +112,11 @@
                 홍길동
               </div>
               <img
+                @click="showBtn = !showBtn"
                 src="../../../../assets/dashboard/qna/btn.png"
                 alt="더보기"
               />
+              <button v-if="showBtn" class="exit">채팅방 나가기</button>
             </div>
             <div class="main">
               <div class="date">오늘</div>
@@ -237,6 +239,7 @@ const { getDevice } = storeToRefs(store)
 
 const selectMenu = ref<string>('전체')
 const selectUser = ref<string>()
+const showBtn = ref<boolean>(false)
 </script>
 
 <style lang="scss" scoped>
@@ -355,6 +358,7 @@ article {
                 }
               }
               .name-main {
+                width: 68%;
                 .name {
                   padding-bottom: 5px;
                   font-size: 14px;
@@ -362,7 +366,6 @@ article {
                   color: $fontMain;
                 }
                 .main {
-                  width: 223px;
                   font-size: 12px;
                   color: $fontSub;
                   white-space: nowrap;
@@ -455,6 +458,21 @@ article {
           img {
             width: 20px;
             height: 20px;
+            cursor: pointer;
+          }
+          .exit {
+            position: absolute;
+            top: 63px;
+            right: 0;
+            width: 109px;
+            height: 49px;
+            background-color: white;
+            border: 1px solid $iconLine;
+            border-radius: 5px;
+            font-family: $pre;
+            font-size: 14px;
+            color: $fontMain;
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
             cursor: pointer;
           }
         }
@@ -584,10 +602,12 @@ article {
 @include tablet {
   article {
     padding: 50px 24px 60px 24px;
-
     .flex {
       .qna-list {
         width: 100%;
+      }
+      .qna {
+        display: none;
       }
     }
   }
