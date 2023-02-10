@@ -7,12 +7,12 @@
             <div class="button" @click="selectMenu = 'dashboard'">
               <img
                 v-if="selectMenu === 'dashboard'"
-                src="../../../assets/dashboard/menubar/dash_select.png"
+                src="../../../../assets/dashboard/menubar/dash_select.png"
                 alt="대시보드선택"
               />
               <img
                 v-if="selectMenu !== 'dashboard'"
-                src="../../../assets/dashboard/menubar/dash.png"
+                src="../../../../assets/dashboard/menubar/dash.png"
                 alt="대시보드"
               />
               <div class="name" :class="{ select: selectMenu === 'dashboard' }">
@@ -25,12 +25,12 @@
             <div class="button" @click="selectMenu = 'brand'">
               <img
                 v-if="selectMenu === 'brand'"
-                src="../../../assets/dashboard/menubar/brand_select.png"
+                src="../../../../assets/dashboard/menubar/brand_select.png"
                 alt="브랜드선택"
               />
               <img
                 v-if="selectMenu !== 'brand'"
-                src="../../../assets/dashboard/menubar/brand.png"
+                src="../../../../assets/dashboard/menubar/brand.png"
                 alt="브랜드"
               />
               <div class="name" :class="{ select: selectMenu === 'brand' }">
@@ -43,12 +43,12 @@
             <div class="button" @click="selectMenu = 'ad'">
               <img
                 v-if="selectMenu === 'ad'"
-                src="../../../assets/dashboard/menubar/ad_select.png"
+                src="../../../../assets/dashboard/menubar/ad_select.png"
                 alt="광고상품선택"
               />
               <img
                 v-if="selectMenu !== 'ad'"
-                src="../../../assets/dashboard/menubar/ad.png"
+                src="../../../../assets/dashboard/menubar/ad.png"
                 alt="광고상품"
               />
               <div class="name" :class="{ select: selectMenu === 'ad' }">
@@ -61,12 +61,12 @@
             <div class="button" @click="selectMenu = 'qna'">
               <img
                 v-if="selectMenu === 'qna'"
-                src="../../../assets/dashboard/menubar/qna_select.png"
+                src="../../../../assets/dashboard/menubar/qna_select.png"
                 alt="고객문의선택"
               />
               <img
                 v-if="selectMenu !== 'qna'"
-                src="../../../assets/dashboard/menubar/qna.png"
+                src="../../../../assets/dashboard/menubar/qna.png"
                 alt="고객문의"
               />
               <div class="name" :class="{ select: selectMenu === 'qna' }">
@@ -79,12 +79,12 @@
             <div class="button" @click="selectMenu = 'mymenu'">
               <img
                 v-if="selectMenu === 'mymenu'"
-                src="../../../assets/dashboard/menubar/my_select.png"
+                src="../../../../assets/dashboard/menubar/my_select.png"
                 alt="마이메뉴선택"
               />
               <img
                 v-if="selectMenu !== 'mymenu'"
-                src="../../../assets/dashboard/menubar/my.png"
+                src="../../../../assets/dashboard/menubar/my.png"
                 alt="마이메뉴"
               />
               <div class="name" :class="{ select: selectMenu === 'mymenu' }">
@@ -99,7 +99,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from '../../../store/window'
+import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 

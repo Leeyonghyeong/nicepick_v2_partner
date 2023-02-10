@@ -4,30 +4,24 @@
       <div class="top-title">
         <img
           v-if="getDevice === 'mobile'"
-          src="../../assets/login/arrow_lt.png"
+          src="../../../../assets/login/arrow_lt.png"
           alt="이전"
         />
         공지사항
       </div>
 
       <div class="notice-list">
-        <div
-          class="list"
-          :class="{ select: selectList === '1' }"
-          @click="selectList = '1'"
-        >
-          <div class="name">[긴급] 창업픽 파트너 2023년 공지사항</div>
-          <div class="period">2023.01.01</div>
-          <div class="main" style="display: none">
-            안녕하십니까. 기업 파트너 여러분 창업픽입니다. 프리미엄 서비스를
-            이용시 주의사항을 알려드립니다. 현재 진행중인 첫기업혜택 프리미엄
-            멤버십 이용시 광고 상품 1택 이벤트가 신규 가입자 폭주로 인해 연락이
-            지연되고 있는 점 양해부탁드립니다. 가입 파트너 회원분들께 순차적으로
-            연락을 드리고 있습니다. 다른 불편 사항이 있으신 분들께서는
-            고객센터(070-8287-2281) 또는 카카오채널>창업Pick 으로 문의 주시기
-            바랍니다.
+        <RouterLink to="/franchise/noticemain" class="none">
+          <div
+            class="list"
+            :class="{ select: selectList === '1' }"
+            @click="selectList = '1'"
+          >
+            <div class="name">[긴급] 창업픽 파트너 2023년 공지사항</div>
+            <div class="period">2023.01.01</div>
           </div>
-        </div>
+        </RouterLink>
+
         <div
           class="list"
           :class="{ select: selectList === '2' }"
@@ -53,48 +47,13 @@
           <div class="period">2022.09.01</div>
         </div>
       </div>
-
-      <div class="notice-post">
-        <div class="post">
-          <div class="name-period">
-            <div class="name">프리미엄 서비스 이용시 주의사항</div>
-            <div class="period">2022.12.01</div>
-          </div>
-          <div class="post">
-            안녕하십니까. 기업 파트너 여러분 창업픽입니다. 프리미엄 서비스를
-            이용시 주의사항을 알려드립니다. 현재 진행중인 첫기업혜택 프리미엄
-            멤버십 이용시 광고 상품 1택 이벤트가 신규 가입자 폭주로 인해 연락이
-            지연되고 있는 점 양해부탁드립니다. 가입 파트너 회원분들께 순차적으로
-            연락을 드리고 있습니다. 다른 불편 사항이 있으신 분들께서는
-            고객센터(070-8287-2281) 또는 카카오채널>창업Pick 으로 문의 주시기
-            바랍니다.
-          </div>
-        </div>
-        <div class="prev-next">
-          <div class="other">
-            <div>
-              <div class="sub">이전</div>
-              <div class="name">파트너 홈페이지 리뉴얼 공지</div>
-            </div>
-            <div class="period">2022.12.01</div>
-          </div>
-          <div class="other">
-            <div>
-              <div class="sub">이전</div>
-              <div class="name">파트너 홈페이지 리뉴얼 공지</div>
-            </div>
-            <div class="period">2022.12.01</div>
-          </div>
-        </div>
-        <button class="list-go">목록보기</button>
-      </div>
     </article>
   </section>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useWindowStore } from '../../store/window'
+import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
 
 const store = useWindowStore()
@@ -108,6 +67,11 @@ const selectList = ref<string>()
 
 article {
   padding: 50px 24px 0 24px;
+
+  .none {
+    text-decoration: none;
+    color: inherit;
+  }
 
   .top-title {
     font-size: 20px;
@@ -136,7 +100,7 @@ article {
       }
     }
     .select {
-      border: 1px solid $mainColor;
+      box-shadow: 0 0 0 1px $mainColor inset;
       font-weight: $medi;
     }
   }
@@ -178,7 +142,7 @@ article {
         }
       }
       .select {
-        border: none;
+        box-shadow: none;
         border-bottom: 1px solid $sectionLine;
         font-weight: normal;
       }
@@ -195,12 +159,11 @@ article {
         width: 1194px;
       }
       .list:hover {
-        border: 1px solid $mainColor;
+        box-shadow: 0 0 0 1px $mainColor inset;
         font-weight: $medi;
       }
       .select {
         border: none;
-        font-weight: normal;
       }
     }
   }

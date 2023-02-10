@@ -1,27 +1,23 @@
 <template>
-  <DashHeader />
+  <NoHammenuHeader />
 
   <div class="flex">
     <DashboardCategory />
-    <div>
-      <RouterView class="width" />
-      <div v-if="getDevice !== 'mobile'">
-        <Footer />
-      </div>
-    </div>
+    <RouterView class="width" />
   </div>
 
-  <FranchiseMenubar />
+  <div v-if="getDevice !== 'mobile'">
+    <Footer />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import DashHeader from '../../component/common/dashboard/DashboardHeader.vue'
-import Footer from '../../component/common/Footer.vue'
-import DashboardCategory from '../../component/common/dashboard/DashboardCategory.vue'
-import FranchiseMenubar from '../../component/common/dashboard/FranchiseMenubar.vue'
+import NoHammenuHeader from '../../../component/common/dashboard/NoHammenuHeader.vue'
+import Footer from '../../../component/common/Footer.vue'
+import DashboardCategory from '../../../component/common/dashboard/franchise/DashboardCategory.vue'
 
 import { onMounted } from 'vue'
-import { useWindowStore } from '../../store/window'
+import { useWindowStore } from '../../../store/window'
 import { storeToRefs } from 'pinia'
 
 const store = useWindowStore()
@@ -40,6 +36,9 @@ onMounted(() => {
 .flex {
   display: flex;
   background-color: #f2f4f7;
+  div {
+    width: 100%;
+  }
 
   .width {
     width: 100%;

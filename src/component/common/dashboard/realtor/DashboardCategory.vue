@@ -3,24 +3,18 @@
     <div class="side-bar">
       <article class="info">
         <div class="info-box">
-          <img src="../../../assets/dashboard/icecream.png" alt="아이스크림" />
-
-          <div class="brand">
-            **아이스크림
-            <img src="../../../assets/dashboard/premium.png" alt="프리미엄" />
-          </div>
-          <div class="email">icecream@gmail.com</div>
-
-          <button class="transform" @click="showBrandChange">
-            <img src="../../../assets/dashboard/transform.png" alt="전환" />
-            브랜드 전환
-          </button>
+          <img
+            src="../../../../assets/realtor/중개소-프로필.png"
+            alt="프로필이미지"
+          />
+          <div class="realtor-name">창업픽부동산중개사무소</div>
+          <div class="email">changuppick@gmail.com</div>
         </div>
       </article>
 
       <article class="category">
         <div class="category-box">
-          <RouterLink to="/franchise/dashboard" class="none">
+          <RouterLink to="/realtor/dashboard" class="none">
             <div
               class="box"
               :class="{ select: selectMenu === 'dashboard' }"
@@ -28,39 +22,39 @@
             >
               <img
                 v-if="selectMenu === 'dashboard'"
-                src="../../../assets/dashboard/dash_select.png"
+                src="../../../../assets/dashboard/dash_select.png"
                 alt="대시보드선택"
               />
               <img
                 v-if="selectMenu !== 'dashboard'"
-                src="../../../assets/dashboard/dash.png"
+                src="../../../../assets/dashboard/dash.png"
                 alt="대시보드"
               />
               <div>대시보드</div>
             </div>
           </RouterLink>
 
-          <RouterLink to="/franchise/brand/management" class="none">
+          <RouterLink to="/realtor/realtor" class="none">
             <div
               class="box"
-              :class="{ select: selectMenu === 'brand' }"
-              @click="selectMenu = 'brand'"
+              :class="{ select: selectMenu === 'realtor' }"
+              @click="selectMenu = 'realtor'"
             >
               <img
-                v-if="selectMenu === 'brand'"
-                src="../../../assets/dashboard/brand_select.png"
-                alt="브랜드선택"
+                v-if="selectMenu === 'realtor'"
+                src="../../../../assets/realtor/중개소_선택.png"
+                alt="중개소선택"
               />
               <img
-                v-if="selectMenu !== 'brand'"
-                src="../../../assets/dashboard/brand.png"
-                alt="브랜드"
+                v-if="selectMenu !== 'realtor'"
+                src="../../../../assets/realtor/중개소.png"
+                alt="중개소"
               />
-              <div>브랜드</div>
+              <div>중개소</div>
             </div>
           </RouterLink>
 
-          <RouterLink to="/franchise/ad" class="none">
+          <RouterLink to="/realtor/ad" class="none">
             <div
               class="box"
               :class="{ select: selectMenu === 'ad' }"
@@ -68,39 +62,19 @@
             >
               <img
                 v-if="selectMenu === 'ad'"
-                src="../../../assets/dashboard/ad_select.png"
+                src="../../../../assets/dashboard/ad_select.png"
                 alt="광고상품선택"
               />
               <img
                 v-if="selectMenu !== 'ad'"
-                src="../../../assets/dashboard/ad.png"
+                src="../../../../assets/dashboard/ad.png"
                 alt="광고상품"
               />
               <div>광고 상품</div>
             </div>
           </RouterLink>
 
-          <RouterLink to="/franchise/qna" class="none">
-            <div
-              class="box"
-              :class="{ select: selectMenu === 'qna' }"
-              @click="selectMenu = 'qna'"
-            >
-              <img
-                v-if="selectMenu === 'qna'"
-                src="../../../assets/dashboard/qna_select.png"
-                alt="고객문의선택"
-              />
-              <img
-                v-if="selectMenu !== 'qna'"
-                src="../../../assets/dashboard/qna.png"
-                alt="고객문의"
-              />
-              <div>고객문의</div>
-            </div>
-          </RouterLink>
-
-          <RouterLink to="/franchise/mymenu/myinfo" class="none">
+          <RouterLink to="/realtor/mymenu/myinfo" class="none">
             <div
               class="box"
               :class="{ select: selectMenu === 'mymenu' }"
@@ -108,12 +82,12 @@
             >
               <img
                 v-if="selectMenu === 'mymenu'"
-                src="../../../assets/dashboard/my_select.png"
+                src="../../../../assets/dashboard/my_select.png"
                 alt="마이메뉴선택"
               />
               <img
                 v-if="selectMenu !== 'mymenu'"
-                src="../../../assets/dashboard/my.png"
+                src="../../../../assets/dashboard/my.png"
                 alt="마이메뉴"
               />
               <div>마이메뉴</div>
@@ -130,8 +104,8 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
-import { useWindowStore } from '../../../store/window'
-import BrandChange from '../modal/dashboard/BrandChange.vue'
+import { useWindowStore } from '../../../../store/window'
+import BrandChange from '../../modal/dashboard/BrandChange.vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
@@ -165,7 +139,6 @@ section {
       display: flex;
       justify-content: center;
       text-align: center;
-
       padding: 50px 0 30px 0;
 
       .info-box {
@@ -173,8 +146,9 @@ section {
         padding-bottom: 30px;
         border-bottom: 1px solid $fontSub;
         img {
-          width: 129px;
+          width: 52px;
           height: 52px;
+          padding-bottom: 16px;
         }
 
         .brand {
