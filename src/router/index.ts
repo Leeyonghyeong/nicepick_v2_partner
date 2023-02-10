@@ -107,8 +107,9 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/',
-    name: 'DashboardLayout',
-    component: () => import('../layout/dashboard/DashboardLayout.vue'),
+    name: 'FranchiseDashboardLayout',
+    component: () =>
+      import('../layout/dashboard/franchise/DashboardLayout.vue'),
     children: [
       {
         path: '/franchise/brand/management',
@@ -130,13 +131,13 @@ const routes: Array<RouteRecordRaw> = [
 
       {
         path: '/franchise/mymenu/myinfo',
-        name: 'myinfo',
+        name: 'franchisemyinfo',
         component: () =>
           import('../component/dashboard/franchise/mymenu/MyInfo.vue'),
       },
       {
         path: '/franchise/mymenu/usagehistory',
-        name: 'usagehistory',
+        name: 'franchiseusagehistory',
         component: () =>
           import('../component/dashboard/franchise/mymenu/UsageHistory.vue'),
       },
@@ -156,7 +157,7 @@ const routes: Array<RouteRecordRaw> = [
 
       {
         path: '/franchise/dashboard',
-        name: 'dashboard',
+        name: 'franchisedashboard',
         component: () =>
           import('../component/dashboard/franchise/dashboard/Dashboard.vue'),
       },
@@ -166,7 +167,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'NewpageDashboardLayout',
-    component: () => import('../layout/dashboard/NewpageDashboardLayout.vue'),
+    component: () =>
+      import('../layout/dashboard/franchise/NewpageDashboardLayout.vue'),
     children: [
       {
         path: '/cart',
@@ -179,9 +181,60 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../component/dashboard/Payment.vue'),
       },
       {
-        path: '/notice',
-        name: 'notice',
-        component: () => import('../component/dashboard/Notice.vue'),
+        path: '/franchise/notice',
+        name: 'franchisenotice',
+        component: () =>
+          import('../component/dashboard/franchise/dashboard/Notice.vue'),
+      },
+      {
+        path: '/franchise/noticemain',
+        name: 'franchisenoticemain',
+        component: () =>
+          import('../component/dashboard/franchise/dashboard/NoticeMain.vue'),
+      },
+    ],
+  },
+
+  {
+    path: '/',
+    name: 'RealtorDashboardLayout',
+    component: () => import('../layout/dashboard/realtor/DashboardLayout.vue'),
+    children: [
+      {
+        path: '/realtor/dashboard',
+        name: 'realtordashboard',
+        component: () =>
+          import('../component/dashboard/realtor/dashboard/Dashboard.vue'),
+      },
+      {
+        path: '/realtor/notice',
+        name: 'realtornotice',
+        component: () =>
+          import('../component/dashboard/realtor/dashboard/Notice.vue'),
+      },
+      {
+        path: '/realtor/noticemain',
+        name: 'realtornoticemain',
+        component: () =>
+          import('../component/dashboard/realtor/dashboard/NoticeMain.vue'),
+      },
+      {
+        path: '/realtor/realtor',
+        name: 'realtor',
+        component: () =>
+          import('../component/dashboard/realtor/realtor/Realtor.vue'),
+      },
+      {
+        path: '/realtor/mymenu/myinfo',
+        name: 'realtormyinfo',
+        component: () =>
+          import('../component/dashboard/realtor/mymenu/MyInfo.vue'),
+      },
+      {
+        path: '/realtor/mymenu/usagehistory',
+        name: 'realtorusagehistory',
+        component: () =>
+          import('../component/dashboard/realtor/mymenu/Usagehistory.vue'),
       },
     ],
   },

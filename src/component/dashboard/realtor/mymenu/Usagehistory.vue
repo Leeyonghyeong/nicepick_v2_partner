@@ -4,13 +4,10 @@
       <div class="top-title">마이메뉴</div>
 
       <div class="category">
-        <RouterLink to="myinfo" class="none">
+        <RouterLink to="/realtor/mymenu/myinfo" class="none">
           <div class="category-name">내 정보관리</div>
         </RouterLink>
         <div class="category-name select">이용내역</div>
-        <RouterLink to="addkeyword" class="none">
-          <div class="category-name">대표키워드</div>
-        </RouterLink>
       </div>
 
       <div class="date-state">
@@ -21,21 +18,6 @@
             <input type="date" value="" />
           </div>
           <button>조회</button>
-        </div>
-
-        <div class="state">
-          <label class="all">
-            <input type="radio" name="select" id="all" checked />
-            <div class="name">전체</div>
-          </label>
-          <label class="ing">
-            <input type="radio" name="select" id="ing" />
-            <div class="name">이용중</div>
-          </label>
-          <label class="complete">
-            <input type="radio" name="select" id="complete" />
-            <div class="name">이용완료</div>
-          </label>
         </div>
       </div>
 
@@ -48,15 +30,12 @@
           <div class="padding">
             <div class="title">
               <div>구매완료 <span class="ing">· 이용중</span></div>
-              <div class="pay">2023.01.01 결제(삼성카드)</div>
+              <div class="pay">2023.01.22 결제(계좌이체)</div>
             </div>
             <div class="info-item">
               <div class="info">
-                <div class="item-title">브랜드 핫클립 (30일)</div>
-                <div class="period">
-                  이용기간 : 2023.01.01 ~ 02.01
-                  <span class="alarm">광고기간이 7일 남았습니다.</span>
-                </div>
+                <div class="item-title">상권 지역플러스+ (30일)</div>
+                <div class="period">이용기간 : 2023.01.01 ~</div>
               </div>
               <div class="cost">
                 <div class="text-right">
@@ -71,150 +50,28 @@
           </div>
         </div>
 
-        <div class="ing-item">
-          <div class="padding">
-            <div class="title">
-              <div>구매완료 <span class="ing">· 이용중</span></div>
-              <div class="pay">2023.01.22 결제(계좌이체)</div>
+        <div class="more-section">
+          <div>
+            <div class="place">
+              <div class="title">기본 노출 지역</div>
+              <div class="box">서울 강남구 역삼동</div>
             </div>
-            <div class="info-item">
-              <div class="info">
-                <div class="item-title">
-                  프리미엄 멤버십
-                  <img
-                    src="../../../../assets/dashboard/premium.png"
-                    alt="프리미엄"
-                  />
+            <div class="add-place">
+              <div class="title">
+                추가 노출 지역 (3/3)
+                <span>
+                  * 추가노출지역은 추가 후 변경이 불가하오니 이용에 참고하시기
+                  바랍니다.
+                </span>
+              </div>
+              <div class="add-list">
+                <div class="add">
+                  <div>시·도</div>
+                  <div>시·군·구</div>
+                  <div>동</div>
+                  <button>추가</button>
                 </div>
-                <div class="period">이용기간 : 2023.01.22 ~ 02.22</div>
               </div>
-              <div class="cost">
-                <div class="text-right">
-                  <div class="cost-title">
-                    월 <span class="bold">88,000</span> 원
-                  </div>
-                  <div class="vat">VAT 포함</div>
-                </div>
-                <button>해지</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ing-item add-banner">
-          <div class="padding">
-            <div class="title">
-              <div>구매완료 <span class="ing">· 이용중</span></div>
-              <div class="pay">2023.00.00 결제(삼성카드)</div>
-            </div>
-            <div class="info-item">
-              <div class="info">
-                <div class="item-title">추천 브랜드 (00일)</div>
-                <div class="period">이용기간 : 2023.00.00 ~ 00.00</div>
-              </div>
-              <div class="cost">
-                <div class="text-right">
-                  <div class="cost-title">
-                    <span class="sub">1,100,000원</span>
-                    <span class="bold">990,000</span> 원
-                  </div>
-                  <div class="vat">
-                    <span class="discount"
-                      ><img
-                        src="../../../../assets/dashboard/arrow_down.png"
-                        alt="down"
-                      />10% 할인</span
-                    >
-                    · VAT 포함
-                  </div>
-                </div>
-                <button>기간연장</button>
-              </div>
-            </div>
-          </div>
-          <div class="more">
-            <img
-              src="../../../../assets/dashboard/arrow_more.png"
-              alt="더보기"
-            />
-          </div>
-        </div>
-        <div class="banner-section">
-          <div class="padding">
-            <div class="title-save">
-              <div class="title">이미지 등록</div>
-              <button class="save">저장</button>
-            </div>
-            <div class="select-highlight">
-              <div class="flex">
-                <label class="title">
-                  <input type="radio" name="select" id="title" checked />
-                  <div class="name">제목 강조</div>
-                </label>
-                <label class="main">
-                  <input type="radio" name="select" id="main" />
-                  <div class="name">본문 강조</div>
-                </label>
-                <label class="all">
-                  <input type="radio" name="select" id="all" />
-                  <div class="name">전체 강조</div>
-                </label>
-              </div>
-              <div class="border"></div>
-              <div class="ment">광고 문구 : 제목 12자 + 본문 14자</div>
-            </div>
-            <div class="setting-banner" :style="{ backgroundColor: main }">
-              <div class="input-section">
-                <input
-                  class="title"
-                  type="text"
-                  placeholder="제목을 입력하세요"
-                  maxlength="12"
-                  :style="{ color: title }"
-                />
-                <input
-                  class="main"
-                  type="text"
-                  placeholder="본문을 입력하세요"
-                  maxlength="14"
-                  :style="{ color: title }"
-                />
-              </div>
-              <div class="image-section">
-                <label for="file">
-                  <div class="btn-upload">
-                    <i class="fa-regular fa-image" />
-                    <div class="value">280x200</div>
-                  </div>
-                </label>
-                <input type="file" name="file" id="file" />
-              </div>
-            </div>
-            <div class="select-color">
-              <div class="box">
-                <div class="name">문구색상</div>
-                <ColorPicker
-                  :color="title"
-                  :visible-formats="['hex']"
-                  alpha-channel="hide"
-                  @color-change="titleColorChange"
-                />
-              </div>
-              <div class="box">
-                <div class="name">배경색상</div>
-                <ColorPicker
-                  :color="main"
-                  :visible-formats="['hex']"
-                  alpha-channel="hide"
-                  @color-change="mainColorChange"
-                />
-              </div>
-            </div>
-            <div class="ment">
-              · 배너의 문구 양식대로 등록해 주세요.<br />
-              · 이미지는 사이즈에 맞춰 등록해 주세요.<br />
-              · 이미지의 단위는 픽셀(px)입니다.<br />
-              · 이미지는 배경없는 .png 파일만 등록이 가능합니다.
             </div>
           </div>
           <div class="close">
@@ -226,93 +83,27 @@
           <div class="padding">
             <div class="title">
               <div>구매완료 · 이용완료</div>
-              <div class="pay">2023.00.00 결제(삼성카드)</div>
+              <div class="pay">2023.01.01 결제(삼성카드)</div>
             </div>
             <div class="info-item">
               <div class="info">
-                <div class="item-title">메인 TOP (00일)</div>
-                <div class="period">이용기간 : 2023.00.00 ~ 00.00</div>
+                <div class="item-title">추천 중개사 (30일)</div>
+                <div class="period">
+                  이용기간 : 2023.01.01 ~ 02.01
+                  <span class="alarm">광고기간이 7일 남았습니다.</span>
+                </div>
               </div>
               <div class="cost">
                 <div class="text-right">
                   <div class="cost-title">
-                    <span class="sub">1,100,000원</span>
+                    <span class="sub">11,000원</span>
                     <span class="bold">990,000</span> 원
                   </div>
-                  <div class="vat">
-                    <span class="discount"
-                      ><img
-                        src="../../../../assets/dashboard/arrow_down.png"
-                        alt="down"
-                      />10% 할인</span
-                    >
-                    · VAT 포함
-                  </div>
+                  <div class="vat">VAT 포함</div>
                 </div>
-                <button class="disabled">기간연장</button>
+                <button>기간연장</button>
               </div>
             </div>
-          </div>
-          <div class="more">
-            <img
-              src="../../../../assets/dashboard/arrow_more.png"
-              alt="더보기"
-            />
-          </div>
-        </div>
-        <div class="banner-section">
-          <div class="padding">
-            <div class="title-save">
-              <div class="title">이미지 등록</div>
-              <button class="save">저장</button>
-            </div>
-            <div class="apply-image">
-              <div class="box">
-                <div class="name">PC</div>
-                <div class="image-section pc">
-                  <label for="file">
-                    <div class="btn-upload">
-                      <i class="fa-regular fa-image" />
-                      <div class="value">2388x400</div>
-                    </div>
-                  </label>
-                  <input type="file" name="file" id="file" />
-                </div>
-              </div>
-              <div class="flex">
-                <div class="box">
-                  <div class="name">TAB</div>
-                  <div class="image-section tab">
-                    <label for="file">
-                      <div class="btn-upload">
-                        <i class="fa-regular fa-image" />
-                        <div class="value">1360x300</div>
-                      </div>
-                    </label>
-                    <input type="file" name="file" id="file" />
-                  </div>
-                </div>
-                <div class="box">
-                  <div class="name">MOBILE</div>
-                  <div class="image-section mob">
-                    <label for="file">
-                      <div class="btn-upload">
-                        <i class="fa-regular fa-image" />
-                        <div class="value">656x200</div>
-                      </div>
-                    </label>
-                    <input type="file" name="file" id="file" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="ment">
-              · 이미지의 단위는 픽셀(px)입니다.<br />
-              · 이미지는 사이즈에 맞춰 등록해 주세요.
-            </div>
-          </div>
-          <div class="close">
-            <img src="../../../../assets/login/arrow_up.png" alt="닫기" />
           </div>
         </div>
       </div>
@@ -320,21 +111,7 @@
   </section>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue'
-import { ColorChangeEvent, ColorPicker } from 'vue-accessible-color-picker'
-
-const title = ref<string>('#777777')
-const main = ref<string>('#EBEBEB')
-
-const titleColorChange = (event: ColorChangeEvent) => {
-  title.value = event.cssColor
-}
-
-const mainColorChange = (event: ColorChangeEvent) => {
-  main.value = event.cssColor
-}
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';
@@ -573,7 +350,7 @@ article {
     .add-banner {
       padding: 0;
       .padding {
-        padding: 30px 30px 0 30px;
+        padding: 30px;
       }
       .more {
         width: 100%;
@@ -590,7 +367,7 @@ article {
       }
     }
 
-    .banner-section {
+    .more-section {
       margin-top: -60px;
       background-color: white;
       border-radius: 10px;
@@ -727,7 +504,7 @@ article {
           margin-bottom: 30px;
           .box {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 10px;
             .name {
               font-size: 14px;

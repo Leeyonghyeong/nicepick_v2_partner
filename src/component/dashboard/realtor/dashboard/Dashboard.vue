@@ -23,7 +23,7 @@
                   alt="실시간"
                 />
                 <div class="name-number">
-                  <div class="name">실시간 문의건수</div>
+                  <div class="name">실시간 지역 검색수</div>
                   <div class="number">1,000,000</div>
                 </div>
               </div>
@@ -33,25 +33,12 @@
                   alt="조회"
                 />
                 <div class="name-number">
-                  <div class="name">내 브랜드 조회수</div>
+                  <div class="name">내 중개사 조회수</div>
                   <div class="number">100</div>
                 </div>
-                <RouterLink
-                  to="/franchise/ad"
-                  class="none"
-                  v-if="getDevice !== 'mobile'"
-                >
-                  <div class="balloon">내 브랜드 조회수 높이는 방법!</div>
-                </RouterLink>
               </div>
             </div>
-            <RouterLink
-              to="/franchise/ad"
-              class="none"
-              v-if="getDevice === 'mobile'"
-            >
-              <div class="balloon">내 브랜드 조회수 높이는 방법!</div>
-            </RouterLink>
+
             <div class="content analysis">
               <div class="box">
                 <div class="name-period">
@@ -77,7 +64,7 @@
                 <div class="name">
                   공지사항 <i class="fa-solid fa-bullhorn"></i>
                 </div>
-                <RouterLink to="/franchise/notice" class="none">
+                <RouterLink to="/realtor/notice" class="none">
                   <div class="link">전체보기</div>
                 </RouterLink>
               </div>
@@ -94,17 +81,17 @@
           <div class="banner">
             <img
               v-if="getDevice === 'pc'"
-              src="../../../../assets/dashboard/dash/pc배너.png"
+              src="../../../../assets/realtor/pc-banner.png"
               alt="배너"
             />
             <img
               v-if="getDevice === 'tablet'"
-              src="../../../../assets/dashboard/dash/tab배너.png"
+              src="../../../../assets/realtor/tab-banner.png"
               alt="배너"
             />
             <img
               v-if="getDevice === 'mobile'"
-              src="../../../../assets/dashboard/dash/mob배너.png"
+              src="../../../../assets/realtor/mob-banner.png"
               alt="배너"
             />
           </div>
