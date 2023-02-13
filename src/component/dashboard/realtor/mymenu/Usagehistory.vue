@@ -40,7 +40,7 @@
               <div class="cost">
                 <div class="text-right">
                   <div class="cost-title">
-                    <span class="bold">550,000</span> 원
+                    <span class="bold">297,000</span> 원
                   </div>
                   <div class="vat">VAT 포함</div>
                 </div>
@@ -51,25 +51,62 @@
         </div>
 
         <div class="more-section">
-          <div>
+          <div class="content">
             <div class="place">
               <div class="title">기본 노출 지역</div>
-              <div class="box">서울 강남구 역삼동</div>
+              <div class="place-box">서울 강남구 역삼동</div>
             </div>
             <div class="add-place">
               <div class="title">
                 추가 노출 지역 (3/3)
-                <span>
+                <span class="red">
                   * 추가노출지역은 추가 후 변경이 불가하오니 이용에 참고하시기
                   바랍니다.
                 </span>
               </div>
               <div class="add-list">
                 <div class="add">
-                  <div>시·도</div>
-                  <div>시·군·구</div>
-                  <div>동</div>
-                  <button>추가</button>
+                  <div class="add-box">
+                    시·도
+                    <img
+                      src="../../../../assets/dashboard/arrow_more.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="add-box">
+                    시·군·구
+                    <img
+                      src="../../../../assets/dashboard/arrow_more.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="add-box">
+                    동
+                    <img
+                      src="../../../../assets/dashboard/arrow_more.png"
+                      alt=""
+                    />
+                  </div>
+                  <button class="add-btn">
+                    <img src="../../../../assets/dashboard/add.png" alt="" />
+                    추가
+                  </button>
+                </div>
+                <div class="list">
+                  <div class="list-box">
+                    <div class="name">서울 강남구 대치동</div>
+                    <div class="sub">잔여기간: 30일</div>
+                  </div>
+                  <div class="list-box">
+                    <div class="name">서울 강남구 삼성동</div>
+                    <div class="sub">잔여기간: 15일</div>
+                  </div>
+                  <div class="list-box">
+                    <div class="name">서울 강남구 청담동</div>
+                    <div class="sub">
+                      잔여기간: <span class="blue">3일</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -79,7 +116,7 @@
           </div>
         </div>
 
-        <div class="complete-item add-banner">
+        <div class="complete-item">
           <div class="padding">
             <div class="title">
               <div>구매완료 · 이용완료</div>
@@ -96,8 +133,7 @@
               <div class="cost">
                 <div class="text-right">
                   <div class="cost-title">
-                    <span class="sub">11,000원</span>
-                    <span class="bold">990,000</span> 원
+                    <span class="bold">11,000</span> 원
                   </div>
                   <div class="vat">VAT 포함</div>
                 </div>
@@ -117,7 +153,7 @@
 @import '@/scss/main';
 
 article {
-  padding: 50px 0px 76px 160px;
+  padding: 50px 160px 76px;
   box-sizing: border-box;
   width: 100%;
 
@@ -245,7 +281,7 @@ article {
       background-color: white;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
       border-radius: 10px;
-
+      z-index: 1;
       .title {
         padding-bottom: 10px;
         display: flex;
@@ -347,203 +383,115 @@ article {
         }
       }
     }
-    .add-banner {
-      padding: 0;
-      .padding {
-        padding: 30px;
-      }
-      .more {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        border-top: 1px solid $sectionLine;
-        padding: 10px 0;
-        margin-top: 32px;
-        img {
-          width: 20px;
-          height: 20px;
-          cursor: pointer;
-        }
-      }
-    }
 
     .more-section {
-      margin-top: -60px;
+      margin-top: -40px;
       background-color: white;
       border-radius: 10px;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
-      .padding {
+      .content {
         padding: 50px 30px 30px;
-        .image-section {
-          background-color: #f2f4f7;
-          .btn-upload {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            color: $fontSub;
-            cursor: pointer;
-            i {
-              font-size: 16px;
-            }
-            .value {
-              font-size: 14px;
-            }
-          }
-          #file {
-            display: none;
-          }
+        color: $fontMain;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        .red {
+          color: $subColor;
         }
-        .ment {
-          font-size: 14px;
-          color: $fontSub;
-          line-height: 24px;
+        .blue {
+          color: $mainColor;
         }
-        .title-save {
-          padding-bottom: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          border-bottom: 1px solid $sectionLine;
-          .title {
-            color: $fontMain;
-          }
-          .save {
-            width: 80px;
-            height: 40px;
-            border-radius: 10px;
-            border: none;
-            background-color: $mainColor;
-            color: white;
-            font-size: 16px;
-            font-family: Pretendard;
-            font-weight: $reg;
-            cursor: pointer;
-          }
-        }
-        .select-highlight {
-          padding-top: 30px;
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          .flex {
-            display: flex;
-            gap: 20px;
-            label {
-              display: flex;
-              align-items: center;
-              gap: 4px;
-              cursor: pointer;
-              input {
-                margin: 0;
-                cursor: pointer;
-              }
-              input[type='radio'] {
-                appearance: none;
-                border: 1px solid $inputLine;
-                border-radius: 50%;
-                width: 16px;
-                height: 16px;
-              }
-              input[type='radio']:checked {
-                background-image: url(../../../../assets/dashboard/checked.png);
-                background-repeat: no-repeat;
-                background-size: 8px;
-                background-position: center;
-              }
-              .name {
-                font-size: 14px;
-                color: $fontMain;
-              }
-            }
-          }
-          .border {
-            height: 17px;
+        .place {
+          .place-box {
+            height: 50px;
+            margin-top: 10px;
+            padding-left: 16px;
+            box-sizing: border-box;
+            background-color: $sectionLine;
             border: 1px solid $iconLine;
+            border-radius: 10px;
+            color: $fontSub;
+            display: flex;
+            align-items: center;
           }
         }
-        .setting-banner {
-          height: 100px;
-          padding: 0 102px;
-          margin-top: 20px;
+      }
+      .add-place {
+        .title {
           display: flex;
-          justify-content: space-between;
-          background-color: #ebebeb;
-          border-radius: 10px;
-          .input-section {
+          align-items: flex-end;
+          .red {
+            padding-left: 10px;
+            font-size: 13px;
+          }
+        }
+        .add-list {
+          display: flex;
+          gap: 30px;
+          padding-top: 20px;
+          .add {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            .title,
-            .main {
-              font-family: Pretendard;
-              background-color: transparent;
-              border: none;
-            }
-            .title {
-              font-weight: $semi;
-              font-size: 20px;
-            }
-            .main {
-              font-size: 16px;
-            }
-          }
-          .image-section {
-            width: 140px;
-          }
-        }
-        .select-color {
-          padding: 20px 0 30px 0;
-          display: flex;
-          gap: 20px;
-          border-bottom: 1px solid $sectionLine;
-          margin-bottom: 30px;
-          .box {
-            display: flex;
             align-items: center;
             gap: 10px;
-            .name {
-              font-size: 14px;
-              color: $fontMain;
-            }
-            .vacp-color-picker {
-            }
-          }
-        }
-
-        .apply-image {
-          display: flex;
-          flex-direction: column;
-          gap: 30px;
-          border-bottom: 1px solid $sectionLine;
-          padding: 30px 0;
-          margin-bottom: 30px;
-          .box {
-            .name {
-              font-size: 14px;
-              color: $fontMain;
-              padding-bottom: 10px;
-            }
-            .image-section {
+            .add-box {
+              width: 200px;
+              height: 50px;
+              padding: 0 16px;
+              box-sizing: border-box;
+              border: 1px solid $sectionLine;
               border-radius: 10px;
-              height: 100px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              color: $fontSub;
+              cursor: pointer;
+              img {
+                width: 20px;
+                height: 20px;
+              }
             }
-            .pc {
-              width: 1210px;
+            .add-btn {
+              width: 89px;
+              height: 40px;
+              border-radius: 50px;
+              border: none;
+              background-color: #fafafa;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 4px;
+              font-size: 14px;
+              font-family: $pre;
+              color: $mainColor;
+              cursor: pointer;
+              img {
+                width: 20px;
+                height: 20px;
+              }
             }
           }
-          .flex {
+          .list {
+            border-left: 1px solid $iconLine;
+            padding: 10px 30px;
             display: flex;
-            gap: 142px;
-            .tab {
-              width: 455px;
-            }
-            .mob {
-              width: 328px;
+            gap: 10px;
+            .list-box {
+              width: 182px;
+              height: 100px;
+              border-radius: 10px;
+              background-color: #fafafa;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              gap: 10px;
+              .name {
+                font-weight: $medi;
+              }
+              .sub {
+                color: $fontSub;
+              }
             }
           }
         }
@@ -613,39 +561,30 @@ article {
           }
         }
       }
-      .banner-section {
-        .padding {
-          .select-highlight {
+      .more-section {
+        .add-place {
+          .title {
             flex-direction: column;
             align-items: flex-start;
-            .border {
-              display: none;
+            gap: 10px;
+            .red {
+              padding-left: 0;
             }
           }
-          .setting-banner {
-            padding: 0 30px;
-            justify-content: center;
-            .input-section {
-              input {
-                width: 244px;
+          .add-list {
+            flex-direction: column;
+            .add {
+              .add-box {
+                width: 100%;
               }
             }
-          }
-          .apply-image {
-            .box {
-              .pc {
-                width: 444px;
-              }
-            }
-            .flex {
-              flex-direction: column;
-              gap: 32px;
-              .tab {
-                width: 444px;
-                height: 98px;
-              }
-              .mob {
-                width: 328px;
+            .list {
+              border-left: none;
+              border-top: 1px solid $iconLine;
+              padding: 30px 0;
+              flex-wrap: wrap;
+              .list-box {
+                width: 48.8%;
               }
             }
           }
@@ -657,7 +596,7 @@ article {
 
 @include mobile {
   article {
-    padding: 0 0 30px 0;
+    padding: 0 0 59px 0;
     .top-title {
       position: absolute;
       top: 23px;
@@ -772,59 +711,38 @@ article {
           }
         }
       }
-      .banner-section {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        .padding {
-          .ment {
-            font-size: 12px;
-          }
-          .select-highlight {
+      .more-section {
+        margin-top: -10px;
+        border-top: 1px solid $sectionLine;
+        border-radius: 0;
+        box-shadow: none;
+        .content {
+          padding: 30px 24px 60px;
+        }
+        .add-place {
+          .title {
             flex-direction: column;
             align-items: flex-start;
-            .border {
-              display: none;
+            gap: 10px;
+            .red {
+              padding-left: 0;
+              font-size: 12px;
             }
           }
-          .setting-banner {
-            padding: 0 20px;
-            .input-section {
-              input {
-                width: 148px;
-              }
-              .title {
-                font-size: 15px;
-              }
-              .main {
-                font-size: 13px;
-              }
-            }
-          }
-          .select-color {
-            .box {
-              .name {
-                font-size: 13px;
-              }
-              .vacp-color-picker {
-              }
-            }
-          }
-          .apply-image {
-            .box {
-              .pc {
+          .add-list {
+            flex-direction: column;
+            .add {
+              .add-box {
                 width: 100%;
               }
             }
-            .flex {
-              flex-direction: column;
-              gap: 30px;
-              .tab {
-                width: 100%;
-                height: 72px;
-              }
-              .mob {
-                width: 100%;
-                height: 100px;
+            .list {
+              border-left: none;
+              border-top: 1px solid $iconLine;
+              padding: 30px 0 0;
+              flex-wrap: wrap;
+              .list-box {
+                width: 48%;
               }
             }
           }

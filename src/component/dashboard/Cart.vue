@@ -112,6 +112,41 @@
                 </div>
               </div>
             </div>
+            <div class="item">
+              <div class="name-delete">
+                <div class="item-name">
+                  <input type="checkbox" id="check5" />
+                  <label for="check5"></label>
+                  <div class="name">
+                    <div class="bold">상권 지역플러스+ (30일)</div>
+                    <div class="sub">상권지도 주변 지역 추가 노출</div>
+                  </div>
+                </div>
+                <img
+                  class="x"
+                  src="../../assets/dashboard/cart_delete.png"
+                  alt="삭제"
+                />
+              </div>
+              <div class="option-cost">
+                <div class="btn">
+                  <img
+                    @click="countDown"
+                    src="../../assets/dashboard/minus.png"
+                    alt="마이너스"
+                  />
+                  <input type="text" :value="countItem" />
+                  <img
+                    @click="countUp"
+                    src="../../assets/dashboard/plus.png"
+                    alt="플러스"
+                  />
+                </div>
+                <div class="cost">
+                  <div class="bold">99,000원</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -164,6 +199,14 @@ const { getDevice } = storeToRefs(store)
 const showModal = ref<boolean>(false)
 const showCartOption = () => {
   showModal.value = !showModal.value
+}
+
+const countItem = ref<number>(1)
+const countUp = () => {
+  countItem.value++
+}
+const countDown = () => {
+  countItem.value--
 }
 </script>
 
@@ -244,7 +287,8 @@ article {
         input[id='check1']:checked + label::after,
         input[id='check2']:checked + label::after,
         input[id='check3']:checked + label::after,
-        input[id='check4']:checked + label::after {
+        input[id='check4']:checked + label::after,
+        input[id='check5']:checked + label::after {
           content: '';
           background-image: url(../../assets/dashboard/check.png);
           background-repeat: no-repeat;
@@ -334,6 +378,26 @@ article {
               font-weight: $reg;
               color: $fontSub;
               cursor: pointer;
+            }
+            .btn {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              img {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+              }
+              input {
+                width: 70px;
+                height: 40px;
+                border-radius: 5px;
+                border: 1px solid $inputLine;
+                font-family: $pre;
+                font-size: 13px;
+                color: $fontSub;
+                text-align: center;
+              }
             }
             .cost {
               text-align: right;

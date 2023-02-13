@@ -30,10 +30,10 @@
             프로모션
           </div>
           <div
-            :class="{ select: selectCategory === '지역별브랜드랭킹' }"
-            @click="selectCategory = '지역별브랜드랭킹'"
+            :class="{ select: selectCategory === '브랜드랭킹' }"
+            @click="selectCategory = '브랜드랭킹'"
           >
-            지역별 브랜드 랭킹
+            브랜드 랭킹
           </div>
           <div
             :class="{ select: selectCategory === '브랜드비교' }"
@@ -203,7 +203,7 @@
                 - 관심있는 브랜드를 추가하여 브랜드별로 비교할 수 있습니다.
                 (최대 4개)<br />
                 - 브랜드 비교는 메인메뉴
-                <span class="bold">[브랜드>브랜드비교]</span>에서 확인하실 수
+                <span class="black">[브랜드>브랜드비교]</span>에서 확인하실 수
                 있습니다.
               </span>
               <div class="image">
@@ -234,7 +234,10 @@
             <div class="box">
               <div class="title">④ 브랜드 찜</div>
               <span class="sub">
-                - 관심있는 브랜드를 찜할 수 있습니다. (최대 10개)
+                - 관심있는 브랜드를 찜할 수 있습니다. (최대 10개)<br />
+                - 찜한 브랜드는
+                <span class="black">[메뉴>찜한 브랜드]</span>에서 확인하실 수
+                있습니다.
               </span>
               <div class="image">
                 <div
@@ -265,7 +268,7 @@
               <div class="title">⑤ 실시간 문의</div>
               <span class="sub">
                 - 브랜드에게 실시간으로 문의할 수 있습니다.<br />
-                - 문의한 내역은 <span class="bold">[마이메뉴>문의내역]</span>
+                - 문의한 내역은 <span class="black">[마이메뉴>문의내역]</span>
                 확인하실 수 있습니다
               </span>
               <div class="image">
@@ -417,38 +420,33 @@
         </div>
       </div>
 
-      <div class="content" v-if="selectCategory === '지역별브랜드랭킹'">
+      <div class="content" v-if="selectCategory === '브랜드랭킹'">
         <div class="img-box">
           <div class="box">
             <img
               v-if="getDevice === 'pc'"
-              src="../../assets/guide/brand/pc지역별.png"
-              alt="지역별1"
+              src="../../assets/guide/brand/pc랭킹.png"
+              alt="랭킹"
             />
             <img
               v-if="getDevice === 'tablet'"
-              src="../../assets/guide/brand/tab지역별.png"
-              alt="지역별2"
+              src="../../assets/guide/brand/tab랭킹.png"
+              alt="랭킹"
             />
             <img
               v-if="getDevice === 'mobile'"
-              src="../../assets/guide/brand/mob지역별.png"
-              alt="지역별3"
+              src="../../assets/guide/brand/mob랭킹.png"
+              alt="랭킹"
             />
-            <div class="title">① 지역 선택</div>
+            <div class="title">① 랭킹 주제 선택</div>
             <span class="sub">
-              - 각 지역 별 브랜드 랭킹을 확인 할 수 있습니다.
+              - 급성장 브랜드, 매장수 많은 브랜드, 예산별 인기브랜드 랭킹을 확인
+              할 수 있습니다.
             </span>
             <div class="box">
               <div class="title">② 업종 선택</div>
               <span class="sub">
                 - 업종별 브랜드 랭킹을 확인 할 수 있습니다.
-              </span>
-            </div>
-            <div class="box">
-              <div class="title">③ 전국/지역 매장수</div>
-              <span class="sub">
-                - 전체 매장 대비 해당 지역의 매장 수를 비교해 보세요.
               </span>
             </div>
           </div>
@@ -578,11 +576,16 @@ article {
       .title {
         padding-top: 30px;
         color: $fontMain;
+        font-weight: $medi;
       }
       .sub {
         padding-top: 10px;
         color: $fontSub;
         font-size: 15px;
+        line-height: 24px;
+        .black {
+          color: $fontMain;
+        }
       }
       .image {
         display: flex;

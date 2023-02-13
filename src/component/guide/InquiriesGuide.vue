@@ -141,11 +141,13 @@ article {
       .title {
         padding-top: 30px;
         color: $fontMain;
+        font-weight: $medi;
       }
       .sub {
         padding-top: 10px;
         color: $fontSub;
         font-size: 15px;
+        line-height: 24px;
       }
       .image {
         display: flex;

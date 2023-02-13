@@ -4,6 +4,10 @@
       <div class="modal-overlay">
         <div class="modal-box">
           <div class="padding-box">
+            <div class="close" @click="$emit('showPremiumModal')">
+              <img src="../../../../assets/login/close.png" alt="닫기" />
+            </div>
+
             <div class="title">
               <span>프리미엄 멤버십 회원 전용</span>
               서비스입니다.
@@ -12,10 +16,6 @@
             <div class="show">
               <button>프리미엄 멤버십 보기</button>
             </div>
-          </div>
-
-          <div class="close" @click="$emit('showPremiumModal')">
-            <img src="../../../../assets/login/close.png" alt="닫기" />
           </div>
         </div>
       </div>
@@ -70,18 +70,32 @@ section {
         height: 200px;
         background-color: #f3f3f3;
         border-radius: 10px;
+        padding: 61px 0 40px;
+        box-sizing: border-box;
 
         position: absolute;
+        position: relative;
 
         .padding-box {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 30px;
+
+          .close {
+            padding-bottom: 20px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            img {
+              width: 30px;
+              height: 30px;
+              cursor: pointer;
+            }
+          }
 
           .title {
             font-weight: $reg;
-
+            padding-bottom: 30px;
             span {
               color: $subColor;
               font-weight: $medi;
@@ -104,18 +118,6 @@ section {
             }
           }
         }
-
-        .close {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-
-          img {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-          }
-        }
       }
     }
   }
@@ -125,11 +127,18 @@ section {
   section {
     .modal {
       .modal-overlay {
-        width: 100%;
-        margin: 0 24px;
+        padding: 0 24px;
         box-sizing: border-box;
         .modal-box {
           width: 100%;
+          .padding-box {
+            .show {
+              width: 100%;
+              button {
+                width: 100%;
+              }
+            }
+          }
         }
       }
     }

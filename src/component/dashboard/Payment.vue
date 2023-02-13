@@ -16,58 +16,88 @@
             <div class="title">상품 정보</div>
             <div class="box">
               <div class="item">
-                <div class="name-sub">
+                <div class="name-delete">
                   <div class="name">
-                    프리미엄 멤버십
-                    <img
-                      src="../../assets/dashboard/premium.png"
-                      alt="프리미엄"
-                    />
+                    <div class="bold">브랜드 핫클립 (30일)</div>
+                    <div class="sub">홈 영상컨텐츠 노출</div>
                   </div>
-                  <div class="sub">
-                    해시태그 + 페이지 상위 노출 + 다이렉트 고객 매칭
-                  </div>
-                </div>
-                <div class="cost-delete">
-                  <div class="cost">88,000원</div>
                   <img
-                    class="delete"
+                    class="x"
                     src="../../assets/dashboard/cart_delete.png"
                     alt="삭제"
                   />
                 </div>
-              </div>
-              <div class="item">
-                <div class="name-sub">
-                  <div class="name">메인 TOP (90일)</div>
-                  <div class="sub">홈 메인 배너</div>
-                </div>
-                <div class="cost-delete">
+                <div class="option-cost no-option">
                   <div class="cost">
-                    990,000원
-                    <span class="discount">1,100,000원</span>
+                    <div class="bold">550,000원</div>
                   </div>
-                  <img
-                    class="delete"
-                    src="../../assets/dashboard/cart_delete.png"
-                    alt="삭제"
-                  />
                 </div>
               </div>
               <div class="item">
-                <div class="name-sub">
-                  <div class="name">메인 Special (60일)</div>
-                  <div class="sub">
-                    홈 첫번째 배너 + 커뮤니티 페이지 내 랜덤 노출
+                <div class="name-delete">
+                  <div class="item-name">
+                    <div class="name">
+                      <div class="bold">
+                        프리미엄 멤버십
+                        <img
+                          src="../../assets/dashboard/premium.png"
+                          alt="프리미엄"
+                        />
+                      </div>
+                      <div class="sub">
+                        해시태그 + 페이지 상위 노출 + 다이렉트 고객 매칭
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="cost-delete">
-                  <div class="cost">990,000원</div>
                   <img
-                    class="delete"
+                    class="x"
                     src="../../assets/dashboard/cart_delete.png"
                     alt="삭제"
                   />
+                </div>
+                <div class="option-cost no-option">
+                  <div class="cost">
+                    <div class="bold">88,000원</div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="name-delete">
+                  <div class="name">
+                    <div class="bold">추천브랜드 2 (60일)</div>
+                    <div class="sub">
+                      브랜드 상세페이지 하단 브랜드 리스트 노출
+                    </div>
+                  </div>
+                  <img
+                    class="x"
+                    src="../../assets/dashboard/cart_delete.png"
+                    alt="삭제"
+                  />
+                </div>
+                <div class="option-cost no-option">
+                  <div class="cost">
+                    <div class="bold">990,000원</div>
+                    <div class="sub">1,100,000원</div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="name-delete">
+                  <div class="name">
+                    <div class="bold">상권 지역플러스+ (30일)</div>
+                    <div class="sub">상권지도 주변 지역 추가 노출</div>
+                  </div>
+                  <img
+                    class="x"
+                    src="../../assets/dashboard/cart_delete.png"
+                    alt="삭제"
+                  />
+                </div>
+                <div class="option-cost no-option">
+                  <div class="cost">
+                    <div class="bold">99,000원</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -296,6 +326,14 @@ const titleColorChange = (event: ColorChangeEvent) => {
 const mainColorChange = (event: ColorChangeEvent) => {
   main.value = event.cssColor
 }
+
+const countItem = ref<number>(1)
+const countUp = () => {
+  countItem.value++
+}
+const countDown = () => {
+  countItem.value--
+}
 </script>
 
 <style lang="scss" scoped>
@@ -332,54 +370,94 @@ article {
           display: flex;
           flex-direction: column;
         }
-
         .item {
           padding: 30px 0 40px 0;
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
           border-bottom: 1px solid $sectionLine;
-          .name-sub {
+          .name-delete {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             .name {
               display: flex;
-              align-items: center;
-              gap: 6px;
-              color: $fontMain;
-              font-weight: $medi;
-              img {
-                width: 20px;
-                height: 20px;
-              }
-            }
-            .sub {
-              padding-top: 10px;
-              color: $fontSub;
-              font-size: 12px;
-            }
-          }
-          .cost-delete {
-            display: flex;
-            flex-direction: column-reverse;
-            align-items: flex-end;
-            gap: 70px;
-            .cost {
-              font-size: 18px;
-              font-weight: $medi;
-              color: $fontMain;
-              display: flex;
               flex-direction: column;
-              align-items: flex-end;
-              .discount {
-                padding-top: 6px;
-                font-size: 12px;
+              color: $fontMain;
+              font-weight: $medi;
+              .bold {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+              }
+              .sub {
+                padding-top: 10px;
                 color: $fontSub;
-                text-decoration: line-through;
+                font-size: 12px;
               }
             }
             img {
               width: 20px;
               height: 20px;
+            }
+            .x {
               cursor: pointer;
             }
+          }
+          .option-cost {
+            padding-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .option {
+              width: 130px;
+              height: 40px;
+              border: 1px solid $inputLine;
+              border-radius: 5px;
+              background-color: white;
+              font-size: 14px;
+              font-family: Pretendard;
+              font-weight: $reg;
+              color: $fontSub;
+              cursor: pointer;
+            }
+            .btn {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              img {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+              }
+              input {
+                width: 70px;
+                height: 40px;
+                border-radius: 5px;
+                border: 1px solid $inputLine;
+                font-family: $pre;
+                font-size: 13px;
+                color: $fontSub;
+                text-align: center;
+              }
+            }
+            .cost {
+              text-align: right;
+              .bold {
+                font-size: 18px;
+                color: $fontMain;
+                font-weight: $medi;
+              }
+              .sub {
+                font-size: 12px;
+                color: $fontSub;
+                text-decoration: line-through;
+                font-weight: $reg;
+                padding-top: 10px;
+              }
+            }
+          }
+          .no-option {
+            justify-content: flex-end;
           }
         }
       }
@@ -896,10 +974,26 @@ article {
         .item-info {
           .item {
             padding: 33px 0;
-            .cost-delete {
-              flex-direction: row;
-              align-items: center;
-              gap: 25px;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            .name-delete {
+              .x {
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translate(-50%, -50%);
+              }
+              .item-name {
+                gap: 20px;
+                align-items: center;
+              }
+            }
+            .option-cost {
+              margin-right: 72px;
+              width: 320px;
+              padding-top: 0;
             }
           }
         }

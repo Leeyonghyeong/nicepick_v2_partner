@@ -117,6 +117,7 @@ const selectMenu = ref<string>('brand')
   position: absolute;
   position: fixed;
   bottom: 0;
+  z-index: 2;
 
   .select {
     color: $mainColor;

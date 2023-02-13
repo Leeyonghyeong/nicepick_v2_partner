@@ -265,6 +265,7 @@ article {
       .title {
         padding-top: 30px;
         color: $fontMain;
+        font-weight: $medi;
       }
       .sub {
         padding-top: 10px;

@@ -44,7 +44,7 @@
               alt="상권분석1"
             />
             <img
-              v-if="getDevice === 'mob'"
+              v-if="getDevice === 'mobile'"
               src="../../assets/guide/commercial/mob상권분석.png"
               alt="상권분석1"
             />
@@ -330,7 +330,7 @@
               <span class="sub">
                 - 브랜드에게 실시간으로 문의할 수 있습니다. <br />
                 - 문의한 내역은
-                <span class="bold">[마이메뉴>문의내역]</span>에서 확인하실 수
+                <span class="black">[마이메뉴>문의내역]</span>에서 확인하실 수
                 있습니다.
               </span>
               <div class="image">
@@ -459,11 +459,16 @@ article {
       .title {
         padding-top: 30px;
         color: $fontMain;
+        font-weight: $medi;
       }
       .sub {
         padding-top: 10px;
         color: $fontSub;
         font-size: 15px;
+        line-height: 24px;
+        .black {
+          color: $fontMain;
+        }
       }
       .image {
         display: flex;
