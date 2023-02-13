@@ -150,7 +150,7 @@ const routes: Array<RouteRecordRaw> = [
 
       {
         path: '/franchise/ad',
-        name: 'ad',
+        name: 'franchisead',
         component: () =>
           import('../component/dashboard/franchise/ad/AdItem.vue'),
       },
@@ -235,6 +235,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'realtorusagehistory',
         component: () =>
           import('../component/dashboard/realtor/mymenu/Usagehistory.vue'),
+      },
+      {
+        path: '/realtor/ad',
+        name: 'realtorad',
+        component: () => import('../component/dashboard/realtor/ad/AdItem.vue'),
       },
     ],
   },

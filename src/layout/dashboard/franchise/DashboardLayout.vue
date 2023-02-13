@@ -16,7 +16,7 @@
 
 <script lang="ts" setup>
 import DashHeader from '../../../component/common/dashboard/DashboardHeader.vue'
-import Footer from '../../../component/common/Footer.vue'
+import Footer from '../../../component/common/DashboardFooter.vue'
 import DashboardCategory from '../../../component/common/dashboard/franchise/DashboardCategory.vue'
 import FranchiseMenubar from '../../../component/common/dashboard/franchise/FranchiseMenubar.vue'
 

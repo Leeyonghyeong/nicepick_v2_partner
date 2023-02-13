@@ -158,7 +158,7 @@ section {
     text-decoration: none;
   }
   .side-bar {
-    width: 330px;
+    width: 310px;
     height: calc(100vh - 60px);
     background-color: #2b333e;
     padding: 0 30px;

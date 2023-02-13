@@ -379,7 +379,7 @@ article {
 
 @include pc {
   article {
-    padding: 50px 0 0 160px;
+    padding: 50px 160px 0;
 
     .flex {
       flex-direction: row;

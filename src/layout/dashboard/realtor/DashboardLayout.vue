@@ -16,7 +16,7 @@
 
 <script lang="ts" setup>
 import DashHeader from '../../../component/common/dashboard/DashboardHeader.vue'
-import Footer from '../../../component/common/Footer.vue'
+import Footer from '../../../component/common/DashboardFooter.vue'
 import DashboardCategory from '../../../component/common/dashboard/realtor/DashboardCategory.vue'
 import RealtorMenubar from '../../../component/common/dashboard/realtor/RealtorMenubar.vue'
 
@@ -42,6 +42,7 @@ onMounted(() => {
   background-color: #f2f4f7;
   div {
     width: 100%;
+    height: 100%;
   }
 
   .width {
