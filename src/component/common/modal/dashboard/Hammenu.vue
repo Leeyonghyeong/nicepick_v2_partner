@@ -82,7 +82,6 @@ section {
   width: 100vw;
   height: 100vh;
   background: #fff;
-  z-index: 3;
 
   .none {
     text-decoration: none;
@@ -99,7 +98,7 @@ section {
       justify-content: space-between;
       padding: 12px 24px;
       border-bottom: 1px solid $sectionLine;
-      z-index: 2;
+
       .home {
         width: 69px;
         height: 36px;

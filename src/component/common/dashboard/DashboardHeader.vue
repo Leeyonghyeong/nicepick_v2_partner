@@ -1,36 +1,34 @@
 <template>
-  <section>
-    <article>
-      <div class="header">
-        <div v-if="getDevice !== 'mobile'" class="logo">
-          <img src="../../../assets/header/logo.png" alt="로고" />
-        </div>
-
-        <div v-if="getDevice !== 'mobile'" class="logout-homebtn">
-          <div class="notice">
-            <i class="fa-solid fa-bullhorn"></i>
-          </div>
-          <RouterLink to="/cart" class="none">
-            <div class="cart">
-              <i class="fa-solid fa-cart-plus"></i>
-              <div class="count">3</div>
-            </div>
-          </RouterLink>
-          <div class="border"></div>
-          <div class="logout">로그아웃</div>
-          <button>창업픽 홈</button>
-        </div>
-
-        <div v-if="getDevice === 'mobile'" class="logout-homebtn">
-          <div class="ham" @click="showHammenuModal">
-            <img src="../../../assets/dashboard/ham.png" alt="" />
-          </div>
-        </div>
+  <article>
+    <div class="header">
+      <div v-if="getDevice !== 'mobile'" class="logo">
+        <img src="../../../assets/header/logo.png" alt="로고" />
       </div>
 
-      <Hammenu v-if="showModal" @showHammenuModal="showHammenuModal" />
-    </article>
-  </section>
+      <div v-if="getDevice !== 'mobile'" class="logout-homebtn">
+        <div class="notice">
+          <i class="fa-solid fa-bullhorn"></i>
+        </div>
+        <RouterLink to="/cart" class="none">
+          <div class="cart">
+            <i class="fa-solid fa-cart-plus"></i>
+            <div class="count">3</div>
+          </div>
+        </RouterLink>
+        <div class="border"></div>
+        <div class="logout">로그아웃</div>
+        <button>창업픽 홈</button>
+      </div>
+
+      <div v-if="getDevice === 'mobile'" class="logout-homebtn">
+        <div class="ham" @click="showHammenuModal">
+          <img src="../../../assets/dashboard/ham.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <Hammenu v-if="showModal" @showHammenuModal="showHammenuModal" />
+  </article>
 </template>
 
 <script lang="ts" setup>
@@ -59,6 +57,7 @@ article {
   background-color: white;
   position: sticky;
   top: 0;
+  z-index: 3;
 
   .none {
     text-decoration: none;
