@@ -286,7 +286,7 @@ article {
 
 @include tablet {
   article {
-    padding: 50px 24px 60px 24px;
+    padding: 50px 24px 60px;
 
     .gap {
       .content {

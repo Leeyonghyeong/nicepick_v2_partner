@@ -12,9 +12,24 @@
 
       <div class="content-section no-padding">
         <div class="content">
-          <div class="title">
-            가맹점 증감현황
-            <span class="sub-title">(최근 3년)</span>
+          <div class="title-year">
+            <div class="title">
+              가맹점 증감현황
+              <span class="sub-title">(최근 3년)</span>
+            </div>
+            <div class="year-box">
+              <div class="width">
+                <div>
+                  <div class="year">2023년</div>
+                </div>
+                <div>
+                  <div class="year">2022년</div>
+                </div>
+                <div>
+                  <div class="year">2021년</div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="info-section">
@@ -81,18 +96,32 @@
 
           <div class="comment">
             <div class="title">담당자 코멘트</div>
-            <input type="text" placeholder="코멘트 입력" />
+            <textarea placeholder="코멘트 입력"></textarea>
           </div>
         </div>
       </div>
 
       <div class="content-section">
         <div class="content">
-          <div class="title">
-            연도별 매장 현황
-            <span class="sub-title">(최근 3년)</span>
+          <div class="title-year">
+            <div class="title">
+              연도별 매장 현황
+              <span class="sub-title">(최근 3년)</span>
+            </div>
+            <div class="year-box">
+              <div class="width">
+                <div>
+                  <div class="year">2023년</div>
+                </div>
+                <div>
+                  <div class="year">2022년</div>
+                </div>
+                <div>
+                  <div class="year">2021년</div>
+                </div>
+              </div>
+            </div>
           </div>
-
           <div class="info-section">
             <div class="input-section">
               <div class="input-title">가맹점 및 직영점 수</div>
@@ -112,7 +141,7 @@
 
           <div class="comment">
             <div class="title">담당자 코멘트</div>
-            <input type="text" placeholder="코멘트 입력" />
+            <textarea placeholder="코멘트 입력"></textarea>
           </div>
         </div>
       </div>
@@ -160,13 +189,18 @@
 
           <div class="comment">
             <div class="title">담당자 코멘트</div>
-            <input type="text" placeholder="코멘트 입력" />
+            <textarea placeholder="코멘트 입력"></textarea>
           </div>
         </div>
       </div>
 
       <div class="select-set">
-        <label for="maintain" class="select maintain">
+        <label
+          for="maintain"
+          class="select maintain"
+          :class="{ style: selectSet === 'maintain' }"
+          @click="selectSet = 'maintain'"
+        >
           <input type="radio" name="select" id="maintain" checked />
           <div class="select-title">
             <div class="title">현재 작성한 내용으로 브랜드 정보 저장</div>
@@ -177,7 +211,12 @@
           </div>
         </label>
 
-        <label for="update" class="select">
+        <label
+          for="update"
+          class="select"
+          :class="{ style: selectSet === 'update' }"
+          @click="selectSet = 'update'"
+        >
           <input type="radio" name="select" id="update" />
           <div class="select-title">
             <div class="title">정보공개서 정보 업데이트 희망</div>
@@ -195,7 +234,11 @@
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const selectSet = ref<string>('maintain')
+</script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';
@@ -241,7 +284,6 @@ article {
       padding: 30px;
       box-sizing: border-box;
       width: 1270px;
-
       .title {
         font-size: 18px;
         color: $fontMain;
@@ -250,6 +292,36 @@ article {
         .sub-title {
           font-size: 12px;
           color: $fontSub;
+        }
+      }
+      .title-year {
+        display: flex;
+        flex-direction: column;
+        .year-box {
+          display: flex;
+          justify-content: flex-end;
+          padding-bottom: 20px;
+          .width {
+            width: 1056px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+            div {
+              width: 332px;
+              display: flex;
+              justify-content: center;
+              .year {
+                width: 114px;
+                height: 30px;
+                background-color: $sectionLine;
+                border-radius: 50px;
+                font-size: 14px;
+                color: $fontMain;
+                display: flex;
+                align-items: center;
+              }
+            }
+          }
         }
       }
 
@@ -358,15 +430,19 @@ article {
           font-size: 16px;
           font-weight: $reg;
         }
-        input {
+        textarea {
           width: 100%;
           height: 50px;
           border-radius: 10px;
           border: 1px solid $iconLine;
-          padding: 15px 16px 16px 16px;
+          padding: 13px 16px 16px 16px;
           box-sizing: border-box;
+          font-size: 16px;
+          font-family: $pre;
+          resize: none;
+          overflow-y: auto;
         }
-        input::placeholder {
+        textarea::placeholder {
           color: $inputLine;
         }
       }
@@ -383,18 +459,33 @@ article {
     .select {
       width: 620px;
       height: 134px;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 10px;
-
       background-color: white;
       border-radius: 10px;
       font-size: 14px;
-
       cursor: pointer;
+
+      input {
+        margin: 0;
+        cursor: pointer;
+      }
+      input[type='radio'] {
+        appearance: none;
+        border: 1px solid $inputLine;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+      }
+      input[type='radio']:checked {
+        background-image: url(../../../../assets/dashboard/checked.png);
+        background-repeat: no-repeat;
+        background-size: 8px;
+        background-position: center;
+      }
 
       .select-title {
         text-align: center;
@@ -408,6 +499,9 @@ article {
           color: $fontSub;
         }
       }
+    }
+    .style {
+      box-shadow: 0 0 0 1px $mainColor inset;
     }
   }
 
@@ -438,6 +532,18 @@ article {
     .content-section {
       .content {
         width: 100%;
+        .title-year {
+          .year-box {
+            .width {
+              width: 358px;
+              gap: 8px;
+              div {
+                .year {
+                }
+              }
+            }
+          }
+        }
 
         .info-section {
           .input-section {
@@ -513,6 +619,21 @@ article {
         box-shadow: none;
         .title {
           font-size: 16px;
+        }
+        .title-year {
+          .year-box {
+            .width {
+              width: 100%;
+              gap: 8px;
+              div {
+                width: 100%;
+                .year {
+                  width: 100%;
+                  font-size: 12px;
+                }
+              }
+            }
+          }
         }
 
         .info-section {
@@ -598,6 +719,9 @@ article {
             font-size: 12px;
           }
         }
+      }
+      .style {
+        box-shadow: none;
       }
       .maintain {
         border-bottom: 1px solid $iconLine;

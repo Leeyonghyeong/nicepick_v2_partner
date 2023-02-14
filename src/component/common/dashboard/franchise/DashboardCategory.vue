@@ -103,6 +103,7 @@
                 alt="고객문의"
               />
               <div>고객문의</div>
+              <div class="alarm"></div>
             </div>
           </RouterLink>
 
@@ -231,7 +232,6 @@ section {
           display: flex;
           align-items: center;
           gap: 10px;
-
           color: $fontSub;
           cursor: pointer;
 
@@ -239,6 +239,13 @@ section {
             padding-left: 10px;
             width: 30px;
             height: 30px;
+          }
+          .alarm {
+            background-color: $subColor;
+            width: 5px;
+            height: 5px;
+            border-radius: 100%;
+            margin-top: -10px;
           }
         }
 

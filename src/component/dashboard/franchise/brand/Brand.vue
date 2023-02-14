@@ -72,6 +72,13 @@
             <div class="title">유튜브 영상</div>
             <div class="center">
               <input type="text" placeholder="URL 입력" />
+              <div class="add">
+                <input type="text" placeholder="URL 입력" />
+                <img
+                  src="../../../../assets/dashboard/brand/delete.png"
+                  alt="delete"
+                />
+              </div>
               <button>
                 <img src="../../../../assets/dashboard/add.png" alt="" />
                 추가
@@ -87,49 +94,49 @@
             <div class="promotion-category">
               <div class="category">
                 <img
-                  src="../../../../assets/dashboard/brand/store_discount.png"
+                  src="../../../../assets/dashboard/brand/가맹비할인.png"
                   alt=""
                 />
                 가맹비 할인
               </div>
               <div class="category">
                 <img
-                  src="../../../../assets/dashboard/brand/store_free.png"
+                  src="../../../../assets/dashboard/brand/가맹비면제.png"
                   alt=""
                 />
                 가맹비 면제
               </div>
               <div class="category">
                 <img
-                  src="../../../../assets/dashboard/brand/edu_discount.png"
+                  src="../../../../assets/dashboard/brand/교육비할인.png"
                   alt=""
                 />
                 교육비 할인
               </div>
               <div class="category">
                 <img
-                  src="../../../../assets/dashboard/brand/edu_free.png"
+                  src="../../../../assets/dashboard/brand/교육비면제.png"
                   alt=""
                 />
                 교육비 면제
               </div>
               <div class="category">
                 <img
-                  src="../../../../assets/dashboard/brand/article.png"
+                  src="../../../../assets/dashboard/brand/물품지원.png"
                   alt=""
                 />
                 물품지원
               </div>
               <div class="category">
                 <img
-                  src="../../../../assets/dashboard/brand/equipment.png"
+                  src="../../../../assets/dashboard/brand/장비지원.png"
                   alt=""
                 />
                 장비지원
               </div>
               <div class="category interior-gap">
                 <img
-                  src="../../../../assets/dashboard/brand/interrior.png"
+                  src="../../../../assets/dashboard/brand/인테리어비용지원.png"
                   alt=""
                 />
                 인테리어<br />비용 지원
@@ -411,6 +418,17 @@ article {
         flex-direction: column;
         align-items: center;
         gap: 20px;
+        .add {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          img {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+          }
+        }
         button {
           padding: 10px 20px;
           border-radius: 50px;
@@ -456,6 +474,10 @@ article {
         }
         .interior-gap {
           gap: 0;
+        }
+        .select {
+          border: 1px solid $mainColor;
+          color: $fontMain;
         }
       }
     }
