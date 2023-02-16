@@ -35,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: '/realtorjoin',
-        name: 'realtor',
+        name: 'realtorjoin',
         component: () => import('../component/login_join/JoinRealtor.vue'),
       },
       {
@@ -166,9 +166,9 @@ const routes: Array<RouteRecordRaw> = [
 
   {
     path: '/',
-    name: 'NewpageDashboardLayout',
+    name: 'FranchiseNewpageLayout',
     component: () =>
-      import('../layout/dashboard/franchise/NewpageDashboardLayout.vue'),
+      import('../layout/dashboard/franchise/FranchiseNewpageLayout.vue'),
     children: [
       {
         path: '/cart',
@@ -197,8 +197,22 @@ const routes: Array<RouteRecordRaw> = [
 
   {
     path: '/',
+    name: 'ChattingLayout',
+    component: () => import('../layout/dashboard/franchise/ChattingLayout.vue'),
+    children: [
+      {
+        path: '/franchise/chatting',
+        name: 'franchisechatting',
+        component: () =>
+          import('../component/dashboard/franchise/qna/Chatting.vue'),
+      },
+    ],
+  },
+
+  {
+    path: '/',
     name: 'RealtorDashboardLayout',
-    component: () => import('../layout/dashboard/realtor/DashboardLayout.vue'),
+    component: () => import('../layout/dashboard/realtor/RealtorLayout.vue'),
     children: [
       {
         path: '/realtor/dashboard',
@@ -206,18 +220,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import('../component/dashboard/realtor/dashboard/Dashboard.vue'),
       },
-      {
-        path: '/realtor/notice',
-        name: 'realtornotice',
-        component: () =>
-          import('../component/dashboard/realtor/dashboard/Notice.vue'),
-      },
-      {
-        path: '/realtor/noticemain',
-        name: 'realtornoticemain',
-        component: () =>
-          import('../component/dashboard/realtor/dashboard/NoticeMain.vue'),
-      },
+
       {
         path: '/realtor/realtor',
         name: 'realtor',
@@ -240,6 +243,27 @@ const routes: Array<RouteRecordRaw> = [
         path: '/realtor/ad',
         name: 'realtorad',
         component: () => import('../component/dashboard/realtor/ad/AdItem.vue'),
+      },
+    ],
+  },
+
+  {
+    path: '/',
+    name: 'RealtorNewpageLayout',
+    component: () =>
+      import('../layout/dashboard/realtor/RealtorNewpageLayout.vue'),
+    children: [
+      {
+        path: '/realtor/notice',
+        name: 'realtornotice',
+        component: () =>
+          import('../component/dashboard/realtor/dashboard/Notice.vue'),
+      },
+      {
+        path: '/realtor/noticemain',
+        name: 'realtornoticemain',
+        component: () =>
+          import('../component/dashboard/realtor/dashboard/NoticeMain.vue'),
       },
     ],
   },

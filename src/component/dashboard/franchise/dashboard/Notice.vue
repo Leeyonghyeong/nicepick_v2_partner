@@ -11,25 +11,26 @@
       </div>
 
       <div class="notice-list">
+        <div
+          class="list"
+          :class="{ select: selectList === '1' }"
+          @click="selectList = '1'"
+        >
+          <div class="name">[긴급] 창업픽 파트너 2023년 공지사항</div>
+          <div class="period">2023.01.01</div>
+        </div>
+
         <RouterLink to="/franchise/noticemain" class="none">
           <div
             class="list"
-            :class="{ select: selectList === '1' }"
-            @click="selectList = '1'"
+            :class="{ select: selectList === '2' }"
+            @click="selectList = '2'"
           >
-            <div class="name">[긴급] 창업픽 파트너 2023년 공지사항</div>
-            <div class="period">2023.01.01</div>
+            <div class="name">프리미엄 서비스 이용시 주의사항</div>
+            <div class="period">2022.12.01</div>
           </div>
         </RouterLink>
 
-        <div
-          class="list"
-          :class="{ select: selectList === '2' }"
-          @click="selectList = '2'"
-        >
-          <div class="name">프리미엄 서비스 이용시 주의사항</div>
-          <div class="period">2022.12.01</div>
-        </div>
         <div
           class="list"
           :class="{ select: selectList === '3' }"

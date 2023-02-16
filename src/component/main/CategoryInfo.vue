@@ -1,7 +1,12 @@
 <template>
   <section id="category-info">
     <div class="title">
-      <div class="select">프랜차이즈 브랜드</div>
+      <div
+        :class="{ select: selectCategory === 'franchise' }"
+        @click="selectCategory = 'franchise'"
+      >
+        프랜차이즈 브랜드
+      </div>
       <div>공인중개사</div>
       <div>협력 파트너</div>
     </div>
@@ -9,6 +14,7 @@
     <div class="info">
       <div class="info-slide">
         <Swiper
+          v-if="selectCategory === 'franchise'"
           :modules="[Navigation]"
           :slides-per-view="1"
           :loop="true"
@@ -29,7 +35,10 @@
 
           <SwiperSlide>
             <div id="slide-1" class="box">
-              <img src="../../assets/main/franchise.png" alt="프랜차이즈" />
+              <img
+                src="../../assets/main/브랜드광고효과.png"
+                alt="브랜드광고효과"
+              />
               <div class="box-title">
                 <div class="bold">브랜드 광고 효과</div>
                 <div>
@@ -43,7 +52,7 @@
 
           <SwiperSlide>
             <div id="slide-2" class="box">
-              <img src="../../assets/main/franchise.png" alt="프랜차이즈" />
+              <img src="../../assets/main/마케팅효과.png" alt="마케팅효과" />
               <div class="box-title">
                 <div class="bold">마케팅 효과 up 비용 down</div>
                 <div>
@@ -57,7 +66,7 @@
 
           <SwiperSlide>
             <div id="slide-3" class="box">
-              <img src="../../assets/main/franchise.png" alt="프랜차이즈" />
+              <img src="../../assets/main/고객상담.png" alt="고객상담" />
               <div class="box-title">
                 <div class="bold">편리한 고객 상담</div>
                 <div>
@@ -71,7 +80,7 @@
 
           <SwiperSlide>
             <div id="slide-4" class="box">
-              <img src="../../assets/main/franchise.png" alt="프랜차이즈" />
+              <img src="../../assets/main/가맹점증가.png" alt="가맹점증가" />
               <div class="box-title">
                 <div class="bold">가맹점 증가</div>
                 <div>
@@ -88,6 +97,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -98,6 +108,8 @@ import 'swiper/scss/navigation'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
+
+const selectCategory = ref<string>('franchise')
 </script>
 
 <style lang="scss" scoped>

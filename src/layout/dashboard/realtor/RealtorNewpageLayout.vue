@@ -2,19 +2,20 @@
   <NoHammenuHeader />
 
   <div class="flex">
-    <DashboardCategory />
-    <RouterView class="width" />
-  </div>
-
-  <div v-if="getDevice !== 'mobile'">
-    <Footer />
+    <Category />
+    <div>
+      <RouterView class="width" />
+      <div v-if="getDevice !== 'mobile'">
+        <Footer />
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import NoHammenuHeader from '../../../component/common/dashboard/NoHammenuHeader.vue'
-import Footer from '../../../component/common/Footer.vue'
-import DashboardCategory from '../../../component/common/dashboard/franchise/DashboardCategory.vue'
+import Footer from '../../../component/common/modal/dashboard/DashboardFooter.vue'
+import Category from '../../../component/common/dashboard/realtor/DashboardCategory.vue'
 
 import { onMounted } from 'vue'
 import { useWindowStore } from '../../../store/window'
@@ -39,7 +40,6 @@ onMounted(() => {
   div {
     width: 100%;
   }
-
   .width {
     width: 100%;
   }

@@ -246,7 +246,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import Premium from '../../../common/modal/dashboard/PremiumMembership.vue'
+import Premium from '../../../common/modal/dashboard/franchise/PremiumMembership.vue'
 
 const showModal = ref<boolean>(false)
 const showPremiumModal = () => {
@@ -401,6 +401,9 @@ article {
           font-family: Pretendard;
           font-size: 16px;
           color: $inputLine;
+        }
+        input:focus {
+          border: 1px solid $mainColor;
         }
         button {
           background-color: #fafafa;

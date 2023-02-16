@@ -1,5 +1,5 @@
 <template>
-  <DashHeader />
+  <Header />
 
   <div class="flex">
     <DashboardCategory />
@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts" setup>
-import DashHeader from '../../../component/common/dashboard/DashboardHeader.vue'
-import Footer from '../../../component/common/DashboardFooter.vue'
+import Header from '../../../component/common/dashboard/realtor/RealtorHeader.vue'
+import Footer from '../../../component/common/modal/dashboard/DashboardFooter.vue'
 import DashboardCategory from '../../../component/common/dashboard/realtor/DashboardCategory.vue'
 import RealtorMenubar from '../../../component/common/dashboard/realtor/RealtorMenubar.vue'
 

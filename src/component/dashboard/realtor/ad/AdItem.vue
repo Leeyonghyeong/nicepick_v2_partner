@@ -5,54 +5,64 @@
 
       <div class="content-gap">
         <div class="box-gap">
-          <div class="box">
-            <div class="name-sub">
-              <div class="name">상권 지역플러스+ (30일)</div>
-              <div class="sub">상권지도 주변 지역 추가 노출</div>
-            </div>
-            <div class="flex">
-              <div class="cost-vat flex">
-                <div class="cost"><span class="red">99,000</span> 원</div>
-                <div class="vat">VAT 포함</div>
+          <div>
+            <div :class="{ boxstyle: showPlus }" class="box">
+              <div class="name-sub">
+                <div class="name">상권 지역플러스+ (30일)</div>
+                <div class="sub">상권지도 주변 지역 추가 노출</div>
               </div>
-              <div class="btn">
-                <button class="detail" @click="showPlus = !showPlus">
-                  상세보기
+              <div class="flex">
+                <div class="cost-vat flex">
+                  <div class="cost"><span class="red">99,000</span> 원</div>
+                  <div class="vat">VAT 포함</div>
+                </div>
+                <div class="btn">
+                  <button class="detail-btn" @click="showPlus = !showPlus">
+                    상세보기
+                    <img
+                      v-if="!showPlus"
+                      src="../../../../assets/dashboard/arrow_more.png"
+                      alt="down"
+                    />
+                    <img
+                      v-if="showPlus"
+                      src="../../../../assets/dashboard/arrow_close.png"
+                      alt="up"
+                    />
+                  </button>
+                  <button class="cart">
+                    <i class="fa-solid fa-cart-plus"></i>
+                  </button>
+                  <button class="apply">신청하기</button>
+                </div>
+              </div>
+            </div>
+            <div class="more-box" v-if="showPlus">
+              <div class="menu-detail">
+                <div class="detail plus">
                   <img
-                    src="../../../../assets/dashboard/arrow_more.png"
-                    alt="down"
+                    v-if="getDevice === 'pc'"
+                    class="first"
+                    src="../../../../assets/realtor/ad/지역플러스pc.png"
+                    alt="지역플러스"
                   />
-                </button>
-                <button class="cart">
-                  <i class="fa-solid fa-cart-plus"></i>
-                </button>
-                <button class="apply">신청하기</button>
+                  <img
+                    v-if="getDevice !== 'pc'"
+                    class="first"
+                    src="../../../../assets/realtor/ad/지역플러스.png"
+                    alt="지역플러스"
+                  />
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="more-box" v-if="showPlus">
-            <div class="menu-detail">
-              <div class="detail plus">
-                <img
-                  class="first"
-                  src="../../../../assets/realtor/ad/지역플러스.png"
-                  alt="지역플러스1"
-                />
-                <img
-                  class="second"
-                  src="../../../../assets/realtor/ad/지역플러스2.png"
-                  alt="지역플러스2"
-                />
+              <div class="ment">
+                · 기본 내 지역 + 주변지역까지 노출이 가능한 추가상품입니다.<br />
+                · 사용자가 검색한 지역에 따라 랜덤으로 노출 될 수 있습니다.
               </div>
-            </div>
-            <div class="ment">
-              · 기본 내 지역 + 주변지역까지 노출이 가능한 추가상품입니다.<br />
-              · 사용자가 검색한 지역에 따라 랜덤으로 노출 될 수 있습니다.
             </div>
           </div>
 
           <div>
-            <div class="box">
+            <div :class="{ boxstyle: showRecommend }" class="box">
               <div class="name-sub">
                 <div class="name">추천 중개사 (30일)</div>
                 <div class="sub">추천중개사 목록 상위 노출</div>
@@ -64,13 +74,19 @@
                 </div>
                 <div class="btn">
                   <button
-                    class="detail"
+                    class="detail-btn"
                     @click="showRecommend = !showRecommend"
                   >
                     상세보기
                     <img
+                      v-if="!showRecommend"
                       src="../../../../assets/dashboard/arrow_more.png"
                       alt="down"
+                    />
+                    <img
+                      v-if="showRecommend"
+                      src="../../../../assets/dashboard/arrow_close.png"
+                      alt="up"
                     />
                   </button>
                   <button class="cart">
@@ -83,42 +99,21 @@
             <div class="more-box" v-if="showRecommend">
               <div class="menu-detail">
                 <div class="detail recommend">
-                  <div v-if="getDevice === 'tablet'">
-                    <img
-                      class="first"
-                      src="../../../../assets/realtor/ad/tab-추천중개사.png"
-                      alt="추천중개사"
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/realtor/ad/tab-추천중개사2.png"
-                      alt="추천중개사2"
-                    />
-                  </div>
-                  <div v-if="getDevice === 'pc'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/realtor/ad/pc-추천중개사.png"
-                      alt="추천중개사"
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/realtor/ad/pc-추천중개사2.png"
-                      alt="추천중개사2"
-                    />
-                  </div>
-                  <div v-if="getDevice === 'mobile'" class="detail">
-                    <img
-                      class="first"
-                      src="../../../../assets/realtor/ad/mob-추천중개사.png"
-                      alt="추천중개사"
-                    />
-                    <img
-                      class="second"
-                      src="../../../../assets/realtor/ad/mob-추천중개사2.png"
-                      alt="추천중개사2"
-                    />
-                  </div>
+                  <img
+                    v-if="getDevice === 'pc'"
+                    src="../../../../assets/realtor/ad/추천중개사pc.png"
+                    alt="추천중개사"
+                  />
+                  <img
+                    v-if="getDevice === 'tablet'"
+                    src="../../../../assets/realtor/ad/추천중개사tab.png"
+                    alt="추천중개사"
+                  />
+                  <img
+                    v-if="getDevice === 'mobile'"
+                    src="../../../../assets/realtor/ad/추천중개사mob.png"
+                    alt="추천중개사"
+                  />
                 </div>
                 <div class="ment">
                   · 상권정보 브랜드리스트 검색시 중개사 리스트 상단 영역에
@@ -250,7 +245,7 @@ article {
             height: 50px;
             display: flex;
             gap: 10px;
-            .detail,
+            .detail-btn,
             .cart {
               border-radius: 10px;
               border: 1px solid $iconLine;
@@ -265,7 +260,7 @@ article {
               border: 1px solid $subColor;
               color: $subColor;
             }
-            .detail {
+            .detail-btn {
               width: 100%;
               display: flex;
               align-items: center;
@@ -294,9 +289,13 @@ article {
         }
       }
 
+      .boxstyle {
+        box-shadow: 0 0 0 1px $mainColor inset;
+      }
+
       .more-box {
-        margin-top: -40px;
-        padding: 50px 30px;
+        margin-top: -30px;
+        padding: 80px 30px 50px 30px;
         background-color: #fafafa;
         border: 1px solid $iconLine;
         border-radius: 10px;
@@ -304,54 +303,16 @@ article {
           .menu {
             display: flex;
             justify-content: space-around;
-            div {
-              width: 100%;
-              height: 42px;
-              background-color: $sectionLine;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              border-top-left-radius: 10px;
-              border-top-right-radius: 10px;
-              border: 1px solid $iconLine;
-              border-bottom: none;
-              font-size: 15px;
-              color: $fontSub;
-              cursor: pointer;
-            }
           }
           .detail {
-            padding: 25px 0 0;
             background-color: white;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 50px;
-          }
-          .plus {
-            .first {
-              width: 276px;
-              height: 276px;
-            }
-            .second {
-              width: 397px;
-              height: 210px;
-            }
-          }
-          .recommend {
-            div {
-              display: flex;
-              flex-direction: column;
-              gap: 50px;
-              .first {
-                width: 312px;
-                height: 418px;
-              }
-              .second {
-                width: 313px;
-                height: 384px;
-              }
+            img {
+              width: 100%;
             }
           }
         }
@@ -437,6 +398,10 @@ article {
             }
           }
         }
+        .boxstyle {
+          box-shadow: none;
+          border-bottom: 1px solid $mainColor;
+        }
 
         .more-box {
           margin-top: 0;
@@ -447,31 +412,6 @@ article {
               padding: 0;
               gap: 0;
               margin-bottom: 20px;
-            }
-            .plus {
-              padding: 50px 12px 0 12px;
-              gap: 50px;
-              .first {
-                width: 90%;
-                height: 100%;
-              }
-              .second {
-                width: 100%;
-                height: 100%;
-              }
-            }
-            .recommend {
-              div {
-                flex-direction: row;
-                justify-content: center;
-                gap: 14px;
-                padding: 30px 15px;
-                .first,
-                .second {
-                  width: 48%;
-                  height: 100%;
-                }
-              }
             }
           }
           .ment {
@@ -547,29 +487,6 @@ article {
               justify-content: center;
               align-items: flex-start;
               gap: 98px;
-            }
-            .plus {
-              padding: 58px 70px 0 120px;
-
-              .second {
-                width: 646px;
-                height: 342px;
-              }
-            }
-            .recommend {
-              div {
-                padding: 58px 170px 0 48px;
-                flex-direction: row;
-                gap: 204px;
-                .first {
-                  width: 508px;
-                  height: 284px;
-                }
-                .second {
-                  width: 280px;
-                  height: 342px;
-                }
-              }
             }
           }
         }

@@ -9,7 +9,7 @@
               v-if="getDevice === 'mobile'"
               @click="$emit('showBrandChange')"
             >
-              <img src="../../../../assets/login/arrow_lt.png" alt="뒤로" />
+              <img src="../../../../../assets/login/arrow_lt.png" alt="뒤로" />
             </div>
             <div class="title">브랜드 전환</div>
             <div
@@ -17,75 +17,107 @@
               v-if="getDevice !== 'mobile'"
               @click="$emit('showBrandChange')"
             >
-              <img src="../../../../assets/login/close.png" alt="닫기" />
+              <img src="../../../../../assets/login/close.png" alt="닫기" />
             </div>
           </div>
 
           <div class="brand-list">
-            <div class="box select">
+            <div
+              :class="{ select: selectList === '1' }"
+              @click="selectList = '1'"
+              class="box"
+            >
               <img
-                src="../../../../assets/dashboard/modal/brand_1.png"
+                src="../../../../../assets/dashboard/modal/brand_1.png"
                 alt=""
               />
               <div class="brand-info">
                 백종원의 원조쌈밥집
                 <img
-                  src="../../../../assets/dashboard/premium.png"
+                  src="../../../../../assets/dashboard/premium.png"
                   alt="프리미엄"
                 />
               </div>
             </div>
-            <div class="box">
+            <div
+              :class="{ select: selectList === '2' }"
+              @click="selectList = '2'"
+              class="box"
+            >
               <img
-                src="../../../../assets/dashboard/modal/brand_2.png"
+                src="../../../../../assets/dashboard/modal/brand_2.png"
                 alt=""
               />
               <div class="brand-info">미정국수0410</div>
             </div>
-            <div class="box">
+            <div
+              :class="{ select: selectList === '3' }"
+              @click="selectList = '3'"
+              class="box"
+            >
               <img
-                src="../../../../assets/dashboard/modal/brand_3.png"
+                src="../../../../../assets/dashboard/modal/brand_3.png"
                 alt=""
               />
               <div class="brand-info">백철판0410</div>
             </div>
-            <div class="box">
+            <div
+              :class="{ select: selectList === '4' }"
+              @click="selectList = '4'"
+              class="box"
+            >
               <img
-                src="../../../../assets/dashboard/modal/brand_4.png"
+                src="../../../../../assets/dashboard/modal/brand_4.png"
                 alt=""
               />
               <div class="brand-info">
                 한신포차
                 <img
-                  src="../../../../assets/dashboard/premium.png"
+                  src="../../../../../assets/dashboard/premium.png"
                   alt="프리미엄"
                 />
               </div>
             </div>
-            <div class="box">
+            <div
+              :class="{ select: selectList === '5' }"
+              @click="selectList = '5'"
+              class="box"
+            >
               <img
-                src="../../../../assets/dashboard/modal/brand_5.png"
+                src="../../../../../assets/dashboard/modal/brand_5.png"
                 alt=""
               />
               <div class="brand-info">새마을식당</div>
             </div>
-            <div class="box">
+            <div
+              :class="{ select: selectList === '6' }"
+              @click="selectList = '6'"
+              class="box"
+            >
               <img
-                src="../../../../assets/dashboard/modal/brand_6.png"
+                src="../../../../../assets/dashboard/modal/brand_6.png"
                 alt=""
               />
               <div class="brand-info">역전우동0410</div>
             </div>
-            <div class="box">
+            <div
+              :class="{ select: selectList === '7' }"
+              @click="selectList = '7'"
+              class="box"
+            >
               <img
-                src="../../../../assets/dashboard/modal/brand_7.png"
+                src="../../../../../assets/dashboard/modal/brand_7.png"
                 alt=""
               />
               <div class="brand-info">홍콩반점0410</div>
             </div>
-            <div class="box">
+            <div
+              :class="{ select: selectList === '8' }"
+              @click="selectList = '8'"
+              class="box"
+            >
               <img
-                src="../../../../assets/dashboard/modal/brand_8.png"
+                src="../../../../../assets/dashboard/modal/brand_8.png"
                 alt=""
               />
               <div class="brand-info">빽다방</div>
@@ -102,8 +134,8 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted } from 'vue'
-import { useWindowStore } from '../../../../store/window'
+import { onMounted, onUnmounted, ref } from 'vue'
+import { useWindowStore } from '../../../../../store/window'
 import { storeToRefs } from 'pinia'
 
 const store = useWindowStore()
@@ -120,6 +152,8 @@ onMounted(() => {
 onUnmounted(() => {
   document.body.removeAttribute('style')
 })
+
+const selectList = ref<string>('1')
 </script>
 
 <style lang="scss" scoped>

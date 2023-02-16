@@ -52,7 +52,7 @@
 
           <div class="content search">
             <div class="box">
-              <div class="name">주간 검색어 순위</div>
+              <div class="name">많이 본 지역 현황</div>
             </div>
           </div>
         </div>

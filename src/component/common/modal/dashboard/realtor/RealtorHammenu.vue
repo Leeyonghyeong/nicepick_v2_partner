@@ -10,18 +10,14 @@
 
       <div class="info-button">
         <div class="info">
-          <img src="../../../../assets/dashboard/icecream.png" alt="프로필" />
+          <img
+            src="../../../../assets/realtor/중개소-프로필.png"
+            alt="프로필"
+          />
           <div class="name-contact">
-            <div class="name">**아이스크림</div>
-            <div class="contact">icecream@gmail.com</div>
+            <div class="name">창업픽부동산중개사무소</div>
+            <div class="contact">changuppick@gmail.com</div>
           </div>
-        </div>
-
-        <div class="brand-change" @click="showBrandChange">
-          <button>
-            <i class="fa-solid fa-arrows-rotate"></i>
-            브랜드 전환
-          </button>
         </div>
 
         <div class="button">
@@ -40,24 +36,16 @@
         <div class="logout">로그아웃</div>
       </div>
     </div>
-
-    <BrandChange v-if="showModal" @showBrandChange="showBrandChange" />
   </section>
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import BrandChange from '../../modal/dashboard/BrandChange.vue'
-import { useWindowStore } from '../../../../store/window'
+import { onMounted, onUnmounted } from 'vue'
+import { useWindowStore } from '../../../../../store/window'
 import { storeToRefs } from 'pinia'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
-
-const showModal = ref<boolean>(false)
-const showBrandChange = () => {
-  showModal.value = !showModal.value
-}
 
 defineEmits<{
   (e: 'showHammenuModal'): void
@@ -103,11 +91,11 @@ section {
         width: 69px;
         height: 36px;
         background-color: white;
-        border: 1px solid $mainColor;
+        border: 1px solid #1569ff;
         border-radius: 5px;
         font-size: 13px;
         font-family: Pretendard;
-        color: $mainColor;
+        color: #1569ff;
         cursor: pointer;
       }
       .close {
@@ -129,7 +117,7 @@ section {
         align-items: center;
         gap: 10px;
         img {
-          width: 129px;
+          width: 52px;
           height: 52px;
         }
         .name-contact {
@@ -141,28 +129,6 @@ section {
           .contact {
             padding-top: 6px;
             font-size: 12px;
-          }
-        }
-      }
-
-      .brand-change {
-        display: flex;
-        justify-content: center;
-        padding: 0 24px;
-        button {
-          width: 100%;
-          height: 50px;
-          border-radius: 10px;
-          border: none;
-          background-color: $mainColor;
-          font-family: Pretendard;
-          font-size: 16px;
-          color: white;
-          font-weight: $reg;
-          cursor: pointer;
-          i {
-            padding-right: 6px;
-            font-size: 14px;
           }
         }
       }

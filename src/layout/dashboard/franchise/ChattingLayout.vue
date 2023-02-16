@@ -1,24 +1,15 @@
 <template>
-  <DashHeader />
+  <DashHeader v-if="getDevice !== 'mobile'" />
 
   <div class="flex">
     <DashboardCategory />
-    <div>
-      <RouterView class="width" />
-      <div v-if="getDevice !== 'mobile'">
-        <Footer />
-      </div>
-    </div>
+    <RouterView class="width" />
   </div>
-
-  <FranchiseMenubar />
 </template>
 
 <script lang="ts" setup>
 import DashHeader from '../../../component/common/dashboard/franchise/DashboardHeader.vue'
-import Footer from '../../../component/common/modal/dashboard/DashboardFooter.vue'
 import DashboardCategory from '../../../component/common/dashboard/franchise/DashboardCategory.vue'
-import FranchiseMenubar from '../../../component/common/dashboard/franchise/FranchiseMenubar.vue'
 
 import { onMounted } from 'vue'
 import { useWindowStore } from '../../../store/window'
@@ -40,12 +31,9 @@ onMounted(() => {
 .flex {
   display: flex;
   background-color: #f2f4f7;
-  div {
-    width: 100%;
-    height: 100%;
-  }
   .width {
     width: 100%;
+    height: 100%;
   }
 }
 </style>

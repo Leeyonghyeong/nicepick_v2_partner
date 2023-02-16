@@ -598,7 +598,7 @@ article {
 
 @include pc {
   article {
-    padding: 50px 0px 0px 160px;
+    padding: 50px 0 60px 160px;
     box-sizing: border-box;
     width: 100%;
 

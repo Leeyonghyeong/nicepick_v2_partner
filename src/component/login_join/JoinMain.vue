@@ -34,7 +34,7 @@
         </div>
       </RouterLink>
 
-      <RouterLink to="Realtorjoin" class="none">
+      <RouterLink to="realtorjoin" class="none">
         <div class="box realtor">
           <i class="fa-solid fa-people-roof"></i>
           <div>공인중개사</div>

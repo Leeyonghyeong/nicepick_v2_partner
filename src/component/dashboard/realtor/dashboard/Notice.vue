@@ -19,14 +19,16 @@
           <div class="name">[긴급] 창업픽 파트너 2023년 공지사항</div>
           <div class="period">2023.01.01</div>
         </div>
-        <div
-          class="list"
-          :class="{ select: selectList === '2' }"
-          @click="selectList = '2'"
-        >
-          <div class="name">공인중개사 광고 상품 공지사항</div>
-          <div class="period">2022.12.01</div>
-        </div>
+        <RouterLink to="/realtor/noticemain" style="text-decoration: none">
+          <div
+            class="list"
+            :class="{ select: selectList === '2' }"
+            @click="selectList = '2'"
+          >
+            <div class="name">공인중개사 광고 상품 공지사항</div>
+            <div class="period">2022.12.01</div>
+          </div>
+        </RouterLink>
         <div
           class="list"
           :class="{ select: selectList === '3' }"
