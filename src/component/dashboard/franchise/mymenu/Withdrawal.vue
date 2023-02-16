@@ -37,7 +37,7 @@
           <div class="select-list">
             <div class="select">
               <label for="rejoin">
-                <input type="radio" name="select" id="rejoin" />
+                <input type="radio" name="select" id="rejoin" checked />
                 <div class="title">개인정보 변경으로 재가입할거에요.</div>
               </label>
             </div>
@@ -184,6 +184,7 @@ article {
           label {
             display: flex;
             gap: 6px;
+            cursor: pointer;
             .title {
               font-size: 15px;
               color: $fontMain;
@@ -192,6 +193,22 @@ article {
             .title {
               cursor: pointer;
             }
+          }
+          input {
+            margin: 0;
+          }
+          input[type='radio'] {
+            appearance: none;
+            border: 1px solid $inputLine;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+          }
+          input[type='radio']:checked {
+            background-image: url(../../../../assets/dashboard/checked.png);
+            background-repeat: no-repeat;
+            background-size: 8px;
+            background-position: center;
           }
         }
         .etc {

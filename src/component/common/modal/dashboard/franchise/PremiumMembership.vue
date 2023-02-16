@@ -5,7 +5,7 @@
         <div class="modal-box">
           <div class="padding-box">
             <div class="close" @click="$emit('showPremiumModal')">
-              <img src="../../../../assets/login/close.png" alt="닫기" />
+              <img src="../../../../../assets/login/close.png" alt="닫기" />
             </div>
 
             <div class="title">

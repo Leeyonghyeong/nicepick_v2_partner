@@ -17,12 +17,25 @@
 
           <div class="period">
             <div class="name">광고기간</div>
-            <div class="period-list" @click="showPeriodList">
+            <div
+              @click="showList = !showList"
+              :class="{ style: showList === true }"
+              class="period-list"
+            >
               <div>30일</div>
-              <img src="../../../../assets/dashboard/down.png" alt="down" />
+              <img
+                v-if="showList === true"
+                src="../../../../assets/dashboard/up.png"
+                alt="up"
+              />
+              <img
+                v-if="showList === false"
+                src="../../../../assets/dashboard/down.png"
+                alt="down"
+              />
             </div>
           </div>
-          <div class="list" v-if="showList" @showPeriodList="showPeriodList">
+          <div v-if="showList === true" class="list">
             <div class="padding">
               <div>30일</div>
               <div>60일(10% 할인)</div>
@@ -62,9 +75,6 @@ import { ref } from 'vue'
 import { onMounted, onUnmounted } from 'vue'
 
 const showList = ref<boolean>(false)
-const showPeriodList = () => {
-  showList.value = !showList.value
-}
 
 defineEmits<{
   (e: 'showCartOption'): void
@@ -172,18 +182,21 @@ section {
               height: 20px;
             }
           }
+          .style {
+            border: 1px solid $mainColor;
+          }
         }
         .list {
-          width: 296px;
-          box-sizing: border-box;
-          background-color: white;
-          border: 1px solid $inputLine;
-          border-radius: 10px;
-          position: absolute;
-          top: 242px;
-          right: 30px;
-          overflow: hidden;
           .padding {
+            width: 296px;
+            box-sizing: border-box;
+            background-color: white;
+            border: 1px solid $inputLine;
+            border-radius: 10px;
+            position: absolute;
+            top: 242px;
+            right: 30px;
+            overflow: hidden;
             div {
               font-size: 14px;
               color: $fontMain;
@@ -269,7 +282,7 @@ section {
           }
 
           .item-name {
-            padding: 30px 24px 20px 24px;
+            padding: 30px 24px 0;
           }
 
           .period {
@@ -283,9 +296,11 @@ section {
           }
 
           .list {
-            width: 100%;
-            top: 285px;
-            right: 0;
+            .padding {
+              width: 100%;
+              top: 265px;
+              right: 0;
+            }
           }
 
           .cost-section {

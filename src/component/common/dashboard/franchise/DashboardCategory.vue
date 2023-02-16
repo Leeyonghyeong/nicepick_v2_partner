@@ -129,7 +129,11 @@
         </div>
       </article>
 
-      <BrandChange v-if="showModal" @showBrandChange="showBrandChange" />
+      <BrandChange
+        v-if="showModal"
+        @showBrandChange="showBrandChange"
+        style="z-index: 10"
+      />
     </div>
   </section>
 </template>
@@ -138,7 +142,7 @@
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { useWindowStore } from '../../../../store/window'
-import BrandChange from '../../modal/dashboard/BrandChange.vue'
+import BrandChange from '../../modal/dashboard/franchise/BrandChange.vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
@@ -172,7 +176,6 @@ section {
       display: flex;
       justify-content: center;
       text-align: center;
-
       padding: 50px 0 30px 0;
 
       .info-box {

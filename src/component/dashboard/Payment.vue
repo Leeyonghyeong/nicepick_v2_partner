@@ -94,7 +94,8 @@
                     alt="삭제"
                   />
                 </div>
-                <div class="option-cost no-option">
+                <div class="option-cost">
+                  <div class="option">1개</div>
                   <div class="cost">
                     <div class="bold">99,000원</div>
                   </div>
@@ -148,6 +149,26 @@
                   </div>
                 </div>
               </div>
+              <div class="url-input">
+                <div class="check-list">
+                  <div class="name">URL 주소</div>
+                  <label @click="mainTopUrl = 'detail'" class="detail">
+                    <input type="radio" name="url" id="detail" checked />
+                    <div class="name">내 브랜드 상세</div>
+                  </label>
+                  <label @click="mainTopUrl = 'url'" class="url">
+                    <input type="radio" name="url" id="url" />
+                    <div class="name">URL</div>
+                  </label>
+                </div>
+                <input
+                  class="link"
+                  type="text"
+                  placeholder="배너 클릭시 이동할 URL을 입력해 주세요."
+                  :disabled="mainTopUrl === 'detail'"
+                  :class="{ urlstyle: mainTopUrl === 'url' }"
+                />
+              </div>
               <div class="guide">
                 · 이미지는 사이즈에 맞춰 등록해 주세요. <br />
                 · 이미지의 단위는 픽셀(px)입니다. <br />
@@ -161,15 +182,15 @@
               </div>
               <div class="select-highlight">
                 <div class="flex">
-                  <label class="title">
+                  <label @click="highLight = 'title'" class="title">
                     <input type="radio" name="select" id="title" checked />
                     <div class="name">제목 강조</div>
                   </label>
-                  <label class="main">
+                  <label @click="highLight = 'main'" class="main">
                     <input type="radio" name="select" id="main" />
                     <div class="name">본문 강조</div>
                   </label>
-                  <label class="all">
+                  <label @click="highLight = 'all'" class="all">
                     <input type="radio" name="select" id="all" />
                     <div class="name">전체 강조</div>
                   </label>
@@ -178,7 +199,14 @@
                 <div class="sub">광고 문구 : 제목 12자 + 본문 14자</div>
               </div>
               <div class="setting-banner" :style="{ backgroundColor: main }">
-                <div class="input-section">
+                <div
+                  :class="{
+                    titlelight: highLight === 'title',
+                    mainlight: highLight === 'main',
+                    alllight: highLight === 'all',
+                  }"
+                  class="input-section"
+                >
                   <input
                     class="title"
                     type="text"
@@ -224,6 +252,26 @@
                   />
                 </div>
               </div>
+              <div class="url-input">
+                <div class="check-list">
+                  <div class="name">URL 주소</div>
+                  <label @click="specialUrl = 'detail'" class="detail">
+                    <input type="radio" name="url2" id="detail2" checked />
+                    <div class="name">내 브랜드 상세</div>
+                  </label>
+                  <label @click="specialUrl = 'url'" class="url">
+                    <input type="radio" name="url2" id="url2" />
+                    <div class="name">URL</div>
+                  </label>
+                </div>
+                <input
+                  class="link"
+                  type="text"
+                  placeholder="배너 클릭시 이동할 URL을 입력해 주세요."
+                  :disabled="specialUrl === 'detail'"
+                  :class="{ urlstyle: specialUrl === 'url' }"
+                />
+              </div>
               <div class="guide">
                 · 배너의 문구 양식대로 등록해 주세요.<br />
                 · 이미지는 사이즈에 맞춰 등록해 주세요.<br />
@@ -258,11 +306,17 @@
           <div class="way">
             <div class="title">결제수단</div>
             <div class="box pay-btn">
-              <button class="select">
+              <button
+                :class="{ select: selectPay === 'credit' }"
+                @click="selectPay = 'credit'"
+              >
                 <i class="fa-regular fa-money-bill-1"></i>
                 신용카드
               </button>
-              <button>
+              <button
+                :class="{ select: selectPay === 'cash' }"
+                @click="selectPay = 'cash'"
+              >
                 <i class="fa-regular fa-credit-card"></i>
                 계좌이체
               </button>
@@ -327,13 +381,10 @@ const mainColorChange = (event: ColorChangeEvent) => {
   main.value = event.cssColor
 }
 
-const countItem = ref<number>(1)
-const countUp = () => {
-  countItem.value++
-}
-const countDown = () => {
-  countItem.value--
-}
+const selectPay = ref<string>('credit')
+const highLight = ref<string>('title')
+const mainTopUrl = ref<string>('detail')
+const specialUrl = ref<string>('detail')
 </script>
 
 <style lang="scss" scoped>
@@ -409,16 +460,8 @@ article {
             justify-content: space-between;
             align-items: center;
             .option {
-              width: 130px;
-              height: 40px;
-              border: 1px solid $inputLine;
-              border-radius: 5px;
-              background-color: white;
-              font-size: 14px;
-              font-family: Pretendard;
-              font-weight: $reg;
+              font-size: 13px;
               color: $fontSub;
-              cursor: pointer;
             }
             .btn {
               display: flex;
@@ -546,7 +589,6 @@ article {
           .guide {
             border-top: 1px solid $sectionLine;
             padding-top: 30px;
-            margin-top: 30px;
             font-size: 14px;
             color: $fontSub;
             line-height: 24px;
@@ -622,11 +664,26 @@ article {
                 border: none;
               }
               .title {
-                font-weight: $semi;
                 font-size: 20px;
               }
               .main {
                 font-size: 16px;
+              }
+            }
+            .titlelight {
+              .title {
+                font-weight: $semi;
+              }
+            }
+            .mainlight {
+              .main {
+                font-weight: $semi;
+              }
+            }
+            .alllight {
+              .title,
+              .main {
+                font-weight: $semi;
               }
             }
             .image-section {
@@ -635,7 +692,7 @@ article {
             }
           }
           .select-color {
-            padding: 20px 0 30px 0;
+            padding-top: 20px;
             display: flex;
             gap: 20px;
             .box {
@@ -648,8 +705,57 @@ article {
               }
             }
           }
-          .guide {
+        }
+      }
+      .url-input {
+        padding-top: 30px;
+        .link {
+          width: 100%;
+          height: 50px;
+          margin: 20px 0 30px;
+          border-radius: 10px;
+          background-color: $sectionLine;
+          border: 1px solid $iconLine;
+          padding-left: 16px;
+          box-sizing: border-box;
+          font-size: 16px;
+          font-family: $pre;
+        }
+        .link::placeholder {
+          color: $inputLine;
+        }
+        .urlstyle {
+          background-color: white;
+        }
+      }
+      .check-list {
+        display: flex;
+        gap: 20px;
+        label {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          cursor: pointer;
+          input {
             margin: 0;
+            cursor: pointer;
+          }
+          input[type='radio'] {
+            appearance: none;
+            border: 1px solid $inputLine;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+          }
+          input[type='radio']:checked {
+            background-image: url(../../assets/dashboard/checked.png);
+            background-repeat: no-repeat;
+            background-size: 8px;
+            background-position: center;
+          }
+          .name {
+            font-size: 14px;
+            color: $fontMain;
           }
         }
       }
@@ -994,6 +1100,8 @@ article {
               margin-right: 72px;
               width: 320px;
               padding-top: 0;
+              justify-content: flex-end;
+              gap: 150px;
             }
           }
         }

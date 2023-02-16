@@ -16,24 +16,24 @@
       <div class="date-state">
         <div class="date">
           <div class="date-gap">
-            <input type="date" value="" />
+            <!-- <Datepicker v-model="date"></Datepicker>
             <span>-</span>
-            <input type="date" value="" />
+            <Datepicker v-model="date"></Datepicker> -->
           </div>
           <button>조회</button>
         </div>
 
-        <div class="state">
-          <label class="all">
-            <input type="radio" name="select" id="all" checked />
+        <div class="flex">
+          <label class="title">
+            <input type="radio" name="state" id="all" checked />
             <div class="name">전체</div>
           </label>
-          <label class="ing">
-            <input type="radio" name="select" id="ing" />
+          <label class="main">
+            <input type="radio" name="state" id="ing" />
             <div class="name">이용중</div>
           </label>
-          <label class="complete">
-            <input type="radio" name="select" id="complete" />
+          <label class="all">
+            <input type="radio" name="complete" id="all" />
             <div class="name">이용완료</div>
           </label>
         </div>
@@ -101,7 +101,10 @@
           </div>
         </div>
 
-        <div class="ing-item add-banner">
+        <div
+          :class="{ style: bannerApply === 'show' }"
+          class="ing-item add-banner"
+        >
           <div class="padding">
             <div class="title">
               <div>구매완료 <span class="ing">· 이용중</span></div>
@@ -132,51 +135,64 @@
               </div>
             </div>
           </div>
-          <div class="more">
+          <div
+            v-if="bannerApply !== 'show'"
+            @click="bannerApply = 'show'"
+            class="more"
+          >
             <img
               src="../../../../assets/dashboard/arrow_more.png"
               alt="더보기"
             />
           </div>
         </div>
-        <div class="banner-section">
+        <div v-if="bannerApply === 'show'" class="banner-section">
           <div class="padding">
             <div class="title-save">
-              <div class="title">이미지 등록</div>
+              <div class="title">문구/이미지 수정</div>
               <button class="save">저장</button>
             </div>
             <div class="select-highlight">
               <div class="flex">
-                <label class="title">
-                  <input type="radio" name="select" id="title" checked />
+                <label @click="highLight = 'title'" class="title">
+                  <input type="radio" name="highlight" id="title" checked />
                   <div class="name">제목 강조</div>
                 </label>
-                <label class="main">
-                  <input type="radio" name="select" id="main" />
+                <label @click="highLight = 'main'" class="main">
+                  <input type="radio" name="highlight" id="main" />
                   <div class="name">본문 강조</div>
                 </label>
-                <label class="all">
-                  <input type="radio" name="select" id="all" />
+                <label @click="highLight = 'all'" class="all">
+                  <input type="radio" name="highlight" id="all" />
                   <div class="name">전체 강조</div>
                 </label>
               </div>
               <div class="border"></div>
-              <div class="ment">광고 문구 : 제목 12자 + 본문 14자</div>
+              <div class="ment">
+                광고 문구 : 제목 12자 + 본문 14자 / 이미지 사이즈: 280x200
+              </div>
             </div>
             <div class="setting-banner" :style="{ backgroundColor: main }">
-              <div class="input-section">
+              <div
+                :class="{
+                  titlelight: highLight === 'title',
+                  mainlight: highLight === 'main',
+                  alllight: highLight === 'all',
+                }"
+                class="input-section"
+              >
                 <input
                   class="title"
                   type="text"
                   placeholder="제목을 입력하세요"
-                  maxlength="12"
+                  maxlength="20"
                   :style="{ color: title }"
                 />
                 <input
                   class="main"
                   type="text"
                   placeholder="본문을 입력하세요"
-                  maxlength="14"
+                  maxlength="20"
                   :style="{ color: title }"
                 />
               </div>
@@ -210,6 +226,26 @@
                 />
               </div>
             </div>
+            <div class="url-input">
+              <div class="flex">
+                <div class="name">URL 주소</div>
+                <label @click="recommendUrl = 'detail'" class="detail">
+                  <input type="radio" name="url" id="detail" checked />
+                  <div class="name">내 브랜드 상세</div>
+                </label>
+                <label @click="recommendUrl = 'url'" class="url">
+                  <input type="radio" name="url" id="url" />
+                  <div class="name">URL</div>
+                </label>
+              </div>
+              <input
+                class="link"
+                type="text"
+                placeholder="배너 클릭시 이동할 URL을 입력해 주세요."
+                :disabled="recommendUrl === 'detail'"
+                :class="{ urlstyle: recommendUrl === 'url' }"
+              />
+            </div>
             <div class="ment">
               · 배너의 문구 양식대로 등록해 주세요.<br />
               · 이미지는 사이즈에 맞춰 등록해 주세요.<br />
@@ -217,12 +253,15 @@
               · 이미지는 배경없는 .png 파일만 등록이 가능합니다.
             </div>
           </div>
-          <div class="close">
+          <div @click="bannerApply = 'hide'" class="close">
             <img src="../../../../assets/login/arrow_up.png" alt="닫기" />
           </div>
         </div>
 
-        <div class="complete-item add-banner">
+        <div
+          :class="{ style: imageApply === 'show' }"
+          class="complete-item add-banner"
+        >
           <div class="padding">
             <div class="title">
               <div>구매완료 · 이용완료</div>
@@ -253,17 +292,21 @@
               </div>
             </div>
           </div>
-          <div class="more">
+          <div
+            v-if="imageApply !== 'show'"
+            @click="imageApply = 'show'"
+            class="more"
+          >
             <img
               src="../../../../assets/dashboard/arrow_more.png"
               alt="더보기"
             />
           </div>
         </div>
-        <div class="banner-section">
+        <div v-if="imageApply === 'show'" class="banner-section">
           <div class="padding">
             <div class="title-save">
-              <div class="title">이미지 등록</div>
+              <div class="title">이미지 수정</div>
               <button class="save">저장</button>
             </div>
             <div class="apply-image">
@@ -306,12 +349,32 @@
                 </div>
               </div>
             </div>
+            <div class="url-input">
+              <div class="flex">
+                <div class="name">URL 주소</div>
+                <label @click="mainTopUrl = 'detail'" class="detail">
+                  <input type="radio" name="url2" id="detail2" checked />
+                  <div class="name">내 브랜드 상세</div>
+                </label>
+                <label @click="mainTopUrl = 'url'" class="url">
+                  <input type="radio" name="url2" id="url2" />
+                  <div class="name">URL</div>
+                </label>
+              </div>
+              <input
+                class="link"
+                type="text"
+                placeholder="배너 클릭시 이동할 URL을 입력해 주세요."
+                :disabled="mainTopUrl === 'detail'"
+                :class="{ urlstyle: mainTopUrl === 'url' }"
+              />
+            </div>
             <div class="ment">
               · 이미지의 단위는 픽셀(px)입니다.<br />
               · 이미지는 사이즈에 맞춰 등록해 주세요.
             </div>
           </div>
-          <div class="close">
+          <div @click="imageApply = ''" class="close">
             <img src="../../../../assets/login/arrow_up.png" alt="닫기" />
           </div>
         </div>
@@ -334,6 +397,12 @@ const titleColorChange = (event: ColorChangeEvent) => {
 const mainColorChange = (event: ColorChangeEvent) => {
   main.value = event.cssColor
 }
+
+const bannerApply = ref<string>('show')
+const imageApply = ref<string>('show')
+const highLight = ref<string>('title')
+const recommendUrl = ref<string>('detail')
+const mainTopUrl = ref<string>('detail')
 </script>
 
 <style lang="scss" scoped>
@@ -347,6 +416,38 @@ article {
   .none {
     text-decoration: none;
     color: inherit;
+  }
+
+  .flex {
+    display: flex;
+    gap: 20px;
+    label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      input {
+        margin: 0;
+        cursor: pointer;
+      }
+      input[type='radio'] {
+        appearance: none;
+        border: 1px solid $inputLine;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+      }
+      input[type='radio']:checked {
+        background-image: url(../../../../assets/dashboard/checked.png);
+        background-repeat: no-repeat;
+        background-size: 8px;
+        background-position: center;
+      }
+      .name {
+        font-size: 14px;
+        color: $fontMain;
+      }
+    }
   }
 
   .top-title {
@@ -408,37 +509,6 @@ article {
         cursor: pointer;
       }
     }
-    .state {
-      display: flex;
-      gap: 20px;
-      label {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        cursor: pointer;
-        input {
-          margin: 0;
-          cursor: pointer;
-        }
-        input[type='radio'] {
-          appearance: none;
-          border: 1px solid $inputLine;
-          border-radius: 50%;
-          width: 16px;
-          height: 16px;
-        }
-        input[type='radio']:checked {
-          background-image: url(../../../../assets/dashboard/checked.png);
-          background-repeat: no-repeat;
-          background-size: 8px;
-          background-position: center;
-        }
-        .name {
-          font-size: 14px;
-          color: $fontMain;
-        }
-      }
-    }
   }
 
   .history {
@@ -468,6 +538,7 @@ article {
       background-color: white;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
       border-radius: 10px;
+      z-index: 1;
 
       .title {
         padding-bottom: 10px;
@@ -570,10 +641,13 @@ article {
         }
       }
     }
+    .style {
+      box-shadow: 0 0 0 1px $mainColor inset;
+    }
     .add-banner {
       padding: 0;
       .padding {
-        padding: 30px 30px 0 30px;
+        padding: 30px;
       }
       .more {
         width: 100%;
@@ -581,22 +655,21 @@ article {
         justify-content: center;
         border-top: 1px solid $sectionLine;
         padding: 10px 0;
-        margin-top: 32px;
+        cursor: pointer;
         img {
           width: 20px;
           height: 20px;
-          cursor: pointer;
         }
       }
     }
 
     .banner-section {
-      margin-top: -60px;
+      margin-top: -40px;
       background-color: white;
       border-radius: 10px;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
       .padding {
-        padding: 50px 30px 30px;
+        padding: 80px 30px 30px;
         .image-section {
           background-color: #f2f4f7;
           .btn-upload {
@@ -652,37 +725,6 @@ article {
           display: flex;
           align-items: center;
           gap: 20px;
-          .flex {
-            display: flex;
-            gap: 20px;
-            label {
-              display: flex;
-              align-items: center;
-              gap: 4px;
-              cursor: pointer;
-              input {
-                margin: 0;
-                cursor: pointer;
-              }
-              input[type='radio'] {
-                appearance: none;
-                border: 1px solid $inputLine;
-                border-radius: 50%;
-                width: 16px;
-                height: 16px;
-              }
-              input[type='radio']:checked {
-                background-image: url(../../../../assets/dashboard/checked.png);
-                background-repeat: no-repeat;
-                background-size: 8px;
-                background-position: center;
-              }
-              .name {
-                font-size: 14px;
-                color: $fontMain;
-              }
-            }
-          }
           .border {
             height: 17px;
             border: 1px solid $iconLine;
@@ -697,6 +739,7 @@ article {
           background-color: #ebebeb;
           border-radius: 10px;
           .input-section {
+            width: 50%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -708,11 +751,26 @@ article {
               border: none;
             }
             .title {
-              font-weight: $semi;
               font-size: 20px;
             }
             .main {
               font-size: 16px;
+            }
+          }
+          .titlelight {
+            .title {
+              font-weight: $semi;
+            }
+          }
+          .mainlight {
+            .main {
+              font-weight: $semi;
+            }
+          }
+          .alllight {
+            .title,
+            .main {
+              font-weight: $semi;
             }
           }
           .image-section {
@@ -723,7 +781,6 @@ article {
           padding: 20px 0 30px 0;
           display: flex;
           gap: 20px;
-          border-bottom: 1px solid $sectionLine;
           margin-bottom: 30px;
           .box {
             display: flex;
@@ -733,8 +790,28 @@ article {
               font-size: 14px;
               color: $fontMain;
             }
-            .vacp-color-picker {
-            }
+          }
+        }
+        .url-input {
+          border-bottom: 1px solid $sectionLine;
+          margin-bottom: 30px;
+          .link {
+            width: 100%;
+            height: 50px;
+            margin: 20px 0 30px;
+            border-radius: 10px;
+            background-color: $sectionLine;
+            border: 1px solid $iconLine;
+            padding-left: 16px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: $pre;
+          }
+          .link::placeholder {
+            color: $inputLine;
+          }
+          .urlstyle {
+            background-color: white;
           }
         }
 
@@ -742,9 +819,7 @@ article {
           display: flex;
           flex-direction: column;
           gap: 30px;
-          border-bottom: 1px solid $sectionLine;
           padding: 30px 0;
-          margin-bottom: 30px;
           .box {
             .name {
               font-size: 14px;
@@ -777,10 +852,10 @@ article {
         justify-content: center;
         border-top: 1px solid $sectionLine;
         padding: 10px 0;
+        cursor: pointer;
         img {
           width: 20px;
           height: 20px;
-          cursor: pointer;
         }
       }
     }
@@ -847,7 +922,6 @@ article {
           }
           .setting-banner {
             padding: 0 30px;
-            justify-content: center;
             .input-section {
               input {
                 width: 244px;
@@ -880,7 +954,7 @@ article {
 
 @include mobile {
   article {
-    padding: 0 0 30px 0;
+    padding: 0 0 60px 0;
     .top-title {
       position: absolute;
       top: 23px;
@@ -995,9 +1069,14 @@ article {
           }
         }
       }
+      .style {
+        border-bottom: 1px solid $mainColor;
+      }
+
       .banner-section {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+        margin-bottom: 20px;
         .padding {
           .ment {
             font-size: 12px;

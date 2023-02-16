@@ -105,7 +105,7 @@
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { useWindowStore } from '../../../../store/window'
-import BrandChange from '../../modal/dashboard/BrandChange.vue'
+import BrandChange from '../../modal/dashboard/franchise/BrandChange.vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)

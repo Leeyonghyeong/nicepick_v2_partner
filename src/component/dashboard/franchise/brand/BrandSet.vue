@@ -37,16 +37,13 @@
               <div class="input-title">신규개점</div>
               <div class="input-gap">
                 <div class="border-section">
-                  <!-- <div class="year">2023년</div> -->
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <!-- <div class="year">2022년</div> -->
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <!-- <div class="year">2021년</div> -->
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
               </div>
             </div>
@@ -54,13 +51,13 @@
               <div class="input-title">계약종료</div>
               <div class="input-gap">
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
               </div>
             </div>
@@ -68,13 +65,13 @@
               <div class="input-title">계약해지</div>
               <div class="input-gap">
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
               </div>
             </div>
@@ -82,13 +79,13 @@
               <div class="input-title">명의변경</div>
               <div class="input-gap">
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
               </div>
             </div>
@@ -127,13 +124,13 @@
               <div class="input-title">가맹점 및 직영점 수</div>
               <div class="input-gap">
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
                 <div class="border-section">
-                  <input type="text" placeholder="0" /> 개
+                  <input type="number" placeholder="0" /> 개
                 </div>
               </div>
             </div>
@@ -154,31 +151,31 @@
             <div class="input-section calculator">
               <div class="input-title">가맹비</div>
               <div class="border-section">
-                <input type="text" placeholder="0" /> 원
+                <input type="number" placeholder="0" /> 원
               </div>
             </div>
             <div class="input-section calculator">
               <div class="input-title">교육비</div>
               <div class="border-section">
-                <input type="text" placeholder="0" /> 원
+                <input type="number" placeholder="0" /> 원
               </div>
             </div>
             <div class="input-section calculator">
               <div class="input-title">보증금</div>
               <div class="border-section">
-                <input type="text" placeholder="0" /> 원
+                <input type="number" placeholder="0" /> 원
               </div>
             </div>
             <div class="input-section calculator">
               <div class="input-title">기타비용</div>
               <div class="border-section">
-                <input type="text" placeholder="0" /> 원
+                <input type="number" placeholder="0" /> 원
               </div>
             </div>
             <div class="input-section calculator">
               <div class="input-title">인테리어</div>
               <div class="border-section">
-                <input type="text" placeholder="0" /> 원
+                <input type="number" placeholder="0" /> 원
               </div>
             </div>
             <div class="input-section calculator total">
@@ -352,6 +349,7 @@ article {
               display: flex;
               align-items: center;
               justify-content: flex-end;
+              gap: 4px;
 
               border: 1px solid $iconLine;
               border-radius: 10px;
@@ -361,6 +359,7 @@ article {
                 width: 100%;
                 height: 46px;
                 border: none;
+                text-align: right;
               }
               input::placeholder {
                 text-align: right;
@@ -371,6 +370,11 @@ article {
               }
               input:focus {
                 text-align: right;
+              }
+              input::-webkit-inner-spin-button {
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
               }
             }
           }
@@ -386,6 +390,7 @@ article {
             display: flex;
             align-items: center;
             justify-content: flex-end;
+            gap: 4px;
 
             border: 1px solid $iconLine;
             border-radius: 10px;
@@ -395,6 +400,7 @@ article {
               width: 100%;
               height: 46px;
               border: none;
+              text-align: right;
             }
             input::placeholder {
               text-align: right;
@@ -405,6 +411,11 @@ article {
             }
             input:focus {
               text-align: right;
+            }
+            input::-webkit-inner-spin-button {
+              appearance: none;
+              -moz-appearance: none;
+              -webkit-appearance: none;
             }
           }
         }
@@ -444,6 +455,9 @@ article {
         }
         textarea::placeholder {
           color: $inputLine;
+        }
+        textarea:focus {
+          border: 1px solid $mainColor;
         }
       }
     }

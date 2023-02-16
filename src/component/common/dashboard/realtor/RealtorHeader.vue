@@ -2,7 +2,7 @@
   <article>
     <div class="header">
       <div v-if="getDevice !== 'mobile'" class="logo">
-        <img src="../../../assets/header/logo.png" alt="로고" />
+        <img src="../../../../assets/header/logo.png" alt="로고" />
       </div>
 
       <div v-if="getDevice !== 'mobile'" class="logout-homebtn">
@@ -19,16 +19,31 @@
         <div class="logout">로그아웃</div>
         <button>창업픽 홈</button>
       </div>
+
+      <div v-if="getDevice === 'mobile'" class="logout-homebtn">
+        <div class="ham" @click="showHammenuModal">
+          <img src="../../../../assets/dashboard/ham.png" alt="" />
+        </div>
+      </div>
     </div>
+
+    <Hammenu v-if="showModal" @showHammenuModal="showHammenuModal" />
   </article>
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from '../../../store/window'
+import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
+import Hammenu from '../../modal/dashboard/realtor/RealtorHammenu.vue'
+import { ref } from 'vue'
 
 const store = useWindowStore()
 const { getDevice } = storeToRefs(store)
+
+const showModal = ref<boolean>(false)
+const showHammenuModal = () => {
+  showModal.value = !showModal.value
+}
 </script>
 
 <style lang="scss" scoped>

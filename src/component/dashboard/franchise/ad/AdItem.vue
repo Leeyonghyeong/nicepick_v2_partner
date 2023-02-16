@@ -6,7 +6,7 @@
       <div class="content-gap">
         <div class="premium-service content">
           <div class="title">프리미엄 서비스</div>
-          <div class="box">
+          <div :class="{ boxstyle: showPremium }" class="box">
             <div class="name-sub">
               <div class="name">
                 프리미엄 멤버십
@@ -35,8 +35,14 @@
                 <button class="detail" @click="showPremium = !showPremium">
                   상세보기
                   <img
+                    v-if="!showPremium"
                     src="../../../../assets/dashboard/arrow_more.png"
                     alt="down"
+                  />
+                  <img
+                    v-if="showPremium"
+                    src="../../../../assets/dashboard/arrow_close.png"
+                    alt="up"
                   />
                 </button>
                 <button class="cart" @click="showAddCart">
@@ -110,7 +116,7 @@
           <div class="title">브랜드 광고</div>
           <div class="box-gap">
             <div>
-              <div class="box">
+              <div :class="{ boxstyle: showHopeful }" class="box">
                 <div class="name-sub">
                   <div class="name">
                     유망브랜드 ({{ periodSelect }})
@@ -131,8 +137,14 @@
                     <button class="detail" @click="showHopeful = !showHopeful">
                       상세보기
                       <img
+                        v-if="!showHopeful"
                         src="../../../../assets/dashboard/arrow_more.png"
                         alt="down"
+                      />
+                      <img
+                        v-if="showHopeful"
+                        src="../../../../assets/dashboard/arrow_close.png"
+                        alt="up"
                       />
                     </button>
                     <button class="cart">
@@ -193,7 +205,7 @@
             </div>
 
             <div>
-              <div class="box">
+              <div :class="{ boxstyle: showHotclip }" class="box">
                 <div class="name-sub">
                   <div class="name">
                     브랜드 핫클립 (30일)
@@ -213,8 +225,14 @@
                     <button class="detail" @click="showHotclip = !showHotclip">
                       상세보기
                       <img
+                        v-if="!showHotclip"
                         src="../../../../assets/dashboard/arrow_more.png"
                         alt="down"
+                      />
+                      <img
+                        v-if="showHotclip"
+                        src="../../../../assets/dashboard/arrow_close.png"
+                        alt="up"
                       />
                     </button>
                     <button class="cart">
@@ -272,7 +290,7 @@
             </div>
 
             <div>
-              <div class="box">
+              <div :class="{ boxstyle: showFirstRecommend }" class="box">
                 <div class="name-sub">
                   <div class="name">
                     추천 브랜드 1 (30일)
@@ -295,8 +313,14 @@
                     >
                       상세보기
                       <img
+                        v-if="!showFirstRecommend"
                         src="../../../../assets/dashboard/arrow_more.png"
                         alt="down"
+                      />
+                      <img
+                        v-if="showFirstRecommend"
+                        src="../../../../assets/dashboard/arrow_close.png"
+                        alt="up"
                       />
                     </button>
                     <button class="cart">
@@ -334,7 +358,7 @@
             </div>
 
             <div>
-              <div class="box">
+              <div :class="{ boxstyle: showSecondRecommend }" class="box">
                 <div class="name-sub">
                   <div class="name">
                     추천 브랜드 2 (30일)
@@ -371,8 +395,14 @@
                     >
                       상세보기
                       <img
+                        v-if="!showSecondRecommend"
                         src="../../../../assets/dashboard/arrow_more.png"
                         alt="down"
+                      />
+                      <img
+                        v-if="showSecondRecommend"
+                        src="../../../../assets/dashboard/arrow_close.png"
+                        alt="up"
                       />
                     </button>
                     <button class="cart">
@@ -434,7 +464,7 @@
           <div class="title">배너 광고</div>
           <div class="box-gap">
             <div>
-              <div class="box">
+              <div :class="{ boxstyle: showMaintop }" class="box">
                 <div class="name-sub">
                   <div class="name">
                     메인 TOP (30일)
@@ -466,8 +496,14 @@
                     <button class="detail" @click="showMaintop = !showMaintop">
                       상세보기
                       <img
+                        v-if="!showMaintop"
                         src="../../../../assets/dashboard/arrow_more.png"
                         alt="down"
+                      />
+                      <img
+                        v-if="showMaintop"
+                        src="../../../../assets/dashboard/arrow_close.png"
+                        alt="up"
                       />
                     </button>
                     <button class="cart">
@@ -503,7 +539,7 @@
             </div>
 
             <div>
-              <div class="box">
+              <div :class="{ boxstyle: showFirstSpecial }" class="box">
                 <div class="name-sub">
                   <div class="name">
                     메인 Special 1 (30일)
@@ -540,8 +576,14 @@
                     >
                       상세보기
                       <img
+                        v-if="!showFirstSpecial"
                         src="../../../../assets/dashboard/arrow_more.png"
                         alt="down"
+                      />
+                      <img
+                        v-if="showFirstSpecial"
+                        src="../../../../assets/dashboard/arrow_close.png"
+                        alt="up"
                       />
                     </button>
                     <button class="cart">
@@ -590,7 +632,7 @@
             </div>
 
             <div>
-              <div class="box">
+              <div :class="{ boxstyle: showSecondSpecial }" class="box">
                 <div class="name-sub">
                   <div class="name">
                     메인 Special 2 (30일)
@@ -627,8 +669,14 @@
                     >
                       상세보기
                       <img
+                        v-if="!showSecondSpecial"
                         src="../../../../assets/dashboard/arrow_more.png"
                         alt="down"
+                      />
+                      <img
+                        v-if="showSecondSpecial"
+                        src="../../../../assets/dashboard/arrow_close.png"
+                        alt="up"
                       />
                     </button>
                     <button class="cart">
@@ -677,7 +725,7 @@
               </div>
             </div>
             <div>
-              <div class="box">
+              <div :class="{ boxstyle: showThirdSpecial }" class="box">
                 <div class="name-sub">
                   <div class="name">
                     메인 Special 3 (30일)
@@ -714,8 +762,14 @@
                     >
                       상세보기
                       <img
+                        v-if="!showThirdSpecial"
                         src="../../../../assets/dashboard/arrow_more.png"
                         alt="down"
+                      />
+                      <img
+                        v-if="showThirdSpecial"
+                        src="../../../../assets/dashboard/arrow_close.png"
+                        alt="up"
                       />
                     </button>
                     <button class="cart">
@@ -763,7 +817,7 @@
               </div>
             </div>
             <div>
-              <div class="box">
+              <div :class="{ boxstyle: showLastBanner }" class="box">
                 <div class="name-sub">
                   <div class="name">
                     리스트 배너 (30일)
@@ -798,8 +852,14 @@
                     >
                       상세보기
                       <img
+                        v-if="!showLastBanner"
                         src="../../../../assets/dashboard/arrow_more.png"
                         alt="down"
+                      />
+                      <img
+                        v-if="showLastBanner"
+                        src="../../../../assets/dashboard/arrow_close.png"
+                        alt="up"
                       />
                     </button>
                     <button class="cart">
@@ -1111,6 +1171,9 @@ article {
           }
         }
       }
+      .boxstyle {
+        box-shadow: 0 0 0 1px $mainColor inset;
+      }
 
       .more-box {
         margin-top: -20px;
@@ -1162,6 +1225,7 @@ article {
           }
         }
         .ment {
+          padding-top: 30px;
           font-size: 14px;
           color: $fontSub;
           line-height: 24px;
@@ -1253,8 +1317,7 @@ article {
           font-size: 14px;
         }
         .box {
-          margin: 0 24px;
-          padding: 30px 0;
+          padding: 30px 24px;
           border-radius: 0;
           box-shadow: none;
           border-top: 1px solid $sectionLine;
@@ -1287,10 +1350,16 @@ article {
           }
         }
 
+        .boxstyle {
+          box-shadow: none;
+          border-bottom: 1px solid $mainColor;
+        }
+
         .more-box {
           margin-top: 0;
           border-radius: 0;
           padding: 0 30px 30px;
+          border: none;
           .menu-detail {
             padding: 30px 0 20px;
             .menu {

@@ -17,8 +17,37 @@
             <div class="email-box">changuppick@gmail.com</div>
           </div>
           <div class="width reset-pw">
-            <div class="title">비밀번호 변경</div>
-            <button>비밀번호 변경</button>
+            <div class="title">
+              비밀번호 변경
+              <span v-if="resetPw === 'ok'" class="sub">
+                *비밀번호 변경 내역이 있습니다.
+              </span>
+            </div>
+            <button
+              v-if="resetPw !== 'show'"
+              @click="resetPw = 'show'"
+              class="reset"
+            >
+              비밀번호 변경
+            </button>
+
+            <div v-if="resetPw === 'show'">
+              <div class="reset-input">
+                <input
+                  type="password"
+                  placeholder="새로운 비밀번호(영문+숫자+특수문자 8~16자)"
+                />
+                <span class="sub">
+                  영문+숫자+특수문자 8~16자로 입력해 주세요.
+                </span>
+                <input type="password" placeholder="새로운 비밀번호 확인" />
+                <span class="sub"> 비밀번호가 일치하지 않습니다. </span>
+              </div>
+              <div class="reset-btn">
+                <button @click="resetPw = ''" class="cancel">취소</button>
+                <button @click="resetPw = 'ok'" class="check">확인</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -68,7 +97,11 @@
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const resetPw = ref<string>()
+</script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';
@@ -178,7 +211,12 @@ article {
         border-radius: 10px;
         color: $inputLine;
       }
-      button {
+      .sub {
+        padding-left: 6px;
+        font-size: 12px;
+        color: $subColor;
+      }
+      .reset {
         width: 100%;
         height: 50px;
         border-radius: 10px;
@@ -189,6 +227,46 @@ article {
         font-size: 16px;
         font-weight: $reg;
         cursor: pointer;
+      }
+      .reset-input {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        input {
+          height: 50px;
+          border-radius: 10px;
+          border: 1px solid $iconLine;
+          padding-left: 15px;
+          box-sizing: border-box;
+          font-family: $pre;
+          font-size: 16px;
+        }
+        input::placeholder {
+          color: $inputLine;
+        }
+      }
+      .reset-btn {
+        padding-top: 8px;
+        display: flex;
+        gap: 30px;
+        button {
+          width: 100%;
+          height: 50px;
+          border-radius: 10px;
+          font-family: $pre;
+          font-size: 16px;
+          cursor: pointer;
+        }
+        .cancel {
+          background-color: white;
+          border: 1px solid $fontMain;
+          box-sizing: border-box;
+          color: $fontMain;
+        }
+        .check {
+          background-color: $fontMain;
+          color: white;
+        }
       }
     }
 

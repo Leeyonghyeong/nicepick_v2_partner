@@ -2,7 +2,7 @@
   <article>
     <div class="header">
       <div v-if="getDevice !== 'mobile'" class="logo">
-        <img src="../../../assets/header/logo.png" alt="로고" />
+        <img src="../../../../assets/header/logo.png" alt="로고" />
       </div>
 
       <div v-if="getDevice !== 'mobile'" class="logout-homebtn">
@@ -22,7 +22,7 @@
 
       <div v-if="getDevice === 'mobile'" class="logout-homebtn">
         <div class="ham" @click="showHammenuModal">
-          <img src="../../../assets/dashboard/ham.png" alt="" />
+          <img src="../../../../assets/dashboard/ham.png" alt="" />
         </div>
       </div>
     </div>
@@ -32,9 +32,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from '../../../store/window'
+import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
-import Hammenu from '../modal/dashboard/Hammenu.vue'
+import Hammenu from '../../modal/dashboard/franchise/Hammenu.vue'
 import { ref } from 'vue'
 
 const store = useWindowStore()

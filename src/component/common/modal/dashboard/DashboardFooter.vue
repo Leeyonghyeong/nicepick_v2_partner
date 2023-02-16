@@ -7,16 +7,16 @@
           <div>(운영시간 10:00~20:00 주말, 공휴일 휴무)</div>
         </div>
         <div class="footer-images">
-          <img src="../../assets/footer/insta.png" alt="인스타그램" />
-          <img src="../../assets/footer/kakao.png" alt="카카오톡" />
-          <img src="../../assets/footer/you.png" alt="유튜브" />
+          <img src="../../../../assets/footer/insta.png" alt="인스타그램" />
+          <img src="../../../../assets/footer/kakao.png" alt="카카오톡" />
+          <img src="../../../../assets/footer/you.png" alt="유튜브" />
           <img
-            src="../../assets/footer/gstore.png"
+            src="../../../../assets/footer/gstore.png"
             alt="플레이스토어"
             class="hide-image"
           />
           <img
-            src="../../assets/footer/astore.png"
+            src="../../../../assets/footer/astore.png"
             alt="앱스토어"
             class="hide-image"
           />
