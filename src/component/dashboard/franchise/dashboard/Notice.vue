@@ -68,6 +68,7 @@ const selectList = ref<string>()
 
 article {
   padding: 50px 24px 0 24px;
+  padding-bottom: 30%;
 
   .none {
     text-decoration: none;
@@ -154,6 +155,7 @@ article {
 @include pc {
   article {
     padding: 50px 0 0 160px;
+    padding-bottom: 20%;
 
     .notice-list {
       .list {

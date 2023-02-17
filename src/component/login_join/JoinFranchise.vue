@@ -91,7 +91,13 @@
         <div class="title">약관동의</div>
         <div class="border-box">
           <div class="padding-box">
-            <div class="space all">전체 동의<input type="checkbox" /></div>
+            <div class="space all">
+              전체 동의
+              <div class="check">
+                <input type="checkbox" id="check1" />
+                <label for="check1"></label>
+              </div>
+            </div>
 
             <div class="gap-box">
               <div class="space">
@@ -101,7 +107,10 @@
                 >
                   (필수) 서비스 이용 약관 동의
                 </a>
-                <input type="checkbox" />
+                <div class="check">
+                  <input type="checkbox" id="check2" />
+                  <label for="check2"></label>
+                </div>
               </div>
               <div class="space">
                 <a
@@ -109,7 +118,10 @@
                   target="_blank"
                   >(필수) 개인정보 수집 이용 동의</a
                 >
-                <input type="checkbox" />
+                <div class="check">
+                  <input type="checkbox" id="check3" />
+                  <label for="check3"></label>
+                </div>
               </div>
               <div class="space">
                 <a
@@ -117,7 +129,10 @@
                   target="_blank"
                   >(선택) 창업 정보 및 이벤트 정보 수신 동의</a
                 >
-                <input type="checkbox" />
+                <div class="check">
+                  <input type="checkbox" id="check4" />
+                  <label for="check4"></label>
+                </div>
               </div>
             </div>
           </div>
@@ -368,9 +383,39 @@ section {
               color: $fontSub;
             }
 
-            input {
-              // zoom: 1.5;
-              cursor: pointer;
+            .check {
+              height: 20px;
+              input[type='checkbox'] {
+                display: none;
+              }
+              input[type='checkbox'] + label {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                box-sizing: border-box;
+                border: 1px solid $inputLine;
+                border-radius: 3px;
+                position: relative;
+                cursor: pointer;
+              }
+              input[id='check1']:checked + label::after,
+              input[id='check2']:checked + label::after,
+              input[id='check3']:checked + label::after,
+              input[id='check4']:checked + label::after {
+                content: '';
+                background-image: url(../../assets/dashboard/check.png);
+                background-repeat: no-repeat;
+                background-position: 4px;
+                width: 20px;
+                height: 20px;
+                box-sizing: border-box;
+                position: absolute;
+                border: 1px solid $mainColor;
+                border-radius: 3px;
+                top: -1px;
+                left: -1px;
+                cursor: pointer;
+              }
             }
           }
 

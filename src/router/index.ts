@@ -267,6 +267,53 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+
+  {
+    path: '/',
+    name: 'PartnerGuideLayout',
+    component: () => import('../layout/guide_partner/PartnerGuideLayout.vue'),
+    children: [
+      {
+        path: '/partnerguide/login',
+        name: 'partnerguidelogin',
+        component: () =>
+          import('../component/guide_partner/join_guide/Login.vue'),
+      },
+      {
+        path: '/partnerguide/franchisejoin',
+        name: 'franchisejoinguide',
+        component: () =>
+          import('../component/guide_partner/join_guide/FranchiseJoin.vue'),
+      },
+      {
+        path: '/partnerguide/realtorjoin',
+        name: 'realtorjoinguide',
+        component: () =>
+          import('../component/guide_partner/join_guide/RealtorJoin.vue'),
+      },
+      {
+        path: '/partnerguide/cooperation',
+        name: 'cooperationguide',
+        component: () =>
+          import('../component/guide_partner/join_guide/Cooperation.vue'),
+      },
+
+      {
+        path: '/partnerguide/franchiseservice',
+        name: 'franchiseservice',
+        component: () =>
+          import(
+            '../component/guide_partner/service_guide/FranchiseService.vue'
+          ),
+      },
+      {
+        path: '/partnerguide/realtorservice',
+        name: 'realtorservice',
+        component: () =>
+          import('../component/guide_partner/service_guide/RealtorService.vue'),
+      },
+    ],
+  },
 ]
 
 const router = createRouter({

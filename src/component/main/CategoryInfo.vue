@@ -7,8 +7,18 @@
       >
         프랜차이즈 브랜드
       </div>
-      <div>공인중개사</div>
-      <div>협력 파트너</div>
+      <div
+        :class="{ select: selectCategory === 'realtor' }"
+        @click="selectCategory = 'realtor'"
+      >
+        공인중개사
+      </div>
+      <div
+        :class="{ select: selectCategory === 'cooperation' }"
+        @click="selectCategory = 'cooperation'"
+      >
+        협력 파트너
+      </div>
     </div>
 
     <div class="info">
@@ -90,6 +100,124 @@
               </div>
             </div>
           </SwiperSlide>
+        </Swiper>
+
+        <Swiper
+          v-if="selectCategory === 'realtor'"
+          :modules="[Navigation]"
+          :slides-per-view="1"
+          :loop="true"
+          :loop-additional-slides="1"
+          :navigation="{
+            prevEl: '.prev',
+            nextEl: '.next',
+          }"
+        >
+          <div class="btn">
+            <div v-if="getDevice === 'pc'" class="prev">
+              <img src="../../assets/main/btn_prev.png" alt="이전" />
+            </div>
+            <div v-if="getDevice === 'pc'" class="next">
+              <img src="../../assets/main/btn_next.png" alt="다음" />
+            </div>
+          </div>
+
+          <SwiperSlide>
+            <div id="slide-1" class="box">
+              <img src="../../assets/main/온라인광고.png" alt="온라인광고" />
+              <div class="box-title">
+                <div class="bold">쉬운 온라인 광고</div>
+                <div>
+                  지금 바로 중개사회원으로 가입해보세요.<br />
+                  창업을 준비하는 수많은 고객분들에게 <br />
+                  중개업소 노출이 가능합니다.
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div id="slide-2" class="box">
+              <img src="../../assets/main/고객노출.png" alt="고객노출" />
+              <div class="box-title">
+                <div class="bold">전국 단위 고객 노출</div>
+                <div>
+                  물건을 소개하고자 하는 모든 지역에<br />
+                  중개업소를 노출 가능합니다.<br />
+                  선택하신 지역에 내 중개업소를 노출해 보세요.
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div id="slide-3" class="box">
+              <img src="../../assets/main/상담서비스.png" alt="상담서비스" />
+              <div class="box-title">
+                <div class="bold">중개사 상담 서비스</div>
+                <div>
+                  중개업소 위치 및 전화번호를 <br />
+                  고객에게 직접 제공해 드립니다. <br />
+                  창업픽 고객분들에게 친절한 상담 부탁드려요.
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <div id="slide-4" class="box">
+              <img src="../../assets/main/고객층.png" alt="고객층" />
+              <div class="box-title">
+                <div class="bold">가맹점 증가</div>
+                <div>
+                  PC 모바일, 앱을 통한 모든 고객에게<br />
+                  중개업소를 홍보해보세요. <br />
+                  놀랄만한 결과가 생길겁니다.
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+
+        <Swiper
+          v-if="selectCategory === 'cooperation'"
+          :modules="[Navigation]"
+          :slides-per-view="1"
+          :loop="true"
+          :loop-additional-slides="1"
+          :navigation="{
+            prevEl: '.prev',
+            nextEl: '.next',
+          }"
+        >
+          <div class="btn">
+            <div v-if="getDevice === 'pc'" class="prev">
+              <img
+                style="cursor: default"
+                src="../../assets/main/btn_prev.png"
+                alt="이전"
+              />
+            </div>
+            <div v-if="getDevice === 'pc'" class="next">
+              <img
+                style="cursor: default"
+                src="../../assets/main/btn_next.png"
+                alt="다음"
+              />
+            </div>
+          </div>
+
+          <div id="slide-1" class="box">
+            <img src="../../assets/main/협력.png" alt="협력" />
+            <div class="box-title">
+              <div class="bold">협력 파트너는 준비중!</div>
+              <div>
+                협력파트너 서비스는 준비중입니다.<br />
+                보다 나은 서비스를 위하여 준비중에 있습니다.<br />
+                빠른 시일내 준비하여 찾아뵙겠습니다.
+              </div>
+            </div>
+          </div>
         </Swiper>
       </div>
     </div>

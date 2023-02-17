@@ -350,6 +350,7 @@ article {
 @include mobile {
   article {
     padding: 0 0 58px;
+    padding-bottom: 30%;
     .top-title {
       display: flex;
       align-items: center;
@@ -439,6 +440,7 @@ article {
 @include pc {
   article {
     padding: 50px 160px 0;
+    padding-bottom: 5%;
 
     .content-gap {
       gap: 30px;

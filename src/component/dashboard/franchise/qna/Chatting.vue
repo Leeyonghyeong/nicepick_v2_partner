@@ -352,9 +352,6 @@ article {
             }
           }
         }
-        .input {
-          border-radius: 0;
-        }
       }
     }
   }

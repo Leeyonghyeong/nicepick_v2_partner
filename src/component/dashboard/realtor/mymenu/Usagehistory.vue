@@ -26,7 +26,7 @@
       </div> -->
 
       <div class="item">
-        <div class="ing-item">
+        <div :class="{ style: plus === 'show' }" class="ing-item plus">
           <div class="padding">
             <div class="title">
               <div>구매완료 <span class="ing">· 이용중</span></div>
@@ -48,9 +48,15 @@
               </div>
             </div>
           </div>
+          <div v-if="plus !== 'show'" @click="plus = 'show'" class="more">
+            <img
+              src="../../../../assets/dashboard/arrow_more.png"
+              alt="더보기"
+            />
+          </div>
         </div>
 
-        <div class="more-section">
+        <div v-if="plus === 'show'" class="more-section">
           <div class="content">
             <div class="place">
               <div class="title">기본 노출 지역</div>
@@ -111,7 +117,7 @@
               </div>
             </div>
           </div>
-          <div class="close">
+          <div @click="plus = 'hide'" class="close">
             <img src="../../../../assets/login/arrow_up.png" alt="닫기" />
           </div>
         </div>
@@ -147,7 +153,11 @@
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const plus = ref<string>()
+</script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';
@@ -383,14 +393,35 @@ article {
         }
       }
     }
+    .style {
+      box-shadow: 0 0 0 1px $mainColor inset;
+    }
+    .plus {
+      padding: 0;
+      .padding {
+        padding: 30px;
+      }
+      .more {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid $sectionLine;
+        padding: 10px 0;
+        cursor: pointer;
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
 
     .more-section {
-      margin-top: -40px;
+      margin-top: -30px;
       background-color: white;
       border-radius: 10px;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
       .content {
-        padding: 50px 30px 30px;
+        padding: 80px 30px 30px;
         color: $fontMain;
         display: flex;
         flex-direction: column;
@@ -415,6 +446,9 @@ article {
             align-items: center;
           }
         }
+      }
+      .close {
+        cursor: pointer;
       }
       .add-place {
         .title {
