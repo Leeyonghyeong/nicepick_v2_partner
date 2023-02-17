@@ -15,7 +15,11 @@
               </div>
 
               <div class="search">
-                <input type="text" placeholder="ex) 123-45-678910" />
+                <input
+                  type="text"
+                  placeholder="ex) 123-45-678910"
+                  value="123-45-678910"
+                />
                 <button>
                   <img
                     src="../../../assets/login/search_fff.png"
@@ -28,12 +32,8 @@
             </div>
 
             <div class="list">
-              <div class="list-box">
-                <div
-                  class="box"
-                  :class="{ active: selectActive }"
-                  @click="setActive"
-                >
+              <div @click="selectBrand = '1'" class="list-box">
+                <div :class="{ select: selectBrand === '1' }" class="box">
                   <div class="brand-name">A브랜드</div>
                   <div class="brand-category">한식</div>
                 </div>
@@ -95,7 +95,7 @@
             </div>
 
             <div class="submit">
-              <button>확인</button>
+              <button @click="$emit('showCompanyNumberModal')">확인</button>
             </div>
           </div>
         </div>
@@ -119,10 +119,7 @@ onUnmounted(() => {
   document.body.removeAttribute('style')
 })
 
-const selectActive = ref<boolean>(true)
-const setActive = () => {
-  selectActive.value = !selectActive.value
-}
+const selectBrand = ref<string>('1')
 </script>
 
 <style lang="scss" scoped>
@@ -191,6 +188,9 @@ section {
                 border: 1px solid $sectionLine;
                 padding-left: 16px;
                 box-sizing: border-box;
+                font-size: 16px;
+                font-family: $pre;
+                color: $fontMain;
               }
 
               input::placeholder {
@@ -253,7 +253,7 @@ section {
                 }
               }
 
-              .active {
+              .select {
                 background-color: #f5f7ff;
                 .brand-name,
                 .brand-category {
@@ -272,17 +272,15 @@ section {
 
             button {
               margin-top: 30px;
-              background-color: $inputLine;
+              background-color: $mainColor;
               width: 100%;
               height: 50px;
-
               border-radius: 10px;
               border: none;
               color: white;
               font-size: 16px;
               font-family: Pretendard;
-
-              // cursor: pointer;
+              cursor: pointer;
             }
           }
         }

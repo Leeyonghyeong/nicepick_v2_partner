@@ -135,7 +135,7 @@
                     src="../../assets/dashboard/minus.png"
                     alt="마이너스"
                   />
-                  <input type="text" :value="countItem" />
+                  <input type="number" :value="countItem" />
                   <img
                     @click="countUp"
                     src="../../assets/dashboard/plus.png"
@@ -397,6 +397,11 @@ article {
                 font-size: 13px;
                 color: $fontSub;
                 text-align: center;
+              }
+              input::-webkit-inner-spin-button {
+                appearance: none;
+                -moz-appearance: none;
+                -webkit-appearance: none;
               }
             }
             .cost {

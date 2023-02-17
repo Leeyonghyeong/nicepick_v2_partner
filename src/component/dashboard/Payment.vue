@@ -137,7 +137,7 @@
                   </div>
                 </div>
                 <div class="content mob">
-                  <div class="name">MOB</div>
+                  <div class="name">MOBILE</div>
                   <div class="image-section">
                     <label for="file">
                       <div class="upload-btn">

@@ -16,24 +16,24 @@
       <div class="date-state">
         <div class="date">
           <div class="date-gap">
-            <!-- <Datepicker v-model="date"></Datepicker>
+            <input type="date" />
             <span>-</span>
-            <Datepicker v-model="date"></Datepicker> -->
+            <input type="date" />
           </div>
           <button>조회</button>
         </div>
 
-        <div class="flex">
-          <label class="title">
+        <div class="check-list">
+          <label class="all">
             <input type="radio" name="state" id="all" checked />
             <div class="name">전체</div>
           </label>
-          <label class="main">
+          <label class="ing">
             <input type="radio" name="state" id="ing" />
             <div class="name">이용중</div>
           </label>
-          <label class="all">
-            <input type="radio" name="complete" id="all" />
+          <label class="complete">
+            <input type="radio" name="state" id="complete" />
             <div class="name">이용완료</div>
           </label>
         </div>
@@ -153,7 +153,7 @@
               <button class="save">저장</button>
             </div>
             <div class="select-highlight">
-              <div class="flex">
+              <div class="check-list">
                 <label @click="highLight = 'title'" class="title">
                   <input type="radio" name="highlight" id="title" checked />
                   <div class="name">제목 강조</div>
@@ -227,7 +227,7 @@
               </div>
             </div>
             <div class="url-input">
-              <div class="flex">
+              <div class="check-list">
                 <div class="name">URL 주소</div>
                 <label @click="recommendUrl = 'detail'" class="detail">
                   <input type="radio" name="url" id="detail" checked />
@@ -350,7 +350,7 @@
               </div>
             </div>
             <div class="url-input">
-              <div class="flex">
+              <div class="check-list">
                 <div class="name">URL 주소</div>
                 <label @click="mainTopUrl = 'detail'" class="detail">
                   <input type="radio" name="url2" id="detail2" checked />
@@ -418,7 +418,7 @@ article {
     color: inherit;
   }
 
-  .flex {
+  .check-list {
     display: flex;
     gap: 20px;
     label {

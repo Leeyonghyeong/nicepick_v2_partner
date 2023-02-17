@@ -17,14 +17,14 @@
       <div class="left">
         <div class="login">
           <div class="select">
-            <div>
-              <input type="radio" name="select" id="f" checked />
-              <label for="f">프랜차이즈</label>
-            </div>
-            <div>
-              <input type="radio" name="select" id="r" />
-              <label for="r">공인중개사</label>
-            </div>
+            <label class="title">
+              <input type="radio" name="category" id="realtor" checked />
+              <div class="name">프랜차이즈</div>
+            </label>
+            <label class="main">
+              <input type="radio" name="category" id="realtor" />
+              <div class="name">공인중개사</div>
+            </label>
           </div>
 
           <div class="login-box">
@@ -119,10 +119,32 @@ article {
         .select {
           display: flex;
           gap: 20px;
-
-          input,
           label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
             cursor: pointer;
+            input {
+              margin: 0;
+              cursor: pointer;
+            }
+            input[type='radio'] {
+              appearance: none;
+              border: 1px solid $inputLine;
+              border-radius: 50%;
+              width: 16px;
+              height: 16px;
+            }
+            input[type='radio']:checked {
+              background-image: url(../../assets/dashboard/checked.png);
+              background-repeat: no-repeat;
+              background-size: 8px;
+              background-position: center;
+            }
+            .name {
+              font-size: 14px;
+              color: $fontMain;
+            }
           }
         }
 
