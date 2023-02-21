@@ -209,7 +209,7 @@
             </div>
           </div>
           <div class="category">
-            <RouterLink to="/partnerguide/partnerqna" class="none">
+            <RouterLink to="/partnerguide/serviceqna" class="none">
               <div @click="selectCategory = 'question'" class="category-name">
                 <div class="left">
                   <i
@@ -241,6 +241,16 @@
               </div>
             </RouterLink>
             <div v-if="selectCategory === 'question'" class="sub-category">
+              <RouterLink to="/partnerguide/serviceqna" class="none">
+                <div
+                  :class="{
+                    style: qnaSub === '서비스 질문',
+                  }"
+                  @click="qnaSub = '서비스 질문'"
+                >
+                  서비스 Q&A
+                </div>
+              </RouterLink>
               <RouterLink to="/partnerguide/partnerqna" class="none">
                 <div
                   :class="{
@@ -248,11 +258,19 @@
                   }"
                   @click="qnaSub = '파트너 질문'"
                 >
-                  파트너 질문
+                  파트너 Q&A
                 </div>
               </RouterLink>
-              <div>서비스 질문</div>
-              <div>광고 상품 질문</div>
+              <RouterLink to="/partnerguide/adqna" class="none">
+                <div
+                  :class="{
+                    style: qnaSub === '광고 질문',
+                  }"
+                  @click="qnaSub = '광고 질문'"
+                >
+                  광고 상품 Q&A
+                </div>
+              </RouterLink>
             </div>
           </div>
         </div>
@@ -273,7 +291,7 @@ const selectCategory = ref<string>('join')
 const joinSub = ref<string>('회원가입/로그인')
 const serviceSub = ref<string>('프랜차이즈 파트너 회원가입 절차')
 const adSub = ref<string>('프랜차이즈 파트너 광고 상품')
-const qnaSub = ref<string>('파트너 질문')
+const qnaSub = ref<string>('서비스 질문')
 
 defineEmits<{
   (e: 'showBrandChange'): void

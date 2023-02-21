@@ -323,10 +323,22 @@ const routes: Array<RouteRecordRaw> = [
           import('../component/guide_partner/ad_guide/RealtorAd.vue'),
       },
       {
+        path: '/partnerguide/serviceqna',
+        name: 'serviceqna',
+        component: () =>
+          import('../component/guide_partner/question_guide/ServiceQna.vue'),
+      },
+      {
         path: '/partnerguide/partnerqna',
         name: 'partnerqna',
         component: () =>
           import('../component/guide_partner/question_guide/PartnerQna.vue'),
+      },
+      {
+        path: '/partnerguide/adqna',
+        name: 'adqna',
+        component: () =>
+          import('../component/guide_partner/question_guide/AdQna.vue'),
       },
     ],
   },
