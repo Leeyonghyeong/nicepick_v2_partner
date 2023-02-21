@@ -15,28 +15,29 @@
         <div class="box">
           <div class="name">
             <img src="../../../assets/guide_partner/반짝이.png" alt="" />
-            효과적으로 홍보하고 싶은 브랜드는 모여라~
+            세상에 이렇게 편리한 매칭서비스가 있다고?!
           </div>
           <div class="sub">
-            프랜차이즈 브랜드를 한 곳에서 비교해보고 쉽게 문의 할 수 있는
-            창업PICK<br />
-            프랜차이즈 브랜드 파트너님들은 이제 매출에만 집중하세요!
+            창업을 준비하는 예비창업자들의 연락이 찾.아.오.는. 공인중개사
+            서비스가 있습니다.<br />
+            공인중개사 파트너 님들은 이제 기다리기만 하세요!
             <br /><br />
-            찾아가지 않아도 찾아오는 창업문의를 창업픽을 통해 경험하세요!
+            찾아가지 않아도 찾아오는 문의와 편리한 매칭서비스를 창업픽에서
+            경험하세요!
           </div>
           <img
             v-if="getDevice === 'pc'"
-            src="../../../assets/guide_partner/service/pc1.png"
+            src="../../../assets/guide_partner/service/realtor/pc1.png"
             alt="pc1"
           />
           <img
             v-if="getDevice === 'tablet'"
-            src="../../../assets/guide_partner/service/tab1.png"
+            src="../../../assets/guide_partner/service/realtor/tab1.png"
             alt="tab1"
           />
           <img
             v-if="getDevice === 'mobile'"
-            src="../../../assets/guide_partner/service/mob1.png"
+            src="../../../assets/guide_partner/service/realtor/mob1.png"
             alt="mob1"
           />
         </div>
@@ -47,17 +48,17 @@
           </div>
           <img
             v-if="getDevice === 'pc'"
-            src="../../../assets/guide_partner/service/pc2.png"
+            src="../../../assets/guide_partner/service/realtor/pc2.png"
             alt="pc2"
           />
           <img
             v-if="getDevice === 'tablet'"
-            src="../../../assets/guide_partner/service/tab2.png"
+            src="../../../assets/guide_partner/service/realtor/tab2.png"
             alt="tab2"
           />
           <img
             v-if="getDevice === 'mobile'"
-            src="../../../assets/guide_partner/service/mob2.png"
+            src="../../../assets/guide_partner/service/realtor/mob2.png"
             alt="mob2"
           />
         </div>
@@ -68,39 +69,18 @@
           </div>
           <img
             v-if="getDevice === 'pc'"
-            src="../../../assets/guide_partner/service/pc3.png"
+            src="../../../assets/guide_partner/service/realtor/pc3.png"
             alt="pc3"
           />
           <img
             v-if="getDevice === 'tablet'"
-            src="../../../assets/guide_partner/service/tab3.png"
+            src="../../../assets/guide_partner/service/realtor/tab3.png"
             alt="tab3"
           />
           <img
             v-if="getDevice === 'mobile'"
-            src="../../../assets/guide_partner/service/mob3.png"
+            src="../../../assets/guide_partner/service/realtor/mob3.png"
             alt="mob3"
-          />
-        </div>
-        <div class="box">
-          <div class="name">광고 상품을 통한 브랜드 인지도 UP</div>
-          <div class="sub">
-            창업픽이 준비한 광고상품을 통해 내 브랜드 인지도를 높여보세요.
-          </div>
-          <img
-            v-if="getDevice === 'pc'"
-            src="../../../assets/guide_partner/service/pc4.png"
-            alt="pc4"
-          />
-          <img
-            v-if="getDevice === 'tablet'"
-            src="../../../assets/guide_partner/service/tab4.png"
-            alt="tab4"
-          />
-          <img
-            v-if="getDevice === 'mobile'"
-            src="../../../assets/guide_partner/service/mob4.png"
-            alt="mob4"
           />
         </div>
       </div>

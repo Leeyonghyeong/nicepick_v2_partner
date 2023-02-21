@@ -134,81 +134,123 @@
                   공인중개사 파트너 서비스
                 </div>
               </RouterLink>
-              <div
-                :class="{
-                  style: serviceSub === '협력 파트너 서비스',
-                }"
-                @click="serviceSub = '협력 파트너 서비스'"
-              >
-                협력 파트너 서비스
-              </div>
-            </div>
-          </div>
-          <div class="category">
-            <div @click="selectCategory = 'ad'" class="category-name">
-              <div class="left">
-                <i
-                  v-if="selectCategory !== 'ad'"
-                  class="fa-regular fa-folder"
-                ></i>
-                <i
-                  v-if="selectCategory === 'ad'"
-                  class="fa-regular fa-folder-open"
-                ></i>
-                <div :class="{ bold: selectCategory === 'ad' }" class="name">
-                  광고 상품 안내
-                </div>
-              </div>
-              <img
-                v-if="selectCategory !== 'ad'"
-                src="../../../assets/guide_partner/open.png"
-                alt="열기"
-                @click="selectCategory = 'ad'"
-              />
-              <img
-                v-if="selectCategory === 'ad'"
-                src="../../../assets/guide_partner/close.png"
-                alt="닫기"
-              />
-            </div>
-            <div v-if="selectCategory === 'ad'" class="sub-category">
-              <div>프랜차이즈 파트너 광고 상품</div>
-              <div>공인중개사 파트너 광고 상품</div>
-              <div>협력 파트너 광고 상품</div>
-            </div>
-          </div>
-          <div class="category">
-            <div @click="selectCategory = 'question'" class="category-name">
-              <div class="left">
-                <i
-                  v-if="selectCategory !== 'question'"
-                  class="fa-regular fa-folder"
-                ></i>
-                <i
-                  v-if="selectCategory === 'question'"
-                  class="fa-regular fa-folder-open"
-                ></i>
+              <RouterLink to="/partnerguide/cooperation" class="none">
                 <div
-                  :class="{ bold: selectCategory === 'question' }"
-                  class="name"
+                  :class="{
+                    style: serviceSub === '협력 파트너 서비스',
+                  }"
+                  @click="serviceSub = '협력 파트너 서비스'"
                 >
-                  자주 묻는 질문
+                  협력 파트너 서비스
                 </div>
-              </div>
-              <img
-                v-if="selectCategory !== 'question'"
-                src="../../../assets/guide_partner/open.png"
-                alt="열기"
-                @click="selectCategory = 'question'"
-              />
-              <img
-                v-if="selectCategory === 'question'"
-                src="../../../assets/guide_partner/close.png"
-                alt="닫기"
-              />
+              </RouterLink>
             </div>
+          </div>
+          <div class="category">
+            <RouterLink to="/partnerguide/franchisead" class="none">
+              <div @click="selectCategory = 'ad'" class="category-name">
+                <div class="left">
+                  <i
+                    v-if="selectCategory !== 'ad'"
+                    class="fa-regular fa-folder"
+                  ></i>
+                  <i
+                    v-if="selectCategory === 'ad'"
+                    class="fa-regular fa-folder-open"
+                  ></i>
+                  <div :class="{ bold: selectCategory === 'ad' }" class="name">
+                    광고 상품 안내
+                  </div>
+                </div>
+                <img
+                  v-if="selectCategory !== 'ad'"
+                  src="../../../assets/guide_partner/open.png"
+                  alt="열기"
+                  @click="selectCategory = 'ad'"
+                />
+                <img
+                  v-if="selectCategory === 'ad'"
+                  src="../../../assets/guide_partner/close.png"
+                  alt="닫기"
+                />
+              </div>
+            </RouterLink>
+            <div v-if="selectCategory === 'ad'" class="sub-category">
+              <RouterLink to="/partnerguide/franchisead" class="none">
+                <div
+                  :class="{
+                    style: adSub === '프랜차이즈 파트너 광고 상품',
+                  }"
+                  @click="adSub = '프랜차이즈 파트너 광고 상품'"
+                >
+                  프랜차이즈 파트너 광고 상품
+                </div>
+              </RouterLink>
+              <RouterLink to="/partnerguide/realtorad" class="none">
+                <div
+                  :class="{
+                    style: adSub === '공인중개사 파트너 광고 상품',
+                  }"
+                  @click="adSub = '공인중개사 파트너 광고 상품'"
+                >
+                  공인중개사 파트너 광고 상품
+                </div>
+              </RouterLink>
+              <RouterLink to="/partnerguide/cooperation" class="none">
+                <div
+                  :class="{
+                    style: adSub === '협력 파트너 광고 상품',
+                  }"
+                  @click="adSub = '협력 파트너 광고 상품'"
+                >
+                  협력 파트너 광고 상품
+                </div>
+              </RouterLink>
+            </div>
+          </div>
+          <div class="category">
+            <RouterLink to="/partnerguide/partnerqna" class="none">
+              <div @click="selectCategory = 'question'" class="category-name">
+                <div class="left">
+                  <i
+                    v-if="selectCategory !== 'question'"
+                    class="fa-regular fa-folder"
+                  ></i>
+                  <i
+                    v-if="selectCategory === 'question'"
+                    class="fa-regular fa-folder-open"
+                  ></i>
+                  <div
+                    :class="{ bold: selectCategory === 'question' }"
+                    class="name"
+                  >
+                    자주 묻는 질문
+                  </div>
+                </div>
+                <img
+                  v-if="selectCategory !== 'question'"
+                  src="../../../assets/guide_partner/open.png"
+                  alt="열기"
+                  @click="selectCategory = 'question'"
+                />
+                <img
+                  v-if="selectCategory === 'question'"
+                  src="../../../assets/guide_partner/close.png"
+                  alt="닫기"
+                />
+              </div>
+            </RouterLink>
             <div v-if="selectCategory === 'question'" class="sub-category">
-              <div>파트너 질문</div>
+              <RouterLink to="/partnerguide/partnerqna" class="none">
+                <div
+                  :class="{
+                    style: qnaSub === '파트너 질문',
+                  }"
+                  @click="qnaSub = '파트너 질문'"
+                >
+                  파트너 질문
+                </div>
+              </RouterLink>
               <div>서비스 질문</div>
               <div>광고 상품 질문</div>
             </div>
@@ -230,6 +272,8 @@ const { getDevice } = storeToRefs(store)
 const selectCategory = ref<string>('join')
 const joinSub = ref<string>('회원가입/로그인')
 const serviceSub = ref<string>('프랜차이즈 파트너 회원가입 절차')
+const adSub = ref<string>('프랜차이즈 파트너 광고 상품')
+const qnaSub = ref<string>('파트너 질문')
 
 defineEmits<{
   (e: 'showBrandChange'): void
