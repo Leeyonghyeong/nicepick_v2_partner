@@ -7,7 +7,7 @@ import { fileURLToPath, URL } from 'url'
 export default defineConfig({
   plugins: [vue(), eslintPlugin()],
   server: {
-    port: 8081,
+    port: 3002,
     host: true,
   },
   resolve: {

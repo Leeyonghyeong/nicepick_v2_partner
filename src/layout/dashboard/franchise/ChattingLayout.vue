@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts" setup>
-import DashHeader from '../../../component/common/dashboard/franchise/DashboardHeader.vue'
-import DashboardCategory from '../../../component/common/dashboard/franchise/DashboardCategory.vue'
+import DashHeader from '../../../components/common/dashboard/franchise/DashboardHeader.vue'
+import DashboardCategory from '../../../components/common/dashboard/franchise/DashboardCategory.vue'
 
 import { onMounted } from 'vue'
 import { useWindowStore } from '../../../store/window'

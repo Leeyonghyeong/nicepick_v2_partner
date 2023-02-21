@@ -18,11 +18,24 @@
         <div class="login">
           <div class="select">
             <label class="title">
-              <input type="radio" name="category" id="realtor" checked />
+              <input
+                v-model="partnerType"
+                type="radio"
+                name="category"
+                id="realtor"
+                :value="0"
+                checked
+              />
               <div class="name">프랜차이즈</div>
             </label>
             <label class="main">
-              <input type="radio" name="category" id="realtor" />
+              <input
+                v-model="partnerType"
+                type="radio"
+                name="category"
+                id="realtor"
+                :value="1"
+              />
               <div class="name">공인중개사</div>
             </label>
           </div>
@@ -31,14 +44,22 @@
             <div class="login-input">
               <div class="id-pw">
                 <div class="id">
-                  <input type="email" placeholder="이메일" />
+                  <input v-model="email" type="email" placeholder="이메일" />
+                  <small v-if="emailErrorText">{{ emailErrorText }}</small>
                 </div>
                 <div class="pw">
-                  <input type="password" placeholder="비밀번호" />
+                  <input
+                    v-model="password"
+                    type="password"
+                    placeholder="비밀번호"
+                  />
+                  <small v-if="passwordErrorText">{{
+                    passwordErrorText
+                  }}</small>
                 </div>
 
                 <div class="login-btn">
-                  <button>로그인</button>
+                  <button @click="submit">로그인</button>
                 </div>
               </div>
             </div>
@@ -74,10 +95,56 @@
 
 <script lang="ts" setup>
 import { useWindowStore } from '../../store/window'
+import { useUserStore } from '../../store/user'
 import { storeToRefs } from 'pinia'
+import api from '../../config/axios.config'
+import { ref } from 'vue'
+import { AuthResponse } from '../../types/response'
+import { useRouter } from 'vue-router'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const router = useRouter()
+
+const windowStore = useWindowStore()
+const userStore = useUserStore()
+const { getDevice } = storeToRefs(windowStore)
+const { user, brandId } = storeToRefs(userStore)
+
+const partnerType = ref<number>(0) // 0: 프랜차이즈, 1: 공인중개사
+
+const email = ref<string>()
+const password = ref<string>()
+const emailErrorText = ref<string>()
+const passwordErrorText = ref<string>()
+
+const submit = async () => {
+  if (!email.value) {
+    emailErrorText.value = '이메일을 입력해 주세요.'
+    return
+  }
+
+  if (!password.value) {
+    password.value = '비밀번호를 입력해 주세요.'
+    return
+  }
+
+  if (partnerType.value === 0) {
+    const { data } = await api.post<AuthResponse>('/auth/signin', {
+      email: email.value,
+      password: password.value,
+      role: 'COMPANY',
+    })
+
+    if (data.success) {
+      const accessToken: string = data.accessToken
+      localStorage.setItem('accessToken', accessToken)
+
+      user.value = data.user
+      brandId.value = data.brandId
+
+      router.replace('/franchise/dashboard')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -179,6 +246,21 @@ article {
                 font-family: Pretendard;
                 font-size: 16px;
                 color: $inputLine;
+              }
+
+              .id,
+              .pw {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px 0;
+
+                small {
+                  color: $subColor;
+                  font-weight: 400;
+                  font-size: 12px;
+                  line-height: 14px;
+                }
               }
 
               .id {

@@ -1,4 +1,33 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import {
+  createRouter,
+  createWebHistory,
+  NavigationGuard,
+  NavigationGuardNext,
+  RouteLocationNormalized,
+  RouteRecordRaw,
+} from 'vue-router'
+import { useUserStore } from '../store/user'
+
+const loginCheck: NavigationGuard = async (
+  to: RouteLocationNormalized,
+  from: RouteLocationNormalized,
+  next: NavigationGuardNext
+) => {
+  const userStore = useUserStore()
+  const { user } = storeToRefs(userStore)
+  const accessToken = localStorage.getItem('accessToken')
+
+  if (accessToken) {
+    await userStore.getUser()
+
+    if (user.value) {
+      next('/franchise/dashboard')
+    }
+  }
+
+  next()
+}
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,6 +39,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         name: 'Main',
         component: () => import('../views/Main.vue'),
+        beforeEnter: loginCheck,
       },
     ],
   },
@@ -21,87 +51,88 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/login',
         name: 'login',
-        component: () => import('../component/login_join/Login.vue'),
+        component: () => import('../views/signin/Signin.vue'),
+        beforeEnter: loginCheck,
       },
       {
         path: '/join',
         name: 'join',
-        component: () => import('../component/login_join/JoinMain.vue'),
+        component: () => import('../components/login_join/JoinMain.vue'),
       },
       {
         path: '/franchisejoin',
         name: 'franchisejoin',
-        component: () => import('../component/login_join/JoinFranchise.vue'),
+        component: () => import('../components/login_join/JoinFranchise.vue'),
       },
       {
         path: '/realtorjoin',
         name: 'realtorjoin',
-        component: () => import('../component/login_join/JoinRealtor.vue'),
+        component: () => import('../components/login_join/JoinRealtor.vue'),
       },
       {
         path: '/joincomplete',
         name: 'joincomplete',
-        component: () => import('../component/login_join/JoinComplete.vue'),
+        component: () => import('../components/login_join/JoinComplete.vue'),
       },
       {
         path: '/findpw',
         name: 'findpw',
-        component: () => import('../component/find_pw/FindPw.vue'),
+        component: () => import('../components/find_pw/FindPw.vue'),
       },
       {
         path: '/resetpw',
         name: 'resetpw',
-        component: () => import('../component/find_pw/ResetPw.vue'),
+        component: () => import('../components/find_pw/ResetPw.vue'),
       },
       {
         path: '/resetcomplete',
         name: 'resetcomplete',
-        component: () => import('../component/find_pw/ResetComplete.vue'),
+        component: () => import('../components/find_pw/ResetComplete.vue'),
       },
       {
         path: '/withdrawal',
         name: 'withdrawal',
         component: () =>
-          import('../component/dashboard/franchise/mymenu/Withdrawal.vue'),
+          import('../components/dashboard/franchise/mymenu/Withdrawal.vue'),
       },
       {
         path: '/withdrawalcomplete',
         name: 'withdrawalcomplete',
         component: () =>
           import(
-            '../component/dashboard/franchise/mymenu/CompleteWithdrawal.vue'
+            '../components/dashboard/franchise/mymenu/CompleteWithdrawal.vue'
           ),
       },
 
       {
         path: '/nicepickguide',
         name: 'nicepickguide',
-        component: () => import('../component/guide/NicepickGuideMain.vue'),
+        component: () => import('../components/guide/NicepickGuideMain.vue'),
       },
       {
         path: '/nicepickguide/brandguide',
         name: 'brandguide',
-        component: () => import('../component/guide/BrandGuide.vue'),
+        component: () => import('../components/guide/BrandGuide.vue'),
       },
       {
         path: '/nicepickguide/commercialguide',
         name: 'commercialguide',
-        component: () => import('../component/guide/CommercialGuide.vue'),
+        component: () => import('../components/guide/CommercialGuide.vue'),
       },
       {
         path: '/nicepickguide/inquiriesguide',
         name: 'inquiriesguide',
-        component: () => import('../component/guide/InquiriesGuide.vue'),
+        component: () => import('../components/guide/InquiriesGuide.vue'),
       },
       {
         path: '/nicepickguide/communityguide',
         name: 'communityguide',
-        component: () => import('../component/guide/CommunityGuide.vue'),
+        component: () => import('../components/guide/CommunityGuide.vue'),
       },
       {
         path: '/nicepickguide/matchguide',
         name: 'matchguide',
-        component: () => import('../component/guide/MatchGuide.vue'),
+        component: () => import('../components/guide/MatchGuide.vue'),
       },
     ],
   },
@@ -112,54 +143,54 @@ const routes: Array<RouteRecordRaw> = [
       import('../layout/dashboard/franchise/DashboardLayout.vue'),
     children: [
       {
+        path: '/franchise/dashboard',
+        name: 'franchisedashboard',
+        component: () =>
+          import('../components/dashboard/franchise/dashboard/Dashboard.vue'),
+      },
+      {
         path: '/franchise/brand/management',
         name: 'management',
         component: () =>
-          import('../component/dashboard/franchise/brand/Brand.vue'),
+          import('../components/dashboard/franchise/brand/Brand.vue'),
       },
       {
         path: '/franchise/brand/set',
         name: 'set',
         component: () =>
-          import('../component/dashboard/franchise/brand/BrandSet.vue'),
+          import('../components/dashboard/franchise/brand/BrandSet.vue'),
       },
       {
         path: '/franchise/qna',
         name: 'qna',
-        component: () => import('../component/dashboard/franchise/qna/QnA.vue'),
+        component: () =>
+          import('../components/dashboard/franchise/qna/QnA.vue'),
       },
 
       {
         path: '/franchise/mymenu/myinfo',
         name: 'franchisemyinfo',
         component: () =>
-          import('../component/dashboard/franchise/mymenu/MyInfo.vue'),
+          import('../components/dashboard/franchise/mymenu/MyInfo.vue'),
       },
       {
         path: '/franchise/mymenu/usagehistory',
         name: 'franchiseusagehistory',
         component: () =>
-          import('../component/dashboard/franchise/mymenu/UsageHistory.vue'),
+          import('../components/dashboard/franchise/mymenu/UsageHistory.vue'),
       },
       {
         path: '/franchise/mymenu/addkeyword',
         name: 'addkeyword',
         component: () =>
-          import('../component/dashboard/franchise/mymenu/Keyword.vue'),
+          import('../components/dashboard/franchise/mymenu/Keyword.vue'),
       },
 
       {
         path: '/franchise/ad',
         name: 'franchisead',
         component: () =>
-          import('../component/dashboard/franchise/ad/AdItem.vue'),
-      },
-
-      {
-        path: '/franchise/dashboard',
-        name: 'franchisedashboard',
-        component: () =>
-          import('../component/dashboard/franchise/dashboard/Dashboard.vue'),
+          import('../components/dashboard/franchise/ad/AdItem.vue'),
       },
     ],
   },
@@ -173,24 +204,24 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/cart',
         name: 'cart',
-        component: () => import('../component/dashboard/Cart.vue'),
+        component: () => import('../components/dashboard/Cart.vue'),
       },
       {
         path: '/payment',
         name: 'payment',
-        component: () => import('../component/dashboard/Payment.vue'),
+        component: () => import('../components/dashboard/Payment.vue'),
       },
       {
         path: '/franchise/notice',
         name: 'franchisenotice',
         component: () =>
-          import('../component/dashboard/franchise/dashboard/Notice.vue'),
+          import('../components/dashboard/franchise/dashboard/Notice.vue'),
       },
       {
         path: '/franchise/noticemain',
         name: 'franchisenoticemain',
         component: () =>
-          import('../component/dashboard/franchise/dashboard/NoticeMain.vue'),
+          import('../components/dashboard/franchise/dashboard/NoticeMain.vue'),
       },
     ],
   },
@@ -204,7 +235,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/franchise/chatting',
         name: 'franchisechatting',
         component: () =>
-          import('../component/dashboard/franchise/qna/Chatting.vue'),
+          import('../components/dashboard/franchise/qna/Chatting.vue'),
       },
     ],
   },
@@ -218,31 +249,32 @@ const routes: Array<RouteRecordRaw> = [
         path: '/realtor/dashboard',
         name: 'realtordashboard',
         component: () =>
-          import('../component/dashboard/realtor/dashboard/Dashboard.vue'),
+          import('../components/dashboard/realtor/dashboard/Dashboard.vue'),
       },
 
       {
         path: '/realtor/realtor',
         name: 'realtor',
         component: () =>
-          import('../component/dashboard/realtor/realtor/Realtor.vue'),
+          import('../components/dashboard/realtor/realtor/Realtor.vue'),
       },
       {
         path: '/realtor/mymenu/myinfo',
         name: 'realtormyinfo',
         component: () =>
-          import('../component/dashboard/realtor/mymenu/MyInfo.vue'),
+          import('../components/dashboard/realtor/mymenu/MyInfo.vue'),
       },
       {
         path: '/realtor/mymenu/usagehistory',
         name: 'realtorusagehistory',
         component: () =>
-          import('../component/dashboard/realtor/mymenu/Usagehistory.vue'),
+          import('../components/dashboard/realtor/mymenu/Usagehistory.vue'),
       },
       {
         path: '/realtor/ad',
         name: 'realtorad',
-        component: () => import('../component/dashboard/realtor/ad/AdItem.vue'),
+        component: () =>
+          import('../components/dashboard/realtor/ad/AdItem.vue'),
       },
     ],
   },
@@ -257,13 +289,13 @@ const routes: Array<RouteRecordRaw> = [
         path: '/realtor/notice',
         name: 'realtornotice',
         component: () =>
-          import('../component/dashboard/realtor/dashboard/Notice.vue'),
+          import('../components/dashboard/realtor/dashboard/Notice.vue'),
       },
       {
         path: '/realtor/noticemain',
         name: 'realtornoticemain',
         component: () =>
-          import('../component/dashboard/realtor/dashboard/NoticeMain.vue'),
+          import('../components/dashboard/realtor/dashboard/NoticeMain.vue'),
       },
     ],
   },
@@ -277,50 +309,52 @@ const routes: Array<RouteRecordRaw> = [
         path: '/partnerguide/login',
         name: 'partnerguidelogin',
         component: () =>
-          import('../component/guide_partner/join_guide/Login.vue'),
+          import('../components/guide_partner/join_guide/Login.vue'),
       },
       {
         path: '/partnerguide/franchisejoin',
         name: 'franchisejoinguide',
         component: () =>
-          import('../component/guide_partner/join_guide/FranchiseJoin.vue'),
+          import('../components/guide_partner/join_guide/FranchiseJoin.vue'),
       },
       {
         path: '/partnerguide/realtorjoin',
         name: 'realtorjoinguide',
         component: () =>
-          import('../component/guide_partner/join_guide/RealtorJoin.vue'),
+          import('../components/guide_partner/join_guide/RealtorJoin.vue'),
       },
       {
         path: '/partnerguide/cooperation',
         name: 'cooperationguide',
-        component: () => import('../component/guide_partner/Cooperation.vue'),
+        component: () => import('../components/guide_partner/Cooperation.vue'),
       },
       {
         path: '/partnerguide/franchiseservice',
         name: 'franchiseservice',
         component: () =>
           import(
-            '../component/guide_partner/service_guide/FranchiseService.vue'
+            '../components/guide_partner/service_guide/FranchiseService.vue'
           ),
       },
       {
         path: '/partnerguide/realtorservice',
         name: 'realtorservice',
         component: () =>
-          import('../component/guide_partner/service_guide/RealtorService.vue'),
+          import(
+            '../components/guide_partner/service_guide/RealtorService.vue'
+          ),
       },
       {
         path: '/partnerguide/franchisead',
         name: 'franchiseadad',
         component: () =>
-          import('../component/guide_partner/ad_guide/FranchiseAd.vue'),
+          import('../components/guide_partner/ad_guide/FranchiseAd.vue'),
       },
       {
         path: '/partnerguide/realtorad',
         name: 'realtorad',
         component: () =>
-          import('../component/guide_partner/ad_guide/RealtorAd.vue'),
+          import('../components/guide_partner/ad_guide/RealtorAd.vue'),
       },
       {
         path: '/partnerguide/serviceqna',
@@ -332,7 +366,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/partnerguide/partnerqna',
         name: 'partnerqna',
         component: () =>
-          import('../component/guide_partner/question_guide/PartnerQna.vue'),
+          import('../components/guide_partner/question_guide/PartnerQna.vue'),
       },
       {
         path: '/partnerguide/adqna',

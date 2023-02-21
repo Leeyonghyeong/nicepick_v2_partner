@@ -15,10 +15,16 @@
         <RouterLink to="/login" class="login">
           <button class="login">파트너 가입 / 로그인</button>
         </RouterLink>
-        <button>창업픽 홈</button>
+        <button @click="deviceMoveUrl(getDevice, 'https://nicepick.co.kr')">
+          창업픽 홈
+        </button>
       </div>
 
-      <div v-if="getDevice === 'mobile'" class="login-homebtn-mobile">
+      <div
+        v-if="getDevice === 'mobile'"
+        class="login-homebtn-mobile"
+        @click="deviceMoveUrl(getDevice, 'https://nicepick.co.kr')"
+      >
         <div class="home">
           <img
             src="../../assets/header/home_mobile.png"
@@ -34,9 +40,10 @@
 <script lang="ts" setup>
 import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
+import { deviceMoveUrl } from '../../functions/common'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const windowStore = useWindowStore()
+const { getDevice } = storeToRefs(windowStore)
 </script>
 
 <style lang="scss" scoped>

@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts" setup>
-import NoHammenuHeader from '../../../component/common/dashboard/NoHammenuHeader.vue'
-import Footer from '../../../component/common/modal/dashboard/DashboardFooter.vue'
-import Category from '../../../component/common/dashboard/realtor/DashboardCategory.vue'
+import NoHammenuHeader from '../../../components/common/dashboard/NoHammenuHeader.vue'
+import Footer from '../../../components/common/modal/dashboard/DashboardFooter.vue'
+import Category from '../../../components/common/dashboard/realtor/DashboardCategory.vue'
 
 import { onMounted } from 'vue'
 import { useWindowStore } from '../../../store/window'

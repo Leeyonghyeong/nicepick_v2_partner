@@ -15,10 +15,10 @@
 </template>
 
 <script lang="ts" setup>
-import Header from '../../../component/common/dashboard/realtor/RealtorHeader.vue'
-import Footer from '../../../component/common/modal/dashboard/DashboardFooter.vue'
-import DashboardCategory from '../../../component/common/dashboard/realtor/DashboardCategory.vue'
-import RealtorMenubar from '../../../component/common/dashboard/realtor/RealtorMenubar.vue'
+import Header from '../../../components/common/dashboard/realtor/RealtorHeader.vue'
+import Footer from '../../../components/common/modal/dashboard/DashboardFooter.vue'
+import DashboardCategory from '../../../components/common/dashboard/realtor/DashboardCategory.vue'
+import RealtorMenubar from '../../../components/common/dashboard/realtor/RealtorMenubar.vue'
 
 import { onMounted } from 'vue'
 import { useWindowStore } from '../../../store/window'

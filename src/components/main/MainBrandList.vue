@@ -10,7 +10,7 @@
       </div>
 
       <div class="brand-list">
-        <div class="box">
+        <div class="box sa sa-up">
           <img src="../../assets/main/brand_1.jpg" alt="부어치킨" />
           <img src="../../assets/main/brand_2.jpg" alt="더풋샵" />
           <img src="../../assets/main/brand_3.jpg" alt="더치앤빈" />
@@ -37,10 +37,33 @@
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { onMounted, onUnmounted } from 'vue'
+
+const scrollAnimation = () => {
+  const element = document.querySelector('.sa')
+
+  if (element) {
+    if (window.innerHeight > element.getBoundingClientRect().top + 300) {
+      element.classList.add('show')
+    } else {
+      element.classList.remove('show')
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', scrollAnimation)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', scrollAnimation)
+})
+</script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';
+@import '@/scss/animation';
 
 article {
   padding: 150px 0;

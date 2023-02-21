@@ -8,9 +8,9 @@
 </template>
 
 <script lang="ts" setup>
-import Header from '../../component/common/guide_partner/GuideHeader.vue'
-import GuideCategory from '../../component/common/guide_partner/GuideCategory.vue'
-import Footer from '../../component/common/Footer.vue'
+import Header from '../../components/common/guide_partner/GuideHeader.vue'
+import GuideCategory from '../../components/common/guide_partner/GuideCategory.vue'
+import Footer from '../../components/common/Footer.vue'
 import { useWindowStore } from '../../store/window'
 import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'

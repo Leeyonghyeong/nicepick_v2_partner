@@ -4,6 +4,7 @@
   <MainBrandList />
   <CategoryInfo />
   <GuideAndStart />
+  <Footer />
 
   <div v-if="getDevice === 'mobile'" class="login-join-btn">
     <RouterLink to="/login" class="login none">
@@ -13,11 +14,12 @@
 </template>
 
 <script lang="ts" setup>
-import MainFirst from '../component/main/MainFirst.vue'
-import MainReview from '../component/main/MainReview.vue'
-import MainBrandList from '../component/main/MainBrandList.vue'
-import CategoryInfo from '../component/main/CategoryInfo.vue'
-import GuideAndStart from '../component/main/GuideAndStart.vue'
+import MainFirst from '../components/main/MainFirst.vue'
+import MainReview from '../components/main/MainReview.vue'
+import MainBrandList from '../components/main/MainBrandList.vue'
+import CategoryInfo from '../components/main/CategoryInfo.vue'
+import GuideAndStart from '../components/main/GuideAndStart.vue'
+import Footer from '../components/common/Footer.vue'
 
 import { useWindowStore } from '../store/window'
 import { storeToRefs } from 'pinia'
@@ -32,7 +34,7 @@ const { getDevice } = storeToRefs(store)
 @include mobile {
   .login-join-btn {
     position: absolute;
-    position: fixed;
+    position: sticky;
     z-index: 2;
 
     width: 100%;

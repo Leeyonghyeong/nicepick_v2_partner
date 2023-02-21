@@ -15,10 +15,10 @@
 </template>
 
 <script lang="ts" setup>
-import DashHeader from '../../../component/common/dashboard/franchise/DashboardHeader.vue'
-import Footer from '../../../component/common/modal/dashboard/DashboardFooter.vue'
-import DashboardCategory from '../../../component/common/dashboard/franchise/DashboardCategory.vue'
-import FranchiseMenubar from '../../../component/common/dashboard/franchise/FranchiseMenubar.vue'
+import DashHeader from '../../../components/common/dashboard/franchise/DashboardHeader.vue'
+import Footer from '../../../components/common/modal/dashboard/DashboardFooter.vue'
+import DashboardCategory from '../../../components/common/dashboard/franchise/DashboardCategory.vue'
+import FranchiseMenubar from '../../../components/common/dashboard/franchise/FranchiseMenubar.vue'
 
 import { onMounted } from 'vue'
 import { useWindowStore } from '../../../store/window'
