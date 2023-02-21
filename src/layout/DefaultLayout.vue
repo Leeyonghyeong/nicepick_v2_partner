@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import Header from '../component/common/Header.vue'
-import Footer from '../component/common/modal/dashboard/DashboardFooter.vue'
+import Footer from '../component/common/Footer.vue'
 import { useWindowStore } from '../store/window'
 import { onMounted } from 'vue'
 

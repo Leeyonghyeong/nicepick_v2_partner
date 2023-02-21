@@ -3,17 +3,17 @@
     <article>
       <img
         v-if="getDevice === 'pc'"
-        src="../../../assets/guide_partner/join/cooperation/pc.png"
+        src="../../assets/guide_partner/join/cooperation/pc.png"
         alt="pc"
       />
       <img
         v-if="getDevice === 'tablet'"
-        src="../../../assets/guide_partner/join/cooperation/tab.png"
+        src="../../assets/guide_partner/join/cooperation/tab.png"
         alt="pc"
       />
       <img
         v-if="getDevice === 'mobile'"
-        src="../../../assets/guide_partner/join/cooperation/mob.png"
+        src="../../assets/guide_partner/join/cooperation/mob.png"
         alt="pc"
       />
     </article>
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useWindowStore } from '../../../store/window'
+import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
 
 const store = useWindowStore()
