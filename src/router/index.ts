@@ -10,8 +10,8 @@ import {
 import { useUserStore } from '../store/user'
 
 const loginCheck: NavigationGuard = async (
-  to: RouteLocationNormalized,
-  from: RouteLocationNormalized,
+  _to: RouteLocationNormalized,
+  _from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
   const userStore = useUserStore()
@@ -23,10 +23,12 @@ const loginCheck: NavigationGuard = async (
 
     if (user.value) {
       next('/franchise/dashboard')
+    } else {
+      next()
     }
+  } else {
+    next()
   }
-
-  next()
 }
 
 const routes: Array<RouteRecordRaw> = [
@@ -57,37 +59,43 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/join',
         name: 'join',
-        component: () => import('../components/login_join/JoinMain.vue'),
+        component: () => import('../views/signup/Signup.vue'),
+        beforeEnter: loginCheck,
       },
       {
         path: '/franchisejoin',
         name: 'franchisejoin',
-        component: () => import('../components/login_join/JoinFranchise.vue'),
+        component: () => import('../views/signup/FranchiseSignup.vue'),
+        beforeEnter: loginCheck,
       },
       {
         path: '/realtorjoin',
         name: 'realtorjoin',
         component: () => import('../components/login_join/JoinRealtor.vue'),
+        beforeEnter: loginCheck,
       },
       {
         path: '/joincomplete',
         name: 'joincomplete',
-        component: () => import('../components/login_join/JoinComplete.vue'),
+        component: () => import('../views/signup/SignupComplete.vue'),
       },
       {
         path: '/findpw',
         name: 'findpw',
         component: () => import('../components/find_pw/FindPw.vue'),
+        beforeEnter: loginCheck,
       },
       {
         path: '/resetpw',
         name: 'resetpw',
         component: () => import('../components/find_pw/ResetPw.vue'),
+        beforeEnter: loginCheck,
       },
       {
         path: '/resetcomplete',
         name: 'resetcomplete',
         component: () => import('../components/find_pw/ResetComplete.vue'),
+        beforeEnter: loginCheck,
       },
       {
         path: '/withdrawal',
@@ -102,37 +110,6 @@ const routes: Array<RouteRecordRaw> = [
           import(
             '../components/dashboard/franchise/mymenu/CompleteWithdrawal.vue'
           ),
-      },
-
-      {
-        path: '/nicepickguide',
-        name: 'nicepickguide',
-        component: () => import('../components/guide/NicepickGuideMain.vue'),
-      },
-      {
-        path: '/nicepickguide/brandguide',
-        name: 'brandguide',
-        component: () => import('../components/guide/BrandGuide.vue'),
-      },
-      {
-        path: '/nicepickguide/commercialguide',
-        name: 'commercialguide',
-        component: () => import('../components/guide/CommercialGuide.vue'),
-      },
-      {
-        path: '/nicepickguide/inquiriesguide',
-        name: 'inquiriesguide',
-        component: () => import('../components/guide/InquiriesGuide.vue'),
-      },
-      {
-        path: '/nicepickguide/communityguide',
-        name: 'communityguide',
-        component: () => import('../components/guide/CommunityGuide.vue'),
-      },
-      {
-        path: '/nicepickguide/matchguide',
-        name: 'matchguide',
-        component: () => import('../components/guide/MatchGuide.vue'),
       },
     ],
   },
@@ -360,7 +337,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/partnerguide/serviceqna',
         name: 'serviceqna',
         component: () =>
-          import('../component/guide_partner/question_guide/ServiceQna.vue'),
+          import('../components/guide_partner/question_guide/ServiceQna.vue'),
       },
       {
         path: '/partnerguide/partnerqna',
@@ -372,7 +349,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/partnerguide/adqna',
         name: 'adqna',
         component: () =>
-          import('../component/guide_partner/question_guide/AdQna.vue'),
+          import('../components/guide_partner/question_guide/AdQna.vue'),
       },
     ],
   },

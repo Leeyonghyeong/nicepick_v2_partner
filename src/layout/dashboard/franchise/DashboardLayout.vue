@@ -1,5 +1,5 @@
 <template>
-  <DashHeader />
+  <DashboardHeader />
 
   <div class="flex">
     <DashboardCategory />
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts" setup>
-import DashHeader from '../../../components/common/dashboard/franchise/DashboardHeader.vue'
+import DashboardHeader from '../../../components/common/dashboard/franchise/DashboardHeader.vue'
 import Footer from '../../../components/common/modal/dashboard/DashboardFooter.vue'
 import DashboardCategory from '../../../components/common/dashboard/franchise/DashboardCategory.vue'
 import FranchiseMenubar from '../../../components/common/dashboard/franchise/FranchiseMenubar.vue'

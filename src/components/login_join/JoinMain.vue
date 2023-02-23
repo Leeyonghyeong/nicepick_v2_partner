@@ -108,7 +108,7 @@ section {
     justify-content: center;
     .box {
       width: 378px;
-      div {
+      .bold {
         border-bottom: 1px solid $sectionLine;
       }
 
@@ -118,7 +118,7 @@ section {
       }
 
       .sub {
-        padding: 30px 0;
+        padding: 30px 0 0;
         font-size: 14px;
         color: $fontSub;
       }

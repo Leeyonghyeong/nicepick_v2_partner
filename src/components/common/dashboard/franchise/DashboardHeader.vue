@@ -4,6 +4,7 @@
       <div v-if="getDevice !== 'mobile'" class="logo">
         <img src="../../../../assets/header/logo.png" alt="로고" />
       </div>
+      <div v-else class="title">대시보드</div>
 
       <div v-if="getDevice !== 'mobile'" class="logout-homebtn">
         <div class="notice">
@@ -16,7 +17,7 @@
           </div>
         </RouterLink>
         <div class="border"></div>
-        <div class="logout">로그아웃</div>
+        <div class="logout" @click="logout">로그아웃</div>
         <button>창업픽 홈</button>
       </div>
 
@@ -36,13 +37,27 @@ import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
 import Hammenu from '../../modal/dashboard/franchise/Hammenu.vue'
 import { ref } from 'vue'
+import { useUserStore } from '../../../../store/user'
+import { useRouter } from 'vue-router'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const router = useRouter()
+
+const windowStore = useWindowStore()
+const userStore = useUserStore()
+const { getDevice } = storeToRefs(windowStore)
+const { user, brandId } = storeToRefs(userStore)
 
 const showModal = ref<boolean>(false)
 const showHammenuModal = () => {
   showModal.value = !showModal.value
+}
+
+const logout = () => {
+  localStorage.removeItem('accessToken')
+  user.value = undefined
+  brandId.value = undefined
+
+  router.replace('/')
 }
 </script>
 
@@ -140,9 +155,12 @@ article {
 
     .header {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       .title {
         color: $fontMain;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
       }
 
       .ham {

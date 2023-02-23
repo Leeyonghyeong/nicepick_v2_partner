@@ -15,7 +15,7 @@
       </div>
 
       <div class="btn">
-        <router-link to="/" class="none">
+        <router-link to="/franchise/dashboard" class="none">
           <div class="home">홈으로</div>
         </router-link>
       </div>

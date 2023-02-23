@@ -5,6 +5,7 @@
 <script lang="ts" setup>
 import { useWindowStore } from './store/window'
 import { onMounted } from 'vue'
+import './scss/alert.scss'
 
 const store = useWindowStore()
 
