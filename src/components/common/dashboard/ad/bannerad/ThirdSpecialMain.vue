@@ -86,7 +86,7 @@ article {
     }
   }
   .ment {
-    padding-top: 30px;
+    padding: 30px 0;
     font-size: 14px;
     color: $fontSub;
     line-height: 24px;

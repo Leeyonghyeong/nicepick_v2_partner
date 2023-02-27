@@ -38,7 +38,7 @@ article {
   }
 
   .complete {
-    padding: 30px 0 50px 0;
+    padding: 48px 0 50px;
     display: flex;
     flex-direction: column;
     gap: 26px;

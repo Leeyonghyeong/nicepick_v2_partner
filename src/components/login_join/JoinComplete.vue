@@ -39,13 +39,14 @@ article {
   }
 
   .complete {
-    padding: 48px 0 50px 0;
+    padding: 50px 0;
     display: flex;
     flex-direction: column;
     gap: 26px;
     .complete-title {
       font-size: 20px;
-      font-weight: 500;
+      font-weight: $medi;
+      color: $fontMain;
     }
     .complete-message {
       font-size: 15px;
@@ -99,7 +100,7 @@ article {
 
 @include mobile {
   article {
-    padding: 170px 24px;
+    padding: 170px 24px 0;
     .welcome {
       width: 100%;
       img {

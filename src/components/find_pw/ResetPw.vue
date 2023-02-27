@@ -32,7 +32,9 @@
             type="password"
             placeholder="새로운 비밀번호(영문+숫자+특수문자 8~16자)"
           />
+          <div class="ment">영문+숫자+특수문자 8~16자로 입력해 주세요.</div>
           <input type="password" placeholder="새로운 비밀번호" />
+          <div class="ment">비밀번호가 일치하지 않습니다.</div>
         </div>
 
         <div class="submit">
@@ -94,6 +96,7 @@ section {
 
       .title {
         font-weight: $medi;
+        color: $fontMain;
       }
     }
   }
@@ -129,6 +132,12 @@ section {
 
         input:focus {
           border: 1px solid $mainColor;
+        }
+
+        .ment {
+          text-align: left;
+          font-size: 12px;
+          color: $subColor;
         }
       }
 

@@ -46,10 +46,9 @@
 
 #main-review {
   background-color: $backColor;
-  height: 800px;
 
   .padding-box {
-    padding: 100px 0 148px 0;
+    padding: 150px 0;
 
     .title {
       display: flex;
@@ -104,12 +103,10 @@
           padding-bottom: 10px;
         }
       }
-
       .review-auto {
-        div {
-          img {
-            width: 378px;
-          }
+        .auto,
+        .auto-2 {
+          gap: 24px;
         }
       }
     }
@@ -118,18 +115,30 @@
 
 @include mobile {
   #main-review {
-    height: 600px;
     .padding-box {
-      padding: 60px 0 100px 0;
+      padding: 100px 0;
       .title {
         padding-bottom: 50px;
         .title-padding {
-          font-size: 15px;
+          font-size: 14px;
           padding-bottom: 10px;
         }
 
         .title-bold {
-          font-size: 20px;
+          font-size: 22px;
+        }
+      }
+
+      .review-auto {
+        .auto,
+        .auto-2 {
+          gap: 8px;
+          img {
+            width: 328px;
+          }
+        }
+        .auto-2 {
+          padding-top: 20px;
         }
       }
     }

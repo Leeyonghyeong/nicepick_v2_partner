@@ -184,7 +184,8 @@
                     <input type="text" placeholder="메뉴명" />
                   </div>
                   <div class="cost">
-                    <input type="text" placeholder="0" /> 원
+                    <input type="number" placeholder="0" />
+                    <div>원</div>
                   </div>
                 </div>
               </div>
@@ -258,7 +259,7 @@ const showPremiumModal = () => {
 @import '@/scss/main';
 
 article {
-  padding: 50px 0px 80px 160px;
+  padding: 50px 0px 76px 160px;
 
   .none {
     text-decoration: none;
@@ -534,10 +535,11 @@ article {
       }
     }
     .representative-menu {
+      height: 100%;
       .menu-flex {
         display: flex;
         flex-direction: column;
-        gap: 11px;
+        gap: 10px;
 
         .image-section {
           .btn-upload {
@@ -549,52 +551,40 @@ article {
           }
         }
         .name-cost {
+          width: 122px;
           display: flex;
           flex-direction: column;
           gap: 11px;
-          input {
-            padding: 0 14px;
-            width: 122px;
-            height: 41px;
-            box-sizing: border-box;
-            text-align: center;
+          .name {
+            input {
+              padding: 0;
+              text-align: center;
+            }
           }
           .cost {
-            width: 122px;
-            height: 41px;
-            padding: 0 14px;
-            box-sizing: border-box;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-
-            border: 1px solid $iconLine;
-            border-radius: 10px;
-            color: $fontMain;
-
+            position: relative;
             input {
-              width: 100%;
-              height: 39px;
-              border: none;
-              padding: 0;
-            }
-            input::placeholder {
+              padding: 0 31px 0 0;
               text-align: right;
+              font-family: $pre;
               font-size: 16px;
-              font-family: Pretendard;
-              font-weight: $reg;
             }
-            input:focus {
-              text-align: right;
+            input::-webkit-inner-spin-button {
+              appearance: none;
+              -moz-appearance: none;
+              -webkit-appearance: none;
+            }
+            div {
+              position: absolute;
+              right: 13px;
+              top: 50%;
+              transform: translate(0%, -50%);
             }
           }
         }
       }
     }
     .save {
-      margin-top: 30px;
       button {
         width: 1270px;
         height: 50px;
@@ -638,6 +628,10 @@ article {
       .representative-image {
         width: 100%;
         height: 366px;
+        .image-section {
+          width: 425px;
+          height: 228px;
+        }
       }
     }
 
@@ -654,10 +648,17 @@ article {
         }
       }
       .height {
-        height: 385px;
+        width: 100%;
+        height: 100%;
         .center {
           flex-direction: column;
           align-items: center;
+          .image-section {
+            .btn-upload {
+              width: 425px;
+              height: 228px;
+            }
+          }
           button {
             flex-direction: row;
             width: 89px;
@@ -666,15 +667,15 @@ article {
           }
         }
       }
+
       .representative-menu {
-        height: 253px;
         .menu-flex {
           width: 100%;
           flex-direction: row;
           .image-section {
             .btn-upload {
               width: 93px;
-              height: 93px;
+              height: 100%;
               .value {
                 text-align: center;
               }
@@ -728,7 +729,7 @@ article {
       .description-logo {
         .description {
           background-color: white;
-          padding: 30px 24px;
+          padding: 20px 24px;
           font-size: 12px;
         }
       }
@@ -776,6 +777,7 @@ article {
       .promotion {
         .promotion-category {
           flex-wrap: wrap;
+          gap: 16px;
           .category {
             width: 20%;
             height: 70px;
@@ -821,6 +823,7 @@ article {
             width: 100%;
             input {
               width: 100%;
+              height: 40px;
             }
             .cost {
               width: 100%;
@@ -829,7 +832,7 @@ article {
         }
       }
       .save {
-        height: 100px;
+        height: 90px;
         margin: 0px 0 60px 0;
         padding: 0 24px;
         display: flex;
@@ -837,7 +840,6 @@ article {
         background-color: white;
         button {
           width: 100%;
-          height: 60px;
         }
       }
     }

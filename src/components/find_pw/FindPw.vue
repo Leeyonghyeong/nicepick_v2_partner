@@ -99,6 +99,7 @@ section {
 
       .title {
         font-weight: $medi;
+        color: $fontMain;
       }
     }
   }
@@ -121,7 +122,7 @@ section {
           align-items: baseline;
           gap: 5px;
           font-size: 14px;
-          padding-bottom: 8px;
+          color: $fontMain;
 
           div {
             font-size: 11px;

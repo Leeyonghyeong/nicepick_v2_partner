@@ -27,7 +27,7 @@
             <div>
               · 회원 탈퇴 후 개인정보는 즉시 파기되며, 복구가 불가능합니다.<br />
               · 삭제된 회원 정보 및 데이터는 복구할 수 없습니다.<br />
-              · 창업픽 고객센터 <span>070-8287-2281</span>
+              · 창업픽 고객센터 <a href="tel:070-8287-2281">070-8287-2281</a>
             </div>
           </div>
         </div>
@@ -159,8 +159,9 @@ article {
         line-height: 24px;
         color: $fontSub;
         text-align: left;
-        span {
+        a {
           color: #1569ff;
+          text-decoration: none;
         }
       }
     }
@@ -205,7 +206,7 @@ article {
             height: 16px;
           }
           input[type='radio']:checked {
-            background-image: url(../../../../assets/dashboard/checked.png);
+            background-image: url(../../../../assets/login/check.png);
             background-repeat: no-repeat;
             background-size: 8px;
             background-position: center;

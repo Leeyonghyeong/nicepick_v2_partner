@@ -116,6 +116,9 @@
             <div class="title">
               연도별 매장 현황
               <span class="sub-title">(최근 3년)</span>
+              <span v-if="getDevice === 'pc'" class="red">
+                ※해당년도에 운영중인 전체 매장수를 입력해 주세요.
+              </span>
             </div>
             <div class="year-box">
               <div class="width">
@@ -253,7 +256,11 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useWindowStore } from '../../../../store/window'
+import { storeToRefs } from 'pinia'
 
+const store = useWindowStore()
+const { getDevice } = storeToRefs(store)
 const selectSet = ref<string>('maintain')
 </script>
 
@@ -310,6 +317,11 @@ article {
           font-size: 12px;
           color: $fontSub;
         }
+        .red {
+          padding-left: 8px;
+          font-size: 12px;
+          color: $subColor;
+        }
       }
       .title-year {
         display: flex;
@@ -355,6 +367,7 @@ article {
           .input-title {
             color: $fontMain;
             font-weight: $reg;
+            line-height: 24px;
           }
 
           .input-gap {
@@ -376,11 +389,11 @@ article {
                 box-sizing: border-box;
                 border: 1px solid $iconLine;
                 border-radius: 10px;
+                font-family: $pre;
+                font-size: 16px;
               }
               input::placeholder {
                 text-align: right;
-                font-size: 16px;
-                font-family: Pretendard;
                 color: $inputLine;
                 font-weight: $reg;
               }
@@ -417,11 +430,11 @@ article {
               box-sizing: border-box;
               border: 1px solid $iconLine;
               border-radius: 10px;
+              text-align: right;
+              font-family: $pre;
+              font-size: 16px;
             }
             input::placeholder {
-              text-align: right;
-              font-size: 16px;
-              font-family: Pretendard;
               color: $inputLine;
               font-weight: $reg;
             }
@@ -461,6 +474,7 @@ article {
         .title {
           font-size: 16px;
           font-weight: $reg;
+          padding-bottom: 20px;
         }
         textarea {
           width: 100%;
@@ -605,6 +619,7 @@ article {
 
     .select-set {
       width: 100%;
+      gap: 24px;
       .select {
         padding: 0px 7px 0px 6px;
         width: 100%;
@@ -682,11 +697,21 @@ article {
                 font-size: 14px;
                 input {
                   width: 100%;
+                  padding-right: 34px;
+                  font-size: 14px;
                 }
 
                 input::placeholder {
                   font-size: 14px;
                 }
+              }
+            }
+          }
+          .calculator {
+            .border-section {
+              input {
+                padding-right: 34px;
+                font-size: 14px;
               }
             }
           }
@@ -764,7 +789,7 @@ article {
     }
 
     .save {
-      height: 100px;
+      height: 90px;
       margin: 10px 0 60px 0;
       padding: 0 24px;
       display: flex;
@@ -772,7 +797,6 @@ article {
       background-color: white;
       button {
         width: 100%;
-        height: 60px;
       }
     }
   }

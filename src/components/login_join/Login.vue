@@ -318,8 +318,9 @@ article {
       border-top: 1px solid $sectionLine;
 
       .join {
-        padding: 20px 0 59px 0;
+        padding: 20px 0 50px;
         font-size: 14px;
+        color: $fontMain;
 
         span {
           padding-left: 10px;
@@ -388,6 +389,7 @@ article {
                   width: 100%;
                   button {
                     width: 100%;
+                    font-size: 14px;
                   }
                 }
               }

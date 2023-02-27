@@ -196,7 +196,9 @@
                   </label>
                 </div>
                 <div class="border"></div>
-                <div class="sub">광고 문구 : 제목 12자 + 본문 14자</div>
+                <div class="sub">
+                  광고 문구 : 제목 12자 + 본문 14자 / 이미지 사이즈 : 280x200
+                </div>
               </div>
               <div class="setting-banner" :style="{ backgroundColor: main }">
                 <div
@@ -276,7 +278,9 @@
                 · 배너의 문구 양식대로 등록해 주세요.<br />
                 · 이미지는 사이즈에 맞춰 등록해 주세요.<br />
                 · 이미지의 단위는 픽셀(px)입니다.<br />
-                · 이미지는 배경없는 .png 파일만 등록이 가능합니다.
+                · 이미지는 배경없는 .png 파일만 등록이 가능합니다.<br />
+                · 등록한 문구/이미지는 [마이메뉴>이용내역]에서 수정하실 수
+                있습니다.
               </div>
             </div>
           </div>
@@ -310,14 +314,14 @@
                 :class="{ select: selectPay === 'credit' }"
                 @click="selectPay = 'credit'"
               >
-                <i class="fa-regular fa-money-bill-1"></i>
+                <i class="fa-regular fa-credit-card"></i>
                 신용카드
               </button>
               <button
                 :class="{ select: selectPay === 'cash' }"
                 @click="selectPay = 'cash'"
               >
-                <i class="fa-regular fa-credit-card"></i>
+                <i class="fa-regular fa-money-bill-1"></i>
                 계좌이체
               </button>
             </div>
@@ -391,7 +395,7 @@ const specialUrl = ref<string>('detail')
 @import '@/scss/main';
 
 article {
-  padding: 50px 24px 0 24px;
+  padding: 50px 24px 60px;
 
   .top-title {
     font-size: 20px;
@@ -547,6 +551,9 @@ article {
             justify-content: space-between;
             border-bottom: 1px solid $sectionLine;
             padding-bottom: 10px;
+            .title {
+              font-size: 16px;
+            }
             button {
               width: 80px;
               height: 40px;
@@ -570,14 +577,14 @@ article {
           }
           .pc {
             .image-section {
-              width: 444px;
-              height: 74px;
+              width: 427px;
+              height: 66px;
             }
           }
           .tab {
             .image-section {
-              width: 444px;
-              height: 98px;
+              width: 427px;
+              height: 89px;
             }
           }
           .mob {
@@ -599,7 +606,7 @@ article {
           .select-highlight {
             padding-top: 30px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 20px;
             .flex {
               display: flex;
@@ -633,8 +640,7 @@ article {
               }
             }
             .border {
-              height: 17px;
-              border: 1px solid $iconLine;
+              display: none;
             }
             .sub {
               font-size: 14px;
@@ -655,7 +661,7 @@ article {
               justify-content: center;
               gap: 5px;
               input {
-                width: 244px;
+                width: 100%;
               }
               .title,
               .main {
@@ -695,13 +701,16 @@ article {
             padding-top: 20px;
             display: flex;
             gap: 20px;
-            .box {
+            .color {
               display: flex;
-              align-items: center;
+              flex-direction: column;
               gap: 10px;
               .name {
                 font-size: 14px;
                 color: $fontMain;
+              }
+              .vacp-color-picker {
+                padding: 0;
               }
             }
           }
@@ -709,6 +718,9 @@ article {
       }
       .url-input {
         padding-top: 30px;
+        .name {
+          font-size: 14px;
+        }
         .link {
           width: 100%;
           height: 50px;
@@ -723,6 +735,9 @@ article {
         }
         .link::placeholder {
           color: $inputLine;
+        }
+        .link:focus {
+          border: 1px solid $mainColor;
         }
         .urlstyle {
           background-color: white;
@@ -966,6 +981,9 @@ article {
                 padding: 0;
                 border-bottom: none;
               }
+              button {
+                font-size: 14px;
+              }
             }
 
             .guide {
@@ -978,7 +996,7 @@ article {
             .pc {
               .image-section {
                 width: 100%;
-                height: 50px;
+                height: 55px;
               }
             }
             .tab {
@@ -999,7 +1017,6 @@ article {
             .select-highlight {
               flex-direction: column;
               align-items: flex-start;
-              gap: 0;
               .flex {
                 .title {
                   padding: 0;
@@ -1030,6 +1047,11 @@ article {
             }
           }
         }
+        .url-input {
+          .name {
+            font-size: 13px;
+          }
+        }
       }
 
       .right {
@@ -1048,6 +1070,16 @@ article {
         .way {
           background-color: white;
           padding: 0 24px;
+          margin-top: 10px;
+          .title {
+            padding: 30px 0 20px;
+          }
+          .pay-btn {
+            padding: 30px 0;
+            button {
+              font-size: 14px;
+            }
+          }
         }
 
         .accent {
@@ -1056,6 +1088,7 @@ article {
         }
 
         .charge {
+          height: 58px;
           margin-top: 0;
           position: absolute;
           position: fixed;
@@ -1133,6 +1166,13 @@ article {
           }
 
           .main-special {
+            .select-highlight {
+              flex-direction: row;
+              .border {
+                display: block;
+                border-right: 1px solid #ebebeb;
+              }
+            }
             .setting-banner {
               padding: 0 80px;
               justify-content: space-between;

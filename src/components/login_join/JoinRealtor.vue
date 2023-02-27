@@ -14,7 +14,7 @@
       <RouterLink to="join" class="none">
         <div v-if="getDevice === 'mobile'" class="title">
           <img src="../../assets/login/arrow_lt.png" alt="이전" />
-          <div>파트너 회원가입</div>
+          <div>공인중개사 회원가입</div>
         </div>
       </RouterLink>
     </article>
@@ -34,179 +34,194 @@
       </div>
     </article>
 
-    <article class="join-input">
-      <div class="input-box">
+    <article class="padding">
+      <article class="join-input">
         <div class="input-box">
-          <div class="box">
-            <div class="input-title">사업자 상호명</div>
-            <input type="email" placeholder="상호명 입력" />
-          </div>
-        </div>
-
-        <div class="input-box">
-          <div class="box">
-            <div class="input-title">사업자 대표명</div>
-            <input type="email" placeholder="이름 입력" />
-          </div>
-        </div>
-
-        <div class="input-box">
-          <div class="box">
-            <div class="input-title">사업자 등록번호</div>
-            <input type="email" placeholder="사업자 등록번호 입력" />
-          </div>
-        </div>
-
-        <div class="file-upload">
-          <div class="box">
-            <div class="input-title">사업자 등록증</div>
-          </div>
-
-          <div class="file-gap">
-            <div>
-              <label for="file">
-                <div class="btn-upload">파일첨부</div>
-              </label>
-              <input type="file" name="file" id="file" />
-            </div>
-            <div class="apply-box">
-              <div class="box">등록증.jpg</div>
+          <div class="input-box">
+            <div class="box">
+              <div class="input-title">사업자 상호명</div>
+              <input type="email" placeholder="상호명 입력" />
             </div>
           </div>
-        </div>
 
-        <div class="input-box">
-          <div class="box">
-            <div class="input-title">중개 등록번호</div>
-            <input type="email" placeholder="중개 등록번호 입력" />
-          </div>
-        </div>
-
-        <div class="file-upload">
-          <div class="box">
-            <div class="input-title">중개 등록증</div>
-          </div>
-
-          <div class="file-gap">
-            <div>
-              <label for="file">
-                <div class="btn-upload">파일첨부</div>
-              </label>
-              <input type="file" name="file" id="file" />
-            </div>
-            <div class="apply-box">
-              <div class="box">등록증.jpg</div>
+          <div class="input-box">
+            <div class="box">
+              <div class="input-title">사업자 대표명</div>
+              <input type="email" placeholder="이름 입력" />
             </div>
           </div>
-        </div>
 
-        <div class="input-box">
+          <div class="input-box">
+            <div class="box">
+              <div class="input-title">사업자 등록번호</div>
+              <input type="email" placeholder="사업자 등록번호 입력" />
+            </div>
+          </div>
+
+          <div class="file-upload">
+            <div class="box">
+              <div class="input-title">사업자 등록증</div>
+              <div class="file-gap">
+                <div>
+                  <label for="file">
+                    <div class="btn-upload">파일첨부</div>
+                  </label>
+                  <input type="file" name="file" id="file" />
+                </div>
+                <div class="apply-box">
+                  <input class="box" type="text" value="등록증.jpg" disabled />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <div class="box">
+              <div class="input-title">중개 등록번호</div>
+              <input type="email" placeholder="중개 등록번호 입력" />
+            </div>
+          </div>
+
+          <div class="file-upload">
+            <div class="box">
+              <div class="input-title">중개 등록증</div>
+              <div class="file-gap">
+                <div>
+                  <label for="file">
+                    <div class="btn-upload">파일첨부</div>
+                  </label>
+                  <input type="file" name="file" id="file" />
+                </div>
+                <div class="apply-box">
+                  <input class="box" type="text" value="등록증.jpg" disabled />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <div class="box">
+              <div class="input-title">대표 전화번호</div>
+              <input type="email" placeholder="‘-’ 제외 숫자만 입력" />
+            </div>
+          </div>
+
+          <div class="input-box border">
+            <div class="box">
+              <div class="input-title">주소</div>
+              <button class="margin">검색</button>
+              <div class="address">
+                <div class="ad">
+                  <div class="name">지번</div>
+                  <input type="text" value="서울 강남구 역삼동 123" disabled />
+                </div>
+                <div class="ad">
+                  <div class="name">도로명</div>
+                  <input
+                    type="text"
+                    value="서울 강남구 역삼로12길 34"
+                    disabled
+                  />
+                </div>
+              </div>
+              <input type="text" placeholder="상세주소 입력" />
+            </div>
+          </div>
+
           <div class="box">
-            <div class="input-title">대표 전화번호</div>
-            <input type="email" placeholder="‘-’ 제외 숫자만 입력" />
+            <div class="input-title">
+              이메일
+              <div>(아이디 사용)</div>
+            </div>
+            <input type="email" placeholder="이메일 주소 입력" />
+          </div>
+
+          <div class="box">
+            <div class="input-title">비밀번호</div>
+            <div class="pw-input">
+              <input
+                type="password"
+                placeholder="비밀번호 입력(영문+숫자+특수문자 8~16자)"
+              />
+              <input type="password" placeholder="비밀번호 확인" />
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="input-title">담당 중개사명</div>
+            <input type="text" placeholder="이름 입력" />
+          </div>
+
+          <div class="box phone">
+            <div class="input-title">휴대폰 번호</div>
+            <input type="text" placeholder="‘-’ 제외 숫자만 입력" />
           </div>
         </div>
+      </article>
 
-        <div class="input-box border">
-          <div class="box">
-            <div class="input-title">주소</div>
-            <button class="margin">검색</button>
-          </div>
-        </div>
-
+      <article class="check-submit">
         <div class="box">
-          <div class="input-title">
-            이메일
-            <div>(아이디 사용)</div>
+          <div class="title">약관동의</div>
+          <div class="border-box">
+            <div class="padding-box">
+              <div class="space all">
+                전체 동의
+                <div class="check">
+                  <input type="checkbox" id="check1" />
+                  <label for="check1"></label>
+                </div>
+              </div>
+
+              <div class="gap-box">
+                <div class="space">
+                  <a
+                    href="https://nicepick.notion.site/nicepick/112ba598e8d34c39b6b3ab29d6c9e34a"
+                    target="_blank"
+                  >
+                    (필수) 서비스 이용 약관 동의
+                  </a>
+                  <div class="check">
+                    <input type="checkbox" id="check2" />
+                    <label for="check2"></label>
+                  </div>
+                </div>
+                <div class="space">
+                  <a
+                    href="https://nicepick.notion.site/nicepick/b92941c41e6e4986b60a197ac607f1da"
+                    target="_blank"
+                    >(필수) 개인정보 수집 이용 동의</a
+                  >
+                  <div class="check">
+                    <input type="checkbox" id="check3" />
+                    <label for="check3"></label>
+                  </div>
+                </div>
+                <div class="space">
+                  <a
+                    href="https://nicepick.notion.site/nicepick/e5db5ba7dd064fea86a0a0057d042654"
+                    target="_blank"
+                    >(선택) 창업 정보 및 이벤트 정보 수신 동의</a
+                  >
+                  <div class="check">
+                    <input type="checkbox" id="check4" />
+                    <label for="check4"></label>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <input type="email" placeholder="이메일 주소 입력" />
-        </div>
 
-        <div class="box">
-          <div class="input-title">비밀번호</div>
-          <div class="pw-input">
-            <input
-              type="password"
-              placeholder="비밀번호 입력(영문+숫자+특수문자 8~16자)"
-            />
-            <input type="password" placeholder="비밀번호 확인" />
-          </div>
+          <router-link to="joincomplete">
+            <button>가입하기</button>
+          </router-link>
         </div>
+      </article>
 
-        <div class="box">
-          <div class="input-title">담당자명</div>
-          <input type="text" placeholder="이름 입력" />
-        </div>
-
-        <div class="box phone">
-          <div class="input-title">휴대폰 번호</div>
-          <input type="text" placeholder="‘-’ 제외 숫자만 입력" />
-        </div>
-      </div>
+      <CompanyNumber
+        v-if="showModal"
+        @showCompanyNumberModal="showCompanyNumberModal"
+      />
     </article>
-
-    <article class="check-submit">
-      <div class="box">
-        <div class="title">약관동의</div>
-        <div class="border-box">
-          <div class="padding-box">
-            <div class="space all">
-              전체 동의
-              <div class="check">
-                <input type="checkbox" id="check1" />
-                <label for="check1"></label>
-              </div>
-            </div>
-
-            <div class="gap-box">
-              <div class="space">
-                <a
-                  href="https://nicepick.notion.site/nicepick/112ba598e8d34c39b6b3ab29d6c9e34a"
-                  target="_blank"
-                >
-                  (필수) 서비스 이용 약관 동의
-                </a>
-                <div class="check">
-                  <input type="checkbox" id="check2" />
-                  <label for="check2"></label>
-                </div>
-              </div>
-              <div class="space">
-                <a
-                  href="https://nicepick.notion.site/nicepick/b92941c41e6e4986b60a197ac607f1da"
-                  target="_blank"
-                  >(필수) 개인정보 수집 이용 동의</a
-                >
-                <div class="check">
-                  <input type="checkbox" id="check3" />
-                  <label for="check3"></label>
-                </div>
-              </div>
-              <div class="space">
-                <a
-                  href="https://nicepick.notion.site/nicepick/e5db5ba7dd064fea86a0a0057d042654"
-                  target="_blank"
-                  >(선택) 창업 정보 및 이벤트 정보 수신 동의</a
-                >
-                <div class="check">
-                  <input type="checkbox" id="check4" />
-                  <label for="check4"></label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <router-link to="joincomplete">
-          <button>가입하기</button>
-        </router-link>
-      </div>
-    </article>
-
-    <CompanyNumber
-      v-if="showModal"
-      @showCompanyNumberModal="showCompanyNumberModal"
-    />
   </section>
 </template>
 
@@ -262,7 +277,10 @@ section {
       gap: 30px;
 
       .title {
+        color: $fontMain;
         font-weight: $medi;
+        padding-bottom: 20px;
+        border-bottom: 1px solid $sectionLine;
       }
 
       .search {
@@ -308,6 +326,7 @@ section {
           gap: 5px;
           font-size: 14px;
           font-weight: $reg;
+          color: $fontMain;
           padding-bottom: 8px;
 
           div {
@@ -376,6 +395,7 @@ section {
         align-items: center;
 
         font-size: 14px;
+        font-family: $pre;
         font-weight: $reg;
         color: $fontSub;
       }
@@ -389,7 +409,7 @@ section {
       .file-gap {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         .btn-upload {
           background-color: $fontMain;
           border-radius: 10px;
@@ -410,9 +430,48 @@ section {
 
     .border {
       border-bottom: 1px solid $sectionLine;
-
-      .margin {
-        margin-bottom: 30px;
+      .box {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-bottom: 30px;
+        .address {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 15px 16px;
+          background-color: #fafafa;
+          border: 1px solid $inputLine;
+          border-radius: 10px;
+          .ad {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            .name {
+              width: 40px;
+              height: 20px;
+              background-color: $inputLine;
+              font-size: 11px;
+              color: white;
+              border-radius: 5px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            input {
+              width: auto;
+              height: auto;
+              padding: 0;
+              background-color: transparent;
+              border: none;
+              font-size: 14px;
+              font-family: $pre;
+            }
+            input::placeholder {
+              color: $fontMain;
+            }
+          }
+        }
       }
     }
   }
@@ -428,6 +487,7 @@ section {
         font-weight: $reg;
         padding-bottom: 8px;
         display: flex;
+        color: $fontMain;
       }
 
       .border-box {
@@ -486,6 +546,9 @@ section {
                 cursor: pointer;
               }
             }
+          }
+          .all {
+            font-size: 15px;
           }
 
           .gap-box {
@@ -556,22 +619,33 @@ section {
       }
     }
 
-    .join-input {
-      .input-box {
-        width: 100%;
-        .box {
+    .padding {
+      padding: 0 24px;
+      .join-input {
+        .input-box {
           width: 100%;
-          padding: 0 24px;
-          box-sizing: border-box;
+          .box {
+            width: 100%;
+            box-sizing: border-box;
+          }
+        }
+        .file-upload {
+          .file-gap {
+            .btn-upload {
+              width: 100%;
+            }
+          }
         }
       }
-    }
 
-    .check-submit {
-      .box {
-        width: 100%;
-        padding: 0 24px;
-        box-sizing: border-box;
+      .check-submit {
+        .box {
+          width: 100%;
+          box-sizing: border-box;
+          button {
+            font-size: 14px;
+          }
+        }
       }
     }
   }

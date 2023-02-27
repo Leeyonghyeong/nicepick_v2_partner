@@ -48,7 +48,7 @@ const periodSelect = ref<string>('30일')
   z-index: 2;
   box-sizing: border-box;
   border-radius: 10px;
-  border: 1px solid $inputLine;
+  border: 1px solid #ebebeb;
   overflow: hidden;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
   .name {

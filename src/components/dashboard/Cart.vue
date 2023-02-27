@@ -368,7 +368,7 @@ article {
             justify-content: space-between;
             align-items: center;
             .option {
-              width: 130px;
+              width: 126px;
               height: 40px;
               border: 1px solid $inputLine;
               border-radius: 5px;
@@ -581,6 +581,9 @@ article {
         .box {
           border-radius: 0;
           box-shadow: none;
+          .title {
+            font-size: 16px;
+          }
         }
       }
       .application {

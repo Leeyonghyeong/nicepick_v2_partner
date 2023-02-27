@@ -97,7 +97,7 @@
           padding-top: 6px;
           font-size: 18px;
           font-weight: $medi;
-          color: black;
+          color: $fontMain;
         }
       }
     }
@@ -113,7 +113,7 @@
   gap: 50px;
 
   .title {
-    font-size: 32px;
+    font-size: 32px !important;
     color: $fontMain;
     font-weight: $semi;
   }
@@ -122,8 +122,9 @@
     width: 204px;
     height: 60px;
     background-color: $mainColor;
-    font-size: 20px;
+    font-size: 20px !important;
     font-weight: $medi;
+    font-family: $pre;
     color: white;
     border: none;
     border-radius: 10px;
@@ -133,7 +134,7 @@
 
 @include tablet {
   #guide {
-    height: 722px;
+    height: 842px;
 
     .btn-box {
       justify-content: center;
@@ -152,7 +153,7 @@
 @include mobile {
   #guide {
     @include mobile-container();
-    height: 698px;
+    height: 780px;
     gap: 50px;
 
     .title {
@@ -179,21 +180,23 @@
 
         .flex {
           text-align: left;
+          .box-title {
+            font-size: 16px;
+          }
         }
       }
     }
   }
-}
-
-#start {
-  gap: 40px;
-  .title {
-    font-size: 26px;
-  }
-
-  button {
-    height: 50px;
-    font-size: 16px;
+  #start {
+    padding: 100px 0;
+    gap: 40px;
+    .title {
+      font-size: 26px !important;
+    }
+    button {
+      height: 50px;
+      font-size: 16px !important;
+    }
   }
 }
 </style>
