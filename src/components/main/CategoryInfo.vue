@@ -168,11 +168,10 @@
             <div id="slide-4" class="box">
               <img src="../../assets/main/고객층.png" alt="고객층" />
               <div class="box-title">
-                <div class="bold">가맹점 증가</div>
+                <div class="bold">다양한 고객층 확보</div>
                 <div>
                   PC 모바일, 앱을 통한 모든 고객에게<br />
-                  중개업소를 홍보해보세요. <br />
-                  놀랄만한 결과가 생길겁니다.
+                  중개업소를 홍보해보세요.
                 </div>
               </div>
             </div>
@@ -321,23 +320,25 @@ const selectCategory = ref<string>('franchise')
 
 @include tablet {
   #category-info {
+    padding: 150px 0 328px 0;
     .info {
       padding-top: 168px;
+      .info-slide {
+        .box {
+          gap: 24px;
 
-      .box {
-        gap: 24px;
+          img {
+            width: 240px;
+            height: 217px;
+          }
 
-        img {
-          width: 240px;
-          height: 217px;
-        }
+          .box-title {
+            font-size: 15px;
+            line-height: 24px;
 
-        .box-title {
-          font-size: 15px;
-          line-height: 24px;
-
-          .bold {
-            font-size: 30px;
+            .bold {
+              font-size: 26px;
+            }
           }
         }
       }
@@ -347,6 +348,7 @@ const selectCategory = ref<string>('franchise')
 
 @include mobile {
   #category-info {
+    padding: 100px 0 175px;
     .title {
       @include mobile-container();
       font-size: 16px;

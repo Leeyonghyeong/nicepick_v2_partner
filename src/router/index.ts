@@ -301,9 +301,10 @@ const routes: Array<RouteRecordRaw> = [
           import('../components/guide_partner/join_guide/RealtorJoin.vue'),
       },
       {
-        path: '/partnerguide/cooperation',
-        name: 'cooperationguide',
-        component: () => import('../components/guide_partner/Cooperation.vue'),
+        path: '/partnerguide/cooperationjoin',
+        name: 'cooperationjoinguide',
+        component: () =>
+          import('../components/guide_partner/join_guide/CooperationJoin.vue'),
       },
       {
         path: '/partnerguide/franchiseservice',
@@ -320,6 +321,20 @@ const routes: Array<RouteRecordRaw> = [
           import(
             '../components/guide_partner/service_guide/RealtorService.vue'
           ),
+      },
+      {
+        path: '/partnerguide/cooperationservice',
+        name: 'cooperationserviceguide',
+        component: () =>
+          import(
+            '../components/guide_partner/service_guide/CooperationService.vue'
+          ),
+      },
+      {
+        path: '/partnerguide/cooperationad',
+        name: 'cooperationadguide',
+        component: () =>
+          import('../components/guide_partner/ad_guide/CooperationAd.vue'),
       },
       {
         path: '/partnerguide/franchisead',

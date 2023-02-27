@@ -173,7 +173,6 @@ new NumberCounter(30, 200, 'visitPer')
     .title {
       position: static;
       transform: none;
-      font-size: 30px;
       margin-top: -30px;
     }
 
@@ -205,13 +204,13 @@ new NumberCounter(30, 200, 'visitPer')
     margin: 60px 0;
 
     .title {
-      font-size: 28px;
+      font-size: 24px;
       position: static;
       transform: none;
     }
 
     .hand {
-      padding-bottom: 60px;
+      padding: 60px 0;
     }
 
     .value {

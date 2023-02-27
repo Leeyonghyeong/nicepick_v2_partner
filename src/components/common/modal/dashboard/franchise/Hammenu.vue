@@ -4,13 +4,16 @@
       <div class="home-close">
         <button class="home">창업픽 홈</button>
         <div class="close" @click="$emit('showHammenuModal')">
-          <img src="../../../../assets/login/close.png" alt="닫기" />
+          <img src="../../../../../assets/login/close.png" alt="닫기" />
         </div>
       </div>
 
       <div class="info-button">
         <div class="info">
-          <img src="../../../../assets/dashboard/icecream.png" alt="프로필" />
+          <img
+            src="../../../../../assets/dashboard/icecream.png"
+            alt="프로필"
+          />
           <div class="name-contact">
             <div class="name">**아이스크림</div>
             <div class="contact">icecream@gmail.com</div>

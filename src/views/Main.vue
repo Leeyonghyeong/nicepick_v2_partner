@@ -38,7 +38,7 @@ const { getDevice } = storeToRefs(store)
     z-index: 2;
 
     width: 100%;
-    height: 50px;
+    height: 58px;
     bottom: 0;
 
     background-color: $mainColor;

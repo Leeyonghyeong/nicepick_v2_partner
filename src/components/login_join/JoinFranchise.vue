@@ -14,256 +14,266 @@
       <RouterLink to="join" class="none">
         <div v-if="getDevice === 'mobile'" class="title">
           <img src="../../assets/login/arrow_lt.png" alt="이전" />
-          <div>파트너 회원가입</div>
+          <div>프랜차이즈 브랜드 회원가입</div>
         </div>
       </RouterLink>
     </article>
 
-    <article class="title-search">
-      <div class="box">
-        <div v-if="getDevice !== 'mobile'" class="title">
-          프랜차이즈 브랜드 회원가입
-        </div>
-        <div class="search">
-          <div class="border">
-            <div class="search-title">사업자 등록번호</div>
-            <button @click="showCompanyNumberModal">검색</button>
+    <article class="padding">
+      <article class="title-search">
+        <div class="box">
+          <div v-if="getDevice !== 'mobile'" class="title">
+            프랜차이즈 브랜드 회원가입
+          </div>
+          <div class="search">
+            <div class="border">
+              <div class="search-title">사업자 등록번호</div>
+              <button @click="showCompanyNumberModal">검색</button>
 
-            <div class="apply-section" v-if="bizNumber">{{ bizNumber }}</div>
+              <div class="apply-section" v-if="bizNumber">{{ bizNumber }}</div>
 
-            <div
-              class="select-brand-list"
-              v-if="selectBrandList.length > 0 && isAutoInput"
-            >
               <div
-                class="apply-section"
-                v-for="(item, index) in selectBrandList"
-                :key="item.id"
+                class="select-brand-list"
+                v-if="selectBrandList.length > 0 && isAutoInput"
               >
-                <div class="name-close">
-                  <div class="brand-name">{{ item.brandName }}</div>
-                  <img
-                    src="../../assets/login/close.png"
-                    alt="닫기"
-                    @click="deleteSelectBrandList(index)"
-                  />
-                </div>
-                <div class="select-box">
-                  <div class="select" @click="showLargeCategory(index)">
-                    <div class="category-select">
-                      {{ item.largeCategoryName }}
-                    </div>
-                    <img src="../../assets/login/arrow_down.png" alt="down" />
+                <div
+                  class="apply-section"
+                  v-for="(item, index) in selectBrandList"
+                  :key="item.id"
+                >
+                  <div class="name-close">
+                    <div class="brand-name">{{ item.brandName }}</div>
+                    <img
+                      src="../../assets/login/close.png"
+                      alt="닫기"
+                      @click="deleteSelectBrandList(index)"
+                    />
                   </div>
-                  <div
-                    class="select"
-                    @click="showSmallCategory(index, item.largeCategoryName)"
-                  >
-                    <div class="category-select">
-                      {{ item.smallCategoryName }}
+                  <div class="select-box">
+                    <div class="select" @click="showLargeCategory(index)">
+                      <div class="category-select">
+                        {{ item.largeCategoryName }}
+                      </div>
+                      <img src="../../assets/login/arrow_down.png" alt="down" />
                     </div>
-                    <img src="../../assets/login/arrow_down.png" alt="down" />
+                    <div
+                      class="select"
+                      @click="showSmallCategory(index, item.largeCategoryName)"
+                    >
+                      <div class="category-select">
+                        {{ item.smallCategoryName }}
+                      </div>
+                      <img src="../../assets/login/arrow_down.png" alt="down" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div v-if="!isAutoInput && bizNumber" class="brand-info-input">
-              <div class="apply-section">
-                <div class="name-close">
-                  <input
-                    v-model="manualBrandName"
-                    type="text"
-                    placeholder="브랜드명"
-                  />
-                </div>
-                <div class="select-box">
-                  <div class="select" @click="showLargeCategory(0)">
-                    <div class="category-select">
-                      {{
-                        manualLargeCategory
-                          ? manualLargeCategory
-                          : '업종 대분류 선택'
-                      }}
-                    </div>
-                    <img src="../../assets/login/arrow_down.png" alt="down" />
+              <div v-if="!isAutoInput && bizNumber" class="brand-info-input">
+                <div class="apply-section">
+                  <div class="name-close">
+                    <input
+                      v-model="manualBrandName"
+                      type="text"
+                      placeholder="브랜드명"
+                    />
                   </div>
-                  <div
-                    class="select"
-                    @click="showSmallCategory(0, manualLargeCategory)"
-                  >
-                    <div class="category-select">
-                      {{
-                        manualSmallCategory
-                          ? manualSmallCategory
-                          : '업종 소분류 선택'
-                      }}
+                  <div class="select-box">
+                    <div class="select" @click="showLargeCategory(0)">
+                      <div class="category-select">
+                        {{
+                          manualLargeCategory
+                            ? manualLargeCategory
+                            : '업종 대분류 선택'
+                        }}
+                      </div>
+                      <img src="../../assets/login/arrow_down.png" alt="down" />
                     </div>
-                    <img src="../../assets/login/arrow_down.png" alt="down" />
+                    <div
+                      class="select"
+                      @click="showSmallCategory(0, manualLargeCategory)"
+                    >
+                      <div class="category-select">
+                        {{
+                          manualSmallCategory
+                            ? manualSmallCategory
+                            : '업종 소분류 선택'
+                        }}
+                      </div>
+                      <img src="../../assets/login/arrow_down.png" alt="down" />
+                    </div>
                   </div>
-                </div>
-                <div class="name-close">
-                  <input
-                    v-model="manualOwnerName"
-                    type="text"
-                    placeholder="대표자명"
-                  />
-                </div>
-                <div class="name-close">
-                  <input
-                    v-model="manualCompanyName"
-                    type="text"
-                    placeholder="회사명"
-                  />
+                  <div class="name-close">
+                    <input
+                      v-model="manualOwnerName"
+                      type="text"
+                      placeholder="대표자명"
+                    />
+                  </div>
+                  <div class="name-close">
+                    <input
+                      v-model="manualCompanyName"
+                      type="text"
+                      placeholder="회사명"
+                    />
+                  </div>
                 </div>
               </div>
+
+              <small v-if="bizNumberErrorText">{{ bizNumberErrorText }}</small>
             </div>
-
-            <small v-if="bizNumberErrorText">{{ bizNumberErrorText }}</small>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <article class="join-input">
-      <div class="input-box">
-        <div class="box">
-          <div class="input-title">
-            이메일
-            <div>(아이디 사용)</div>
-          </div>
-          <input v-model="email" type="email" placeholder="이메일 주소 입력" />
-          <small v-if="emailErrorText">{{ emailErrorText }}</small>
-        </div>
-
-        <div class="box">
-          <div class="input-title">비밀번호</div>
-          <div class="pw-input">
+      <article class="join-input">
+        <div class="input-box">
+          <div class="box">
+            <div class="input-title">
+              이메일
+              <div>(아이디 사용)</div>
+            </div>
             <input
-              v-model="password"
-              type="password"
-              placeholder="비밀번호 입력(영문+숫자+특수문자 8~16자)"
+              v-model="email"
+              type="email"
+              placeholder="이메일 주소 입력"
             />
-            <small v-if="passwordErrorText">{{ passwordErrorText }}</small>
+            <small v-if="emailErrorText">{{ emailErrorText }}</small>
+          </div>
+
+          <div class="box">
+            <div class="input-title">비밀번호</div>
+            <div class="pw-input">
+              <input
+                v-model="password"
+                type="password"
+                placeholder="비밀번호 입력(영문+숫자+특수문자 8~16자)"
+              />
+              <small v-if="passwordErrorText">{{ passwordErrorText }}</small>
+              <input
+                v-model="rePassword"
+                type="password"
+                placeholder="비밀번호 확인"
+              />
+              <small v-if="rePasswordErrorText">{{
+                rePasswordErrorText
+              }}</small>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="input-title">담당자명</div>
+            <input v-model="userName" type="text" placeholder="이름 입력" />
+            <small v-if="userNameErrorText">{{ userNameErrorText }}</small>
+          </div>
+
+          <div class="box phone">
+            <div class="input-title">휴대폰 번호</div>
             <input
-              v-model="rePassword"
-              type="password"
-              placeholder="비밀번호 확인"
+              v-model="phoneNumber"
+              type="text"
+              placeholder="‘-’ 제외 숫자만 입력"
             />
-            <small v-if="rePasswordErrorText">{{ rePasswordErrorText }}</small>
+            <small v-if="phoneNumberErrorText">{{
+              phoneNumberErrorText
+            }}</small>
           </div>
         </div>
+      </article>
 
+      <article class="check-submit">
         <div class="box">
-          <div class="input-title">담당자명</div>
-          <input v-model="userName" type="text" placeholder="이름 입력" />
-          <small v-if="userNameErrorText">{{ userNameErrorText }}</small>
-        </div>
-
-        <div class="box phone">
-          <div class="input-title">휴대폰 번호</div>
-          <input
-            v-model="phoneNumber"
-            type="text"
-            placeholder="‘-’ 제외 숫자만 입력"
-          />
-          <small v-if="phoneNumberErrorText">{{ phoneNumberErrorText }}</small>
-        </div>
-      </div>
-    </article>
-
-    <article class="check-submit">
-      <div class="box">
-        <div class="title">약관동의</div>
-        <div class="border-box">
-          <div class="padding-box">
-            <div class="space all">
-              전체 동의
-              <div class="check">
-                <input
-                  v-model="isAllCheck"
-                  type="checkbox"
-                  id="check1"
-                  @change="changeAllAgree"
-                />
-                <label for="check1"></label>
-              </div>
-            </div>
-
-            <div class="gap-box">
-              <div class="space">
-                <a
-                  @click="
-                    moveAgreePage(
-                      'https://nicepick.notion.site/nicepick/112ba598e8d34c39b6b3ab29d6c9e34a'
-                    )
-                  "
-                >
-                  (필수) 서비스 이용 약관 동의
-                </a>
+          <div class="title">약관동의</div>
+          <div class="border-box">
+            <div class="padding-box">
+              <div class="space all">
+                전체 동의
                 <div class="check">
                   <input
-                    v-model="isService"
+                    v-model="isAllCheck"
                     type="checkbox"
-                    id="check2"
-                    @change="changeAgree"
+                    id="check1"
+                    @change="changeAllAgree"
                   />
-                  <label for="check2"></label>
+                  <label for="check1"></label>
                 </div>
               </div>
-              <div class="space">
-                <a
-                  @click="
-                    moveAgreePage(
-                      'https://nicepick.notion.site/nicepick/b92941c41e6e4986b60a197ac607f1da'
-                    )
-                  "
-                  >(필수) 개인정보 수집 이용 동의</a
-                >
-                <div class="check">
-                  <input
-                    v-model="isPrivacy"
-                    type="checkbox"
-                    id="check3"
-                    @change="changeAgree"
-                  />
-                  <label for="check3"></label>
+
+              <div class="gap-box">
+                <div class="space">
+                  <a
+                    @click="
+                      moveAgreePage(
+                        'https://nicepick.notion.site/nicepick/112ba598e8d34c39b6b3ab29d6c9e34a'
+                      )
+                    "
+                  >
+                    (필수) 서비스 이용 약관 동의
+                  </a>
+                  <div class="check">
+                    <input
+                      v-model="isService"
+                      type="checkbox"
+                      id="check2"
+                      @change="changeAgree"
+                    />
+                    <label for="check2"></label>
+                  </div>
                 </div>
-              </div>
-              <div class="space">
-                <a
-                  @click="
-                    moveAgreePage(
-                      'https://nicepick.notion.site/nicepick/e5db5ba7dd064fea86a0a0057d042654'
-                    )
-                  "
-                  >(선택) 창업 정보 및 이벤트 정보 수신 동의</a
-                >
-                <div class="check">
-                  <input
-                    v-model="isMarketing"
-                    type="checkbox"
-                    id="check4"
-                    @change="changeAgree"
-                  />
-                  <label for="check4"></label>
+                <div class="space">
+                  <a
+                    @click="
+                      moveAgreePage(
+                        'https://nicepick.notion.site/nicepick/b92941c41e6e4986b60a197ac607f1da'
+                      )
+                    "
+                    >(필수) 개인정보 수집 이용 동의</a
+                  >
+                  <div class="check">
+                    <input
+                      v-model="isPrivacy"
+                      type="checkbox"
+                      id="check3"
+                      @change="changeAgree"
+                    />
+                    <label for="check3"></label>
+                  </div>
+                </div>
+                <div class="space">
+                  <a
+                    @click="
+                      moveAgreePage(
+                        'https://nicepick.notion.site/nicepick/e5db5ba7dd064fea86a0a0057d042654'
+                      )
+                    "
+                    >(선택) 창업 정보 및 이벤트 정보 수신 동의</a
+                  >
+                  <div class="check">
+                    <input
+                      v-model="isMarketing"
+                      type="checkbox"
+                      id="check4"
+                      @change="changeAgree"
+                    />
+                    <label for="check4"></label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <button @click="submit">가입하기</button>
         </div>
+      </article>
 
-        <button @click="submit">가입하기</button>
-      </div>
+      <CompanyNumber
+        v-if="showModal"
+        selectBrandList="selectBrandList"
+        @showCompanyNumberModal="showCompanyNumberModal"
+        @getSelectBrandList="getSelectBrandList"
+        @manualBrandInput="manualBrandInput"
+      />
     </article>
-
-    <CompanyNumber
-      v-if="showModal"
-      selectBrandList="selectBrandList"
-      @showCompanyNumberModal="showCompanyNumberModal"
-      @getSelectBrandList="getSelectBrandList"
-      @manualBrandInput="manualBrandInput"
-    />
   </section>
 
   <article
@@ -673,10 +683,11 @@ section {
       width: 378px;
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 20px;
 
       .title {
         font-weight: $medi;
+        color: $fontMain;
       }
 
       .search {
@@ -684,12 +695,12 @@ section {
           padding: 30px 0;
           display: flex;
           flex-direction: column;
-          gap: 20px;
-
+          gap: 8px;
           border-top: 1px solid $sectionLine;
           border-bottom: 1px solid $sectionLine;
           .search-title {
             font-size: 14px;
+            color: $fontMain;
             display: flex;
           }
           button {
@@ -803,6 +814,7 @@ section {
           gap: 5px;
           font-size: 14px;
           padding-bottom: 8px;
+          color: $fontMain;
 
           div {
             font-size: 11px;
@@ -862,6 +874,7 @@ section {
         font-size: 14px;
         padding-bottom: 8px;
         display: flex;
+        color: $fontMain;
       }
 
       .border-box {
@@ -921,6 +934,9 @@ section {
               }
             }
           }
+          .all {
+            font-size: 15px;
+          }
 
           .gap-box {
             border-top: 1px solid $sectionLine;
@@ -950,7 +966,7 @@ section {
 
 @include mobile {
   section {
-    padding: 0 0 50px 0;
+    padding: 0 0 50px;
     .nicepick-partner {
       border-bottom: 1px solid $sectionLine;
       justify-content: flex-start;
@@ -976,36 +992,40 @@ section {
       }
     }
 
-    .title-search {
-      padding-top: 0;
-      .box {
-        width: 100%;
-        .search {
-          .border {
-            border-top: none;
-            padding: 30px 24px;
+    .padding {
+      padding: 0 24px;
+      .title-search {
+        padding-top: 0;
+        .box {
+          width: 100%;
+          .search {
+            .border {
+              border-top: none;
+              padding: 30px 0;
+              box-sizing: border-box;
+            }
+          }
+        }
+      }
+
+      .join-input {
+        .input-box {
+          width: 100%;
+          .box {
+            width: 100%;
             box-sizing: border-box;
           }
         }
       }
-    }
 
-    .join-input {
-      .input-box {
-        width: 100%;
+      .check-submit {
         .box {
           width: 100%;
-          padding: 0 24px;
           box-sizing: border-box;
+          button {
+            font-size: 14px;
+          }
         }
-      }
-    }
-
-    .check-submit {
-      .box {
-        width: 100%;
-        padding: 0 24px;
-        box-sizing: border-box;
       }
     }
   }

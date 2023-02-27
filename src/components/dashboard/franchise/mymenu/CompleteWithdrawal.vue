@@ -66,10 +66,12 @@ article {
     img {
       width: 100%;
       height: 100%;
+      padding-bottom: 50px;
     }
 
     .title {
       font-size: 18px;
+      padding-bottom: 29px;
     }
     .sub {
       font-size: 13px;

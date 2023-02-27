@@ -23,7 +23,7 @@
           <button>조회</button>
         </div>
 
-        <div class="check-list">
+        <div class="check-list top-check">
           <label class="all">
             <input type="radio" name="state" id="all" checked />
             <div class="name">전체</div>
@@ -112,7 +112,7 @@
             </div>
             <div class="info-item">
               <div class="info">
-                <div class="item-title">추천 브랜드 (00일)</div>
+                <div class="item-title">메인 Special 1 (30일)</div>
                 <div class="period">이용기간 : 2023.00.00 ~ 00.00</div>
               </div>
               <div class="cost">
@@ -311,7 +311,7 @@
             </div>
             <div class="apply-image">
               <div class="box">
-                <div class="name">PC</div>
+                <div class="name">PC <span class="size">(2388x400)</span></div>
                 <div class="image-section pc">
                   <label for="file">
                     <div class="btn-upload">
@@ -324,7 +324,9 @@
               </div>
               <div class="flex">
                 <div class="box">
-                  <div class="name">TAB</div>
+                  <div class="name">
+                    TAB <span class="size">(1360x300)</span>
+                  </div>
                   <div class="image-section tab">
                     <label for="file">
                       <div class="btn-upload">
@@ -336,7 +338,9 @@
                   </div>
                 </div>
                 <div class="box">
-                  <div class="name">MOBILE</div>
+                  <div class="name">
+                    MOBILE <span class="size">(656x200)</span>
+                  </div>
                   <div class="image-section mob">
                     <label for="file">
                       <div class="btn-upload">
@@ -566,6 +570,7 @@ article {
           .item-title {
             font-size: 18px;
             color: $fontMain;
+            font-weight: $medi;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -746,6 +751,7 @@ article {
             gap: 5px;
             .title,
             .main {
+              width: 100%;
               font-family: Pretendard;
               background-color: transparent;
               border: none;
@@ -778,10 +784,9 @@ article {
           }
         }
         .select-color {
-          padding: 20px 0 30px 0;
+          padding: 20px 0 30px;
           display: flex;
           gap: 20px;
-          margin-bottom: 30px;
           .box {
             display: flex;
             flex-direction: column;
@@ -790,11 +795,17 @@ article {
               font-size: 14px;
               color: $fontMain;
             }
+            .vacp-color-picker {
+              padding: 0;
+            }
           }
         }
         .url-input {
           border-bottom: 1px solid $sectionLine;
           margin-bottom: 30px;
+          .name {
+            font-size: 14px;
+          }
           .link {
             width: 100%;
             height: 50px;
@@ -809,6 +820,9 @@ article {
           }
           .link::placeholder {
             color: $inputLine;
+          }
+          .link:focus {
+            border: 1px solid $mainColor;
           }
           .urlstyle {
             background-color: white;
@@ -825,6 +839,10 @@ article {
               font-size: 14px;
               color: $fontMain;
               padding-bottom: 10px;
+              .size {
+                font-size: 12px;
+                color: $fontSub;
+              }
             }
             .image-section {
               border-radius: 10px;
@@ -832,6 +850,7 @@ article {
             }
             .pc {
               width: 1210px;
+              height: 202px;
             }
           }
           .flex {
@@ -864,7 +883,7 @@ article {
 
 @include tablet {
   article {
-    padding: 50px 24px 60px 24px;
+    padding: 50px 24px 60px;
 
     .date-state {
       width: 100%;
@@ -880,6 +899,10 @@ article {
       .state {
         padding-top: 30px;
       }
+    }
+
+    .top-check {
+      padding: 30px 30px 0 0;
     }
 
     .history {
@@ -928,18 +951,21 @@ article {
               }
             }
           }
+
           .apply-image {
             .box {
               .pc {
-                width: 444px;
+                width: 427px;
+                height: 66px;
               }
             }
             .flex {
               flex-direction: column;
               gap: 32px;
+
               .tab {
-                width: 444px;
-                height: 98px;
+                width: 427px;
+                height: 89px;
               }
               .mob {
                 width: 328px;
@@ -998,6 +1024,10 @@ article {
       }
     }
 
+    .top-check {
+      padding: 30px 13px 20px 0;
+    }
+
     .history {
       width: 100%;
       height: 479px;
@@ -1016,12 +1046,13 @@ article {
 
     .item {
       width: 100%;
-      margin-top: 10px;
+      margin: 0;
       gap: 10px;
       .ing-item,
       .complete-item {
         border-radius: 0;
         box-shadow: none;
+        padding: 33px 24px 30px;
         .title {
           font-size: 16px;
           .pay {
@@ -1069,8 +1100,15 @@ article {
           }
         }
       }
+
       .style {
         border-bottom: 1px solid $mainColor;
+      }
+
+      .add-banner {
+        .padding {
+          padding: 0;
+        }
       }
 
       .banner-section {
@@ -1078,6 +1116,15 @@ article {
         border-top-right-radius: 0;
         margin-bottom: 20px;
         .padding {
+          padding: 70px 24px 30px;
+          .title-save {
+            .title {
+              font-size: 14px;
+            }
+            .save {
+              font-size: 14px;
+            }
+          }
           .ment {
             font-size: 12px;
           }
@@ -1107,14 +1154,24 @@ article {
               .name {
                 font-size: 13px;
               }
-              .vacp-color-picker {
+            }
+          }
+          .url-input {
+            .check-list {
+              padding: 0 0 20px;
+              .name {
+                font-size: 13px;
               }
+            }
+            .link {
+              margin: 0 0 30px;
             }
           }
           .apply-image {
             .box {
               .pc {
                 width: 100%;
+                height: 55px;
               }
             }
             .flex {

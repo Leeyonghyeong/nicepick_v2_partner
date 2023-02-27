@@ -71,7 +71,7 @@
                   공인중개사 파트너 회원가입 절차
                 </div>
               </RouterLink>
-              <RouterLink to="/partnerguide/cooperation" class="none">
+              <RouterLink to="/partnerguide/cooperationjoin" class="none">
                 <div
                   :class="{ style: joinSub === '협력 파트너 회원가입 절차' }"
                   @click="joinSub = '협력 파트너 회원가입 절차'"
@@ -134,7 +134,7 @@
                   공인중개사 파트너 서비스
                 </div>
               </RouterLink>
-              <RouterLink to="/partnerguide/cooperation" class="none">
+              <RouterLink to="/partnerguide/cooperationservice" class="none">
                 <div
                   :class="{
                     style: serviceSub === '협력 파트너 서비스',
@@ -196,7 +196,7 @@
                   공인중개사 파트너 광고 상품
                 </div>
               </RouterLink>
-              <RouterLink to="/partnerguide/cooperation" class="none">
+              <RouterLink to="/partnerguide/cooperationad" class="none">
                 <div
                   :class="{
                     style: adSub === '협력 파트너 광고 상품',

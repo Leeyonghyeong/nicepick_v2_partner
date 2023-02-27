@@ -61,7 +61,7 @@
             </div>
           </div>
 
-          <div class="apply">
+          <div @click="$emit('showCartOption')" class="apply">
             <button>확인</button>
           </div>
         </div>
@@ -304,7 +304,7 @@ section {
           }
 
           .cost-section {
-            padding: 30px 24px 150px 24px;
+            padding: 30px 24px 195px 24px;
           }
 
           .apply {

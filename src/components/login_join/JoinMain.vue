@@ -169,11 +169,8 @@ section {
     justify-content: center;
 
     .center {
-      border-top: 1px solid $sectionLine;
-
       div {
         width: 378px;
-        padding-top: 20px;
         font-size: 14px;
         color: $fontMain;
 
@@ -251,11 +248,11 @@ section {
 
     .login {
       @include mobile-container();
-
       .center {
         width: 100%;
         div {
           width: 100%;
+          font-size: 13px;
         }
       }
     }

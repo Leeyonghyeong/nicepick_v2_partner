@@ -21,7 +21,9 @@
             <button>등록</button>
           </div>
 
-          <div class="ment">입력한 키워드가 없습니다.</div>
+          <div style="display: none" class="ment">
+            입력한 키워드가 없습니다.
+          </div>
 
           <div class="hashtag-list">
             <div class="hashtag">
@@ -53,8 +55,10 @@
       </div>
 
       <div class="info">
-        · 입력한 해시태그 키워드는 검색창에서 확인하실 수 있습니다. <br />
-        · 해당 키워드는 사용자에 따라 랜덤으로 보여지는 서비스입니다.
+        <div>
+          · 입력한 해시태그 키워드는 검색창에서 확인하실 수 있습니다. <br />
+          · 해당 키워드는 사용자에 따라 랜덤으로 보여지는 서비스입니다.
+        </div>
       </div>
     </article>
   </section>
@@ -67,9 +71,7 @@
 
 article {
   padding: 50px 0px 76px 160px;
-  box-sizing: border-box;
-  width: 100%;
-
+  height: 65vh;
   .none {
     text-decoration: none;
     color: inherit;
@@ -105,7 +107,7 @@ article {
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
     .box {
-      padding: 30px 30px 50px 30px;
+      padding: 30px 30px 57px;
       box-sizing: border-box;
       .title {
         font-size: 18px;
@@ -151,8 +153,6 @@ article {
         font-size: 14px;
         color: $fontSub;
         text-align: center;
-
-        display: none;
       }
 
       .hashtag-list {
@@ -168,6 +168,7 @@ article {
           align-items: center;
           gap: 10px;
           font-size: 14px;
+          color: $fontMain;
           img {
             width: 20px;
             height: 20px;
@@ -221,7 +222,7 @@ article {
       box-shadow: none;
       border-radius: 0;
       .box {
-        padding-bottom: 0;
+        padding: 30px 24px 0;
         .title {
           font-size: 16px;
         }
@@ -234,13 +235,12 @@ article {
           }
         }
         .ment {
-          // display: block;
-          padding: 100px 0 110px 0;
+          padding: 100px 0 110px;
+          font-size: 13px;
         }
         .hashtag-list {
           gap: 14px;
           padding-bottom: 30px;
-          // display: none;
           .hashtag {
             font-size: 13px;
           }
@@ -250,11 +250,14 @@ article {
 
     .info {
       padding: 0 24px 0 24px;
-      margin-top: 0;
-      padding-top: 20px;
-      border-top: 1px solid $sectionLine;
-      background-color: white;
-      font-size: 12px;
+      margin: 0;
+      div {
+        margin-top: 0;
+        padding-top: 20px;
+        border-top: 1px solid $sectionLine;
+        background-color: white;
+        font-size: 12px;
+      }
     }
   }
 }

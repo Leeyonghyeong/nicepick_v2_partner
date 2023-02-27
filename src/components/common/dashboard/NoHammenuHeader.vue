@@ -1,6 +1,14 @@
 <template>
   <article>
     <div class="header">
+      <img
+        v-if="getDevice === 'mobile'"
+        class="back"
+        src="../../../assets/login/arrow_lt.png"
+        alt="뒤로"
+      />
+      <div v-if="getDevice === 'mobile'" class="title"></div>
+
       <div v-if="getDevice !== 'mobile'" class="logo">
         <img src="../../../assets/header/logo.png" alt="로고" />
       </div>
@@ -125,7 +133,13 @@ article {
 
     .header {
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
+
+      .back {
+        width: 30px;
+        height: 30px;
+      }
+
       .title {
         color: $fontMain;
       }

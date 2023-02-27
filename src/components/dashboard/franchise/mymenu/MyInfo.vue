@@ -360,7 +360,7 @@ article {
   .withdrawal {
     width: 1270px;
     padding-top: 30px;
-    font-size: 14px;
+    font-size: 13px;
     color: $fontSub;
     display: flex;
     justify-content: center;
@@ -437,6 +437,9 @@ article {
           padding-bottom: 8px;
           font-size: 14px;
         }
+        .reset {
+          font-size: 14px;
+        }
       }
 
       .email-reset-pw {
@@ -469,10 +472,12 @@ article {
       background-color: white;
       .save {
         width: 100%;
+        font-size: 14px;
       }
 
       .withdrawal {
         width: 100%;
+        font-size: 12px;
       }
     }
   }

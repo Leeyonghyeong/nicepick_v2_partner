@@ -4,9 +4,32 @@
       <div class="padding">
         <div class="top-title">광고 상품</div>
 
+        <div class="top-category">
+          <div
+            :class="{ category: selectCategory === '프리미엄' }"
+            @click="selectCategory = '프리미엄'"
+          >
+            프리미엄 서비스
+          </div>
+          <div
+            :class="{ category: selectCategory === '브랜드' }"
+            @click="selectCategory = '브랜드'"
+          >
+            브랜드 광고
+          </div>
+          <div
+            :class="{ category: selectCategory === '배너' }"
+            @click="selectCategory = '배너'"
+          >
+            배너 광고
+          </div>
+        </div>
+
         <div class="content-gap">
-          <div class="premium-service content">
-            <div class="title">프리미엄 서비스</div>
+          <div
+            v-if="selectCategory === '프리미엄'"
+            class="premium-service content"
+          >
             <div :class="{ boxstyle: showPremium }" class="box">
               <div class="name-sub">
                 <div class="name">
@@ -89,33 +112,33 @@
                 <Matching v-if="detailPremium === 'matching'" />
                 <Promotion v-if="detailPremium === 'promotion'" />
               </div>
-              <div class="guide">
-                <div class="guide-title">
-                  프리미엄 멤버십 유의사항
-                  <span class="blue">프리미엄 멤버십 자주 묻는 질문></span>
-                </div>
-                <div class="guide-ment">
-                  · 1개월 무료 이용 혜택은 최초 1회만 제공됩니다.<br />
-                  · 멤버십 비용은 1개월 무료 이용(가입일 기준 ~ 1개월)이후부터
-                  매월 자동결제 됩니다.<br />
-                  · 멤버십 가격은 부가세와 결제 수수료가 포함되어 있습니다.<br />
-                  · 멤버십 결제 비용은 회원님이 선택하신 결제수단으로 구독 기간
-                  마지막 날에 다음달 멤버십 금액이 청구됩니다.<br />
-                  · 해지를 원하실 경우 멤버십 구독 기간이 끝나는 날로부터 최소
-                  24시간 전에 자동 갱신을 해지해야 합니다.
-                  <br />
-                  · 자동결제 해지는 [마이메뉴>이용내역>해지]에서 가능합니다.
-                  해지 이 후에는 다음 결제가 이루어 지지 않으며, 남은 기간 동안
-                  서비스 이용이 가능합니다.<br />
-                  · 일부 구매 전용 상품은 멤버십으로 이용이 불가능합니다.<br />
-                  · 도움이 필요하시면 1:1 문의를 이용해 주세요.
-                </div>
+            </div>
+
+            <div class="guide">
+              <div class="guide-title">
+                프리미엄 멤버십 유의사항
+                <span class="blue">자주 묻는 질문 ></span>
+              </div>
+              <div class="guide-ment">
+                · 1개월 무료 이용 혜택은 최초 1회만 제공됩니다.<br />
+                · 멤버십 비용은 1개월 무료 이용(가입일 기준 ~ 1개월)이후부터
+                매월 자동결제 됩니다.<br />
+                · 멤버십 가격은 부가세와 결제 수수료가 포함되어 있습니다.<br />
+                · 멤버십 결제 비용은 회원님이 선택하신 결제수단으로 구독 기간
+                마지막 날에 다음달 멤버십 금액이 청구됩니다.<br />
+                · 해지를 원하실 경우 멤버십 구독 기간이 끝나는 날로부터 최소
+                24시간 전에 자동 갱신을 해지해야 합니다.
+                <br />
+                · 자동결제 해지는 [마이메뉴>이용내역>해지]에서 가능합니다. 해지
+                이 후에는 다음 결제가 이루어 지지 않으며, 남은 기간 동안 서비스
+                이용이 가능합니다.<br />
+                · 일부 구매 전용 상품은 멤버십으로 이용이 불가능합니다.<br />
+                · 도움이 필요하시면 1:1 문의를 이용해 주세요.
               </div>
             </div>
           </div>
 
-          <div class="brand-ad content">
-            <div class="title">브랜드 광고</div>
+          <div v-if="selectCategory === '브랜드'" class="brand-ad content">
             <div class="box-gap">
               <div>
                 <div :class="{ boxstyle: showHopeful }" class="box">
@@ -472,9 +495,22 @@
                 </div>
               </div>
             </div>
+            <div class="guide">
+              <div class="guide-title">
+                브랜드 광고 유의사항
+                <span class="blue">자주 묻는 질문 ></span>
+              </div>
+              <div class="guide-ment">
+                · 내용은 아직 없습니다. 그냥 틀만 이렇게 해주세요.<br />
+                · 내용은 아직 없습니다. 그냥 틀만 이렇게 해주세요.<br />
+                · 내용은 아직 없습니다. 그냥 틀만 이렇게 해주세요.<br />
+                · 내용은 아직 없습니다. 그냥 틀만 이렇게 해주세요.<br />
+                · 내용은 아직 없습니다. 그냥 틀만 이렇게 해주세요.<br />
+              </div>
+            </div>
           </div>
 
-          <div class="banner-ad content">
+          <div v-if="selectCategory === '배너'" class="banner-ad content">
             <div class="title">배너 광고</div>
             <div class="box-gap">
               <div>
@@ -900,6 +936,12 @@
                         브랜드 리스트
                       </div>
                       <div
+                        :class="{ select: detailLast === 'salerent' }"
+                        @click="detailLast = 'salerent'"
+                      >
+                        분양 · 임대 리스트
+                      </div>
+                      <div
                         :class="{ select: detailLast === 'mentImg' }"
                         @click="detailLast = 'mentImg'"
                       >
@@ -908,6 +950,7 @@
                     </div>
 
                     <LastList v-if="detailLast === 'brandlist'" />
+                    <SaleRent v-if="detailLast === 'salerent'" />
                     <MentAndImg v-if="detailLast === 'mentImg'" />
                   </div>
                 </div>
@@ -960,6 +1003,7 @@ import SecondSpecialCommunity from '../../../common/dashboard/ad/bannerad/Second
 import ThirdSpecialMain from '../../../common/dashboard/ad/bannerad/ThirdSpecialMain.vue'
 import ThirdSpecialCommunity from '../../../common/dashboard/ad/bannerad/ThirdSpecialCommunity.vue'
 import LastList from '../../../common/dashboard/ad/bannerad/LastList.vue'
+import SaleRent from '../../../common/dashboard/ad/bannerad/SaleRent.vue'
 import PeriodList from '../../../common/dashboard/PeriodList.vue'
 
 const store = useWindowStore()
@@ -969,6 +1013,8 @@ const showModal = ref<boolean>(false)
 const showAddCart = () => {
   showModal.value = !showModal.value
 }
+
+const selectCategory = ref<string>('프리미엄')
 
 const showPremium = ref<boolean>(false)
 const detailPremium = ref<string>('hashtag')
@@ -1012,10 +1058,27 @@ article {
       font-size: 20px;
       font-weight: $medi;
       color: $fontMain;
+      padding-bottom: 65px;
+    }
+
+    .top-category {
+      display: flex;
+      gap: 30px;
+      color: $fontSub;
+      border-bottom: 1px solid $iconLine;
+      div {
+        cursor: pointer;
+      }
+      .category {
+        color: $mainColor;
+        font-weight: $semi;
+        border-bottom: 2px solid $mainColor;
+        padding-bottom: 16px;
+      }
     }
 
     .content-gap {
-      padding-top: 50px;
+      padding-top: 30px;
       display: flex;
       flex-direction: column;
       gap: 60px;
@@ -1196,12 +1259,12 @@ article {
 
         .more-box {
           margin-top: -20px;
-          padding: 0 30px 50px 30px;
+          padding: 0 30px;
           background-color: #fafafa;
           border: 1px solid $iconLine;
           border-radius: 10px;
           .menu-detail {
-            padding: 50px 0 0;
+            padding-top: 50px;
             .menu {
               display: flex;
               justify-content: space-around;
@@ -1243,12 +1306,12 @@ article {
               }
             }
           }
-          .ment {
-            padding-top: 30px;
-            font-size: 14px;
-            color: $fontSub;
-            line-height: 24px;
-          }
+        }
+        .ment {
+          padding: 30px 0;
+          font-size: 14px;
+          color: $fontSub;
+          line-height: 24px;
         }
       }
       .premium-service {
@@ -1278,27 +1341,28 @@ article {
           .ment {
             padding-bottom: 30px;
           }
-          .guide {
-            padding-top: 30px;
-            border-top: 1px solid $sectionLine;
-            .guide-title {
-              padding-bottom: 10px;
-              font-weight: $medi;
-              color: $fontMain;
-              .blue {
-                padding-left: 10px;
-                font-size: 12px;
-                color: $mainColor;
-                font-weight: $reg;
-                cursor: pointer;
-              }
-            }
-            .guide-ment {
-              font-size: 14px;
-              color: $fontSub;
-              line-height: 24px;
-            }
+        }
+      }
+      .guide {
+        padding-top: 30px;
+        margin-top: 30px;
+        border-top: 1px solid #ebebeb;
+        .guide-title {
+          padding-bottom: 10px;
+          font-weight: $medi;
+          color: $fontMain;
+          .blue {
+            padding-left: 10px;
+            font-size: 12px;
+            color: $mainColor;
+            font-weight: $reg;
+            cursor: pointer;
           }
+        }
+        .guide-ment {
+          font-size: 14px;
+          color: $fontSub;
+          line-height: 24px;
         }
       }
     }
@@ -1328,12 +1392,27 @@ article {
         padding: 0;
       }
 
+      .top-category {
+        background-color: white;
+        justify-content: space-around;
+        padding: 16px 24px 0 24px;
+        border-bottom: 1px solid $iconLine;
+        font-size: 14px;
+        div {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
       .content-gap {
         padding: 0;
         gap: 10px;
         .content {
           background-color: white;
-          padding: 30px 0 0;
+          border: none;
+          .box-gap {
+            gap: 0;
+          }
           .title {
             padding: 0 0 20px 24px;
             font-size: 14px;
@@ -1380,10 +1459,10 @@ article {
           .more-box {
             margin-top: 0;
             border-radius: 0;
-            padding: 0 30px 30px;
+            padding: 0 24px;
             border: none;
             .menu-detail {
-              padding: 30px 0 20px;
+              padding: 30px 0 0;
               .menu {
                 div {
                   font-size: 13px;
@@ -1403,33 +1482,39 @@ article {
               }
             }
             .ment {
-              padding: 0;
+              padding: 20px 0 30px;
               font-size: 13px;
-            }
-            .guide {
-              padding: 20px 0 0;
-              .guide-title {
-                font-size: 14px;
-                .blue {
-                  font-size: 11px;
-                }
-              }
-              .guide-ment {
-                font-size: 13px;
-              }
             }
           }
         }
-
-        .premium-more {
-          .ment {
-            padding-bottom: 20px;
+        .guide {
+          background-color: #f2f4f7;
+          padding: 30px 24px;
+          margin-top: 0;
+          border-top: none;
+          .guide-title {
+            font-size: 14px;
+            .blue {
+              font-size: 11px;
+            }
+          }
+          .guide-ment {
+            font-size: 13px;
+          }
+        }
+        .premium-service {
+          padding: 0;
+          border: none;
+          .premium-more {
+            .ment {
+              padding-bottom: 20px;
+            }
           }
         }
       }
     }
     .premium-free {
-      padding-top: 10px;
+      padding-top: 0;
     }
   }
 }
