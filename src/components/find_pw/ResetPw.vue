@@ -29,18 +29,25 @@
       <div class="input-box">
         <div class="box">
           <input
+            v-model="password"
             type="password"
             placeholder="새로운 비밀번호(영문+숫자+특수문자 8~16자)"
           />
-          <div class="ment">영문+숫자+특수문자 8~16자로 입력해 주세요.</div>
-          <input type="password" placeholder="새로운 비밀번호" />
-          <div class="ment">비밀번호가 일치하지 않습니다.</div>
+          <div class="ment" v-if="passwordErrorText">
+            {{ passwordErrorText }}
+          </div>
+          <input
+            v-model="rePassword"
+            type="password"
+            placeholder="새로운 비밀번호"
+          />
+          <div class="ment" v-if="rePasswordErrorText">
+            {{ rePasswordErrorText }}
+          </div>
         </div>
 
         <div class="submit">
-          <RouterLink to="resetcomplete">
-            <button>확인</button>
-          </RouterLink>
+          <button @click="submit">확인</button>
         </div>
       </div>
     </article>
@@ -50,9 +57,95 @@
 <script lang="ts" setup>
 import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '../../store/user'
+import { onMounted, ref } from 'vue'
+import { confirmAlert, toastAlert } from '../../functions/alert'
+import api from '../../config/axios.config'
+import { CommonResponse } from '../../types/response'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const router = useRouter()
+
+const windowStore = useWindowStore()
+const userStore = useUserStore()
+const { getDevice } = storeToRefs(windowStore)
+const { tempEmail } = storeToRefs(userStore)
+
+const password = ref<string>()
+const rePassword = ref<string>()
+
+const passwordErrorText = ref<string>()
+const rePasswordErrorText = ref<string>()
+
+const checkPassword = (): boolean => {
+  passwordErrorText.value = undefined
+  rePasswordErrorText.value = undefined
+
+  if (!password.value) {
+    passwordErrorText.value = '비밀번호를 입력해주세요'
+    return false
+  } else {
+    const regPassword =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~$@$!%^*#?&()<>_=+])[A-Za-z\d~$@$!%^*#?&()<>_=+]{8,16}$/
+
+    if (!regPassword.test(password.value)) {
+      passwordErrorText.value = '영문+숫자+특수문자 8~16자로 입력해 주세요'
+      return false
+    }
+  }
+
+  if (!rePassword.value) {
+    rePasswordErrorText.value = '비밀번호를 입력해주세요'
+    return false
+  } else if (password.value !== rePassword.value) {
+    rePasswordErrorText.value = '비밀번호가 일치하지 않습니다'
+    return false
+  }
+
+  return true
+}
+
+const submit = async () => {
+  if (!checkPassword()) {
+    return
+  }
+
+  const { data } = await api.patch<CommonResponse>('/auth/find/password', {
+    email: tempEmail.value,
+    password: password.value,
+    rePassword: rePassword.value,
+  })
+
+  if (data.success) {
+    toastAlert({
+      text: '비밀번호가 변경 되었습니다',
+      type: 'success',
+    })
+
+    tempEmail.value = undefined
+
+    router.replace('/resetcomplete')
+  } else {
+    toastAlert({
+      text: '비밀번호 변경에 실패했습니다',
+      type: 'warning',
+    })
+
+    router.replace('/')
+  }
+}
+
+onMounted(async () => {
+  if (!tempEmail.value) {
+    const alert = await confirmAlert({
+      text: '잘못된 접근입니다',
+    })
+
+    if (alert.isConfirmed) {
+      router.push('/')
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>

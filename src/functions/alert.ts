@@ -82,6 +82,10 @@ export const toastAlert = (alertOption: AlertOption): void => {
   const toastAlertBox = document.createElement('div')
   toastAlertBox.setAttribute('class', 'toast-alert-box')
 
+  if (alertOption.position === 'top') {
+    toastAlertBox.classList.add('top')
+  }
+
   const toastAlert = document.createElement('div')
   toastAlert.setAttribute('class', 'toast-alert')
 

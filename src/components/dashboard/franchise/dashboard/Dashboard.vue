@@ -14,7 +14,9 @@
                 />
                 <div class="name-number">
                   <div class="name">창업픽 월간 방문자수</div>
-                  <div class="number">10,000</div>
+                  <div class="number">
+                    {{ trafficInfo?.monthVisitorCount.toLocaleString() }}
+                  </div>
                 </div>
               </div>
               <div class="box">
@@ -24,7 +26,9 @@
                 />
                 <div class="name-number">
                   <div class="name">실시간 문의건수</div>
-                  <div class="number">1,000,000</div>
+                  <div class="number">
+                    {{ trafficInfo?.realtimeInquiryCount.toLocaleString() }}
+                  </div>
                 </div>
               </div>
               <div class="box view">
@@ -34,7 +38,9 @@
                 />
                 <div class="name-number">
                   <div class="name">내 브랜드 조회수</div>
-                  <div class="number">100</div>
+                  <div class="number">
+                    {{ brandWatchCount.toLocaleString() }}
+                  </div>
                 </div>
                 <RouterLink
                   to="/franchise/ad"
@@ -58,7 +64,9 @@
                   <div class="name">요일별 분석</div>
                   <div class="period">2023.01.01 / 12시 기준</div>
                 </div>
-                <div></div>
+                <div v-if="trafficInfo">
+                  <TrafficGraph :chartData="trafficInfo" />
+                </div>
               </div>
             </div>
           </div>
@@ -66,6 +74,40 @@
           <div class="content search">
             <div class="box">
               <div class="name">주간 검색어 순위</div>
+              <div class="rank-box">
+                <div
+                  v-for="item in currentRank"
+                  :key="item.rank"
+                  class="rank-item"
+                >
+                  <div class="keyword-rank">{{ item.rank }}</div>
+                  <div class="keyword">
+                    {{ item.keyword }}
+                  </div>
+                  <div class="variance">
+                    <img
+                      v-if="item.variance === 'new'"
+                      src="../../../../assets/rank/new.png"
+                      alt="new"
+                    />
+                    <img
+                      v-else-if="item.variance > 0"
+                      src="../../../../assets/rank/up.png"
+                      alt="up"
+                    />
+                    <img
+                      v-else-if="item.variance === 0"
+                      src="../../../../assets/rank/no-change.png"
+                      alt="no-change"
+                    />
+                    <img
+                      v-else
+                      src="../../../../assets/rank/down.png"
+                      alt="down"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -82,16 +124,19 @@
                 </RouterLink>
               </div>
               <div class="list">
-                <div>프리미엄 서비스 이용시 주의사항</div>
-                <div>파트너 홈페이지 리뉴얼 공지</div>
-                <div>파트너 회원 선착순 이벤트 진행</div>
-                <div>[긴급] 창업픽 파트너 2023년 공지사항</div>
-                <div>프리미엄 서비스 이용시 주의사항</div>
+                <div
+                  class="item"
+                  v-for="item in noticeList"
+                  :key="item.id"
+                  @click="$router.push(`/franchise/notice/detail/${item.id}`)"
+                >
+                  {{ item.title }}
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="banner">
+          <div class="banner" @click="$router.push('/franchise/ad')">
             <img
               v-if="getDevice === 'pc'"
               src="../../../../assets/dashboard/dash/pc배너.png"
@@ -115,11 +160,82 @@
 </template>
 
 <script lang="ts" setup>
+import TrafficGraph from './graph/TrafficGraph.vue'
 import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
+import api from '../../../../config/axios.config'
+import { ref, watch } from 'vue'
+import { Traffic } from '../../../../types/traffic'
+import { TrafficResponse, CountResponse } from '../../../../types/response'
+import { useUserStore } from '../../../../store/user'
+import { useTrafficStore } from '../../../../store/traffic'
+import { useKeywordRankStore } from '../../../../store/keyworkRank'
+import { useNoticeStore } from '../../../../store/notice'
+import { Notice } from '../../../../types/notice'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const windowStore = useWindowStore()
+const { getDevice } = storeToRefs(windowStore)
+const userStore = useUserStore()
+const { currentBrand } = storeToRefs(userStore)
+const trafficStore = useTrafficStore()
+const { traffic } = storeToRefs(trafficStore)
+const keywordRankStore = useKeywordRankStore()
+const { currentRank } = storeToRefs(keywordRankStore)
+const noticeStore = useNoticeStore()
+const { notice } = storeToRefs(noticeStore)
+
+const trafficInfo = ref<Traffic>()
+const brandWatchCount = ref<number>(0)
+
+const noticeList = ref<Notice[]>([])
+
+const getTraffic = async () => {
+  if (traffic.value.length === 0) {
+    const { data } = await api.get<TrafficResponse>('/traffic')
+
+    if (data.success) {
+      trafficInfo.value = data.traffic.filter((e) => e.page === 0)[0]
+    }
+  } else {
+    trafficInfo.value = traffic.value.filter((e) => e.page === 0)[0]
+  }
+}
+
+const getBrandWatchCount = async () => {
+  const { data } = await api.get<CountResponse>(
+    `/traffic/brand/watch/${currentBrand.value?.id}`
+  )
+
+  if (data.success) {
+    brandWatchCount.value = data.count
+  }
+}
+
+const getKeywordRank = async () => {
+  if (currentRank.value.length === 0) {
+    await keywordRankStore.addKeywordRank()
+  }
+}
+
+const getNotice = async () => {
+  if (notice.value.length === 0) {
+    await noticeStore.getNotice()
+  }
+
+  noticeList.value = notice.value.filter((e) => e.page === 0 || e.page === 3)
+  noticeList.value.sort((a, b) => (a.createAt > b.createAt ? -1 : 0))
+  noticeList.value = noticeList.value.splice(0, 5)
+}
+
+getTraffic()
+getBrandWatchCount()
+getKeywordRank()
+getNotice()
+
+watch(
+  () => currentBrand.value,
+  () => getBrandWatchCount()
+)
 </script>
 
 <style lang="scss" scoped>
@@ -250,6 +366,46 @@ article {
       height: 415px;
       padding: 30px;
       box-sizing: border-box;
+
+      .rank-box {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        .rank-item {
+          display: flex;
+          align-items: center;
+
+          .keyword-rank {
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 17px;
+            color: $mainColor;
+            width: 15px;
+            text-align: center;
+          }
+
+          .keyword {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            padding: 0 20px;
+            color: #777;
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          .variance {
+            img {
+              display: block;
+              width: 18px;
+              height: 18px;
+            }
+          }
+        }
+      }
     }
   }
   .notice {
@@ -292,6 +448,7 @@ article {
     }
   }
   .banner {
+    cursor: pointer;
     padding-top: 30px;
     img {
       width: 100%;

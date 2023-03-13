@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="selectTermPrice">
     <article class="modal">
       <div class="modal-overlay">
         <div class="modal-box">
@@ -11,8 +11,8 @@
           </div>
 
           <div class="item-name">
-            <div class="bold">브랜드 핫클립</div>
-            <div class="sub">홈 영상컨텐츠 노출</div>
+            <div class="bold">{{ productItem.payProduct.productName }}</div>
+            <div class="sub">{{ productItem.payProduct.productNoti }}</div>
           </div>
 
           <div class="period">
@@ -22,7 +22,7 @@
               :class="{ style: showList === true }"
               class="period-list"
             >
-              <div>30일</div>
+              <div>{{ selectTermPrice?.term }}일</div>
               <img
                 v-if="showList === true"
                 src="../../../../assets/dashboard/up.png"
@@ -37,9 +37,16 @@
           </div>
           <div v-if="showList === true" class="list">
             <div class="padding">
-              <div>30일</div>
-              <div>60일(10% 할인)</div>
-              <div>90일(10% 할인)</div>
+              <div
+                v-for="item in payTermPrice.sort((a, b) =>
+                  a.term > b.term ? 0 : -1
+                )"
+                :key="item.id"
+                @click="changeTermPrice(item)"
+              >
+                {{ item.term }}일
+                {{ item.sale > 0 ? `(${item.sale}% 할인)` : '' }}
+              </div>
             </div>
           </div>
 
@@ -47,21 +54,41 @@
             <div class="section">
               <div class="flex">
                 <div class="name">금액</div>
-                <div class="cost">550,000원</div>
+                <div class="cost">
+                  {{
+                    calcOriginPrice(
+                      selectTermPrice.price,
+                      selectTermPrice.sale
+                    )
+                  }}원
+                </div>
               </div>
               <div class="flex">
                 <div class="name">할인 금액</div>
-                <div class="cost discount">-0원</div>
+                <div class="cost discount">
+                  -{{
+                    (
+                      parseInt(
+                        calcOriginPrice(
+                          selectTermPrice.price,
+                          selectTermPrice.sale
+                        ).replace(/,/g, '')
+                      ) - selectTermPrice.price
+                    ).toLocaleString()
+                  }}원
+                </div>
               </div>
             </div>
 
             <div class="flex total-cost">
               <div class="name">총 금액</div>
-              <div class="cost total">550,000원</div>
+              <div class="cost total">
+                {{ selectTermPrice.price.toLocaleString() }}원
+              </div>
             </div>
           </div>
 
-          <div @click="$emit('showCartOption')" class="apply">
+          <div @click="submit" class="apply">
             <button>확인</button>
           </div>
         </div>
@@ -71,16 +98,84 @@
 </template>
 
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { onMounted, onUnmounted } from 'vue'
+import { useUserStore } from '../../../../store/user'
+import { PayTermPrice, Cart } from '../../../../types/product'
+import {
+  CartResponse,
+  CommonResponse,
+  PayTermPriceResponse,
+} from '../../../../types/response'
+import api from '../../../../config/axios.config'
+import { calcOriginPrice } from '../../../../functions/product'
+
+const props = defineProps<{
+  productItem: PayTermPrice
+}>()
+
+const emits = defineEmits<{
+  (e: 'showCartOption'): void
+  (e: 'getCartProduct'): void
+}>()
+
+const userStore = useUserStore()
+const { currentBrand } = storeToRefs(userStore)
+
+const cart = ref<Cart>()
+const payTermPrice = ref<PayTermPrice[]>([])
+const selectTermPrice = ref<PayTermPrice>()
 
 const showList = ref<boolean>(false)
 
-defineEmits<{
-  (e: 'showCartOption'): void
-}>()
+const getCartInfo = async () => {
+  selectTermPrice.value = props.productItem
 
-onMounted(() => {
+  if (currentBrand.value) {
+    const { data } = await api.get<CartResponse>(
+      `/pay/cart/${currentBrand.value.id}/${props.productItem.payProductId}`
+    )
+
+    if (data.success) {
+      if (data.cart) {
+        cart.value = data.cart
+
+        const { data: termPrice } = await api.get<PayTermPriceResponse>(
+          '/product/termPrice'
+        )
+
+        if (termPrice.success) {
+          payTermPrice.value = termPrice.payTermPrice.filter(
+            (e) => e.payProductId === props.productItem.payProductId
+          )
+        }
+      }
+    }
+  }
+}
+
+const changeTermPrice = (item: PayTermPrice) => {
+  selectTermPrice.value = item
+  showList.value = false
+}
+
+const submit = async () => {
+  if (cart.value && selectTermPrice.value) {
+    const { data } = await api.patch<CommonResponse>('/pay/cart', {
+      id: cart.value.id,
+      payTermPriceId: selectTermPrice.value.id,
+    })
+
+    if (data.success) {
+      emits('getCartProduct')
+      emits('showCartOption')
+    }
+  }
+}
+
+onMounted(async () => {
+  await getCartInfo()
   document.body.setAttribute('style', 'overflow: hidden;')
 })
 

@@ -20,7 +20,7 @@
         <RouterLink to="/cart" class="none">
           <div class="cart">
             <i class="fa-solid fa-cart-plus"></i>
-            <div class="count">3</div>
+            <div v-if="cartCount > 0" class="count">{{ cartCount }}</div>
           </div>
         </RouterLink>
         <div class="border"></div>
@@ -34,9 +34,12 @@
 <script lang="ts" setup>
 import { useWindowStore } from '../../../store/window'
 import { storeToRefs } from 'pinia'
+import { useAlarmStore } from '../../../store/alarm'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const windowStore = useWindowStore()
+const { getDevice } = storeToRefs(windowStore)
+const alramStore = useAlarmStore()
+const { cartCount } = storeToRefs(alramStore)
 </script>
 
 <style lang="scss" scoped>

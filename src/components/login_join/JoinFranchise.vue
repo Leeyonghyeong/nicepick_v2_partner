@@ -319,7 +319,11 @@ import { Brand } from '../../types/brand'
 import { useCategoryStore } from '../../store/category'
 import { LargeCategory, SmallCategory } from '../../types/category'
 import api from '../../config/axios.config'
-import { AuthResponse, CommonResponse } from '../../types/response'
+import {
+  AuthResponse,
+  BrandsResponse,
+  CommonResponse,
+} from '../../types/response'
 import { toastAlert } from '../../functions/alert'
 import { deviceMoveUrl } from '../../functions/common'
 import { useUserStore } from '../../store/user'
@@ -330,7 +334,7 @@ const categoryStore = useCategoryStore()
 const userStore = useUserStore()
 const { getDevice } = storeToRefs(windowStore)
 const { category } = storeToRefs(categoryStore)
-const { user, brandId } = storeToRefs(userStore)
+const { user, brand, currentBrand } = storeToRefs(userStore)
 
 const showModal = ref<boolean>(false)
 const showCompanyNumberModal = () => {
@@ -636,7 +640,15 @@ const submit = async () => {
     localStorage.setItem('accessToken', accessToken)
 
     user.value = data.user
-    brandId.value = data.brandId
+
+    const { data: brandInfo } = await api.get<BrandsResponse>(
+      `/auth/brand/${user.value.id}`
+    )
+
+    if (brandInfo.success) {
+      brand.value = brandInfo.brand
+      currentBrand.value = brand.value[0]
+    }
 
     router.replace('/joincomplete')
   }

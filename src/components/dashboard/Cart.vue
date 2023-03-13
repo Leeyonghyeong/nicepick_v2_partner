@@ -10,51 +10,97 @@
         장바구니
       </div>
 
-      <!-- <div class="empty">
+      <div v-if="cartProduct.length === 0" class="empty">
         <div class="box">
           <div class="ment">장바구니에 추가한 상품이 없습니다.</div>
-          <button>광고상품 보러가기</button>
+          <button @click="$router.push('/franchise/ad')">
+            광고상품 보러가기
+          </button>
         </div>
-      </div> -->
+      </div>
 
-      <div class="flex">
+      <div v-else class="flex">
         <div class="item-section">
           <div class="box">
             <div class="select-delete">
               <div class="select">
-                <input type="checkbox" id="check1" />
-                <label for="check1"></label>
+                <input
+                  v-model="isAllCheck"
+                  type="checkbox"
+                  id="allCheck"
+                  @change="allCheckProduct"
+                />
+                <label for="allCheck"></label>
                 <div class="name">전체 선택</div>
               </div>
-              <button class="delete">선택 삭제</button>
+              <button class="delete" @click="selectDeleteCart">
+                선택 삭제
+              </button>
             </div>
 
-            <div class="item">
+            <div
+              class="item"
+              v-for="(item, index) in cartProduct"
+              :key="item.id"
+            >
               <div class="name-delete">
                 <div class="item-name">
-                  <input type="checkbox" id="check2" />
-                  <label for="check2"></label>
+                  <input
+                    v-model="checkProduct"
+                    type="checkbox"
+                    :id="`product${index}`"
+                    :value="item"
+                    @change="checkProductValidate"
+                  />
+                  <label :for="`product${index}`"></label>
                   <div class="name">
-                    <div class="bold">브랜드 핫클립 (30일)</div>
-                    <div class="sub">홈 영상컨텐츠 노출</div>
+                    <div class="bold">
+                      {{ item.payProduct.productName }}
+                      {{
+                        item.payProduct.payType === 'NORMAL'
+                          ? `(${item.term}일)`
+                          : ''
+                      }}
+                      <img
+                        v-if="item.payProduct.payType === 'RECURRING'"
+                        src="../../assets/dashboard/premium.png"
+                        alt="프리미엄"
+                      />
+                    </div>
+                    <div class="sub">{{ item.payProduct.productNoti }}</div>
                   </div>
                 </div>
                 <img
                   class="x"
                   src="../../assets/dashboard/cart_delete.png"
                   alt="삭제"
+                  @click="deleteCart(item.id)"
                 />
               </div>
-              <div class="option-cost">
-                <button class="option" @click="showCartOption">
+              <div
+                class="option-cost"
+                v-if="item.payProduct.payType !== 'RECURRING'"
+              >
+                <button class="option" @click="changeOptionItem(item)">
                   옵션 변경
                 </button>
                 <div class="cost">
-                  <div class="bold">550,000원</div>
+                  <div class="bold">{{ item.price.toLocaleString() }}원</div>
+                  <div v-if="item.sale > 0" class="sub">
+                    {{ calcOriginPrice(item.price, item.sale) }}원
+                  </div>
+                </div>
+              </div>
+              <div v-else class="option-cost no-option">
+                <div class="cost">
+                  <div class="bold">
+                    {{ item.payProduct.payType === 'RECURRING' ? '월 ' : '' }}
+                    {{ item.price.toLocaleString() }}원
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="item">
+            <!-- <div class="item">
               <div class="name-delete">
                 <div class="item-name">
                   <input type="checkbox" id="check3" />
@@ -146,7 +192,7 @@
                   <div class="bold">99,000원</div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -157,23 +203,54 @@
             <div class="padding">
               <div class="select-cost">
                 <div class="name">선택 상품 금액</div>
-                <div class="cost">1,188,000원</div>
+                <div class="cost">
+                  {{
+                    calcTotalPrice(
+                      checkProduct.map((e) => {
+                        return parseInt(
+                          calcOriginPrice(e.price, e.sale).replace(/,/g, '')
+                        )
+                      })
+                    )
+                  }}원
+                </div>
               </div>
               <div class="discount-cost">
                 <div class="name">할인 금액</div>
-                <div class="cost">-110,000원</div>
+                <div class="cost">
+                  -{{
+                    calcTotalPrice(
+                      checkProduct.map((e) => {
+                        return (
+                          parseInt(
+                            calcOriginPrice(e.price, e.sale).replace(/,/g, '')
+                          ) - e.price
+                        )
+                      })
+                    )
+                  }}원
+                </div>
               </div>
             </div>
 
             <div class="total">
               <div class="name">총 합계</div>
-              <div class="total-cost"><span>1,078,000</span>원</div>
+              <div class="total-cost">
+                <span>{{
+                  calcTotalPrice(
+                    checkProduct.map((e) => {
+                      return e.price
+                    })
+                  )
+                }}</span
+                >원
+              </div>
             </div>
           </div>
 
-          <RouterLink to="/payment" class="none">
-            <button class="application"><span>2개</span> 상품 신청하기</button>
-          </RouterLink>
+          <button class="application" @click="submit">
+            <span>{{ checkProduct.length }}개</span> 상품 신청하기
+          </button>
         </div>
       </div>
 
@@ -183,31 +260,161 @@
       </div>
     </article>
 
-    <CartOption v-if="showModal" @showCartOption="showCartOption" />
+    <CartOption
+      v-if="isShowCartOptionModal && changeOptionProduct"
+      :productItem="changeOptionProduct"
+      @showCartOption="showCartOption"
+      @getCartProduct="getCartProduct"
+    />
   </section>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
 import CartOption from '../common/modal/dashboard/CartOption.vue'
+import api from '../../config/axios.config'
+import { PayTermPrice } from '../../types/product'
+import { useUserStore } from '../../store/user'
+import { CommonResponse, PayTermPriceResponse } from '../../types/response'
+import { calcOriginPrice, calcTotalPrice } from '../../functions/product'
+import { toastAlert } from '../../functions/alert'
+import { useProductStore } from '../../store/product'
+import { useRouter } from 'vue-router'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const router = useRouter()
 
-const showModal = ref<boolean>(false)
+const windowStore = useWindowStore()
+const { getDevice } = storeToRefs(windowStore)
+const userStore = useUserStore()
+const { currentBrand } = storeToRefs(userStore)
+const productStore = useProductStore()
+const { payProductItems } = storeToRefs(productStore)
+
+const cartProduct = ref<PayTermPrice[]>([])
+
+const isAllCheck = ref<boolean>(false)
+const checkProduct = ref<PayTermPrice[]>([])
+
+const isShowCartOptionModal = ref<boolean>(false)
+const changeOptionProduct = ref<PayTermPrice>()
+
+const getCartProduct = async () => {
+  if (currentBrand.value) {
+    const { data } = await api.get<PayTermPriceResponse>(
+      `/pay/cart/${currentBrand.value.id}`
+    )
+
+    if (data.success) {
+      cartProduct.value = data.payTermPrice
+
+      cartProduct.value.sort((a, b) =>
+        a.payProductName < b.payProductName ? -1 : 0
+      )
+
+      checkProduct.value = checkProduct.value.filter((e) =>
+        cartProduct.value.map((v) => v.id).includes(e.id)
+      )
+    }
+  }
+}
+
+const allCheckProduct = () => {
+  if (isAllCheck.value) {
+    const findIndex = cartProduct.value.findIndex(
+      (e) => e.payProduct.payType === 'RECURRING'
+    )
+
+    if (findIndex > -1) {
+      toastAlert({
+        text: '일반결제 상품은 정기결제 상품과 함께 신청할 수 없습니다',
+        type: 'warning',
+      })
+
+      isAllCheck.value = false
+    } else {
+      checkProduct.value = cartProduct.value
+    }
+  } else {
+    checkProduct.value = []
+  }
+}
+
+const checkProductValidate = () => {
+  if (checkProduct.value.length > 1) {
+    const findIndex = checkProduct.value.findIndex(
+      (e) => e.payProduct.payType === 'RECURRING'
+    )
+
+    if (findIndex > -1) {
+      toastAlert({
+        text: '일반결제 상품은 정기결제 상품과 함께 신청할 수 없습니다',
+        type: 'warning',
+      })
+
+      checkProduct.value.splice(checkProduct.value.length - 1, 1)
+    }
+  }
+
+  if (checkProduct.value.length === cartProduct.value.length) {
+    isAllCheck.value = true
+  } else {
+    isAllCheck.value = false
+  }
+}
+
+const changeOptionItem = (item: PayTermPrice) => {
+  changeOptionProduct.value = item
+  isShowCartOptionModal.value = true
+}
+
 const showCartOption = () => {
-  showModal.value = !showModal.value
+  isShowCartOptionModal.value = !isShowCartOptionModal.value
 }
 
-const countItem = ref<number>(1)
-const countUp = () => {
-  countItem.value++
+const deleteCart = async (payTermPriceId: string) => {
+  if (currentBrand.value) {
+    const { data } = await api.delete<CommonResponse>('/pay/cart', {
+      data: {
+        payTermPriceId,
+        brandId: currentBrand.value.id,
+      },
+    })
+
+    if (data.success) {
+      toastAlert({
+        text: '상품이 삭제 되었습니다',
+        type: 'success',
+        position: 'top',
+      })
+
+      await getCartProduct()
+    }
+  }
 }
-const countDown = () => {
-  countItem.value--
+
+const selectDeleteCart = async () => {
+  for (const item of checkProduct.value) {
+    await deleteCart(item.id)
+  }
 }
+
+const submit = () => {
+  if (checkProduct.value.length === 0) {
+    toastAlert({
+      text: '결제 할 상품을 선택해 주세요',
+      type: 'warning',
+    })
+  } else {
+    payProductItems.value = checkProduct.value
+    router.push('/payment')
+  }
+}
+
+onMounted(async () => {
+  await getCartProduct()
+})
 </script>
 
 <style lang="scss" scoped>
@@ -284,11 +491,7 @@ article {
           position: relative;
           cursor: pointer;
         }
-        input[id='check1']:checked + label::after,
-        input[id='check2']:checked + label::after,
-        input[id='check3']:checked + label::after,
-        input[id='check4']:checked + label::after,
-        input[id='check5']:checked + label::after {
+        input[type='checkbox']:checked + label::after {
           content: '';
           background-image: url(../../assets/dashboard/check.png);
           background-repeat: no-repeat;

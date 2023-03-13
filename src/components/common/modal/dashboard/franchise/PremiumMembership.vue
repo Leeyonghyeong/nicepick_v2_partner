@@ -4,7 +4,7 @@
       <div class="modal-overlay">
         <div class="modal-box">
           <div class="padding-box">
-            <div class="close" @click="$emit('showPremiumModal')">
+            <div class="close" @click="$emit('closePremiumModal')">
               <img src="../../../../../assets/login/close.png" alt="닫기" />
             </div>
 
@@ -14,7 +14,9 @@
             </div>
 
             <div class="show">
-              <button>프리미엄 멤버십 보기</button>
+              <button @click="$router.push('/franchise/ad')">
+                프리미엄 멤버십 보기
+              </button>
             </div>
           </div>
         </div>
@@ -27,7 +29,7 @@
 import { onMounted, onUnmounted } from 'vue'
 
 defineEmits<{
-  (e: 'showCompanyNumberModal'): void
+  (e: 'closePremiumModal'): void
 }>()
 
 onMounted(() => {
@@ -49,6 +51,7 @@ section {
   width: 100%;
   height: 100vh;
   background-color: rgba(25, 25, 25, 0.5);
+  z-index: 3;
 
   .modal {
     width: 100%;
@@ -59,7 +62,6 @@ section {
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 2;
 
       .modal-box {
         display: flex;

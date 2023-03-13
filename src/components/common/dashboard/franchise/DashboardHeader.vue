@@ -7,18 +7,20 @@
       <div v-else class="title">대시보드</div>
 
       <div v-if="getDevice !== 'mobile'" class="logout-homebtn">
-        <div class="notice">
+        <div class="notice" @click="$router.push('/franchise/notice')">
           <i class="fa-solid fa-bullhorn"></i>
         </div>
         <RouterLink to="/cart" class="none">
           <div class="cart">
             <i class="fa-solid fa-cart-plus"></i>
-            <div class="count">3</div>
+            <div v-if="cartCount > 0" class="count">{{ cartCount }}</div>
           </div>
         </RouterLink>
         <div class="border"></div>
         <div class="logout" @click="logout">로그아웃</div>
-        <button>창업픽 홈</button>
+        <button @click="deviceMoveUrl(getDevice, 'https://nicepick.co.kr')">
+          창업픽 홈
+        </button>
       </div>
 
       <div v-if="getDevice === 'mobile'" class="logout-homebtn">
@@ -39,13 +41,17 @@ import Hammenu from '../../modal/dashboard/franchise/Hammenu.vue'
 import { ref } from 'vue'
 import { useUserStore } from '../../../../store/user'
 import { useRouter } from 'vue-router'
+import { deviceMoveUrl } from '../../../../functions/common'
+import { useAlarmStore } from '../../../../store/alarm'
 
 const router = useRouter()
 
 const windowStore = useWindowStore()
 const userStore = useUserStore()
+const alarmStore = useAlarmStore()
 const { getDevice } = storeToRefs(windowStore)
-const { user, brandId } = storeToRefs(userStore)
+const { user, brand, currentBrand } = storeToRefs(userStore)
+const { cartCount } = storeToRefs(alarmStore)
 
 const showModal = ref<boolean>(false)
 const showHammenuModal = () => {
@@ -55,7 +61,8 @@ const showHammenuModal = () => {
 const logout = () => {
   localStorage.removeItem('accessToken')
   user.value = undefined
-  brandId.value = undefined
+  brand.value = []
+  currentBrand.value = undefined
 
   router.replace('/')
 }

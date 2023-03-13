@@ -3,27 +3,14 @@
     <article>
       <div class="period-list">
         <div
-          class="name"
-          :class="{ period: periodSelect === '30일' }"
-          @click="periodSelect = '30일'"
-        >
-          30일
-        </div>
-        <div
+          v-for="item in payTermPrice"
+          :key="item.id"
           class="name middle"
-          :class="{ period: periodSelect === '60일' }"
-          @click="periodSelect = '60일'"
+          :class="{ active: currentTermPrice.id === item.id }"
+          @click="$emit('changeTermPrice', item, index)"
         >
-          <div>60일</div>
-          <div>(10% 할인)</div>
-        </div>
-        <div
-          class="name"
-          :class="{ period: periodSelect === '90일' }"
-          @click="periodSelect = '90일'"
-        >
-          <div>90일</div>
-          <div>(10% 할인)</div>
+          <div>{{ item.term }}일</div>
+          <div v-if="item.sale > 0">(10% 할인)</div>
         </div>
       </div>
     </article>
@@ -31,9 +18,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { PayTermPrice } from '../../../types/product'
 
-const periodSelect = ref<string>('30일')
+defineProps<{
+  payTermPrice: PayTermPrice[]
+  currentTermPrice: PayTermPrice
+  index: number
+}>()
+
+defineEmits<{
+  (e: 'changeTermPrice', item: PayTermPrice, index: number): void
+}>()
 </script>
 
 <style lang="scss" scoped>
@@ -62,7 +57,7 @@ const periodSelect = ref<string>('30일')
     border-top: 1px solid $sectionLine;
     border-bottom: 1px solid $sectionLine;
   }
-  .period,
+  .active,
   .name:hover {
     background-color: #f5f7ff;
     color: $mainColor;

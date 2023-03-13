@@ -1,21 +1,34 @@
 <template>
   <section v-if="getDevice !== 'mobile'">
-    <div class="side-bar">
+    <div class="side-bar" v-if="currentBrand && user">
       <article class="info">
         <div class="info-box">
           <img
-            src="../../../../assets/dashboard/icecream.png"
-            alt="아이스크림"
+            v-if="currentBrand.brandLogoImg"
+            :src="currentBrand.brandLogoImg"
+            :alt="currentBrand.brandName"
+          />
+          <img
+            v-else
+            :src="
+              loadCategoryImg(
+                category,
+                currentBrand.largeCategoryName,
+                currentBrand.smallCategoryName
+              )
+            "
+            alt=""
           />
 
           <div class="brand">
-            **아이스크림
+            {{ currentBrand?.brandName }}
             <img
+              v-if="currentBrand?.isPremium"
               src="../../../../assets/dashboard/premium.png"
               alt="프리미엄"
             />
           </div>
-          <div class="email">icecream@gmail.com</div>
+          <div class="email">{{ user?.email }}</div>
 
           <button class="transform" @click="showBrandChange">
             <img src="../../../../assets/dashboard/transform.png" alt="전환" />
@@ -29,16 +42,15 @@
           <RouterLink to="/franchise/dashboard" class="none">
             <div
               class="box"
-              :class="{ select: selectMenu === 'dashboard' }"
-              @click="selectMenu = 'dashboard'"
+              :class="{ select: $route.path.includes('/franchise/dashboard') }"
             >
               <img
-                v-if="selectMenu === 'dashboard'"
+                v-if="$route.path.includes('/franchise/dashboard')"
                 src="../../../../assets/dashboard/dash_select.png"
                 alt="대시보드선택"
               />
               <img
-                v-if="selectMenu !== 'dashboard'"
+                v-else
                 src="../../../../assets/dashboard/dash.png"
                 alt="대시보드"
               />
@@ -49,16 +61,15 @@
           <RouterLink to="/franchise/brand/management" class="none">
             <div
               class="box"
-              :class="{ select: selectMenu === 'brand' }"
-              @click="selectMenu = 'brand'"
+              :class="{ select: $route.path.includes('/franchise/brand') }"
             >
               <img
-                v-if="selectMenu === 'brand'"
+                v-if="$route.path.includes('/franchise/brand')"
                 src="../../../../assets/dashboard/brand_select.png"
                 alt="브랜드선택"
               />
               <img
-                v-if="selectMenu !== 'brand'"
+                v-else
                 src="../../../../assets/dashboard/brand.png"
                 alt="브랜드"
               />
@@ -69,16 +80,15 @@
           <RouterLink to="/franchise/ad" class="none">
             <div
               class="box"
-              :class="{ select: selectMenu === 'ad' }"
-              @click="selectMenu = 'ad'"
+              :class="{ select: $route.path.includes('/franchise/ad') }"
             >
               <img
-                v-if="selectMenu === 'ad'"
+                v-if="$route.path.includes('/franchise/ad')"
                 src="../../../../assets/dashboard/ad_select.png"
                 alt="광고상품선택"
               />
               <img
-                v-if="selectMenu !== 'ad'"
+                v-else
                 src="../../../../assets/dashboard/ad.png"
                 alt="광고상품"
               />
@@ -89,37 +99,35 @@
           <RouterLink to="/franchise/qna" class="none">
             <div
               class="box"
-              :class="{ select: selectMenu === 'qna' }"
-              @click="selectMenu = 'qna'"
+              :class="{ select: $route.path.includes('/franchise/qna') }"
             >
               <img
-                v-if="selectMenu === 'qna'"
+                v-if="$route.path.includes('/franchise/qna')"
                 src="../../../../assets/dashboard/qna_select.png"
                 alt="고객문의선택"
               />
               <img
-                v-if="selectMenu !== 'qna'"
+                v-else
                 src="../../../../assets/dashboard/qna.png"
                 alt="고객문의"
               />
               <div>고객문의</div>
-              <div class="alarm"></div>
+              <!-- <div class="alarm"></div> -->
             </div>
           </RouterLink>
 
           <RouterLink to="/franchise/mymenu/myinfo" class="none">
             <div
               class="box"
-              :class="{ select: selectMenu === 'mymenu' }"
-              @click="selectMenu = 'mymenu'"
+              :class="{ select: $route.path.includes('/franchise/mymenu') }"
             >
               <img
-                v-if="selectMenu === 'mymenu'"
+                v-if="$route.path.includes('/franchise/mymenu')"
                 src="../../../../assets/dashboard/my_select.png"
                 alt="마이메뉴선택"
               />
               <img
-                v-if="selectMenu !== 'mymenu'"
+                v-else
                 src="../../../../assets/dashboard/my.png"
                 alt="마이메뉴"
               />
@@ -128,31 +136,37 @@
           </RouterLink>
         </div>
       </article>
-
-      <BrandChange
-        v-if="showModal"
-        @showBrandChange="showBrandChange"
-        style="z-index: 10"
-      />
     </div>
   </section>
+  <BrandChange v-if="showModal" @showBrandChange="showBrandChange" />
 </template>
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useUserStore } from '../../../../store/user'
 import { useWindowStore } from '../../../../store/window'
 import BrandChange from '../../modal/dashboard/franchise/BrandChange.vue'
+import { loadCategoryImg } from '../../../../functions/common'
+import { useCategoryStore } from '../../../../store/category'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const windowStore = useWindowStore()
+const userStore = useUserStore()
+const categoryStore = useCategoryStore()
+const { getDevice } = storeToRefs(windowStore)
+const { user, currentBrand } = storeToRefs(userStore)
+const { category } = storeToRefs(categoryStore)
 
 const showModal = ref<boolean>(false)
 const showBrandChange = () => {
   showModal.value = !showModal.value
 }
 
-const selectMenu = ref<string>('dashboard')
+onMounted(async () => {
+  if (category.value.length === 0) {
+    await categoryStore.getCategory()
+  }
+})
 </script>
 
 <style lang="scss" scoped>
@@ -182,7 +196,9 @@ section {
         width: 100%;
         padding-bottom: 30px;
         border-bottom: 1px solid $fontSub;
+
         img {
+          border-radius: 10px;
           width: 129px;
           height: 52px;
         }

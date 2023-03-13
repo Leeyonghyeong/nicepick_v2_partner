@@ -1,146 +1,27 @@
 <template>
-  <section>
+  <section v-if="selectPayProductCategory">
     <article>
       <div class="padding">
         <div class="top-title">광고 상품</div>
 
         <div class="top-category">
           <div
-            :class="{ category: selectCategory === '프리미엄' }"
-            @click="selectCategory = '프리미엄'"
+            v-for="item in payProductCategory.sort((a, b) =>
+              a.categoryName > b.categoryName ? -1 : 0
+            )"
+            :key="item.id"
+            class="category-item"
+            :class="{ active: selectPayProductCategory.id === item.id }"
+            @click="clickCategoryHandler(item)"
           >
-            프리미엄 서비스
-          </div>
-          <div
-            :class="{ category: selectCategory === '브랜드' }"
-            @click="selectCategory = '브랜드'"
-          >
-            브랜드 광고
-          </div>
-          <div
-            :class="{ category: selectCategory === '배너' }"
-            @click="selectCategory = '배너'"
-          >
-            배너 광고
+            {{ item.categoryName }}
           </div>
         </div>
 
         <div class="content-gap">
-          <div
-            v-if="selectCategory === '프리미엄'"
-            class="premium-service content"
-          >
-            <div :class="{ boxstyle: showPremium }" class="box">
-              <div class="name-sub">
-                <div class="name">
-                  프리미엄 멤버십
-                  <img
-                    src="../../../../assets/dashboard/premium.png"
-                    alt="프리미엄"
-                  />
-                </div>
-                <div class="sub">
-                  해시태그(6개) + 리스트 상위 노출 + 프로모션 + 다이렉트 고객
-                  매칭
-                </div>
-              </div>
-              <div class="flex">
-                <div class="cost-vat flex">
-                  <div class="cost">
-                    <div class="ballon">
-                      <i class="fa-solid fa-gem"></i>
-                      지금 신청하면 1개월 무료
-                    </div>
-                    <span class="medi">월 <span class="red">88,000</span></span>
-                    원
-                  </div>
-                  <div class="vat">VAT 포함</div>
-                </div>
-                <div class="btn">
-                  <button class="detail" @click="showPremium = !showPremium">
-                    상세보기
-                    <img
-                      v-if="!showPremium"
-                      src="../../../../assets/dashboard/arrow_more.png"
-                      alt="down"
-                    />
-                    <img
-                      v-if="showPremium"
-                      src="../../../../assets/dashboard/arrow_close.png"
-                      alt="up"
-                    />
-                  </button>
-                  <button class="cart" @click="showAddCart">
-                    <i class="fa-solid fa-cart-plus"></i>
-                  </button>
-                  <button class="apply">신청하기</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="premium-more more-box" v-if="showPremium">
-              <div class="menu-detail">
-                <div class="menu">
-                  <div
-                    :class="{ select: detailPremium === 'hashtag' }"
-                    @click="detailPremium = 'hashtag'"
-                  >
-                    해시태그
-                  </div>
-                  <div
-                    :class="{ select: detailPremium === 'list' }"
-                    @click="detailPremium = 'list'"
-                  >
-                    리스트
-                  </div>
-                  <div
-                    :class="{ select: detailPremium === 'promotion' }"
-                    @click="detailPremium = 'promotion'"
-                  >
-                    프로모션
-                  </div>
-                  <div
-                    :class="{ select: detailPremium === 'matching' }"
-                    @click="detailPremium = 'matching'"
-                  >
-                    고객 매칭
-                  </div>
-                </div>
-
-                <Hashtag v-if="detailPremium === 'hashtag'" />
-                <List v-if="detailPremium === 'list'" />
-                <Matching v-if="detailPremium === 'matching'" />
-                <Promotion v-if="detailPremium === 'promotion'" />
-              </div>
-            </div>
-
-            <div class="guide">
-              <div class="guide-title">
-                프리미엄 멤버십 유의사항
-                <span class="blue">자주 묻는 질문 ></span>
-              </div>
-              <div class="guide-ment">
-                · 1개월 무료 이용 혜택은 최초 1회만 제공됩니다.<br />
-                · 멤버십 비용은 1개월 무료 이용(가입일 기준 ~ 1개월)이후부터
-                매월 자동결제 됩니다.<br />
-                · 멤버십 가격은 부가세와 결제 수수료가 포함되어 있습니다.<br />
-                · 멤버십 결제 비용은 회원님이 선택하신 결제수단으로 구독 기간
-                마지막 날에 다음달 멤버십 금액이 청구됩니다.<br />
-                · 해지를 원하실 경우 멤버십 구독 기간이 끝나는 날로부터 최소
-                24시간 전에 자동 갱신을 해지해야 합니다.
-                <br />
-                · 자동결제 해지는 [마이메뉴>이용내역>해지]에서 가능합니다. 해지
-                이 후에는 다음 결제가 이루어 지지 않으며, 남은 기간 동안 서비스
-                이용이 가능합니다.<br />
-                · 일부 구매 전용 상품은 멤버십으로 이용이 불가능합니다.<br />
-                · 도움이 필요하시면 1:1 문의를 이용해 주세요.
-              </div>
-            </div>
-          </div>
-
-          <div v-if="selectCategory === '브랜드'" class="brand-ad content">
+          <!-- <div class="brand-ad content">
             <div class="box-gap">
-              <div>
+              <div class="product-item">
                 <div :class="{ boxstyle: showHopeful }" class="box">
                   <div class="name-sub">
                     <div class="name">
@@ -508,36 +389,81 @@
                 · 내용은 아직 없습니다. 그냥 틀만 이렇게 해주세요.<br />
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div v-if="selectCategory === '배너'" class="banner-ad content">
-            <div class="title">배너 광고</div>
+          <div class="product-content content">
             <div class="box-gap">
-              <div>
-                <div :class="{ boxstyle: showMaintop }" class="box">
+              <div
+                class="product-item"
+                v-for="(item, index) in payProduct"
+                :key="item.id"
+              >
+                <div class="box">
                   <div class="name-sub">
                     <div class="name">
-                      메인 TOP (30일)
+                      {{ item.productName }}
+                      {{
+                        item.payTermPrice.length > 1
+                          ? `(${selectPayTermPrice[index].term}일)`
+                          : ''
+                      }}
                       <img
+                        v-if="item.payTermPrice.length > 1"
                         src="../../../../assets/dashboard/arrow_down_black.png"
                         alt="down_black"
+                        @click="isShowTermPriceModal(index)"
+                      />
+                      <img
+                        v-if="item.payType === 'RECURRING'"
+                        src="../../../../assets/dashboard/premium.png"
+                        alt="프리미엄"
                       />
                     </div>
-                    <div class="sub">홈 메인 배너</div>
+                    <div class="sub">{{ item.productNoti }}</div>
                   </div>
                   <div class="flex">
                     <div class="cost-vat flex">
-                      <div class="cost">
-                        <span class="original">1,100,000원</span>
-                        <span class="red">990,000</span> 원
+                      <div class="cost" v-if="item.payType === 'NORMAL'">
+                        <span
+                          v-if="selectPayTermPrice[index].sale > 0"
+                          class="original"
+                          >{{
+                            calcOriginPrice(
+                              selectPayTermPrice[index].price,
+                              selectPayTermPrice[index].sale
+                            )
+                          }}원</span
+                        >
+                        <span class="red">{{
+                          selectPayTermPrice[index].price.toLocaleString()
+                        }}</span>
+                        원
+                      </div>
+                      <div v-else>
+                        <div class="cost">
+                          <div class="ballon">
+                            <i class="fa-solid fa-gem"></i>
+                            지금 신청하면 1개월 무료
+                          </div>
+                          <span class="medi"
+                            >월
+                            <span class="red">{{
+                              selectPayTermPrice[index].price.toLocaleString()
+                            }}</span></span
+                          >
+                          원
+                        </div>
                       </div>
                       <div class="vat">
-                        <span class="discount">
+                        <span
+                          class="discount"
+                          v-if="selectPayTermPrice[index].sale > 0"
+                        >
                           <img
                             src="../../../../assets/dashboard/arrow_down.png"
                             alt="down_blue"
                           />
-                          10% 할인 ·
+                          {{ selectPayTermPrice[index].sale }}% 할인 ·
                         </span>
                         VAT 포함
                       </div>
@@ -545,418 +471,86 @@
                     <div class="btn">
                       <button
                         class="detail"
-                        @click="showMaintop = !showMaintop"
+                        @click="
+                          isShowProductTab[index] = !isShowProductTab[index]
+                        "
                       >
                         상세보기
                         <img
-                          v-if="!showMaintop"
+                          v-if="!isShowProductTab[index]"
                           src="../../../../assets/dashboard/arrow_more.png"
                           alt="down"
                         />
                         <img
-                          v-if="showMaintop"
+                          v-else
                           src="../../../../assets/dashboard/arrow_close.png"
                           alt="up"
                         />
                       </button>
-                      <button class="cart">
-                        <i class="fa-solid fa-cart-plus"></i>
-                      </button>
-                      <button class="apply">신청하기</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="more-box" v-if="showMaintop">
-                  <div class="menu-detail">
-                    <div class="menu">
-                      <div
-                        :class="{
-                          select: detailMaintop === 'maintopMain',
-                        }"
-                        @click="detailMaintop = 'maintopMain'"
-                      >
-                        메인
-                      </div>
-                      <div
-                        :class="{ select: detailMaintop === 'bannerImg' }"
-                        @click="detailMaintop = 'bannerImg'"
-                      >
-                        배너 이미지
-                      </div>
-                    </div>
-
-                    <Main v-if="detailMaintop === 'maintopMain'" />
-                    <BannerImage v-if="detailMaintop === 'bannerImg'" />
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div :class="{ boxstyle: showFirstSpecial }" class="box">
-                  <div class="name-sub">
-                    <div class="name">
-                      메인 Special 1 (30일)
-                      <img
-                        src="../../../../assets/dashboard/arrow_down_black.png"
-                        alt="down_black"
-                      />
-                    </div>
-                    <div class="sub">
-                      홈 첫번째 배너 + 커뮤니티 페이지 내 랜덤 노출
-                    </div>
-                  </div>
-                  <div class="flex">
-                    <div class="cost-vat flex">
-                      <div class="cost">
-                        <span class="original">1,100,000원</span>
-                        <span class="red">990,000</span> 원
-                      </div>
-                      <div class="vat">
-                        <span class="discount">
-                          <img
-                            src="../../../../assets/dashboard/arrow_down.png"
-                            alt="down_blue"
-                          />
-                          10% 할인 ·
-                        </span>
-                        VAT 포함
-                      </div>
-                    </div>
-                    <div class="btn">
                       <button
-                        class="detail"
-                        @click="showFirstSpecial = !showFirstSpecial"
+                        class="cart"
+                        :class="{
+                          addcart: cartProduct.find(
+                            (e) => e.payProductId === item.id
+                          ),
+                        }"
+                        @click="addCart(item.id, selectPayTermPrice[index].id)"
                       >
-                        상세보기
-                        <img
-                          v-if="!showFirstSpecial"
-                          src="../../../../assets/dashboard/arrow_more.png"
-                          alt="down"
-                        />
-                        <img
-                          v-if="showFirstSpecial"
-                          src="../../../../assets/dashboard/arrow_close.png"
-                          alt="up"
-                        />
-                      </button>
-                      <button class="cart">
                         <i class="fa-solid fa-cart-plus"></i>
                       </button>
-                      <button class="apply">신청하기</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="more-box" v-if="showFirstSpecial">
-                  <div class="menu-detail">
-                    <div class="menu">
-                      <div
-                        :class="{
-                          select: detailFirstSpecial === 'firstSpecialMain',
-                        }"
-                        @click="detailFirstSpecial = 'firstSpecialMain'"
-                      >
-                        메인
-                      </div>
-                      <div
-                        :class="{
-                          select:
-                            detailFirstSpecial === 'firstSpecialCommunity',
-                        }"
-                        @click="detailFirstSpecial = 'firstSpecialCommunity'"
-                      >
-                        커뮤니티
-                      </div>
-                      <div
-                        :class="{ select: detailFirstSpecial === 'mentImg' }"
-                        @click="detailFirstSpecial = 'mentImg'"
-                      >
-                        문구/이미지
-                      </div>
-                    </div>
-
-                    <FirstSpecialMain
-                      v-if="detailFirstSpecial === 'firstSpecialMain'"
-                    />
-                    <FirstSpecialCommunity
-                      v-if="detailFirstSpecial === 'firstSpecialCommunity'"
-                    />
-                    <MentAndImg v-if="detailFirstSpecial === 'mentImg'" />
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <div :class="{ boxstyle: showSecondSpecial }" class="box">
-                  <div class="name-sub">
-                    <div class="name">
-                      메인 Special 2 (30일)
-                      <img
-                        src="../../../../assets/dashboard/arrow_down_black.png"
-                        alt="down_black"
-                      />
-                    </div>
-                    <div class="sub">
-                      홈 두번째 배너 + 커뮤니티 페이지 내 랜덤 노출
-                    </div>
-                  </div>
-                  <div class="flex">
-                    <div class="cost-vat flex">
-                      <div class="cost">
-                        <span class="original">1,100,000원</span>
-                        <span class="red">990,000</span> 원
-                      </div>
-                      <div class="vat">
-                        <span class="discount">
-                          <img
-                            src="../../../../assets/dashboard/arrow_down.png"
-                            alt="down_blue"
-                          />
-                          10% 할인 ·
-                        </span>
-                        VAT 포함
-                      </div>
-                    </div>
-                    <div class="btn">
                       <button
-                        class="detail"
-                        @click="showSecondSpecial = !showSecondSpecial"
+                        class="apply"
+                        @click="movePay(selectPayTermPrice[index], item)"
                       >
-                        상세보기
-                        <img
-                          v-if="!showSecondSpecial"
-                          src="../../../../assets/dashboard/arrow_more.png"
-                          alt="down"
-                        />
-                        <img
-                          v-if="showSecondSpecial"
-                          src="../../../../assets/dashboard/arrow_close.png"
-                          alt="up"
-                        />
+                        신청하기
                       </button>
-                      <button class="cart">
-                        <i class="fa-solid fa-cart-plus"></i>
-                      </button>
-                      <button class="apply">신청하기</button>
                     </div>
                   </div>
                 </div>
-                <div class="more-box" v-if="showSecondSpecial">
+                <div class="more-box" v-if="isShowProductTab[index]">
                   <div class="menu-detail">
                     <div class="menu">
                       <div
+                        v-for="tabMenu of item.payProductTab"
+                        :key="tabMenu.id"
                         :class="{
-                          select: detailSecondSpecial === 'secondSpecialMain',
+                          select: selectProductTab[index].id === tabMenu.id,
                         }"
-                        @click="detailSecondSpecial = 'secondSpecialMain'"
+                        @click="changeProductTab(tabMenu, index)"
                       >
-                        메인
-                      </div>
-                      <div
-                        :class="{
-                          select:
-                            detailSecondSpecial === 'secondSpecialCommunity',
-                        }"
-                        @click="detailSecondSpecial = 'secondSpecialCommunity'"
-                      >
-                        커뮤니티
-                      </div>
-                      <div
-                        :class="{ select: detailSecondSpecial === 'mentImg' }"
-                        @click="detailSecondSpecial = 'mentImg'"
-                      >
-                        문구/이미지
+                        {{ tabMenu.tabName }}
                       </div>
                     </div>
 
-                    <SecondSpecialMain
-                      v-if="detailSecondSpecial === 'secondSpecialMain'"
-                    />
-                    <SecondSpecialCommunity
-                      v-if="detailSecondSpecial === 'secondSpecialCommunity'"
-                    />
-                    <MentAndImg v-if="detailSecondSpecial === 'mentImg'" />
+                    <ProductTab :payProductTab="selectProductTab[index]" />
                   </div>
                 </div>
-              </div>
-              <div>
-                <div :class="{ boxstyle: showThirdSpecial }" class="box">
-                  <div class="name-sub">
-                    <div class="name">
-                      메인 Special 3 (30일)
-                      <img
-                        src="../../../../assets/dashboard/arrow_down_black.png"
-                        alt="down_black"
-                      />
-                    </div>
-                    <div class="sub">
-                      홈 세번째 배너 + 커뮤니티 페이지 내 랜덤 노출
-                    </div>
-                  </div>
-                  <div class="flex">
-                    <div class="cost-vat flex">
-                      <div class="cost">
-                        <span class="original">1,100,000원</span>
-                        <span class="red">990,000</span> 원
-                      </div>
-                      <div class="vat">
-                        <span class="discount">
-                          <img
-                            src="../../../../assets/dashboard/arrow_down.png"
-                            alt="down_blue"
-                          />
-                          10% 할인 ·
-                        </span>
-                        VAT 포함
-                      </div>
-                    </div>
-                    <div class="btn">
-                      <button
-                        class="detail"
-                        @click="showThirdSpecial = !showThirdSpecial"
-                      >
-                        상세보기
-                        <img
-                          v-if="!showThirdSpecial"
-                          src="../../../../assets/dashboard/arrow_more.png"
-                          alt="down"
-                        />
-                        <img
-                          v-if="showThirdSpecial"
-                          src="../../../../assets/dashboard/arrow_close.png"
-                          alt="up"
-                        />
-                      </button>
-                      <button class="cart">
-                        <i class="fa-solid fa-cart-plus"></i>
-                      </button>
-                      <button class="apply">신청하기</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="more-box" v-if="showThirdSpecial">
-                  <div class="menu-detail">
-                    <div class="menu">
-                      <div
-                        :class="{
-                          select: detailThirdSpecial === 'thirdSpecialMain',
-                        }"
-                        @click="detailThirdSpecial = 'thirdSpecialMain'"
-                      >
-                        메인
-                      </div>
-                      <div
-                        :class="{
-                          select:
-                            detailThirdSpecial === 'thirdSpecialCommunity',
-                        }"
-                        @click="detailThirdSpecial = 'thirdSpecialCommunity'"
-                      >
-                        커뮤니티
-                      </div>
-                      <div
-                        :class="{ select: detailThirdSpecial === 'mentImg' }"
-                        @click="detailThirdSpecial = 'mentImg'"
-                      >
-                        문구/이미지
-                      </div>
-                    </div>
-
-                    <ThirdSpecialMain
-                      v-if="detailThirdSpecial === 'thirdSpecialMain'"
-                    />
-                    <ThirdSpecialCommunity
-                      v-if="detailThirdSpecial === 'thirdSpecialCommunity'"
-                    />
-                    <MentAndImg v-if="detailThirdSpecial === 'mentImg'" />
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div :class="{ boxstyle: showLastBanner }" class="box">
-                  <div class="name-sub">
-                    <div class="name">
-                      리스트 배너 (30일)
-                      <img
-                        src="../../../../assets/dashboard/arrow_down_black.png"
-                        alt="down_black"
-                      />
-                    </div>
-                    <div class="sub">브랜드 리스트 페이지 내 랜덤 노출</div>
-                  </div>
-                  <div class="flex">
-                    <div class="cost-vat flex">
-                      <div class="cost">
-                        <span class="original">1,100,000원</span>
-                        <span class="red">990,000</span> 원
-                      </div>
-                      <div class="vat">
-                        <span class="discount">
-                          <img
-                            src="../../../../assets/dashboard/arrow_down.png"
-                            alt="down_blue"
-                          />
-                          10% 할인 ·
-                        </span>
-                        VAT 포함
-                      </div>
-                    </div>
-                    <div class="btn">
-                      <button
-                        class="detail"
-                        @click="showLastBanner = !showLastBanner"
-                      >
-                        상세보기
-                        <img
-                          v-if="!showLastBanner"
-                          src="../../../../assets/dashboard/arrow_more.png"
-                          alt="down"
-                        />
-                        <img
-                          v-if="showLastBanner"
-                          src="../../../../assets/dashboard/arrow_close.png"
-                          alt="up"
-                        />
-                      </button>
-                      <button class="cart">
-                        <i class="fa-solid fa-cart-plus"></i>
-                      </button>
-                      <button class="apply">신청하기</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="more-box" v-if="showLastBanner">
-                  <div class="menu-detail">
-                    <div class="menu">
-                      <div
-                        :class="{
-                          select: detailLast === 'brandlist',
-                        }"
-                        @click="detailLast = 'brandlist'"
-                      >
-                        브랜드 리스트
-                      </div>
-                      <div
-                        :class="{ select: detailLast === 'salerent' }"
-                        @click="detailLast = 'salerent'"
-                      >
-                        분양 · 임대 리스트
-                      </div>
-                      <div
-                        :class="{ select: detailLast === 'mentImg' }"
-                        @click="detailLast = 'mentImg'"
-                      >
-                        문구/이미지
-                      </div>
-                    </div>
-
-                    <LastList v-if="detailLast === 'brandlist'" />
-                    <SaleRent v-if="detailLast === 'salerent'" />
-                    <MentAndImg v-if="detailLast === 'mentImg'" />
-                  </div>
-                </div>
+                <PeriodList
+                  v-if="isShowSelectTermPriceModal[index]"
+                  :payTermPrice="item.payTermPrice"
+                  :currentTermPrice="selectPayTermPrice[index]"
+                  :index="index"
+                  @changeTermPrice="changeTermPrice"
+                />
               </div>
             </div>
+            <div class="guide" v-if="selectPayProductCategory.notice">
+              <div class="guide-title">
+                {{ selectPayProductCategory.categoryName }} 유의사항
+                <span class="blue">자주 묻는 질문 ></span>
+              </div>
+              <div
+                class="guide-ment"
+                v-html="
+                  selectPayProductCategory.notice.replace(
+                    /(?:\r\n|\r|\n)/g,
+                    '<br />'
+                  )
+                "
+              ></div>
+            </div>
           </div>
+          <!-- -->
         </div>
       </div>
       <div class="premium-free">
@@ -976,8 +570,6 @@
           alt="eventbanner"
         />
       </div>
-
-      <AddCart v-if="showModal" @showAddCart="showAddCart" />
     </article>
   </section>
 </template>
@@ -985,67 +577,180 @@
 <script lang="ts" setup>
 import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
-import AddCart from '../../../common/modal/dashboard/AddCart.vue'
-import Hashtag from '../../../common/dashboard/ad/premium/Hashtag.vue'
-import List from '../../../common/dashboard/ad/premium/List.vue'
-import Matching from '../../../common/dashboard/ad/premium/Matching.vue'
-import Promotion from '../../../common/dashboard/ad/premium/Promotion.vue'
-import BrandCategoryList from '../../../common/dashboard/ad/brandad/BrandCategoryList.vue'
-import Search from '../../../common/dashboard/ad/brandad/Search.vue'
-import Main from '../../../common/dashboard/ad/bannerad/MaintopMain.vue'
-import BannerImage from '../../../common/dashboard/ad/bannerad/BannerImage.vue'
-import FirstSpecialMain from '../../../common/dashboard/ad/bannerad/FirstSpecialMain.vue'
-import FirstSpecialCommunity from '../../../common/dashboard/ad/bannerad/FirstSpecialCommunity.vue'
-import MentAndImg from '../../../common/dashboard/ad/bannerad/MentAndImg.vue'
-import SecondSpecialMain from '../../../common/dashboard/ad/bannerad/SecondSpecialMain.vue'
-import SecondSpecialCommunity from '../../../common/dashboard/ad/bannerad/SecondSpecialCommunity.vue'
-import ThirdSpecialMain from '../../../common/dashboard/ad/bannerad/ThirdSpecialMain.vue'
-import ThirdSpecialCommunity from '../../../common/dashboard/ad/bannerad/ThirdSpecialCommunity.vue'
-import LastList from '../../../common/dashboard/ad/bannerad/LastList.vue'
-import SaleRent from '../../../common/dashboard/ad/bannerad/SaleRent.vue'
+import { ref, onMounted } from 'vue'
+
+import ProductTab from '../../../common/dashboard/product/ProductTab.vue'
 import PeriodList from '../../../common/dashboard/PeriodList.vue'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+import {
+  PayCategory,
+  PayProduct,
+  PayProductTab,
+  PayTermPrice,
+} from '../../../../types/product'
+import {
+  CommonResponse,
+  PayCategoryResponse,
+  PayTermPriceResponse,
+} from '../../../../types/response'
+import { calcOriginPrice } from '../../../../functions/product'
+import api from '../../../../config/axios.config'
+import { confirmAlert, toastAlert } from '../../../../functions/alert'
+import { useUserStore } from '../../../../store/user'
+import { useAlarmStore } from '../../../../store/alarm'
+import { useRouter } from 'vue-router'
+import { useProductStore } from '../../../../store/product'
 
-const showModal = ref<boolean>(false)
-const showAddCart = () => {
-  showModal.value = !showModal.value
+const router = useRouter()
+
+const windowStore = useWindowStore()
+const { getDevice } = storeToRefs(windowStore)
+const userStore = useUserStore()
+const { currentBrand } = storeToRefs(userStore)
+const alarmStore = useAlarmStore()
+const { cartCount } = storeToRefs(alarmStore)
+const productStore = useProductStore()
+const { payProductItems } = storeToRefs(productStore)
+
+const payProductCategory = ref<PayCategory[]>([])
+const selectPayProductCategory = ref<PayCategory>()
+
+const payProduct = ref<PayProduct[]>([])
+
+const selectPayTermPrice = ref<PayTermPrice[]>([])
+const isShowSelectTermPriceModal = ref<boolean[]>([])
+
+const selectProductTab = ref<PayProductTab[]>([])
+const isShowProductTab = ref<boolean[]>([])
+
+const cartProduct = ref<PayTermPrice[]>([])
+
+const getProductCategory = async () => {
+  const { data } = await api.get<PayCategoryResponse>('/product')
+
+  if (data.success) {
+    payProductCategory.value = data.payCategory
+      .filter((e) => e.page === 0)
+      .sort((a, b) => (a.categoryName > b.categoryName ? -1 : 0))
+
+    clickCategoryHandler(payProductCategory.value[0])
+  }
 }
 
-const selectCategory = ref<string>('프리미엄')
+const getCartProduct = async () => {
+  if (currentBrand.value) {
+    const { data } = await api.get<PayTermPriceResponse>(
+      `/pay/cart/${currentBrand.value.id}`
+    )
 
-const showPremium = ref<boolean>(false)
-const detailPremium = ref<string>('hashtag')
-
-const showFirstRecommend = ref<boolean>(false)
-const detailFirstRecommend = ref<string>('brandcategorylist')
-
-const showMaintop = ref<boolean>(false)
-const detailMaintop = ref<string>('maintopMain')
-
-const showFirstSpecial = ref<boolean>(false)
-const detailFirstSpecial = ref<string>('firstSpecialMain')
-
-const showSecondSpecial = ref<boolean>(false)
-const detailSecondSpecial = ref<string>('secondSpecialMain')
-
-const showThirdSpecial = ref<boolean>(false)
-const detailThirdSpecial = ref<string>('thirdSpecialMain')
-
-const showLastBanner = ref<boolean>(false)
-const detailLast = ref<string>('brandlist')
-
-const showHopeful = ref<boolean>(false)
-const showHotclip = ref<boolean>(false)
-const showSecondRecommend = ref<boolean>(false)
-
-const periodSelect = ref<string>('30일')
-const selectPeriod = ref<boolean>(false)
-const showPeriodList = () => {
-  selectPeriod.value = !selectPeriod.value
+    if (data.success) {
+      cartProduct.value = data.payTermPrice
+    }
+  }
 }
+
+const clickCategoryHandler = (item: PayCategory) => {
+  selectPayTermPrice.value = []
+  isShowSelectTermPriceModal.value = []
+  selectProductTab.value = []
+  isShowProductTab.value = []
+
+  selectPayProductCategory.value = item
+  payProduct.value = selectPayProductCategory.value.payProduct
+
+  payProduct.value.forEach((e) => {
+    e.payTermPrice.sort((a, b) => (a.term < b.term ? -1 : 0))
+    selectPayTermPrice.value.push(e.payTermPrice[0])
+    isShowSelectTermPriceModal.value.push(false)
+
+    e.payProductTab.sort((a, b) => (a.tabName < b.tabName ? -1 : 0))
+    selectProductTab.value.push(e.payProductTab[0])
+    isShowProductTab.value.push(false)
+  })
+}
+
+const isShowTermPriceModal = (index: number) => {
+  isShowSelectTermPriceModal.value = isShowSelectTermPriceModal.value.map(
+    (e, i) => {
+      if (i === index) {
+        e = !e
+      } else {
+        e = false
+      }
+
+      return e
+    }
+  )
+}
+
+const changeTermPrice = (item: PayTermPrice, index: number) => {
+  selectPayTermPrice.value[index] = item
+  isShowSelectTermPriceModal.value[index] = false
+}
+
+const changeProductTab = (item: PayProductTab, index: number) => {
+  selectProductTab.value[index] = item
+}
+
+const addCart = async (payProductId: string, payTermPriceId: string) => {
+  if (currentBrand.value) {
+    const { data: checkCart } = await api.get(
+      `pay/cart/${currentBrand.value.id}/${payProductId}`
+    )
+
+    if (checkCart.success) {
+      if (checkCart.isExist) {
+        toastAlert({
+          text: '같은 상품은 장바구니에 하나만 담을 수 있습니다',
+        })
+        return
+      }
+    } else {
+      toastAlert({
+        text: checkCart.data.errorMessage,
+        type: 'warning',
+      })
+      return
+    }
+
+    const { data } = await api.post<CommonResponse>('/pay/cart', {
+      brandId: currentBrand.value.id,
+      payTermPriceId,
+      payProductId,
+    })
+
+    if (data.success) {
+      await getCartProduct()
+
+      cartCount.value = cartProduct.value.length
+
+      const alert = await confirmAlert({
+        html: '장바구니에 담았습니다<br />장바구니로 이동하시겠습니까?',
+        isCancelButton: true,
+        cancelButtonText: '상품 계속 보기',
+        confirmButtonText: '장바구니 이동',
+      })
+
+      if (alert.isConfirmed) {
+        router.push('/cart')
+      }
+    } else {
+      toastAlert({ text: data.errorMessage, type: 'warning' })
+    }
+  }
+}
+
+const movePay = (item: PayTermPrice, payProduct: PayProduct) => {
+  item.payProduct = payProduct
+  payProductItems.value = []
+  payProductItems.value.push(item)
+  router.push('/payment')
+}
+
+onMounted(async () => {
+  await getProductCategory()
+  await getCartProduct()
+})
 </script>
 
 <style lang="scss" scoped>
@@ -1066,14 +771,15 @@ article {
       gap: 30px;
       color: $fontSub;
       border-bottom: 1px solid $iconLine;
-      div {
-        cursor: pointer;
-      }
-      .category {
-        color: $mainColor;
-        font-weight: $semi;
-        border-bottom: 2px solid $mainColor;
+      .category-item {
         padding-bottom: 16px;
+        cursor: pointer;
+
+        &.active {
+          color: $mainColor;
+          font-weight: $semi;
+          border-bottom: 2px solid $mainColor;
+        }
       }
     }
 
@@ -1252,9 +958,6 @@ article {
               }
             }
           }
-        }
-        .boxstyle {
-          box-shadow: 0 0 0 1px $mainColor inset;
         }
 
         .more-box {
@@ -1449,11 +1152,6 @@ article {
                 }
               }
             }
-          }
-
-          .boxstyle {
-            box-shadow: none;
-            border-bottom: 1px solid $mainColor;
           }
 
           .more-box {

@@ -23,104 +23,36 @@
 
           <div class="brand-list">
             <div
-              :class="{ select: selectList === '1' }"
-              @click="selectList = '1'"
+              v-for="item in brand"
+              :key="item.id"
+              :class="{ select: item.id === currentBrand?.id }"
               class="box"
+              @click="changeBrand(item)"
             >
               <img
-                src="../../../../../assets/dashboard/modal/brand_1.png"
-                alt=""
+                v-if="item.brandLogoImg"
+                :src="item.brandLogoImg"
+                :alt="item.brandName"
+              />
+              <img
+                v-else
+                :src="
+                  loadCategoryImg(
+                    category,
+                    item.largeCategoryName,
+                    item.smallCategoryName
+                  )
+                "
+                :alt="item.brandName"
               />
               <div class="brand-info">
-                백종원의 원조쌈밥집
+                {{ item.brandName }}
                 <img
+                  v-if="item.isPremium"
                   src="../../../../../assets/dashboard/premium.png"
                   alt="프리미엄"
                 />
               </div>
-            </div>
-            <div
-              :class="{ select: selectList === '2' }"
-              @click="selectList = '2'"
-              class="box"
-            >
-              <img
-                src="../../../../../assets/dashboard/modal/brand_2.png"
-                alt=""
-              />
-              <div class="brand-info">미정국수0410</div>
-            </div>
-            <div
-              :class="{ select: selectList === '3' }"
-              @click="selectList = '3'"
-              class="box"
-            >
-              <img
-                src="../../../../../assets/dashboard/modal/brand_3.png"
-                alt=""
-              />
-              <div class="brand-info">백철판0410</div>
-            </div>
-            <div
-              :class="{ select: selectList === '4' }"
-              @click="selectList = '4'"
-              class="box"
-            >
-              <img
-                src="../../../../../assets/dashboard/modal/brand_4.png"
-                alt=""
-              />
-              <div class="brand-info">
-                한신포차
-                <img
-                  src="../../../../../assets/dashboard/premium.png"
-                  alt="프리미엄"
-                />
-              </div>
-            </div>
-            <div
-              :class="{ select: selectList === '5' }"
-              @click="selectList = '5'"
-              class="box"
-            >
-              <img
-                src="../../../../../assets/dashboard/modal/brand_5.png"
-                alt=""
-              />
-              <div class="brand-info">새마을식당</div>
-            </div>
-            <div
-              :class="{ select: selectList === '6' }"
-              @click="selectList = '6'"
-              class="box"
-            >
-              <img
-                src="../../../../../assets/dashboard/modal/brand_6.png"
-                alt=""
-              />
-              <div class="brand-info">역전우동0410</div>
-            </div>
-            <div
-              :class="{ select: selectList === '7' }"
-              @click="selectList = '7'"
-              class="box"
-            >
-              <img
-                src="../../../../../assets/dashboard/modal/brand_7.png"
-                alt=""
-              />
-              <div class="brand-info">홍콩반점0410</div>
-            </div>
-            <div
-              :class="{ select: selectList === '8' }"
-              @click="selectList = '8'"
-              class="box"
-            >
-              <img
-                src="../../../../../assets/dashboard/modal/brand_8.png"
-                alt=""
-              />
-              <div class="brand-info">빽다방</div>
             </div>
           </div>
 
@@ -134,16 +66,28 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { useWindowStore } from '../../../../../store/window'
 import { storeToRefs } from 'pinia'
+import { useUserStore } from '../../../../../store/user'
+import { useCategoryStore } from '../../../../../store/category'
+import { loadCategoryImg } from '../../../../../functions/common'
+import { Brand } from '../../../../../types/brand'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const windowStore = useWindowStore()
+const { getDevice } = storeToRefs(windowStore)
+const userStore = useUserStore()
+const { brand, currentBrand } = storeToRefs(userStore)
+const categoryStore = useCategoryStore()
+const { category } = storeToRefs(categoryStore)
 
 defineEmits<{
   (e: 'showBrandChange'): void
 }>()
+
+const changeBrand = (brand: Brand) => {
+  currentBrand.value = brand
+}
 
 onMounted(() => {
   document.body.setAttribute('style', 'overflow: hidden;')
@@ -152,15 +96,13 @@ onMounted(() => {
 onUnmounted(() => {
   document.body.removeAttribute('style')
 })
-
-const selectList = ref<string>('1')
 </script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';
 
 section {
-  z-index: 2;
+  z-index: 4;
   position: fixed;
   top: 0;
   left: 0;

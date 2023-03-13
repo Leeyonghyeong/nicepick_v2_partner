@@ -3,7 +3,17 @@ export interface User {
   userName: string
   email: string
   phoneNumber: string
-  isEmail: string
-  isSMS: string
+  userImg: string
+  isEmail: boolean
+  isSMS: boolean
+  isAlarm: boolean
   role: string
+}
+
+export interface Manager {
+  id?: string
+  userId: string
+  userName: string
+  phoneNumber: string
+  isAlarm: boolean
 }

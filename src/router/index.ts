@@ -82,19 +82,19 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/findpw',
         name: 'findpw',
-        component: () => import('../components/find_pw/FindPw.vue'),
+        component: () => import('../views/find_pw/FindPw.vue'),
         beforeEnter: loginCheck,
       },
       {
         path: '/resetpw',
         name: 'resetpw',
-        component: () => import('../components/find_pw/ResetPw.vue'),
+        component: () => import('../views/find_pw/ResetPw.vue'),
         beforeEnter: loginCheck,
       },
       {
         path: '/resetcomplete',
         name: 'resetcomplete',
-        component: () => import('../components/find_pw/ResetComplete.vue'),
+        component: () => import('../views/find_pw/ResetComplete.vue'),
         beforeEnter: loginCheck,
       },
       {
@@ -121,34 +121,31 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/franchise/dashboard',
-        name: 'franchisedashboard',
-        component: () =>
-          import('../components/dashboard/franchise/dashboard/Dashboard.vue'),
+        name: 'FranchiseDashboard',
+        component: () => import('../views/franchise/dashboard/Dashboard.vue'),
       },
       {
         path: '/franchise/brand/management',
-        name: 'management',
+        name: 'FranchiseManagement',
         component: () =>
-          import('../components/dashboard/franchise/brand/Brand.vue'),
+          import('../views/franchise/management/BrandManagement.vue'),
       },
       {
-        path: '/franchise/brand/set',
-        name: 'set',
+        path: '/franchise/brand/management/info',
+        name: 'FranchiseManagementInfo',
         component: () =>
-          import('../components/dashboard/franchise/brand/BrandSet.vue'),
+          import('../views/franchise/management/BrandManagementInfo.vue'),
       },
       {
         path: '/franchise/qna',
-        name: 'qna',
-        component: () =>
-          import('../components/dashboard/franchise/qna/QnA.vue'),
+        name: 'FranchiseQna',
+        component: () => import('../views/qna/FranchiseQna.vue'),
       },
 
       {
         path: '/franchise/mymenu/myinfo',
-        name: 'franchisemyinfo',
-        component: () =>
-          import('../components/dashboard/franchise/mymenu/MyInfo.vue'),
+        name: 'FranchiseMyInfo',
+        component: () => import('../views/franchise/mymenu/MyInfo.vue'),
       },
       {
         path: '/franchise/mymenu/usagehistory',
@@ -158,16 +155,14 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: '/franchise/mymenu/addkeyword',
-        name: 'addkeyword',
-        component: () =>
-          import('../components/dashboard/franchise/mymenu/Keyword.vue'),
+        name: 'AddKeyword',
+        component: () => import('../views/franchise/mymenu/Keyword.vue'),
       },
 
       {
         path: '/franchise/ad',
-        name: 'franchisead',
-        component: () =>
-          import('../components/dashboard/franchise/ad/AdItem.vue'),
+        name: 'FranchiseAd',
+        component: () => import('../views/franchise/product/AdProduct.vue'),
       },
     ],
   },
@@ -180,42 +175,41 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/cart',
-        name: 'cart',
-        component: () => import('../components/dashboard/Cart.vue'),
+        name: 'Cart',
+        component: () => import('../views/cart/Cart.vue'),
       },
       {
         path: '/payment',
-        name: 'payment',
-        component: () => import('../components/dashboard/Payment.vue'),
+        name: 'Payment',
+        component: () => import('../views/pay/Payment.vue'),
       },
       {
         path: '/franchise/notice',
-        name: 'franchisenotice',
-        component: () =>
-          import('../components/dashboard/franchise/dashboard/Notice.vue'),
+        name: 'FranchiseNotice',
+        component: () => import('../views/franchise/dashboard/Notice.vue'),
       },
       {
-        path: '/franchise/noticemain',
-        name: 'franchisenoticemain',
+        path: '/franchise/notice/detail/:id',
+        name: 'FranchiseNoticeDetail',
         component: () =>
-          import('../components/dashboard/franchise/dashboard/NoticeMain.vue'),
+          import('../views/franchise/dashboard/NoticeDetail.vue'),
       },
     ],
   },
 
-  {
-    path: '/',
-    name: 'ChattingLayout',
-    component: () => import('../layout/dashboard/franchise/ChattingLayout.vue'),
-    children: [
-      {
-        path: '/franchise/chatting',
-        name: 'franchisechatting',
-        component: () =>
-          import('../components/dashboard/franchise/qna/Chatting.vue'),
-      },
-    ],
-  },
+  // {
+  //   path: '/',
+  //   name: 'ChattingLayout',
+  //   component: () => import('../layout/dashboard/franchise/ChattingLayout.vue'),
+  //   children: [
+  //     {
+  //       path: '/franchise/chatting',
+  //       name: 'franchisechatting',
+  //       component: () =>
+  //         import('../components/dashboard/franchise/qna/Chatting.vue'),
+  //     },
+  //   ],
+  // },
 
   {
     path: '/',
@@ -377,5 +371,23 @@ const router = createRouter({
   },
   routes,
 })
+
+router.beforeEach(
+  async (
+    _to: RouteLocationNormalized,
+    _from: RouteLocationNormalized,
+    next: NavigationGuardNext
+  ) => {
+    const userStore = useUserStore()
+    const { user } = storeToRefs(userStore)
+    const accessToken = localStorage.getItem('accessToken')
+
+    if (accessToken && !user.value) {
+      await userStore.getUser()
+    }
+
+    next()
+  }
+)
 
 export default router

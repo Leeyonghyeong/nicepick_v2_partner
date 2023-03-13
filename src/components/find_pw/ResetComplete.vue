@@ -7,10 +7,7 @@
 
       <div class="complete">
         <div class="complete-title">비밀번호 변경 완료!</div>
-        <div class="complete-message">
-          홍길동님,<br />
-          비밀번호 변경이 완료되었습니다.
-        </div>
+        <div class="complete-message">비밀번호 변경이 완료되었습니다.</div>
       </div>
 
       <div class="btn">

@@ -4,7 +4,7 @@ const instance: AxiosInstance = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
       ? 'https://api.nicepick.co.kr/api'
-      : //: 'http://192.168.0.3:3000/api',
+      : // : 'http://192.168.0.3:3000/api',
         'http://localhost:3001/api',
 })
 

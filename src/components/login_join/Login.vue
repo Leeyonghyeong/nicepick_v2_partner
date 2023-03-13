@@ -52,6 +52,7 @@
                     v-model="password"
                     type="password"
                     placeholder="비밀번호"
+                    @keypress.enter="submit"
                   />
                   <small v-if="passwordErrorText">{{
                     passwordErrorText
@@ -99,7 +100,7 @@ import { useUserStore } from '../../store/user'
 import { storeToRefs } from 'pinia'
 import api from '../../config/axios.config'
 import { ref } from 'vue'
-import { AuthResponse } from '../../types/response'
+import { AuthResponse, BrandsResponse } from '../../types/response'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -107,7 +108,7 @@ const router = useRouter()
 const windowStore = useWindowStore()
 const userStore = useUserStore()
 const { getDevice } = storeToRefs(windowStore)
-const { user, brandId } = storeToRefs(userStore)
+const { user, brand, currentBrand } = storeToRefs(userStore)
 
 const partnerType = ref<number>(0) // 0: 프랜차이즈, 1: 공인중개사
 
@@ -139,7 +140,15 @@ const submit = async () => {
       localStorage.setItem('accessToken', accessToken)
 
       user.value = data.user
-      brandId.value = data.brandId
+
+      const { data: brandInfo } = await api.get<BrandsResponse>(
+        `/auth/brand/${user.value.id}`
+      )
+
+      if (brandInfo.success) {
+        brand.value = brandInfo.brand
+        currentBrand.value = brand.value[0]
+      }
 
       router.replace('/franchise/dashboard')
     }

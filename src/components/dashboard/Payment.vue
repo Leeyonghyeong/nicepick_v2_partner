@@ -15,25 +15,40 @@
           <div class="item-info">
             <div class="title">상품 정보</div>
             <div class="box">
-              <div class="item">
+              <div
+                class="item"
+                v-for="(item, index) in payProductItems"
+                :key="item.id"
+              >
                 <div class="name-delete">
                   <div class="name">
-                    <div class="bold">브랜드 핫클립 (30일)</div>
-                    <div class="sub">홈 영상컨텐츠 노출</div>
+                    <div class="bold">
+                      {{ item.payProductName }}
+                      {{
+                        item.payProduct.payType === 'NORMAL'
+                          ? `(${item.term}일)`
+                          : ''
+                      }}
+                    </div>
+                    <div class="sub">{{ item.payProduct.productNoti }}</div>
                   </div>
                   <img
                     class="x"
                     src="../../assets/dashboard/cart_delete.png"
                     alt="삭제"
+                    @click="cancelProduct(index)"
                   />
                 </div>
                 <div class="option-cost no-option">
                   <div class="cost">
-                    <div class="bold">550,000원</div>
+                    <div class="bold">{{ item.price.toLocaleString() }}원</div>
+                    <div v-if="item.sale > 0" class="sub">
+                      {{ calcOriginPrice(item.price, item.sale) }}원
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="item">
+              <!-- <div class="item">
                 <div class="name-delete">
                   <div class="item-name">
                     <div class="name">
@@ -100,11 +115,11 @@
                     <div class="bold">99,000원</div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
 
-          <div class="image-apply">
+          <!-- <div class="image-apply">
             <div class="title">이미지 등록</div>
             <div class="box main-top">
               <div class="title-button">
@@ -283,7 +298,7 @@
                 있습니다.
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="right">
@@ -293,16 +308,47 @@
               <div class="flex">
                 <div class="name-cost">
                   <div class="name">상품 신청 금액</div>
-                  <div class="cost">1,188,000원</div>
+                  <div class="cost">
+                    {{
+                      calcTotalPrice(
+                        payProductItems.map((e) => {
+                          return parseInt(
+                            calcOriginPrice(e.price, e.sale).replace(/,/g, '')
+                          )
+                        })
+                      )
+                    }}원
+                  </div>
                 </div>
                 <div class="name-cost">
                   <div class="name">할인 금액</div>
-                  <div class="cost discount">-110,000원</div>
+                  <div class="cost discount">
+                    -{{
+                      calcTotalPrice(
+                        payProductItems.map((e) => {
+                          return (
+                            parseInt(
+                              calcOriginPrice(e.price, e.sale).replace(/,/g, '')
+                            ) - e.price
+                          )
+                        })
+                      )
+                    }}원
+                  </div>
                 </div>
               </div>
               <div class="total">
                 <div class="name">총 합계</div>
-                <div class="cost"><span class="semi">1,078,000</span>원</div>
+                <div class="cost">
+                  <span class="semi">{{
+                    calcTotalPrice(
+                      payProductItems.map((e) => {
+                        return e.price
+                      })
+                    )
+                  }}</span
+                  >원
+                </div>
               </div>
             </div>
           </div>
@@ -311,15 +357,15 @@
             <div class="title">결제수단</div>
             <div class="box pay-btn">
               <button
-                :class="{ select: selectPay === 'credit' }"
-                @click="selectPay = 'credit'"
+                :class="{ select: payType === 'card' }"
+                @click="payType = 'card'"
               >
                 <i class="fa-regular fa-credit-card"></i>
                 신용카드
               </button>
               <button
-                :class="{ select: selectPay === 'cash' }"
-                @click="selectPay = 'cash'"
+                :class="{ select: payType === 'trans' }"
+                @click="payType = 'trans'"
               >
                 <i class="fa-regular fa-money-bill-1"></i>
                 계좌이체
@@ -332,7 +378,12 @@
               <div class="name-check all">
                 <div class="name">전체 동의</div>
                 <div class="check">
-                  <input type="checkbox" id="check1" />
+                  <input
+                    v-model="isAllCheck"
+                    type="checkbox"
+                    id="check1"
+                    @change="allCheckHandler"
+                  />
                   <label for="check1"></label>
                 </div>
               </div>
@@ -341,22 +392,50 @@
                   주문 상품, 이용기간, 금액 등 확인 및 결제 동의
                 </div>
                 <div class="check">
-                  <input type="checkbox" id="check2" />
+                  <input
+                    v-model="isPayAgree"
+                    type="checkbox"
+                    id="check2"
+                    @change="agreeCheckHandelr"
+                  />
                   <label for="check2"></label>
                 </div>
               </div>
               <div class="name-check">
-                <div class="name link">환불 정책 동의</div>
+                <div
+                  class="name link"
+                  @click="
+                    deviceMoveUrl(
+                      getDevice,
+                      'https://nicepick.notion.site/f6319949c3254de0bf1e0196b3561f16'
+                    )
+                  "
+                >
+                  환불 정책 동의
+                </div>
                 <div class="check">
-                  <input type="checkbox" id="check3" />
+                  <input
+                    v-model="isRefundAgree"
+                    type="checkbox"
+                    id="check3"
+                    @change="agreeCheckHandelr"
+                  />
                   <label for="check3"></label>
                 </div>
               </div>
             </div>
           </div>
 
-          <button class="charge">
-            <span class="semi">1,078,000원</span>
+          <button class="charge" @click="submit" style="cursor: pointer">
+            <span class="semi"
+              >{{
+                calcTotalPrice(
+                  payProductItems.map((e) => {
+                    return e.price
+                  })
+                )
+              }}원</span
+            >
             결제하기
           </button>
         </div>
@@ -370,12 +449,240 @@ import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 import { ColorChangeEvent, ColorPicker } from 'vue-accessible-color-picker'
+import { useProductStore } from '../../store/product'
+import { calcOriginPrice, calcTotalPrice } from '../../functions/product'
+import { confirmAlert, toastAlert } from '../../functions/alert'
+import { deviceMoveUrl } from '../../functions/common'
+import { useUserStore } from '../../store/user'
+import api from '../../config/axios.config'
+import { RequestPayParams, RequestPayResponse } from 'iamport-typings'
+import { PayTermPrice } from '../../types/product'
+import { useRouter } from 'vue-router'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const router = useRouter()
+
+const windowStore = useWindowStore()
+const { getDevice } = storeToRefs(windowStore)
+const productStore = useProductStore()
+const { payProductItems } = storeToRefs(productStore)
+const userStore = useUserStore()
+const { user, currentBrand } = storeToRefs(userStore)
+
+const payType = ref<string>('card')
+
+const isAllCheck = ref<boolean>(false)
+const isPayAgree = ref<boolean>(false)
+const isRefundAgree = ref<boolean>(false)
 
 const title = ref<string>('#777777')
 const main = ref<string>('#EBEBEB')
+
+const cancelProduct = (index: number) => {
+  payProductItems.value.splice(index, 1)
+
+  toastAlert({
+    text: '상품이 취소 되었습니다',
+    type: 'success',
+    position: 'top',
+  })
+}
+
+const allCheckHandler = () => {
+  if (isAllCheck.value) {
+    isPayAgree.value = true
+    isRefundAgree.value = true
+  } else {
+    isPayAgree.value = false
+    isRefundAgree.value = false
+  }
+}
+
+const agreeCheckHandelr = () => {
+  if (isPayAgree.value && isRefundAgree.value) {
+    isAllCheck.value = true
+  } else {
+    isAllCheck.value = false
+  }
+}
+
+const calcOriginTotalPrice = (payTermPrice: PayTermPrice[]): number => {
+  let originTotalPrice = 0
+  for (const item of payTermPrice) {
+    originTotalPrice += parseInt(
+      calcOriginPrice(item.price, item.sale).replace(/,/g, '')
+    )
+  }
+
+  return originTotalPrice
+}
+
+const calcTotalSale = (payTermPrice: PayTermPrice[]): number => {
+  let totalSale = 0
+
+  for (const item of payTermPrice) {
+    if (item.sale > 0) {
+      const sale = item.sale / 100
+      totalSale +=
+        parseInt(calcOriginPrice(item.price, item.sale).replace(/,/g, '')) *
+        sale
+    }
+  }
+
+  return totalSale
+}
+
+const submit = async () => {
+  if (!isPayAgree.value || !isRefundAgree.value) {
+    toastAlert({
+      text: '모든 항목에 동의해 주시기 바랍니다',
+      type: 'warning',
+    })
+    return
+  }
+
+  if (currentBrand.value && user.value) {
+    const merchant_uid = 'nicepick_' + Math.floor(new Date().getTime() / 1000)
+    let addPayStatusPayload = []
+
+    for (const termPrice of payProductItems.value) {
+      const payloadObject = {
+        payProductId: termPrice.payProductId,
+        payTermPriceId: termPrice.id,
+        brandId: currentBrand.value.id,
+        iamportPayId: merchant_uid,
+        payType: termPrice.payProduct.payType,
+        price: termPrice.price,
+      }
+
+      addPayStatusPayload.push(payloadObject)
+    }
+
+    const addPayStatus = await api.post('/pay', addPayStatusPayload)
+
+    if (addPayStatus.data.success) {
+      const IMP = window.IMP
+      const IMPInitKey = 'imp46515117' // 내꺼 : imp10145605 회사 : imp46515117
+
+      if (IMP) {
+        const findIndex = addPayStatusPayload.findIndex(
+          (e) => e.payType === 'RECURRING'
+        )
+
+        if (findIndex > -1) {
+          const { data: isPremium } = await api.get(
+            `/pay/premium/${addPayStatusPayload[0].payProductId}/${currentBrand.value.id}`
+          )
+
+          if (!isPremium.success) {
+            toastAlert({
+              text: isPremium.errorMessage,
+            })
+          }
+
+          IMP.init(IMPInitKey)
+
+          const params = {
+            pg: 'danal_tpay',
+            pay_method: 'card',
+            merchant_uid: merchant_uid,
+            name: '창업픽 정기결제',
+            amount: isPremium.isPremium ? addPayStatusPayload[0].price : 0,
+            customer_uid: currentBrand.value.id,
+            buyer_email: user.value.email,
+            buyer_name: user.value.userName,
+            buyer_tel: user.value.phoneNumber,
+          }
+
+          IMP?.request_pay(params, async (res: RequestPayResponse) => {
+            if (res.success) {
+              const firstBillings = await api.post('/pay/billings', {
+                customer_uid: currentBrand.value?.id,
+                iamportPayId: merchant_uid,
+                buyer_email: user.value?.email,
+                buyer_tel: user.value?.phoneNumber,
+              })
+
+              if (firstBillings.data.success) {
+                const confirm = await confirmAlert({
+                  html: '정기 결제가 정상적으로 등록 되었습니다.<br />한 달 후 자동결제가 진행 됩니다.',
+                })
+
+                if (confirm.isConfirmed) {
+                  router.push('/franchise/dashboard')
+                }
+              } else {
+                toastAlert(firstBillings.data.errorMessage)
+              }
+            } else {
+              const cancelPay = await api.post('/pay/cancel', {
+                iamportPayId: merchant_uid,
+              })
+
+              if (cancelPay.data.success) {
+                const alert = await confirmAlert({
+                  text: '결제가 취소되었습니다',
+                })
+
+                if (alert.isConfirmed) {
+                  router.back()
+                }
+              } else {
+                toastAlert(cancelPay.data.errorMessage)
+              }
+            }
+          })
+        } else {
+          IMP.init(IMPInitKey)
+
+          const params: RequestPayParams = {
+            pg: 'danal_tpay',
+            pay_method: payType.value,
+            merchant_uid: merchant_uid, //상점에서 생성한 고유 주문번호
+            name: '창업픽 광고상품',
+            amount:
+              calcOriginTotalPrice(payProductItems.value) -
+              calcTotalSale(payProductItems.value),
+            buyer_email: user.value.email,
+            buyer_name: user.value.userName,
+            buyer_tel: user.value.phoneNumber,
+          }
+
+          IMP.request_pay(params, async (res: RequestPayResponse) => {
+            if (res.success) {
+              const alert = await confirmAlert({
+                text: '결제가 완료 되었습니다.',
+              })
+
+              if (alert.isConfirmed) {
+                router.push('/franchise/dashboard')
+              }
+            } else {
+              const cancelPay = await api.post('/pay/cancel', {
+                iamportPayId: res.merchant_uid,
+              })
+
+              const result = cancelPay.data
+
+              if (result.success) {
+                const alert = await confirmAlert({
+                  text: '결제가 취소되었습니다.',
+                })
+
+                if (alert.isConfirmed) {
+                  router.back()
+                }
+              } else {
+                toastAlert({
+                  text: result.errorMessage,
+                })
+              }
+            }
+          })
+        }
+      }
+    }
+  }
+}
 
 const titleColorChange = (event: ColorChangeEvent) => {
   title.value = event.cssColor
@@ -385,7 +692,6 @@ const mainColorChange = (event: ColorChangeEvent) => {
   main.value = event.cssColor
 }
 
-const selectPay = ref<string>('credit')
 const highLight = ref<string>('title')
 const mainTopUrl = ref<string>('detail')
 const specialUrl = ref<string>('detail')

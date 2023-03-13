@@ -15,40 +15,29 @@
 
       <div class="add">
         <div class="box">
-          <div class="title">해시태그 키워드 추가 0/6</div>
+          <div class="title">해시태그 키워드 추가 {{ brandTag.length }}/6</div>
           <div class="input-section">
-            <input type="text" placeholder="키워드 입력" />
-            <button>등록</button>
+            <input
+              v-model="tag"
+              type="text"
+              placeholder="키워드 입력"
+              @keypress.enter="submit"
+            />
+            <button @click="submit">등록</button>
           </div>
 
-          <div style="display: none" class="ment">
+          <div v-if="brandTag.length === 0" class="ment">
             입력한 키워드가 없습니다.
           </div>
 
-          <div class="hashtag-list">
-            <div class="hashtag">
-              무인점포
-              <img src="../../../../assets/dashboard/delete.png" alt="지우기" />
-            </div>
-            <div class="hashtag">
-              패스트푸드
-              <img src="../../../../assets/dashboard/delete.png" alt="지우기" />
-            </div>
-            <div class="hashtag">
-              아이스크림
-              <img src="../../../../assets/dashboard/delete.png" alt="지우기" />
-            </div>
-            <div class="hashtag">
-              히어로플레이파크
-              <img src="../../../../assets/dashboard/delete.png" alt="지우기" />
-            </div>
-            <div class="hashtag">
-              청년고기장수
-              <img src="../../../../assets/dashboard/delete.png" alt="지우기" />
-            </div>
-            <div class="hashtag">
-              부어치킨
-              <img src="../../../../assets/dashboard/delete.png" alt="지우기" />
+          <div v-else class="hashtag-list">
+            <div v-for="item in brandTag" :key="item.id" class="hashtag">
+              {{ item.tag }}
+              <img
+                src="../../../../assets/dashboard/delete.png"
+                alt="지우기"
+                @click="deleteTag(item.id)"
+              />
             </div>
           </div>
         </div>
@@ -64,7 +53,104 @@
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { BrandTagResponse, CommonResponse } from '../../../../types/response'
+import api from '../../../../config/axios.config'
+import { useUserStore } from '../../../../store/user'
+import { storeToRefs } from 'pinia'
+import { confirmAlert, toastAlert } from '../../../../functions/alert'
+import { useRouter } from 'vue-router'
+import { onBeforeMount, ref, onMounted } from 'vue'
+import { BrandTag } from '../../../../types/brand'
+
+const router = useRouter()
+
+const userStore = useUserStore()
+const { currentBrand } = storeToRefs(userStore)
+
+const brandTag = ref<BrandTag[]>([])
+const tag = ref<string>()
+
+const getTag = async () => {
+  if (currentBrand.value) {
+    const { data } = await api.get<BrandTagResponse>(
+      `/brand/tag/${currentBrand.value.id}`
+    )
+
+    if (data.success) {
+      brandTag.value = data.brandTag
+    }
+  }
+}
+
+const deleteTag = async (id: string) => {
+  const { data } = await api.delete<CommonResponse>(`/brand/tag/${id}`)
+
+  if (data.success) {
+    toastAlert({
+      text: '해시태그가 삭제 되었습니다',
+      type: 'success',
+      position: 'top',
+    })
+
+    await getTag()
+  }
+}
+
+const submit = async () => {
+  if (currentBrand.value) {
+    if (!tag.value) {
+      toastAlert({
+        text: '키워드를 입력해 주세요',
+        type: 'warning',
+      })
+
+      return
+    }
+
+    const payload = {
+      tag: tag.value,
+      brandId: currentBrand.value.id,
+    }
+
+    const { data } = await api.post<CommonResponse>('/brand/tag', payload)
+
+    if (data.success) {
+      toastAlert({
+        text: '해시태그가 등록되었습니다',
+        type: 'success',
+        position: 'top',
+      })
+
+      await getTag()
+    } else {
+      toastAlert({
+        text: data.errorMessage,
+        type: 'warning',
+        position: 'top',
+      })
+    }
+
+    tag.value = undefined
+  }
+}
+
+onBeforeMount(async () => {
+  if (!currentBrand.value || !currentBrand.value.isPremium) {
+    const alert = await confirmAlert({
+      text: '잘못된 접근입니다',
+    })
+
+    if (alert.isConfirmed) {
+      router.replace('/franchise/dashboard')
+    }
+  }
+})
+
+onMounted(() => {
+  getTag()
+})
+</script>
 
 <style lang="scss" scoped>
 @import '@/scss/main';

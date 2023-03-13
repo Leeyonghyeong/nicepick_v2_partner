@@ -9,16 +9,16 @@
             <div class="top-btn">
               <div
                 class="btn"
-                :class="{ select: selectBtn === '전체' }"
-                @click="selectBtn = '전체'"
+                :class="{ select: listType === 0 }"
+                @click="getFindRoomList(0)"
               >
                 <img
-                  v-if="selectBtn === '안읽음'"
+                  v-if="listType === 1"
                   src="../../../../assets/dashboard/qna/all.png"
                   alt="전체"
                 />
                 <img
-                  v-if="selectBtn === '전체'"
+                  v-else
                   src="../../../../assets/dashboard/qna/all_select.png"
                   alt="전체선택"
                 />
@@ -26,10 +26,10 @@
               </div>
               <div
                 class="btn read"
-                :class="{ select: selectBtn === '안읽음' }"
-                @click="selectBtn = '안읽음'"
+                :class="{ select: listType === 1 }"
+                @click="getFindRoomList(1)"
               >
-                <div class="count">13</div>
+                <div class="count">{{ noReadCount }}</div>
                 <div class="name">안읽음</div>
               </div>
             </div>
@@ -39,86 +39,232 @@
                   src="../../../../assets/dashboard/qna/search.png"
                   alt="검색"
                 />
-                <input type="text" placeholder="브랜드 검색" />
+                <input
+                  v-model="searchKeyword"
+                  type="text"
+                  placeholder="브랜드 검색"
+                  @input="getFindRoomList(listType)"
+                />
               </div>
             </div>
           </div>
-          <div v-if="selectBtn === '전체'" class="empty">
+          <div
+            v-if="
+              (listType === 0 && chatRoomList.length === 0) ||
+              (listType === 1 && chatNoReadRoomList.length === 0) ||
+              (searchKeyword !== '' && findRoomList.length === 0)
+            "
+            class="empty"
+          >
             새로운 문의 내역이 없습니다.
           </div>
-          <div v-if="selectBtn === '안읽음'" class="chat-list">
-            <div class="box">
+          <div v-else class="chat-list">
+            <div
+              v-for="item in listType === 0 && searchKeyword === ''
+                ? chatRoomList
+                : listType === 0 && searchKeyword !== ''
+                ? findRoomList
+                : listType === 1 && searchKeyword === ''
+                ? chatNoReadRoomList
+                : findRoomList"
+              :key="item.id"
+              class="box room-item"
+              :class="{ active: $route.query.id === item.user.id }"
+              @click="changeChatRoom(item.user)"
+            >
               <div class="user">
                 <img
+                  v-if="item.user.userImg"
+                  :src="item.user.userImg"
+                  :alt="item.user.userName"
+                />
+                <img
+                  v-else
                   src="../../../../assets/dashboard/qna/profile.png"
-                  alt="프로필"
+                  :alt="item.user.userName"
                 />
                 <div class="name-main">
-                  <div class="name">홍길동</div>
+                  <div class="name">{{ item.user.userName }}</div>
                   <div class="main">
-                    안녕하세요. 창업문의 드리려고 합니다. 강남역이나 논현역
-                    근처에 오픈 가능할까요?
+                    {{ item.lastChatMessage }}
                   </div>
                 </div>
               </div>
               <div class="time-chat-count">
-                <div class="time">오전 11:59</div>
-                <div class="chat-count">3</div>
-              </div>
-            </div>
-            <div class="box">
-              <div class="user">
-                <img
-                  src="../../../../assets/dashboard/qna/profile.png"
-                  alt="프로필"
-                />
-                <div class="name-main">
-                  <div class="name">고길동</div>
-                  <div class="main">
-                    안녕하세요. 창업문의 드리려고 합니다. 강남역이나 논현역
-                    근처에 오픈 가능할까요?
-                  </div>
+                <div class="time">{{ calcDate(item.updateAt) }}</div>
+                <div class="chat-count" v-if="item.newMessageCount > 0">
+                  {{ item.newMessageCount }}
                 </div>
-              </div>
-              <div class="time-chat-count">
-                <div class="time">10월30일</div>
-                <div class="chat-count">10</div>
-              </div>
-            </div>
-            <div :class="{ chatting: selectChat === '3' }" class="box">
-              <div class="user">
-                <img
-                  src="../../../../assets/dashboard/qna/profile.png"
-                  alt="프로필"
-                />
-                <div class="name-main">
-                  <div class="name">김철수</div>
-                  <div class="main">안녕하세요. 창업문의 드리려고 합니다.</div>
-                </div>
-              </div>
-              <div class="time-chat-count">
-                <div class="time">어제</div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <Chatting v-if="getDevice === 'pc'" />
+      <Chatting
+        v-if="getDevice === 'pc'"
+        :socket="socket"
+        :chat-user="chatUser"
+        @close="closeMessageComponent"
+        @get-no-read-count="getNoReadCount"
+        @get-room-list="getRoomList"
+      />
     </div>
+    <Chatting
+      v-if="getDevice !== 'pc' && isShowMessageComponent && chatUser"
+      :socket="socket"
+      :chat-user="chatUser"
+      @close="closeMessageComponent"
+      @get-no-read-count="getNoReadCount"
+      @get-room-list="getRoomList"
+    />
   </article>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onUnmounted, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useWindowStore } from '../../../../store/window'
+import { io } from 'socket.io-client'
 import Chatting from '../../franchise/qna/Chatting.vue'
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+import { useUserStore } from '../../../../store/user'
+import { User } from '../../../../types/user'
+import { ChatRoom } from '../../../../types/chat'
+import { ChatRoomsResponse, CountResponse } from '../../../../types/response'
+import api from '../../../../config/axios.config'
+import { calcDate } from '../../../../functions/chat'
+import { toastAlert } from '../../../../functions/alert'
+import { useRoute, useRouter } from 'vue-router'
 
-const selectBtn = ref<string>('전체')
-const selectChat = ref<string>('3')
+const route = useRoute()
+const router = useRouter()
+
+const windowStore = useWindowStore()
+const { getDevice } = storeToRefs(windowStore)
+const userStore = useUserStore()
+const { currentBrand } = storeToRefs(userStore)
+
+const chatUser = ref<User>()
+
+const chatRoomList = ref<ChatRoom[]>([])
+const chatNoReadRoomList = ref<ChatRoom[]>([])
+const findRoomList = ref<ChatRoom[]>([])
+const noReadCount = ref<number>(0)
+
+const listType = ref<number>(0)
+const searchKeyword = ref<string>('')
+
+const isShowMessageComponent = ref<boolean>(false)
+
+const socket = io('ws://localhost:3001')
+
+socket.on('connect', () => {
+  socket.emit('add_socket', {
+    userType: 'COMPANY',
+    typeId: currentBrand.value?.id,
+  })
+})
+
+socket.on('received', () => {
+  chatInit()
+})
+
+const getRoomList = async () => {
+  if (currentBrand.value) {
+    const { data } = await api.get<ChatRoomsResponse>(
+      `/chat/room/list/${currentBrand.value.id}`
+    )
+
+    if (data.success) {
+      chatRoomList.value = data.chatRoom
+
+      for (const room of chatRoomList.value) {
+        const { data: messageCount } = await api.get<CountResponse>(
+          `/chat/new/message/${room.id}/COMPANY`
+        )
+
+        if (messageCount.success) {
+          room.newMessageCount = messageCount.count
+        } else {
+          room.newMessageCount = 0
+        }
+      }
+
+      chatNoReadRoomList.value = chatRoomList.value.filter(
+        (e) => e.newMessageCount > 0
+      )
+    }
+  }
+}
+
+const getNoReadCount = async () => {
+  if (currentBrand.value) {
+    const { data } = await api.get(
+      `/chat/read/count/${currentBrand.value.id}/COMPANY`
+    )
+
+    if (data.success) {
+      noReadCount.value = data.count.count
+    } else {
+      toastAlert({
+        text: data.errorMessage,
+        type: 'warning',
+      })
+    }
+  }
+}
+
+const getFindRoomList = (type: number) => {
+  listType.value = type
+  if (listType.value === 0) {
+    findRoomList.value = chatRoomList.value.filter((e) =>
+      e.user.userName.toLowerCase().includes(searchKeyword.value.toLowerCase())
+    )
+  } else {
+    findRoomList.value = chatNoReadRoomList.value.filter((e) =>
+      e.user.userName.toLowerCase().includes(searchKeyword.value.toLowerCase())
+    )
+  }
+}
+
+const changeChatRoom = (user: User) => {
+  chatUser.value = user
+  isShowMessageComponent.value = true
+  router.push(`/franchise/qna?id=${user.id}`)
+}
+
+const closeMessageComponent = () => {
+  isShowMessageComponent.value = false
+}
+
+const chatInit = () => {
+  const { id: userId } = route.query
+
+  if (!userId) {
+    router.push('/franchise/qna')
+    isShowMessageComponent.value = false
+  }
+
+  getRoomList()
+  getNoReadCount()
+}
+
+watch(
+  () => route.query.id,
+  () => {
+    if (route.path === '/franchise/qna') {
+      chatInit()
+    }
+  }
+)
+
+onMounted(() => {
+  chatInit()
+})
+
+onUnmounted(() => {
+  socket.disconnect()
+})
 </script>
 
 <style lang="scss" scoped>
@@ -126,6 +272,7 @@ const selectChat = ref<string>('3')
 
 .qna {
   padding: 50px 0 76px 160px;
+  width: auto !important;
 
   .none {
     text-decoration: none;
@@ -235,8 +382,10 @@ const selectChat = ref<string>('3')
               align-items: center;
               gap: 10px;
               img {
+                display: blodk;
                 width: 40px;
                 height: 40px;
+                border-radius: 50%;
               }
               .name-main {
                 width: 223px;
@@ -277,6 +426,10 @@ const selectChat = ref<string>('3')
           }
           .box:hover {
             background-color: #fbfcff;
+          }
+
+          .box.active {
+            background-color: #f6f9ff;
           }
           .chatting {
             background-color: #f6f9ff;

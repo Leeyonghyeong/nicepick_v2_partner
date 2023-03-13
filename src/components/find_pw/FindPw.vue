@@ -32,18 +32,20 @@
             이메일
             <div>(아이디 사용)</div>
           </div>
-          <input type="email" placeholder="이메일 주소 입력" />
-          <button class="receive">인증번호 전송</button>
+          <input v-model="email" type="email" placeholder="이메일 주소 입력" />
+          <button class="receive" @click="checkEmail">인증번호 전송</button>
         </div>
 
         <div class="box">
           <div class="input-title">인증번호</div>
           <div class="pw-input">
-            <input type="text" placeholder="인증번호 입력" />
+            <input
+              v-model="certificationNumber"
+              type="text"
+              placeholder="인증번호 입력"
+            />
           </div>
-          <RouterLink to="resetpw" class="none">
-            <button class="submit">확인</button>
-          </RouterLink>
+          <button class="submit" @click="checkCertificationNumber">확인</button>
         </div>
       </div>
     </article>
@@ -53,9 +55,80 @@
 <script lang="ts" setup>
 import { useWindowStore } from '../../store/window'
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
+import api from '../../config/axios.config'
+import { CommonResponse } from '../../types/response'
+import { toastAlert } from '../../functions/alert'
+import { useUserStore } from '../../store/user'
+import { useRouter } from 'vue-router'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const router = useRouter()
+
+const windowStore = useWindowStore()
+const userStore = useUserStore()
+const { getDevice } = storeToRefs(windowStore)
+const { tempEmail } = storeToRefs(userStore)
+
+const email = ref<string>()
+const certificationNumber = ref<string>()
+
+const checkEmail = async () => {
+  if (!email.value) {
+    toastAlert({ text: '이메일을 입력해 주세요', type: 'warning', timer: 3000 })
+    return
+  }
+
+  const { data } = await api.get<CommonResponse>(`/auth/user/${email.value}`)
+
+  if (data.success) {
+    toastAlert({
+      text: '이메일이 존재하지 않습니다',
+      type: 'warning',
+    })
+  } else if (data.errorMessage.includes('가입되어')) {
+    toastAlert({
+      text: '소셜 계정은 비밀번호 찾기가 불가능합니다',
+      type: 'warning',
+    })
+  } else if (data.errorMessage.includes('사용중인')) {
+    toastAlert({
+      text: '해당 이메일로 인증번호를 전송중입니다',
+      type: 'success',
+      timer: 5000,
+    })
+    sendEmail()
+  }
+}
+
+const sendEmail = async () => {
+  const result = await api.get(
+    `/auth/send/email?email=${email.value}&type=FINDPW`
+  )
+
+  if (result.data.success) {
+    toastAlert({
+      text: '인증번호가 이메일로 전송되었습니다',
+      type: 'success',
+    })
+  } else {
+    toastAlert({ text: result.data.errorMessage, type: 'warning' })
+  }
+}
+
+const checkCertificationNumber = async () => {
+  const { data } = await api.get<CommonResponse>(
+    `/auth/verify/number?cerNum=${certificationNumber.value}&email=${email.value}&type=FINDPW`
+  )
+
+  if (data.success) {
+    tempEmail.value = email.value
+    router.replace(`/resetpw`)
+  } else {
+    toastAlert({
+      text: '인증 번호가 올바르지 않습니다',
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>

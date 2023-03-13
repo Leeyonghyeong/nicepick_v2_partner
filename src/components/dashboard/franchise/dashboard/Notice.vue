@@ -1,51 +1,17 @@
 <template>
   <section>
     <article>
-      <div class="top-title">
-        <img
-          v-if="getDevice === 'mobile'"
-          src="../../../../assets/login/arrow_lt.png"
-          alt="이전"
-        />
-        공지사항
-      </div>
+      <div class="top-title">공지사항</div>
 
       <div class="notice-list">
         <div
           class="list"
-          :class="{ select: selectList === '1' }"
-          @click="selectList = '1'"
+          v-for="item in noticeList"
+          :key="item.id"
+          @click="$router.push(`/franchise/notice/detail/${item.id}`)"
         >
-          <div class="name">[긴급] 창업픽 파트너 2023년 공지사항</div>
-          <div class="period">2023.01.01</div>
-        </div>
-
-        <RouterLink to="/franchise/noticemain" class="none">
-          <div
-            class="list"
-            :class="{ select: selectList === '2' }"
-            @click="selectList = '2'"
-          >
-            <div class="name">프리미엄 서비스 이용시 주의사항</div>
-            <div class="period">2022.12.01</div>
-          </div>
-        </RouterLink>
-
-        <div
-          class="list"
-          :class="{ select: selectList === '3' }"
-          @click="selectList = '3'"
-        >
-          <div class="name">파트너 홈페이지 리뉴얼 공지</div>
-          <div class="period">2022.10.29</div>
-        </div>
-        <div
-          class="list"
-          :class="{ select: selectList === '4' }"
-          @click="selectList = '4'"
-        >
-          <div class="name">파트너 회원 선착순 이벤트 진행</div>
-          <div class="period">2022.09.01</div>
+          <div class="name">{{ item.title }}</div>
+          <div class="period">{{ dateConvertString(item.createAt, '.') }}</div>
         </div>
       </div>
     </article>
@@ -54,13 +20,26 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useWindowStore } from '../../../../store/window'
 import { storeToRefs } from 'pinia'
+import { useNoticeStore } from '../../../../store/notice'
+import { Notice } from '../../../../types/notice'
+import { dateConvertString } from '../../../../functions/common'
 
-const store = useWindowStore()
-const { getDevice } = storeToRefs(store)
+const noticeStore = useNoticeStore()
+const { notice } = storeToRefs(noticeStore)
 
-const selectList = ref<string>()
+const noticeList = ref<Notice[]>([])
+
+const getNotice = async () => {
+  if (notice.value.length === 0) {
+    await noticeStore.getNotice()
+  }
+
+  noticeList.value = notice.value.filter((e) => e.page === 0 || e.page === 3)
+  noticeList.value.sort((a, b) => (a.createAt > b.createAt ? -1 : 0))
+}
+
+getNotice()
 </script>
 
 <style lang="scss" scoped>
@@ -101,10 +80,6 @@ article {
         color: $fontSub;
       }
     }
-    .select {
-      box-shadow: 0 0 0 1px $mainColor inset;
-      font-weight: $medi;
-    }
   }
 }
 
@@ -143,11 +118,6 @@ article {
           font-size: 11px;
         }
       }
-      .select {
-        box-shadow: none;
-        border-bottom: 1px solid $sectionLine;
-        font-weight: normal;
-      }
     }
   }
 }
@@ -164,9 +134,6 @@ article {
       .list:hover {
         box-shadow: 0 0 0 1px $mainColor inset;
         font-weight: $medi;
-      }
-      .select {
-        border: none;
       }
     }
   }
